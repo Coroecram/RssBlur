@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validate :check_email_and_password
   validate :check_username_and_password
-
   before_validation :ensure_session_token
+
+  has_many :websites, through: :user_websites
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64

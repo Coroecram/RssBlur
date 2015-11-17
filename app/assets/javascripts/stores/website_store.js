@@ -2,7 +2,7 @@
   var _websites = [];
   var CHANGE_EVENT = 'changed'
 
-  var setWebsites = function (websitees) {
+  var setWebsites = function (websites) {
     _websites = websites;
   };
 
