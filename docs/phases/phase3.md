@@ -1,34 +1,27 @@
-# Phase 3: Flux Stores and Actions (2 days)
+# Phase 3: Articles, Folders, and LinkView (2 days)
+
+## Rails
+### Models
+* Article
+* Folder
+
+### Controllers
+* Api::ArticlesController (create, index, delete, show, update)
+* Api::FolderController (create, index, delete, show, update)
+
+### Views
+* /users/:id/folders/:id
+* /users/:id/websites/:id/articles
+
 
 ## Flux
+### Components
+* LinkView
+* Article Detail
+
 ### Stores
-* Websites
-* Articles
-* Folders
-* Tags
-
-### Actions
-* ApiActions.receiveAllWebsites
-* ApiActions.removeWebsite
-* ApiActions.createWebsite
-* ApiActions.updateWebsite
-* ApiActions.receiveWebsiteArticles
-* ApiActions.receiveOldWebsiteArticles
-* ApiActions.updateArticles
-* ApiActions.receiveAllFolders
-* ApiActions.createFolder
-* ApiActions.updateFolder
-* ApiActions.deleteFolder
-* ApiActions.createTag
-* ApiActions.deleteTag
-
-### ApiUtil
-* ApiUtil.fetchAllArticles
-* ApiUtil.destroyArticles (based on datetime, ran before fetch)
-* ApiUtil.fetchFolder
-* ApiUtil.createFolder
-* ApiUtil.updateFolder
-* ApiUtil.destroyFolder
+* Article
+* Folder
 
 ## Gems/Libraries
 * TBD

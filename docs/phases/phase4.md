@@ -1,19 +1,21 @@
-# Phase 4: React Components (2.5 days)
-
-## Rails
-### Views
-/users/:id/website/article/:id
-/users/:id/websites/new
+# Phase 4: Search and Sort (1 days)
 
 ## Flux
+### Stores
+* SearchResults
+
 ### Views (React Components)
-* IndexRoute
-  - RSSForm
-* FolderIndex
-* WebsiteIndex
-  - Article Detail
-  - Articles Listed
-* RightClickMenu
+* Search
+  - SearchResults*
+* Sort
+  - WebsiteIndex*
+    - ArticlesListed*
+
+### Actions
+* ApiActions.searchSites
+* ApiActions.searchArticles
+* ApiActions.sortSites
+* ApiActions.sortArticles
 
 ## Gems/Libraries
 * TBD

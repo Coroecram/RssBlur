@@ -1,13 +1,24 @@
-# Phase 2: Websites, Articles and Tags (1.5 days)
+# Phase 2: Websites and Sidebar Component (2 days)
 
+## Rails
 ### Models
-* Article
-* Folder
+* Website
 
 ### Controllers
 * Api::WebsitesController (create, index, delete, show, update)
-* Api::ArticlesController (create, index, delete, show, update)
-* Api::FolderController (create, index, delete, show, update)
+
+## Flux
+### Components
+* LinkView (sidebar)
+* GuestPage
+* RSSForm
+
+### Actions
+* ApiActions.createWebsite
+* ApiActions.connectUserToWebsite
+
+### ApiUtil
+* ApiUtil.fetchUserWebsites (jFeed)
 
 
 ## Gems/Libraries

@@ -1,9 +1,9 @@
-# Phase 1: User Authentication and Website Model
+# Phase 1: User Authentication and Session Pages (1 day)
 
 ## Rails
 ### Models
 * User
-* Website
+
 
 ### Controllers
 * UsersController (create, new)
@@ -13,9 +13,6 @@
 ### Views
 * static/root.html.erb
 * user/:id/index.html.erb
-
-### ApiUtil
-* ApiUtil.fetchAllWebsites (jFeed)
 
 ## Gems/Libraries
 * BCrypt
