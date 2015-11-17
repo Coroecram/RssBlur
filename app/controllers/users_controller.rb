@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_action :require_signed_in, only: [:show, :index]
+  before_action :require_signed_in, only: [:show, :index]
 
  def index
    render json: current_user
