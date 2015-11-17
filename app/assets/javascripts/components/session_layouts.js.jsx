@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-  <title>RSS Blur</title>
-</head>
-<body>
-
-<%= flash[:errors] %>
-<%= flash[:messages] %>
-
 <% if signed_in? %>
   <%= "Current User: #{current_user.username}" %>
 
@@ -32,8 +21,3 @@
     </form>
   <% end %>
 <% end %>
-
-<%= yield %>
-
-</body>
-</html>

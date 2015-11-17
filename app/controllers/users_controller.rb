@@ -1,11 +1,9 @@
-require 'byebug'
-
 class UsersController < ApplicationController
 
   # before_action :require_signed_in, only: [:show, :index]
 
  def index
-   @users = User.all
+   render json: current_user
  end
 
  def new

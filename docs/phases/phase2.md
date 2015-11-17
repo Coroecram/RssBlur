@@ -10,8 +10,10 @@
 ## Flux
 ### Components
 * LinkView (sidebar)
-* GuestPage
 * RSSForm
+
+### Stores
+* WebsiteStore
 
 ### Actions
 * ApiActions.createWebsite
@@ -22,5 +24,5 @@
 
 
 ## Gems/Libraries
-* Useful things for RSS
+* JFeed
 * Useful things for database clearing based on time

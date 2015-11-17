@@ -13,8 +13,8 @@ RSSBlur allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create an account
-- [ ] Log in / Log out
+- [x] Create an account
+- [x] Log in / Log out
 - [ ] Compile RSS feeds, request new articles at regular intervals
 - [ ] Organize website feeds into folders
 - [ ] Organize articles into folders

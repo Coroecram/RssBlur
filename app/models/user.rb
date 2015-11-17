@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     self.password_confirmation = "presence_validation"
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
+    self.session_token
   end
 
   def password=(password)

@@ -14,7 +14,6 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 url					| string		| not null, indexed
-tag         | string    | not null
 folder_id		| integer		| foreign key (references folders), :indexed
 
 ## user_websites
