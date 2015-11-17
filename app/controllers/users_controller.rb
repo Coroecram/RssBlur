@@ -1,6 +1,8 @@
+require 'byebug'
+
 class UsersController < ApplicationController
 
-  before_action :require_signed_in, only: [:show, :index]
+  # before_action :require_signed_in, only: [:show, :index]
 
  def index
    @users = User.all
@@ -16,18 +18,18 @@ class UsersController < ApplicationController
 
  def create
    @user = User.new(user_params)
-
+   debugger
    if @user.save
      session[:session_token] = @user.session_token
      redirect_to users_url
    else
-     flash.now[:errors] = @user.errors.full_messages
+     flash.now[:errors] = @user.errors.full_messages.to_sentence
      render :new
    end
  end
 
  private
  def user_params
-   params.require(:user).permit(:username, :email, :password)
+   params.require(:user).permit(:username, :email, :password, :password_confirmation)
  end
 end

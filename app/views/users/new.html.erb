@@ -2,7 +2,7 @@
 
   <form action="<%= users_url  %>" method="POST">
     <%= auth_token %>
-    
+
     <label>Email
       <input type="text" name="user[email]">
     </label>
@@ -13,7 +13,7 @@
       <input type="password" name="user[password]">
     </label>
     <label>Confirm Password
-      <input type="password" name="user[password-confirm]">
+      <input type="password" name="user[password_confirmation]">
     </label>
 
     <button value="submit">Sign Up</button>

@@ -1,13 +1,17 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :username, :password_digest, :session_token, presence: true, uniqueness: true
-  validate :password, length: { minimum: 6, allow_nil: true }
   validates :email, presence: true, uniqueness: true, email: true
+  validates :username, :password_digest, :session_token, presence: true, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }, confirmation: { allow_nil: true }
+  validates :password_confirmation, presence: true
+  validate :check_email_and_password
+  validate :check_username_and_password
+
   before_validation :ensure_session_token
 
   def ensure_session_token
-    self.session_token ||= reset_session_token!
+    self.session_token ||= SecureRandom::urlsafe_base64
   end
 
   def reset_session_token!
@@ -40,6 +44,14 @@ class User < ActiveRecord::Base
 
   def password_digest
     BCrypt::Password.new(super)
+  end
+
+  def check_email_and_password
+    errors.add(:password, "can't be the same as email") if email == password
+  end
+
+  def check_username_and_password
+    errors.add(:password, "can't be the same as username") if username == password
   end
 
 end

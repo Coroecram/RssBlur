@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
  end
 
  def destroy
+   current_user.password_confirmation = "pass_validation"
    current_user.reset_session_token!
    session[:session_token] = nil
    flash[:messages] = "You have logged out!"
