@@ -1,12 +1,36 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-  <title>RssBlur</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <title>RSS Blur</title>
 </head>
 <body>
+
+<%= flash[:errors] %>
+<%= flash[:messages] %>
+
+<% if current_user %>
+  <%= "Current User: #{current_user.username}" %>
+
+  <form action="<%= session_url %>" method="POST" >
+    <input type="hidden" name="_method" value="Delete">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+
+    <button>Sign Out</button>
+  </form>
+
+<% else %>
+  <form action="<%= new_session_url %>" method="GET">
+
+    <button>Sign In</button>
+  </form>
+  <form action="<%= new_user_url %>" method="GET" >
+    <button>Create New Account</button>
+  </form>
+
+<% end %>
+
+
 
 <%= yield %>
 
