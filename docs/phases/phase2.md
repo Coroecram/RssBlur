@@ -3,8 +3,6 @@
 ### Models
 * Article
 * Folder
-* Tag
-* Tagging
 
 ### Controllers
 * Api::WebsitesController (create, index, delete, show, update)
