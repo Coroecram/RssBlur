@@ -1,0 +1,27 @@
+.sidebar {
+  position: absolute;
+  background: red;
+  width: 229px;
+  padding: 5px;
+  border-right: 1px solid gray;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.sidebar li {
+  position: relative;
+  display: block;
+  width: 228px;
+  height: 21px;
+  padding: 2px;
+  border: 1px solid lightblue;
+  background: lightblue;
+  text-align: center;
+}
+
+.sidebar li:hover {
+  background: yellow;
+  border: 1px solid black;
+  cursor: pointer;
+}
