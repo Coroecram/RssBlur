@@ -20,9 +20,4 @@
 * ApiActions.connectUserToWebsite
 
 ### ApiUtil
-* ApiUtil.fetchUserWebsites (jFeed)
-
-
-## Gems/Libraries
-* JFeed
-* Useful things for database clearing based on time
+* ApiUtil.fetchUserWebsites

@@ -19,4 +19,5 @@
 //= require flux
 //= require eventemitter
 //= require components
+//= require jfeed
 //= require_tree .
