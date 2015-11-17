@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
   has_many :websites, through: :user_websites
+  has_many :user_websites
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64
