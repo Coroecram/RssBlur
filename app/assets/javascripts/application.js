@@ -15,14 +15,8 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
+//= require react_router
 //= require flux
 //= require eventemitter
 //= require components
 //= require_tree .
-
-+ actions
- + components // all React components, both views and controller-views
- + constants
- + dispatcher
- + stores
- + util
