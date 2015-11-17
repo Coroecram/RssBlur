@@ -1,7 +1,7 @@
 var UserHome = React.createClass({
 
   getInitialState: function () {
-
+    return {websites: WebsiteStore.all()}
   },
 
   _onChange: function () {
@@ -22,7 +22,7 @@ var UserHome = React.createClass({
 
   render: function () {
     return (
-            <div className="sidebar">
+            <div className="website-list">
               <WebsiteList />
             </div>
           );
