@@ -20,14 +20,17 @@
   </form>
 
 <% else %>
-  <form action="<%= new_session_url %>" method="GET">
+  <% unless request.path_info.include?('/session/new') %>
+    <form action="<%= new_session_url %>" method="GET">
 
-    <button>Sign In</button>
-  </form>
-  <form action="<%= new_user_url %>" method="GET" >
-    <button>Create New Account</button>
-  </form>
-
+      <button>Sign In</button>
+    </form>
+  <% end %>
+  <% unless request.path_info.include?('/users/new') %>
+    <form action="<%= new_user_url %>" method="GET" >
+      <button>Create New Account</button>
+    </form>
+  <% end %>
 <% end %>
 
 

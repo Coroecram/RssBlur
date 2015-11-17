@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validate :password, length: { minimum: 6, allow_nil: true }
-  validats :email, presence: true, uniqueness: true, email: true
+  validates :email, presence: true, uniqueness: true, email: true
   before_validation :ensure_session_token
 
   def ensure_session_token
