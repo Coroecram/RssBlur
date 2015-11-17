@@ -16,10 +16,6 @@
       return _websites.slice(0);
     },
 
-    setWebsite: function (website) {
-      _websites = [website];
-    },
-
     fetch: function () {
       return _websites[0];
     },

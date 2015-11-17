@@ -2,9 +2,9 @@
 (function (root) {
 
   var ApiUtil = root.ApiUtil = {
-    fetchWebsites: function(){
+    fetchWebsites: function () {
       $.get('api/websites', function(websites){
-        ApiActions.receiveAll(websites);
+        ApiActions.receiveAllWebsites(websites);
       });
     },
     createWebsite: function(data){

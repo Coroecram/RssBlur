@@ -1,5 +1,5 @@
 window.ApiActions = {
-  receiveAll: function (websites) {
+  receiveAllWebsites: function (websites) {
     AppDispatcher.dispatch({
       actionType: WebsiteConstants.WEBSITES_RECEIVED,
       websites: websites

@@ -17,12 +17,14 @@ ActiveRecord::Schema.define(version: 20151117162434) do
   enable_extension "plpgsql"
 
   create_table "user_websites", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "website_id", null: false
+    t.integer  "user_id",                null: false
+    t.integer  "website_id",             null: false
+    t.integer  "folder_id",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "user_websites", ["folder_id"], name: "index_user_websites_on_folder_id", using: :btree
   add_index "user_websites", ["user_id"], name: "index_user_websites_on_user_id", using: :btree
   add_index "user_websites", ["website_id"], name: "index_user_websites_on_website_id", using: :btree
 
@@ -39,13 +41,12 @@ ActiveRecord::Schema.define(version: 20151117162434) do
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
   create_table "websites", force: true do |t|
-    t.string   "url",                    null: false
-    t.integer  "folder_id",  default: 0
+    t.string   "name",       null: false
+    t.string   "url",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "websites", ["folder_id"], name: "index_websites_on_folder_id", using: :btree
   add_index "websites", ["url"], name: "index_websites_on_url", using: :btree
 
 end

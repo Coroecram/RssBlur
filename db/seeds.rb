@@ -26,40 +26,46 @@ User.create!([{
             }])
 
 Website.create!([{
-                  url: "http://www.wired.com",
-                  folder_id: 0
+                  name: "Wired",
+                  url: "http://www.wired.com"
                  },
                  {
-                    url: "http://www.thenation.com",
-                    folder_id: 0
+                  name: "The Nation",
+                  url: "http://www.thenation.com"
                  },
                  {
-                   url: "http://www.engadget.com",
-                   folder_id: 0
+                  name: "Engadget",
+                  url: "http://www.engadget.com"
                  }])
 
 UserWebsite.create!([{
                       user_id: 1,
-                      website_id: 1
+                      website_id: 1,
+                      folder_id: 0
                     },
                     {
                       user_id: 1,
-                      website_id: 2
+                      website_id: 2,
+                      folder_id: 0
                     },
                     {
                       user_id: 1,
-                      website_id: 3
+                      website_id: 3,
+                      folder_id: 0
                     },
                         {
                           user_id: 2,
-                          website_id: 1
+                          website_id: 1,
+                          folder_id: 0
                         },
                         {
                           user_id: 2,
-                          website_id: 2
+                          website_id: 2,
+                          folder_id: 0
                         },
                             {
                               user_id: 3,
-                              website_id: 3
+                              website_id: 3,
+                              folder_id: 0
                             }
                     ])

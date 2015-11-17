@@ -1,3 +1,64 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.authentication {
+  position: relative;
+  width: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.authentication h1 {
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  margin: 10px;
+}
+
+.authentication button {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+  background: #DDEFEF;
+}
+
+.session {
+  width: 80%;
+  padding: 50px;
+  border: 5px solid black;
+  text-align: center;
+  background: #ADD3D3;
+}
+
+.session label {
+  display:  block;
+  width: auto;
+  font-size: 32px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.session
+input[type="password"],
+input[type="email"],
+input[type="text"] {
+  height: 50px;
+  width: 300px;
+  border: solid 1px black;
+  margin: auto;
+  text-align:center;
+  font-size: 24px;
+  background: #DDEFEF;
+}
+
+.session input[type="submit"] {
+  text-align: center;
+  font-weight: 400;
+  border: solid 1px black;
+  padding: 15px;
+  margin: 20px 0 0 0 ;
+  background: #78AEAE;
+}

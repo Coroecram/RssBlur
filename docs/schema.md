@@ -13,8 +13,8 @@ session_token   | string    | not null, indexed, unique
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-url					| string		| not null, indexed
-folder_id		| integer		| foreign key (references folders), :indexed
+name				| string		| not null, unique, indexed
+url					| string		| not null, unique, indexed
 
 ## user_websites
 column name     | data type | details
@@ -22,6 +22,7 @@ column name     | data type | details
 id              | integer   | not null, primary key
 website_id  		| integer   | foreign key (references websites), indexed
 user_id  		    | integer   | foreign key (references users), indexed
+folder_id		    | integer		| foreign key (references folders), indexed
 
 ## articles
 column name | data type | details

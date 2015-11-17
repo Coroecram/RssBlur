@@ -1,14 +1,21 @@
 class Api::WebsitesController < ApplicationController
 
-  # before_action :require_signed_in
+  before_action :require_signed_in
 
   def index
-    debugger
-    @user_websites = UserWebsite.find_by_user_id(current_user.id
-    render json: @user_websites.websites
+    render json: current_user.websites
   end
 
   def create
+    website = Website.create!(website_params)
+    UserWebsite.create!({user_id: current_user.id, website_id: website.id})
+    render json: website
+  end
+
+  private
+
+  def website_params
+    params.require(:website).permit(:url, :folder_id)
   end
 
 end
