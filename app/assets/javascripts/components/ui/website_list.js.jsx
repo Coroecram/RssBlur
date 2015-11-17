@@ -5,7 +5,7 @@ var WebsiteList = React.createClass({
   },
 
   _onChange: function () {
-    this.setState({ websites: WebsiteStore.all() });
+    this.setState({websites: WebsiteStore.all()});
   },
 
   componentDidMount: function () {
@@ -17,12 +17,21 @@ var WebsiteList = React.createClass({
   },
 
   _onChange: function () {
-    this.setState({websites: WebsiteStore.all()})
+    this.setState({websites: WebsiteStore.all()});
   },
 
   render: function () {
+    var websites
+    if (this.state.websites) {
+      websites = this.state.websites.map(function (website) {
+          return <li key={website.id} url={website.url}>{website.name}</li>;
+        });
+    }
     return (
-            <div className="website-list">
+            <div className="websites">
+              <ul className="website-list">
+                {websites}
+              </ul>
             </div>
           );
   }
