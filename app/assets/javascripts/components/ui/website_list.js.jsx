@@ -1,4 +1,4 @@
-var UserHome = React.createClass({
+var WebsiteList = React.createClass({
 
   getInitialState: function () {
     return {websites: WebsiteStore.all()}
@@ -23,7 +23,6 @@ var UserHome = React.createClass({
   render: function () {
     return (
             <div className="website-list">
-              <WebsiteList />
             </div>
           );
   }
