@@ -14,6 +14,11 @@
 * static/root.html.erb
 * user/:id/index.html.erb
 
+## Flux
+### Components
+* App
+* Index
+
 ## Gems/Libraries
 * BCrypt
 * jFeed

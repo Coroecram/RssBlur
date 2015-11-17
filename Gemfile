@@ -27,6 +27,9 @@ gem 'email_validator'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'react-rails', '~> 1.3.0'
+gem 'flux-rails-assets', '~> 2.1.0'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

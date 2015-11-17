@@ -9,7 +9,7 @@
 <%= flash[:errors] %>
 <%= flash[:messages] %>
 
-<% if current_user %>
+<% if signed_in? %>
   <%= "Current User: #{current_user.username}" %>
 
   <form action="<%= session_url %>" method="POST" >
@@ -26,7 +26,7 @@
       <button>Sign In</button>
     </form>
   <% end %>
-  <% unless request.path_info.include?('/users/new') %>
+  <% unless request.path_info.include?('/users') %>
     <form action="<%= new_user_url %>" method="GET" >
       <button>Create New Account</button>
     </form>

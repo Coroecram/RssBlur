@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
  def create
    @user = User.new(user_params)
-   debugger
    if @user.save
      session[:session_token] = @user.session_token
      redirect_to users_url
