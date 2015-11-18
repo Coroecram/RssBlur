@@ -1,3 +1,5 @@
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+
 var Sidebar = React.createClass({
 
   getInitialState: function () {
