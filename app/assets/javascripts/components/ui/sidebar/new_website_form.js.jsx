@@ -5,11 +5,19 @@ var WebsiteForm = React.createClass({
   },
 
   addWebsite: function () {
-    ApiUtil.createWebsite(this.state.url);
+    ApiUtil.createWebsite(this.state.url, this.receivedSite, this.receivedError);
   },
 
   updateURL: function (event) {
     this.setState({url: event.currentTarget.value});
+  },
+
+  receivedError: function () {
+    this.setState({error: true});
+  },
+
+  receivedSite: function () {
+    this.setState({error: false});
   },
 
   render: function () {

@@ -5,19 +5,23 @@
     fetchWebsites: function () {
       $.get('api/websites', function(websites){
         ApiActions.receiveAllWebsites(websites);
-      });
+      },
+      'json');
     },
-    createWebsite: function(url){
+    createWebsite: function(url, success, error){
       $.post('api/websites', { url: url }, function(website) {
         ApiActions.createWebsite(website);
-      }).fail(function () {
-        ApiActions.createWebsiteError;
+        success();
+      },
+      'json').fail(function (data) {
+        error();
       });
     },
     fetchUser: function (user) {
       $.get('users/holder', function(user){
         ApiActions.receiveUser(user);
-      });
+      },
+      'json');
     }
   };
 })(this);
