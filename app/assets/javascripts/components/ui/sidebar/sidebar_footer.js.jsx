@@ -1,26 +1,32 @@
 var SidebarFooter = React.createClass({
 
   getInitialState: function () {
-    return null;
+    return {formShow: false};
   },
 
   componentDidMount: function () {
   },
 
-  showNewWebsiteForm: function () {
-    console.log('show new website form');
+  toggleNewWebsiteForm: function () {
+    this.setState({formShow: !this.state.formShow});
   },
 
   _onChange: function () {
+    this.setState({formShow: false});
   },
 
   render: function () {
+    var websiteForm;
+    if (this.state.formShow) {
+      websiteForm = <WebsiteForm />;
+    }
     return (
             <div className="sidebar-footer">
-              <span onClick={this.showNewWebsiteForm}> +</span>
-              <div className="footer-optons" />
+              {websiteForm}
+              <span onClick={this.toggleNewWebsiteForm}>+</span>
+              <div className="footer-options" />
               <div className="footer-settings" />
             </div>
-           )
+          );
   }
 });

@@ -49,3 +49,50 @@
   font-weight: 400;
   cursor: pointer;
 }
+
+.website-form {
+  position: absolute;
+  bottom: 140%;
+  left: 0;
+  right: 0;
+}
+
+.website-input {
+  display: block;
+  width: 300px;
+  height: 100px;
+  background: orange;
+}
+
+.website-input
+input[type="text"] {
+  text-align: left;
+  height: 20px;
+  width: 100%;
+  padding: 3px;
+  margin: 5px;
+  font-size: 12px;
+}
+
+.website-input
+input[type="submit"] {
+  border: solid 1px black;
+  padding: 3px;
+  margin: 3px;
+}
+
+.website-form-triangle {
+  position: absolute;
+  left: 3px;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-top: 10px solid blue;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.hidden {
+  display: none;
+}

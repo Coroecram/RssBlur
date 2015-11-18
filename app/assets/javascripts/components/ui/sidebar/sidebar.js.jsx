@@ -10,11 +10,11 @@ var Sidebar = React.createClass({
   },
 
   _onChange: function () {
-    this.setState({currentUser: UserStore.fetch()})
+    this.setState({currentUser: UserStore.fetch()});
   },
 
   render: function () {
-    var sidebar
+    var sidebar;
     if (this.state.currentUser) {
       sidebar =     <div>
                         <div className="sidebar-header">
@@ -23,6 +23,11 @@ var Sidebar = React.createClass({
                         <WebsiteList />
                     </div>
     }
+    var formClass = classNames({
+      'hidden': true,
+      'btn-pressed': this.state.isPressed,
+      'btn-over': !this.state.isPressed && this.state.isHovered
+    });
     return (
           <div className="sidebar">
             {sidebar}

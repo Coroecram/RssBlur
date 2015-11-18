@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jfeed
 //= require react
 //= require react_ujs
 //= require react_router
 //= require flux
 //= require eventemitter
 //= require components
-//= require jfeed
 //= require_tree .
