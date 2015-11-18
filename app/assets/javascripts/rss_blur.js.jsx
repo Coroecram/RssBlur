@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     var routes = (
       <Route path="/" component={App}>
-        <IndexRoute component={Session} />
+        <IndexRoute component={SignIn} />
         <Route path="/create_account" component={SignUp} />
         <Route path="/home" component={UserHome}/>
       </Route>
