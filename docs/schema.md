@@ -28,11 +28,11 @@ folder_id		    | integer		| foreign key (references folders), indexed
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-website_id  | integer   | not null, foreign key (references websites), indexed
 url					| string		| not null, indexed, unique
 title       | string    | not null
 author			| string		| not null
-date				| datetime  | not null
+website_id  | integer   | not null, foreign key (references websites), indexed
+created_date| datetime  | not null
 
 ## folders
 column name | data type | details

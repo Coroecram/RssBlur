@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117162434) do
+ActiveRecord::Schema.define(version: 20151118221846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: true do |t|
+    t.string   "url",                                null: false
+    t.string   "title",                              null: false
+    t.string   "author",       default: "anonymous", null: false
+    t.datetime "created_date",                       null: false
+    t.integer  "website_id",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["author"], name: "index_articles_on_author", using: :btree
+  add_index "articles", ["created_date"], name: "index_articles_on_created_date", using: :btree
+  add_index "articles", ["url"], name: "index_articles_on_url", using: :btree
+  add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
   create_table "user_websites", force: true do |t|
     t.integer  "user_id",                null: false
