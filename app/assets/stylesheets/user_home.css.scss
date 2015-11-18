@@ -27,24 +27,23 @@
 }
 
 .sidebar-footer {
-  position: relative;
-  overflow: hidden;
+  position: absolute;
   bottom: 0;
-  left: -5px;
+  left: 0;
   display: block;
-  height: 23px;
-  padding: 3px;
+  height: 26px;
   border-top: 1px solid gray;
-  width: auto;
+  width: 100%;
   background: lightgray;
 }
 
 .sidebar-footer span{
   position: absolute;
   display: block;
-  height: 21px;
-  width: 21px;
-  padding: 4px;
+  height: 22px;
+  width: 22px;
+  padding: 2px;
+  line-height: 22px;
   text-align: center;
   font-size: 24px;
   font-weight: 400;
