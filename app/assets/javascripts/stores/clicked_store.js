@@ -2,7 +2,8 @@
   var _clicked;
   var CHANGE_EVENT = 'changed';
 
-  var setClicked = function (clicked) {
+  var setClicked = function (id) {
+    clicked = WebsiteStore.find(id);
     _clicked = clicked;
   };
 
@@ -26,9 +27,9 @@
 
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
-      case (ClickedConstants.CLICKED_RECEIVED):
-        setClicked(payload.clicked);
-        WebsiteStore.emitChange();
+      case (ClickedConstants.CLICK_RECEIVED):
+        setClicked(payload.id);
+        ClickedStore.emitChange();
         break;
         default:
       }

@@ -33,10 +33,10 @@ window.ApiActions = {
     });
   },
 
-  setClicked: function(object) {
+  setClicked: function(id) {
     AppDispatcher.dispatch({
-      actionType: ClickedConstants.CLICKED_RECEIVED,
-      object: object
+      actionType: ClickedConstants.CLICK_RECEIVED,
+      id: id
     });
   }
 };

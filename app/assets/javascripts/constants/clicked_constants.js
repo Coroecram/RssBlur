@@ -1,7 +1,7 @@
 (function (root) {
 
   var ClickedConstants = root.ClickedConstants = {
-    CLICKED_RECEIVED: "CLICKED_RECEIVED"
+    CLICK_RECEIVED: "CLICK_RECEIVED"
   };
 
 })(this);

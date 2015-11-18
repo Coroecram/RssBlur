@@ -4,10 +4,6 @@ var WebsiteList = React.createClass({
     return {websites: WebsiteStore.all()};
   },
 
-  _onChange: function () {
-    this.setState({websites: WebsiteStore.all()});
-  },
-
   componentDidMount: function () {
     WebsiteStore.addChangeListener(this._onChange);
   },
@@ -16,12 +12,20 @@ var WebsiteList = React.createClass({
     WebsiteStore.removeChangeListener(this._onChange);
   },
 
+  websiteClicked: function (event) {
+    ApiActions.setClicked(parseInt(event.currentTarget.id));
+  },
+
+  _onChange: function () {
+    this.setState({websites: WebsiteStore.all()});
+  },
+
   render: function () {
     var websites;
     if (this.state.websites) {
       websites = this.state.websites.map(function (website) {
-          return <li key={website.id} url={website.url}>{website.name}</li>;
-        });
+          return <li key={website.id} id={website.id} url={website.url} onClick={this.websiteClicked}>{website.name}</li>;
+        }.bind(this));
     }
     return (
             <div className="websites">

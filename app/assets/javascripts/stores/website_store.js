@@ -20,6 +20,15 @@
       return _websites[0];
     },
 
+    find: function(id) {
+      for (var i = 0; i < _websites.length; i++){
+        if (id === _websites[i].id) {
+          return _websites[i];
+        }
+      }
+      return null;
+    },
+
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
     },
