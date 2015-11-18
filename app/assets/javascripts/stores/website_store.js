@@ -10,6 +10,15 @@
     _websites.push(website);
   };
 
+  var deleteWebsite = function (id) {
+      for (var i = 0; i < _websites.length; i++){
+        if (id === _websites[i].id) {
+          _websites.splice(i, 1);
+        }
+      }
+      return null;
+    };
+
   var WebsiteStore = root.WebsiteStore = $.extend({}, EventEmitter.prototype, {
 
     all: function () {
@@ -28,6 +37,7 @@
       }
       return null;
     },
+
 
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
@@ -49,6 +59,10 @@
         break;
       case (WebsiteConstants.WEBSITE_CREATED):
         addWebsite(payload.website);
+        WebsiteStore.emitChange();
+        break;
+      case (WebsiteConstants.WEBSITE_DELETE):
+        deleteWebsite(payload.id);
         WebsiteStore.emitChange();
         break;
       case (WebsiteConstants.FETCH_WEBSITE):

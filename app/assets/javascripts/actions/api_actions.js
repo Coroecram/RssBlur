@@ -13,6 +13,13 @@ window.ApiActions = {
     });
   },
 
+  deleteWebsite: function (id) {
+    AppDispatcher.dispatch({
+      actionType: WebsiteConstants.WEBSITE_DELETE,
+      id: id
+    });
+  },
+
   createWebsiteError: function () {
     AppDispatcher.dispatch({
       actionType: WebsiteConstants.WEBSITE_ERROR

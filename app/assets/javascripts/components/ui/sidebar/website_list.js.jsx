@@ -16,6 +16,11 @@ var WebsiteList = React.createClass({
     ApiActions.setClicked(parseInt(event.currentTarget.id));
   },
 
+  deleteWebsite: function (event) {
+    debugger
+    ApiActions.deleteWebsite(parseInt(event.currentTarget.id));
+  },
+
   _onChange: function () {
     this.setState({websites: WebsiteStore.all()});
   },
@@ -24,7 +29,13 @@ var WebsiteList = React.createClass({
     var websites;
     if (this.state.websites) {
       websites = this.state.websites.map(function (website) {
-          return <li key={website.id} id={website.id} url={website.url} onClick={this.websiteClicked}>{website.name}</li>;
+          return (
+                  <div key={website.id}>
+                    <li><div id={website.id} url={website.url} onClick={this.websiteClicked}>{website.name}</div>
+                    <div className="delete-website" id={website.id} onClick={this.deleteWebsite}>X</div>
+                    </li>
+                  </div>
+                );
         }.bind(this));
     }
     return (

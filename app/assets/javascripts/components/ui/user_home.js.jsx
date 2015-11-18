@@ -8,7 +8,6 @@ var UserHome = React.createClass({
     return (
             <div className="user-home">
               <Sidebar />
-              <WebsiteList />
             </div>
           );
   }

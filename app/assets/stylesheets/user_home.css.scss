@@ -12,6 +12,7 @@
 .sidebar li {
   position: relative;
   display: block;
+  float: left;
   width: 228px;
   height: 21px;
   padding: 2px;
@@ -24,6 +25,19 @@
 .sidebar li:hover {
   background: yellow;
   border: 1px solid black;
+}
+
+.delete-website {
+  display: inline;
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: lightgreen;
+  line-height: 30px;
+  font-weight: 600;
+  color: darkred;
 }
 
 .sidebar-footer {

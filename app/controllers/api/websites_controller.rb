@@ -23,6 +23,10 @@ class Api::WebsitesController < ApplicationController
     end
   end
 
+  def destroy
+
+  end
+
   private
 
   def website_params
