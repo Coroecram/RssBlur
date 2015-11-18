@@ -1,6 +1,6 @@
 (function (root) {
   var _clicked;
-  var CHANGE_EVENT = 'changed'
+  var CHANGE_EVENT = 'changed';
 
   var setClicked = function (clicked) {
     _clicked = clicked;

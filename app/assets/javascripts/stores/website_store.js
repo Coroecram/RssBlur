@@ -1,6 +1,6 @@
 (function (root) {
   var _websites = [];
-  var CHANGE_EVENT = 'changed'
+  var CHANGE_EVENT = 'changed';
 
   var setWebsites = function (websites) {
     _websites = websites;

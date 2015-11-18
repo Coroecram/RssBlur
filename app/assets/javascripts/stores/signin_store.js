@@ -1,6 +1,6 @@
 (function (root) {
-  var _currentUser
-  var CHANGE_EVENT = 'changed'
+  var _currentUser;
+  var CHANGE_EVENT = 'changed';
 
   var setSignin = function (user) {
     _currentUser = user;

@@ -31,5 +31,12 @@ window.ApiActions = {
       actionType: UserConstants.USER_FETCHED,
       user: user
     });
+  },
+
+  setClicked: function(object) {
+    AppDispatcher.dispatch({
+      actionType: ClickedConstants.CLICKED_RECEIVED,
+      object: object
+    });
   }
 };
