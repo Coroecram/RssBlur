@@ -39,12 +39,13 @@
         WebsiteStore.emitChange();
         break;
       case (WebsiteConstants.WEBSITE_CREATED):
-        setWebsites(payload.website);
+        addWebsite(payload.website);
         WebsiteStore.emitChange();
         break;
       case (WebsiteConstants.FETCH_WEBSITE):
         WebsiteStore.setWebsite(payload.website);
         WebsiteStore.emitChange();
+        break;
         default:
       }
     })

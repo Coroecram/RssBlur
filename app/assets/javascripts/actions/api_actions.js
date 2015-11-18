@@ -13,11 +13,17 @@ window.ApiActions = {
     });
   },
 
+  createWebsiteError: function () {
+    AppDispatcher.dispatch({
+      actionType: WebsiteConstants.WEBSITE_ERROR
+    });
+  },
+
   fetchWebsite: function (website) {
     AppDispatcher.dispatch({
       actionType: WebsiteConstants.FETCH_WEBSITE,
       website: website
-    })
+    });
   },
 
   receiveUser: function (user) {
@@ -26,4 +32,4 @@ window.ApiActions = {
       user: user
     });
   }
-}
+};

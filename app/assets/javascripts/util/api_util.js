@@ -9,9 +9,9 @@
     },
     createWebsite: function(url){
       $.post('api/websites', { url: url }, function(website) {
-        ApiActions.receiveAll([website]);
-      }).fail(function (){
-        console.log("failed");
+        ApiActions.createWebsite(website);
+      }).fail(function () {
+        ApiActions.createWebsiteError;
       });
     },
     fetchUser: function (user) {
