@@ -1,7 +1,7 @@
 var WebsiteList = React.createClass({
 
   getInitialState: function () {
-    return {websites: WebsiteStore.all()}
+    return {websites: WebsiteStore.all()};
   },
 
   _onChange: function () {
@@ -16,12 +16,8 @@ var WebsiteList = React.createClass({
     WebsiteStore.removeChangeListener(this._onChange);
   },
 
-  _onChange: function () {
-    this.setState({websites: WebsiteStore.all()});
-  },
-
   render: function () {
-    var websites
+    var websites;
     if (this.state.websites) {
       websites = this.state.websites.map(function (website) {
           return <li key={website.id} url={website.url}>{website.name}</li>;
