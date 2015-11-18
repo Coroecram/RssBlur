@@ -1,18 +1,16 @@
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-
 var Sidebar = React.createClass({
 
   getInitialState: function () {
-    return {currentUser: UserStore.fetch()};
+    return {currentUser: SigninStore.fetch()};
   },
 
   componentDidMount: function () {
-    UserStore.addChangeListener(this._onChange);
+    SigninStore.addChangeListener(this._onChange);
     ApiUtil.fetchUser();
   },
 
   _onChange: function () {
-    this.setState({currentUser: UserStore.fetch()});
+    this.setState({currentUser: SigninStore.fetch()});
   },
 
   render: function () {

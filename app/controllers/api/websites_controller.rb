@@ -8,6 +8,7 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
+    debugger
     page = MetaInspector.new(params[:url])
     feed = false
     feed = MetaInspector.new(page.feed) if page.feed

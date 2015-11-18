@@ -17,7 +17,6 @@
 
 ### Actions
 * ApiActions.createWebsite
-* ApiActions.connectUserToWebsite
 
 ### ApiUtil
 * ApiUtil.fetchUserWebsites
