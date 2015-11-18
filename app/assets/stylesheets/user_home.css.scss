@@ -2,7 +2,7 @@
   position: absolute;
   background: red;
   width: 229px;
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   border-right: 1px solid gray;
   left: 0;
   top: 0;
@@ -18,10 +18,35 @@
   border: 1px solid lightblue;
   background: lightblue;
   text-align: center;
+  cursor: pointer;
 }
 
 .sidebar li:hover {
   background: yellow;
   border: 1px solid black;
+}
+
+.sidebar-footer {
+  position: relative;
+  overflow: hidden;
+  bottom: 0;
+  left: -5px;
+  display: block;
+  height: 23px;
+  padding: 3px;
+  border-top: 1px solid gray;
+  width: auto;
+  background: lightgray;
+}
+
+.sidebar-footer span{
+  position: absolute;
+  display: block;
+  height: 21px;
+  width: 21px;
+  padding: 4px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
   cursor: pointer;
 }

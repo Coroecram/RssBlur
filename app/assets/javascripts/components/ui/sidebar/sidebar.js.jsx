@@ -16,8 +16,7 @@ var Sidebar = React.createClass({
   render: function () {
     var sidebar
     if (this.state.currentUser) {
-
-      sidebar =     <div> 
+      sidebar =     <div>
                         <div className="sidebar-header">
                           {this.state.currentUser.username}
                         </div>
@@ -27,6 +26,7 @@ var Sidebar = React.createClass({
     return (
           <div className="sidebar">
             {sidebar}
+            <SidebarFooter />
           </div>
           );
   }
