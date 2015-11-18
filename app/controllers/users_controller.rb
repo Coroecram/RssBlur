@@ -11,7 +11,7 @@ class UsersController < ApplicationController
  end
 
  def show
-   redirect_to user_goals_url(params[:id])
+   render json: current_user
  end
 
  def create

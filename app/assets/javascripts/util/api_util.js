@@ -11,6 +11,11 @@
       $.post('api/websites', { website: data }, function(website) {
         ApiActions.receiveAll([website]);
       });
+    },
+    fetchUser: function (user) {
+      $.get('users/holder', function(user){
+        ApiActions.receiveUser(user);
+      });
     }
   }
 })(this);
