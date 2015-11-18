@@ -40,9 +40,16 @@ window.ApiActions = {
     });
   },
 
-  setClicked: function(id) {
+  setWebsiteClicked: function(id) {
     AppDispatcher.dispatch({
-      actionType: ClickedConstants.CLICK_RECEIVED,
+      actionType: WebsiteClickedConstants.CLICK_RECEIVED,
+      id: id
+    });
+  },
+
+  setArticleClicked: function(id) {
+    AppDispatcher.dispatch({
+      actionType: ArticleClickedConstants.CLICK_RECEIVED,
       id: id
     });
   }

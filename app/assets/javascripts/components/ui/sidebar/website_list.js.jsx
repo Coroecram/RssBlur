@@ -13,11 +13,10 @@ var WebsiteList = React.createClass({
   },
 
   websiteClicked: function (event) {
-    ApiActions.setClicked(parseInt(event.currentTarget.id));
+    ApiActions.setWebsiteClicked(parseInt(event.currentTarget.id));
   },
 
   deleteWebsite: function (event) {
-    debugger
     ApiActions.deleteWebsite(parseInt(event.currentTarget.id));
   },
 

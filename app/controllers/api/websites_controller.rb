@@ -8,6 +8,7 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
+    sleep 6
     page = MetaInspector.new(params[:url])
     feed = false
     feed = MetaInspector.new(page.feed) if page.feed

@@ -1,16 +1,16 @@
 (function (root) {
-  var _clicked;
+  var _articleClicked;
   var CHANGE_EVENT = 'changed';
 
   var setClicked = function (id) {
-    clicked = WebsiteStore.find(id);
-    _clicked = clicked;
+    articleClicked = ArticleStore.find(id);
+    _articleClicked = articleClicked;
   };
 
-  var ClickedStore = root.ClickedStore = $.extend({}, EventEmitter.prototype, {
+  var ArticleClickedStore = root.ArticleClickedStore = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
-      return _clicked;
+      return _articleClicked;
     },
 
     addChangeListener: function (callback) {
@@ -27,9 +27,9 @@
 
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
-      case (ClickedConstants.CLICK_RECEIVED):
+      case (ArticleClickedConstants.CLICK_RECEIVED):
         setClicked(payload.id);
-        ClickedStore.emitChange();
+        ArticleClickedStore.emitChange();
         break;
         default:
       }
