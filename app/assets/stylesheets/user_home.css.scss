@@ -81,6 +81,13 @@ input[type="submit"] {
   margin: 3px;
 }
 
+.sidebar .error {
+  display: block;
+  float: right;
+  width: 200px;
+  font-size: 12px;
+}
+
 .website-form-triangle {
   position: absolute;
   left: 3px;

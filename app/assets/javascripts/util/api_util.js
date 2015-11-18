@@ -1,4 +1,4 @@
-
+$.ajaxSetup({timeout: 5000});
 (function (root) {
 
   var ApiUtil = root.ApiUtil = {
@@ -14,7 +14,7 @@
         success();
       },
       'json').fail(function (data) {
-        error();
+        error(data);
       });
     },
     fetchUser: function (user) {

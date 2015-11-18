@@ -12,8 +12,12 @@ var WebsiteForm = React.createClass({
     this.setState({url: event.currentTarget.value});
   },
 
-  receivedError: function () {
-    this.setState({error: true});
+  receivedError: function (data) {
+    if (data.statusText === 'timeout') {
+      this.setState({error: "The connection timed out. Please Try Again"});
+    } else {
+      this.setState({error: "This address does not point to an RSS feed or a website with an RSS feed."})
+    }
   },
 
   receivedSite: function () {
@@ -23,7 +27,7 @@ var WebsiteForm = React.createClass({
   render: function () {
     var error;
     if (this.state.error) {
-      error = <div className="error">This address does not point to an RSS feed or a website with an RSS feed.</div>;
+      error = <div className="error">{this.state.error}</div>;
     }
     return (
           <div className="website-form">
