@@ -7,9 +7,11 @@
         ApiActions.receiveAllWebsites(websites);
       });
     },
-    createWebsite: function(data){
-      $.post('api/websites', { website: data }, function(website) {
+    createWebsite: function(url){
+      $.post('api/websites', { url: url }, function(website) {
         ApiActions.receiveAll([website]);
+      }).fail(function (){
+        console.log("failed");
       });
     },
     fetchUser: function (user) {
@@ -17,5 +19,5 @@
         ApiActions.receiveUser(user);
       });
     }
-  }
+  };
 })(this);

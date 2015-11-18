@@ -7,9 +7,13 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
-    website = Website.create!(website_params)
-    UserWebsite.create!({user_id: current_user.id, website_id: website.id})
-    render json: website
+    website_feed = Feedbag.find(params[:url])[0]
+    debugger
+    if Feedbag.feed?(website_feed)
+      website = Website.create!(website_params)
+      UserWebsite.create!({user_id: current_user.id, website_id: website.id})
+      render json: website
+    end
   end
 
   private
