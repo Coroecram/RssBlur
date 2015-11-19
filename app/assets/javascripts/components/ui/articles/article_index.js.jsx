@@ -19,12 +19,20 @@ var ArticleIndex = React.createClass({
   render: function () {
     var articles;
     if (this.state.sidebar) {
-      articles = <Articles sidebar={this.state.sidebar}/>;
+      if (this.state.sidebar.articles) {
+      debugger
+      articles = this.state.sidebar.articles.map(function (article) {
+                  return <Article article=article />
+                 });
+
+      }
     }
     return (
             <div className="article-index">
               <ArticleHeader focus={this.state.sidebar} />
-              {articles}
+              <ul className="article-list">
+                {articles}
+              </ul>
             </div>
           );
   }
