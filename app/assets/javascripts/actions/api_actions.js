@@ -40,9 +40,9 @@ window.ApiActions = {
     });
   },
 
-  setWebsiteClicked: function(id) {
+  setSidebarClicked: function(id) {
     AppDispatcher.dispatch({
-      actionType: WebsiteClickedConstants.CLICK_RECEIVED,
+      actionType: SidebarClickedConstants.CLICK_RECEIVED,
       id: id
     });
   },

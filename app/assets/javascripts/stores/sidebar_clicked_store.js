@@ -1,16 +1,16 @@
 (function (root) {
-  var _websiteClicked;
+  var _sidebarClicked;
   var CHANGE_EVENT = 'changed';
 
   var setClicked = function (id) {
-    websiteClicked = WebsiteStore.find(id);
-    _websiteClicked = websiteClicked;
+    sidebarClicked = SidebarStore.find(id);
+    _sidebarClicked = sidebarClicked;
   };
 
-  var WebsiteClickedStore = root.WebsiteClickedStore = $.extend({}, EventEmitter.prototype, {
+  var SidebarClickedStore = root.SidebarClickedStore = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
-      return _websiteClicked;
+      return _sidebarClicked;
     },
 
     addChangeListener: function (callback) {
@@ -27,9 +27,9 @@
 
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
-      case (WebsiteClickedConstants.CLICK_RECEIVED):
+      case (SidebarClickedConstants.CLICK_RECEIVED):
         setClicked(payload.id);
-        WebsiteClickedStore.emitChange();
+        SidebarClickedStore.emitChange();
         break;
         default:
       }

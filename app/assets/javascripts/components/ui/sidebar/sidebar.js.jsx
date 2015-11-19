@@ -23,11 +23,6 @@ var Sidebar = React.createClass({
                         <WebsiteList />
                     </div>
     }
-    var formClass = classNames({
-      'hidden': true,
-      'btn-pressed': this.state.isPressed,
-      'btn-over': !this.state.isPressed && this.state.isHovered
-    });
     return (
           <div className="sidebar">
             {sidebar}
