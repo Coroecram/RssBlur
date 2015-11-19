@@ -52,5 +52,12 @@ window.ApiActions = {
       actionType: ArticleClickedConstants.CLICK_RECEIVED,
       id: id
     });
+  },
+
+  fetchArticles: function(id) {
+    AppDispatcher.dispatch({
+      actionType: ArticleConstants.ARTICLES_RECEIVED,
+      articles: articles
+    });
   }
 };

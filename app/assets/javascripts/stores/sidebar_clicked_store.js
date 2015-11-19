@@ -3,7 +3,7 @@
   var CHANGE_EVENT = 'changed';
 
   var setClicked = function (id) {
-    sidebarClicked = SidebarStore.find(id);
+    sidebarClicked = WebsiteStore.find(id);
     _sidebarClicked = sidebarClicked;
   };
 

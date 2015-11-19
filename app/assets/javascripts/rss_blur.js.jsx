@@ -19,7 +19,8 @@ $(document).ready(function () {
       <Route path="/" component={App}>
         <IndexRoute component={SignIn} />
         <Route path="/create_account" component={SignUp} />
-        <Route path="/home" component={UserHome}/>
+        <Route path="/home" component={UserHome} />
+        <Route path="/website/:id" components={{sidebar:UserHome, articles:ArticleIndex}} />
       </Route>
     );
 

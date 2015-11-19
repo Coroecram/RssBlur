@@ -1,4 +1,5 @@
 var WebsiteList = React.createClass({
+  mixins: [ReactRouter.History],
 
   getInitialState: function () {
     return {websites: WebsiteStore.all()};
@@ -13,7 +14,9 @@ var WebsiteList = React.createClass({
   },
 
   websiteClicked: function (event) {
-    ApiActions.setWebsiteClicked(parseInt(event.currentTarget.id));
+    id = parseInt(event.currentTarget.id);
+    ApiActions.setSidebarClicked(id);
+    this.history.pushState(null, '/website/' + id, {});
   },
 
   deleteWebsite: function (event) {

@@ -15,7 +15,7 @@ var ArticleHeader = React.createClass({
   render: function () {
     return (
           <div className="articles-header">
-            <div className="header-focus">{this.props.focus.name}</div>
+            <div className="header-focus"></div>
           </div>
           );
   }

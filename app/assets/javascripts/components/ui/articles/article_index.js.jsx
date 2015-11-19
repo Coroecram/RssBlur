@@ -1,35 +1,29 @@
 var ArticleIndex = React.createClass({
-
   getInitialState: function () {
-    return {sidebar: SidebarClickedStore.fetch(), articles: ArticleStore.all()};
+    return {sidebar: undefined};
   },
 
   componentDidMount: function () {
-    ArticleStore.addChangeListener(this._onArticleChange);
-    SidebarClickedStore.addChangeListener(this._onWebsitechange);
+    SidebarClickedStore.addChangeListener(this._onChange);
+    this.setState({sidebar: SidebarClickedStore.fetch()});
   },
 
   componentWillUnmount: function () {
-    ArticleStore.addChangeListener(this._onArticleChange);
-    SidebarClickedStore.addChangeListener(this._onWebsitechange);
+    SidebarClickedStore.addChangeListener(this._onChange);
   },
 
-  _onWebsiteChange: function () {
-    this.setState({sidebar: clickedSidebarStore.all()});
-  },
-
-  _onArticleChange: function () {
-    this.setState({articles: ArticleStore.all()});
+  _onChange: function () {
+    this.setState({sidebar: SidebarClickedStore.fetch()});
   },
 
   render: function () {
     var articles;
-    if (this.state.articles) {
-      articles = <Articles articles={this.state.articles}/>;
+    if (this.state.sidebar) {
+      articles = <Articles sidebar={this.state.sidebar}/>;
     }
     return (
             <div className="article-index">
-              <ArticlesHeader focus={this.state.sidebar} />
+              <ArticleHeader focus={this.state.sidebar} />
               {articles}
             </div>
           );

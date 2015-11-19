@@ -51,10 +51,6 @@
         addArticle(payload.article);
         ArticleStore.emitChange();
         break;
-      case (ArticleConstants.ARTICLES_RESET):
-        ArticleStore.resetArticles();
-        ArticleStore.emitChange();
-        break;
         default:
       }
     })

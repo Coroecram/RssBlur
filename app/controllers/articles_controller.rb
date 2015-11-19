@@ -10,6 +10,6 @@ require 'rss'
 class ArticlesController < ApplicationController
 
   def index
-
+    debugger
   end
 end
