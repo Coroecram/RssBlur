@@ -54,10 +54,16 @@ window.ApiActions = {
     });
   },
 
-  fetchArticles: function (id) {
+  receiveAllArticles: function (articles) {
     AppDispatcher.dispatch({
       actionType: ArticleConstants.ARTICLES_RECEIVED,
       articles: articles
     });
-  }
+  },
+
+  resetArticles: function () {
+    AppDispatcher.dispatch({
+      actionType: ArticleConstants.ARTICLES_RESET,
+    });
+  },
 };

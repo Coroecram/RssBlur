@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :websites, through: :user_websites
   has_many :user_websites, dependent: :destroy
+  has_many :user_articles, dependent: :destroy
+  has_many :articles, through: :user_articles
 
   def ensure_session_token
     self.session_token ||= SecureRandom::urlsafe_base64

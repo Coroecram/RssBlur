@@ -2,6 +2,12 @@ $.ajaxSetup({timeout: 5000});
 (function (root) {
 
   var ApiUtil = root.ApiUtil = {
+    fetchUser: function (user) {
+      $.get('users/holder', function(user){
+        ApiActions.receiveUser(user);
+      },
+      'json');
+    },
     fetchWebsites: function () {
       $.get('api/websites', function(websites){
         ApiActions.receiveAllWebsites(websites);
@@ -9,7 +15,7 @@ $.ajaxSetup({timeout: 5000});
       'json');
     },
     createWebsite: function(url, success, error){
-      $.post('api/websites', { url: url }, function(website) {
+      $.post('api/websites', {url: url}, function(website) {
         ApiActions.createWebsite(website);
         success();
       },
@@ -17,15 +23,15 @@ $.ajaxSetup({timeout: 5000});
         error(data);
       });
     },
-    fetchUser: function (user) {
-      $.get('users/holder', function(user){
-        ApiActions.receiveUser(user);
-      },
-      'json');
-    },
     fetchClickedWebsite: function (id) {
       $.get('api/websites/' + id, function(website){
         ApiActions.setSidebarClicked(website);
+      },
+      'json');
+    },
+    fetchArticles: function (feed, page) {
+      $.get('api/articles', {url: feed.url, website_id: feed.id, page: page}, function(articles){
+        ApiActions.receiveAllArticles(articles);
       },
       'json');
     }

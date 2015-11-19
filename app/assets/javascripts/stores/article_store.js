@@ -44,10 +44,15 @@
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (ArticleConstants.ARTICLES_RECEIVED):
+      debugger
         setArticles(payload.articles);
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.ARTICLE_CREATED):
+        addArticle(payload.article);
+        ArticleStore.emitChange();
+        break;
+      case (ArticleConstants.ARTICLES_RESET):
         addArticle(payload.article);
         ArticleStore.emitChange();
         break;

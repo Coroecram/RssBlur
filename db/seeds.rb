@@ -27,15 +27,15 @@ User.create!([{
 
 Website.create!([{
                   name: "Wired",
-                  url: "http://www.wired.com"
+                  url: "http://www.wired.com/feed/"
                  },
                  {
                   name: "The Nation",
-                  url: "http://www.thenation.com"
+                  url: "http://www.thenation.com/feed/?post_type=article"
                  },
                  {
                   name: "Engadget",
-                  url: "http://www.engadget.com"
+                  url: "http://www.engadget.com/rss.xml"
                  }])
 
 UserWebsite.create!([{

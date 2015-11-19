@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20151119145146) do
 
   create_table "articles", force: true do |t|
     t.string   "url",                                null: false
+    t.string   "img_url"
     t.string   "title",                              null: false
     t.text     "summary"
     t.string   "author",       default: "anonymous", null: false
@@ -32,14 +33,14 @@ ActiveRecord::Schema.define(version: 20151119145146) do
   add_index "articles", ["url"], name: "index_articles_on_url", using: :btree
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
-  create_table "articles_users", id: false, force: true do |t|
-    t.integer "user_id",                    null: false
-    t.integer "article_id",                 null: false
+  create_table "user_articles", force: true do |t|
+    t.integer "user_id"
+    t.integer "article_id"
     t.boolean "read",       default: false, null: false
   end
 
-  add_index "articles_users", ["article_id"], name: "index_articles_users_on_article_id", using: :btree
-  add_index "articles_users", ["user_id"], name: "index_articles_users_on_user_id", using: :btree
+  add_index "user_articles", ["article_id"], name: "index_user_articles_on_article_id", using: :btree
+  add_index "user_articles", ["user_id"], name: "index_user_articles_on_user_id", using: :btree
 
   create_table "user_websites", force: true do |t|
     t.integer  "user_id",                null: false
