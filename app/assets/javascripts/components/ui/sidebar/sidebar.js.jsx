@@ -24,7 +24,7 @@ var Sidebar = React.createClass({
                         <div className="sidebar-header">
                           {this.state.currentUser.username}
                         </div>
-                        <WebsiteList />
+                        <Websites />
                     </div>
     }
     return (
