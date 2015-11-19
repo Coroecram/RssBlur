@@ -2,8 +2,9 @@
   var _sidebarClicked;
   var CHANGE_EVENT = 'changed';
 
-  var setClicked = function (object) {
-    _sidebarClicked = object;
+  var setClicked = function (id) {
+    debugger
+    _sidebarClicked = WebsiteStore.find(id);
   };
 
   var SidebarClickedStore = root.SidebarClickedStore = $.extend({}, EventEmitter.prototype, {
@@ -27,7 +28,7 @@
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (SidebarClickedConstants.CLICK_RECEIVED):
-        setClicked(payload.object);
+        setClicked(payload.id);
         SidebarClickedStore.emitChange();
         break;
         default:

@@ -40,10 +40,10 @@ window.ApiActions = {
     });
   },
 
-  setSidebarClicked: function (object) {
+  setSidebarClicked: function (id) {
     AppDispatcher.dispatch({
       actionType: SidebarClickedConstants.CLICK_RECEIVED,
-      object: object
+      id: id
     });
   },
 

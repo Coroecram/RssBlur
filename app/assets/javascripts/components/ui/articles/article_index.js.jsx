@@ -1,15 +1,20 @@
 var ArticleIndex = React.createClass({
   getInitialState: function () {
-    return {sidebar: undefined};
+    return {sidebar: SidebarClickedStore.fetch()};
   },
 
   componentDidMount: function () {
     SidebarClickedStore.addChangeListener(this._onChange);
-    this.setState({sidebar: SidebarClickedStore.fetch()});
+    ApiActions.setSidebarClicked(this.props.params.id);
   },
 
   componentWillUnmount: function () {
     SidebarClickedStore.addChangeListener(this._onChange);
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    debugger
+    ApiActions.setSidebarClicked(parseInt(newProps.params.id));
   },
 
   _onChange: function () {

@@ -17,7 +17,6 @@ var Websites = React.createClass({
   },
 
   render: function () {
-    debugger
     return(
       <ul>
         {this.state.websites.map(function (website) {

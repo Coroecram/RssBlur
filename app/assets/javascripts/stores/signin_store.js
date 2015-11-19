@@ -3,7 +3,6 @@
   var CHANGE_EVENT = 'changed';
 
   var setSignin = function (user) {
-    debugger
     _currentUser = user;
   };
 
@@ -23,18 +22,15 @@
 
     emitChange: function () {
       this.emit(CHANGE_EVENT);
-      debugger
     },
 
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (UserConstants.USER_FETCHED):
-        debugger
         setSignin(payload.user);
         SigninStore.emitChange();
         break;
       case (UserConstants.USER_CREATED):
-        debugger
         setSignin(payload.user);
         SigninStore.emitChange();
         break;
