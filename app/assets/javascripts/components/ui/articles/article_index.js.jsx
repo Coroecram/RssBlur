@@ -4,7 +4,6 @@ var ArticleIndex = React.createClass({
   },
 
   componentDidMount: function () {
-    debugger
     SidebarClickedStore.addChangeListener(this._onChange);
     this.setState({sidebar: SidebarClickedStore.fetch()});
   },

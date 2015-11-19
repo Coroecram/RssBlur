@@ -6,7 +6,6 @@ var Articles = React.createClass({
   },
 
   componentDidMount: function () {
-    debugger
     // ArticleStore.addChangeListener(this._onChange);
   },
 

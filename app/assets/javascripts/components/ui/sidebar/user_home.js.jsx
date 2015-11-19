@@ -5,6 +5,7 @@ var UserHome = React.createClass({
   },
 
   render: function () {
+    debugger
     return (
             <div className="user-home">
               <Sidebar />

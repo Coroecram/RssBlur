@@ -18,6 +18,7 @@ var Sidebar = React.createClass({
   },
 
   render: function () {
+    debugger
     var sidebar;
     if (this.state.currentUser) {
       sidebar =     <div>

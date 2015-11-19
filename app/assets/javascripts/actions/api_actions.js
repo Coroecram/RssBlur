@@ -40,21 +40,21 @@ window.ApiActions = {
     });
   },
 
-  setSidebarClicked: function(id) {
+  setSidebarClicked: function (object) {
     AppDispatcher.dispatch({
       actionType: SidebarClickedConstants.CLICK_RECEIVED,
-      id: id
+      object: object
     });
   },
 
-  setArticleClicked: function(id) {
+  setArticleClicked: function (id) {
     AppDispatcher.dispatch({
       actionType: ArticleClickedConstants.CLICK_RECEIVED,
       id: id
     });
   },
 
-  fetchArticles: function(id) {
+  fetchArticles: function (id) {
     AppDispatcher.dispatch({
       actionType: ArticleConstants.ARTICLES_RECEIVED,
       articles: articles
