@@ -4,7 +4,6 @@ var ArticleIndex = React.createClass({
   },
 
   componentDidMount: function () {
-    // debugger
     SidebarClickedStore.addChangeListener(this._onChange);
     ApiUtil.fetchClickedWebsite(this.props.params.id);
   },
@@ -13,13 +12,7 @@ var ArticleIndex = React.createClass({
     SidebarClickedStore.addChangeListener(this._onChange);
   },
 
-  componentWillReceiveProps: function (newProps) {
-    // debugger
-    ApiActions.setSidebarClicked(parseInt(this.newProps.params.id));
-  },
-
   _onChange: function () {
-    // debugger
     this.setState({sidebar: SidebarClickedStore.fetch()});
   },
 
