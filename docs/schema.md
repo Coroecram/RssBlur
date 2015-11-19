@@ -30,6 +30,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 url					| string		| not null, indexed, unique
 title       | string    | not null
+summary			| text  		| 
 author			| string		| not null
 website_id  | integer   | not null, foreign key (references websites), indexed
 created_date| datetime  | not null

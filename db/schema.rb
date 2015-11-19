@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20151118221846) do
   create_table "articles", force: true do |t|
     t.string   "url",                                null: false
     t.string   "title",                              null: false
+    t.text     "summary"
     t.string   "author",       default: "anonymous", null: false
     t.datetime "created_date",                       null: false
     t.integer  "website_id",                         null: false

@@ -8,7 +8,7 @@ var WebsiteList = React.createClass({
     WebsiteStore.addChangeListener(this._onChange);
   },
 
-  compomentWillUnmount: function () {
+  componentWillUnmount: function () {
     WebsiteStore.removeChangeListener(this._onChange);
   },
 

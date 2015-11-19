@@ -6,7 +6,12 @@ var ArticleIndex = React.createClass({
 
   componentDidMount: function () {
     ArticleStore.addChangeListener(this._onArticleChange);
-    WebsiteClickedStore.addChangeListener(this._onWebsitechange);
+    SidebarClickedStore.addChangeListener(this._onWebsitechange);
+  },
+
+  componentWillUnmount: function () {
+    ArticleStore.addChangeListener(this._onArticleChange);
+    SidebarClickedStore.addChangeListener(this._onWebsitechange);
   },
 
   _onWebsiteChange: function () {

@@ -1,7 +1,11 @@
 var ArticleHeader = React.createClass({
 
   componentDidMount: function () {
-    WebsiteClickedStore.addChangeListener(this._onChange);
+    SidebarClickedStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function () {
+    SidebarClickedStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function () {

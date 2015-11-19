@@ -4,9 +4,6 @@ var SidebarFooter = React.createClass({
     return {formShow: false};
   },
 
-  componentDidMount: function () {
-  },
-
   toggleNewWebsiteForm: function () {
     this.setState({formShow: !this.state.formShow});
   },

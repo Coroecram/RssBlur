@@ -6,7 +6,7 @@
     _articles = articles;
   };
 
-  var addArticles = function (articles) {
+  var addArticle = function (articles) {
     _articles.concat(articles);
   };
 
@@ -29,7 +29,6 @@
       return null;
     },
 
-
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
     },
@@ -46,6 +45,10 @@
       switch (payload.actionType) {
       case (ArticleConstants.ARTICLES_RECEIVED):
         setArticles(payload.articles);
+        ArticleStore.emitChange();
+        break;
+      case (ArticleConstants.ARTICLE_CREATED):
+        addArticle(payload.article);
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.ARTICLES_RESET):

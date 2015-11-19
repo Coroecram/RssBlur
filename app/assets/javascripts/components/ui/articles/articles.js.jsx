@@ -8,7 +8,7 @@ var Articles = React.createClass({
     ArticleStore.addChangeListener(this._onChange);
   },
 
-  compomentWillUnmount: function () {
+  componentWillUnmount: function () {
     ArticleStore.removeChangeListener(this._onChange);
   },
 

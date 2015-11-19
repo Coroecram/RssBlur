@@ -9,6 +9,10 @@ var Sidebar = React.createClass({
     ApiUtil.fetchUser();
   },
 
+  componentWillUnmount: function () {
+    SigninStore.addChangeListener(this._onChange);
+  },
+
   _onChange: function () {
     this.setState({currentUser: SigninStore.fetch()});
   },
