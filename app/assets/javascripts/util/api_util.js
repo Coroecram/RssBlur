@@ -22,6 +22,12 @@ $.ajaxSetup({timeout: 5000});
         ApiActions.receiveUser(user);
       },
       'json');
+    },
+    fetchClickedWebsite: function (id) {
+      $.get('api/websites/' + id, function(website){
+        ApiActions.setSidebarClicked(website);
+      },
+      'json');
     }
   };
 })(this);

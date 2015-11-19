@@ -30,6 +30,7 @@
     },
 
     find: function(id) {
+        debugger
       for (var i = 0; i < _websites.length; i++){
         if (id === _websites[i].id) {
           return _websites[i];

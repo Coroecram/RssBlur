@@ -23,6 +23,10 @@ class Api::WebsitesController < ApplicationController
     end
   end
 
+  def show
+    render json: Website.find(params[:id])
+  end
+
   def destroy
 
   end
