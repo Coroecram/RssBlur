@@ -11,8 +11,7 @@ class Api::SessionsController < ApplicationController
 
    if @user
      sign_in!(@user)
-     debugger
-     redirect_to root_url
+     render "api/users/show"
    else
      render json: "Incorrect Username or Password", status: 401
    end

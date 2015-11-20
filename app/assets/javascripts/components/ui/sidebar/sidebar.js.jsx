@@ -1,20 +1,20 @@
 var Sidebar = React.createClass({
 
   getInitialState: function () {
-    return {currentUser: SigninStore.fetch()};
+    return {currentUser: CurrentUserStore.fetch()};
   },
 
   componentDidMount: function () {
-    SigninStore.addChangeListener(this._onChange);
+    CurrentUserStore.addChangeListener(this._onChange);
     ApiUtil.fetchUser();
   },
 
   componentWillUnmount: function () {
-    SigninStore.addChangeListener(this._onChange);
+    CurrentUserStore.addChangeListener(this._onChange);
   },
 
   _onChange: function () {
-    this.setState({currentUser: SigninStore.fetch()});
+    this.setState({currentUser: CurrentUserStore.fetch()});
   },
 
   render: function () {

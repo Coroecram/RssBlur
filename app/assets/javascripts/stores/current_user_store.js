@@ -10,7 +10,7 @@
     _currentUser = {};
   };
 
-  var CurrentUser = root.CurrentUser = $.extend({}, EventEmitter.prototype, {
+  var CurrentUserStore = root.CurrentUserStore = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
       return $.extend({}, _currentUser);
@@ -33,15 +33,15 @@
       case (CurrentUserConstants.USER_FETCHED):
         debugger
         setSignin(payload.user);
-        CurrentUser.emitChange();
+        CurrentUserStore.emitChange();
         break;
       case (CurrentUserConstants.USER_CREATED):
         setSignin(payload.user);
-        CurrentUser.emitChange();
+        CurrentUserStore.emitChange();
         break;
-      case (CurrentUserConstants.USER_LOG_OUT):
+      case (CurrentUserConstants.USER_SIGN_OUT):
         resetSignin();
-        CurrentUser.emitChange();
+        CurrentUserStore.emitChange();
         break;
         default:
       }

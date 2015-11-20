@@ -1,7 +1,7 @@
 var UserHome = React.createClass({
 
   componentDidMount: function () {
-    ApiUtil.fetchWebsites();
+    WebsiteApiUtil.fetchWebsites();
   },
 
   render: function () {

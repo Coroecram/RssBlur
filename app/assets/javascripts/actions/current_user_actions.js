@@ -8,7 +8,7 @@ window.CurrentUserActions = {
 
   resetUser: function () {
     AppDispatcher.dispatch({
-      actionType: UserConstants.USER_SIGN_OUT,
+      actionType: CurrentUserConstants.USER_SIGN_OUT,
     });
   }
 };

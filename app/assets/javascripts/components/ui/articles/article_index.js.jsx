@@ -6,7 +6,7 @@ var ArticleIndex = React.createClass({
   componentDidMount: function () {
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
-    ApiUtil.fetchClickedWebsite(this.props.params.id);
+    WebsiteApiUtil.fetchClickedWebsite(this.props.params.id);
   },
 
   componentWillUnmount: function () {
