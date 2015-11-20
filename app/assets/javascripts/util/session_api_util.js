@@ -1,6 +1,6 @@
 (function (root) {
 
-  var ApiUtil = root.ApiUtil = {
+  var SessionApiUtil = root.SessionApiUtil = {
     fetchUser: function (user) {
       $.get('users/holder', function(user){
         ApiActions.receiveUser(user);
@@ -8,16 +8,31 @@
       'json');
     },
 
-    login: function (credentials, success) {
+    login: function (credentials, success, error) {
     $.ajax({
       url: '/api/session',
       type: 'POST',
       dataType: 'json',
       data: credentials,
+      error: function (response) {
+        error && error(response.responseText);
+      },
       success: function (currentUser) {
         console.log("logged in!");
-        CurrentUserActions.receiveCurrentUser(currentUser);
+        CurrentUserActions.receiveUser(currentUser);
         success && success();
+      }
+    });
+  },
+
+  logout: function (  ) {
+    $.ajax({
+      url: '/api/session',
+      type: 'DELETE',
+      dataType: 'json',
+      success: function () {
+        console.log("logged out!");
+        CurrentUserActions.resetUser();
       }
     });
   }

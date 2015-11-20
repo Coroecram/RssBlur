@@ -1,19 +1,20 @@
 class Api::SessionsController < ApplicationController
 
   def create
-  if EmailValidator.valid?(user_params[:handle])
-    @user = User.find_by_email(user_params[:handle],
-                                  user_params[:password])
+  if EmailValidator.valid?(params[:handle])
+    @user = User.find_by_email(params[:handle],
+                                  params[:password])
   else
-   @user = User.find_by_username(user_params[:handle],
-                                 user_params[:password])
+   @user = User.find_by_username(params[:handle],
+                                 params[:password])
   end
 
    if @user
      sign_in!(@user)
+     debugger
      redirect_to root_url
    else
-     render json: {errors: ["Incorrect Username or Password"]}, status: 401
+     render json: "Incorrect Username or Password", status: 401
    end
  end
 
@@ -23,9 +24,4 @@ class Api::SessionsController < ApplicationController
    redirect_to root_url
  end
 
- private
-
- def user_params
-   params.require(:user).permit(:handle, :password)
- end
 end

@@ -21,10 +21,15 @@ var SignIn = React.createClass({
       e.preventDefault();
 
       var credentials = $(e.currentTarget).serializeJSON();
-      debugger
-      // SessionsApiUtil.login(credentials, function () {
-      //   this.history.pushState(null, "/users");
-      // }.bind(this));
+      SessionApiUtil.login(credentials, this.success, this.error);
+    },
+
+    success: function () {
+      this.history.pushState(null, "/home");
+    },
+
+    error: function (message) {
+      alert(message);
     },
 
   render: function () {

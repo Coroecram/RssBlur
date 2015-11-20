@@ -6,10 +6,14 @@
     _currentUser = user;
   };
 
-  var SigninStore = root.SigninStore = $.extend({}, EventEmitter.prototype, {
+  var setSignin = function () {
+    _currentUser = {};
+  };
+
+  var CurrentUser = root.CurrentUser = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
-      return _currentUser;
+      return $.extend({}, _currentUser);
     },
 
     addChangeListener: function (callback) {
@@ -26,13 +30,18 @@
 
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
-      case (UserConstants.USER_FETCHED):
+      case (CurrentUserConstants.USER_FETCHED):
+        debugger
         setSignin(payload.user);
-        SigninStore.emitChange();
+        CurrentUser.emitChange();
         break;
-      case (UserConstants.USER_CREATED):
+      case (CurrentUserConstants.USER_CREATED):
         setSignin(payload.user);
-        SigninStore.emitChange();
+        CurrentUser.emitChange();
+        break;
+      case (CurrentUserConstants.USER_LOG_OUT):
+        resetSignin();
+        CurrentUser.emitChange();
         break;
         default:
       }
