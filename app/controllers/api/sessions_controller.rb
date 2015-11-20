@@ -22,7 +22,7 @@ class Api::SessionsController < ApplicationController
       @user = current_user
       render "api/users/show"
     else
-      render json: {}
+      render json: {id: 'not_logged_in'}
     end
   end
 
