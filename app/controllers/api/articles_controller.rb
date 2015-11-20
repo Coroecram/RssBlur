@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'rss'
-require 'simple-rss'
 require 'link_thumbnailer'
 
 

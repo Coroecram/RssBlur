@@ -31,39 +31,5 @@ window.ApiActions = {
       actionType: WebsiteConstants.FETCH_WEBSITE,
       website: website
     });
-  },
-
-  receiveUser: function (user) {
-    AppDispatcher.dispatch({
-      actionType: UserConstants.USER_FETCHED,
-      user: user
-    });
-  },
-
-  setSidebarClicked: function (object) {
-    AppDispatcher.dispatch({
-      actionType: SidebarClickedConstants.CLICK_RECEIVED,
-      object: object
-    });
-  },
-
-  setArticleClicked: function (id) {
-    AppDispatcher.dispatch({
-      actionType: ArticleClickedConstants.CLICK_RECEIVED,
-      id: id
-    });
-  },
-
-  receiveAllArticles: function (articles) {
-    AppDispatcher.dispatch({
-      actionType: ArticleConstants.ARTICLES_RECEIVED,
-      articles: articles
-    });
-  },
-
-  resetArticles: function () {
-    AppDispatcher.dispatch({
-      actionType: ArticleConstants.ARTICLES_RESET,
-    });
   }
 };

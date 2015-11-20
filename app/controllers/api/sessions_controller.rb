@@ -1,4 +1,5 @@
-class SessionsController < ApplicationController
+class Api::SessionsController < ApplicationController
+
   def create
   if EmailValidator.valid?(user_params[:handle])
     @user = User.find_by_email(user_params[:handle],
@@ -12,16 +13,13 @@ class SessionsController < ApplicationController
      signin(@user)
      redirect_to root_url
    else
-     flash.now[:errors] = "Invalid username/password"
-     render :new
+     render json: {errors: ["Incorrect Username or Password"]}, status: 401
    end
  end
 
  def destroy
-   current_user.reset_session_token!
-   session[:session_token] = nil
-   flash[:messages] = "You have logged out!"
    redirect_to new_session_url
+   render json: {}
  end
 
  private

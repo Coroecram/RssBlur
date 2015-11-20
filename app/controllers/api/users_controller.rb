@@ -1,9 +1,10 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
 
   before_action :require_signed_in, only: [:show, :index]
 
  def index
-   render json: current_user
+   @users = User.all
+   render json: @users
  end
 
  def new
@@ -11,7 +12,8 @@ class UsersController < ApplicationController
  end
 
  def show
-   render json: current_user
+   @user = User.find(params[:id])
+   render json: @user
  end
 
  def create
