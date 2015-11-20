@@ -4,11 +4,7 @@ class Api::UsersController < ApplicationController
 
  def index
    @users = User.all
-   render json: @users
- end
-
- def new
-   @user = User.new
+   render :index
  end
 
  def show
@@ -19,11 +15,10 @@ class Api::UsersController < ApplicationController
  def create
    @user = User.new(user_params)
    if @user.save
-     session[:session_token] = @user.session_token
-     redirect_to root
+     signin(@user)
+     render :show
    else
-     flash.now[:errors] = @user.errors.full_messages.to_sentence
-     render :new
+     render json: {}
    end
  end
 

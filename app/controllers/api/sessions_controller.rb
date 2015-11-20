@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
   end
 
    if @user
-     signin(@user)
+     sign_in!(@user)
      redirect_to root_url
    else
      render json: {errors: ["Incorrect Username or Password"]}, status: 401
@@ -18,6 +18,7 @@ class Api::SessionsController < ApplicationController
  end
 
  def destroy
+   sign_out!
    redirect_to new_session_url
    render json: {}
  end

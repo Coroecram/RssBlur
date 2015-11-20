@@ -2,10 +2,6 @@ require 'open-uri'
 require 'rss'
 require 'link_thumbnailer'
 
-
-# ruby_item.description
-# html_doc = Nokogiri::HTML(ruby_article.description)
-# html_doc.elements.to_s
 class Api::ArticlesController < ApplicationController
   PAGE_SIZE = 10
 
