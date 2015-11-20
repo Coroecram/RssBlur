@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20151119145146) do
 
   create_table "articles", force: true do |t|
     t.string   "url",                                null: false
-    t.string   "img_url"
     t.string   "title",                              null: false
     t.text     "summary"
     t.string   "author",       default: "anonymous", null: false

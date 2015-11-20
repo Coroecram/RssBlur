@@ -2,7 +2,6 @@ class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles do |t|
       t.string :url, null: false
-      t.string :img_url
       t.string :title, null: false
       t.text :summary
       t.string :author, null: false, default: 'anonymous'

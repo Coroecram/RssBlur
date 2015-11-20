@@ -6,7 +6,6 @@ require 'link_thumbnailer'
 
 # ruby_item.description
 # html_doc = Nokogiri::HTML(ruby_article.description)
-# html_doc.css('img')
 # html_doc.elements.to_s
 class Api::ArticlesController < ApplicationController
   PAGE_SIZE = 10
@@ -18,20 +17,21 @@ class Api::ArticlesController < ApplicationController
     range = (page...page+PAGE_SIZE)
     range.each do |idx|
       ruby_article = rss.items[idx]
-      article = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
-      debugger
+      thumblink = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(ruby_article.link)
       if !@article
-        # @article = Article.create!(url: article.link,
-        #                            title: thumblink.title,
-        #                            summary: article.description,
-        #                            author: ruby_article.dc_creator,
-        #                            created_date: ruby_article.pubDate,
-        #                            website_id: params[:website_id])
+        @article = Article.create!(url: ruby_article.link,
+                                  title: thumblink.title,
+                                  summary: thumblink.description,
+                                  author: ruby_article.dc_creator,
+                                  created_date: ruby_article.pubDate,
+                                  website_id: params[:website_id])
       end
+      html_doc =
+      @article.detail = Nokogiri::HTML(ruby_article.description).elements.to_s
       @articles.push(@article)
     end
-    # UserArticle.create(user_id: current_user.id, article_id: @article.id, read: false)
+    UserArticle.create(user_id: current_user.id, article_id: @article.id, read: false)
 
     @articles
   end
