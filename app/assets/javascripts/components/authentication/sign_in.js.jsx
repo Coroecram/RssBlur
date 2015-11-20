@@ -24,18 +24,22 @@ var SignIn = React.createClass({
       SessionApiUtil.login(credentials, this.success, this.error);
     },
 
-    success: function () {
-      this.history.pushState(null, "/home");
-    },
+  success: function () {
+    this.history.pushState(null, "/home");
+  },
 
-    error: function (message) {
-      alert(message);
-    },
+  error: function (message) {
+    alert(message);
+  },
+
+  signUp: function () {
+    this.history.pushState(null, '/create_account')
+  },
 
   render: function () {
     return (
             <div className="authentication">
-              <h1>RSS Blur</h1>
+              <h1>RSS Blur - Sign In</h1>
               <form className="session signin" onSubmit={ this.submit }>
                 <label>Username or Email
                 <br/>

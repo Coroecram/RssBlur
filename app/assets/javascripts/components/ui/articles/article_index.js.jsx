@@ -1,6 +1,6 @@
 var ArticleIndex = React.createClass({
   getInitialState: function () {
-    return {sidebar: SidebarClickedStore.fetch()};
+    return {sidebar: SidebarClickedStore.fetch(), articles: ArticleStore.all()};
   },
 
   componentDidMount: function () {
@@ -16,7 +16,7 @@ var ArticleIndex = React.createClass({
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
     ArticleApiUtil.fetchArticles(clickedItem, 0);
-    this.setState({sidebar: clickedItem});
+    this.setState({sidebar: clickedItem, articles: null});
   },
 
   _onArticlesChange: function () {

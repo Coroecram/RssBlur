@@ -15,10 +15,10 @@ class Api::UsersController < ApplicationController
  def create
    @user = User.new(user_params)
    if @user.save
-     signin(@user)
+     sign_in!(@user)
      render :show
    else
-     render json: {}
+     render json: @user.errors.full_messages.to_sentence, status: 401
    end
  end
 

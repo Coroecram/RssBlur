@@ -3,32 +3,43 @@
   var SessionApiUtil = root.SessionApiUtil = {
 
     login: function (credentials, success, error) {
-    $.ajax({
-      url: '/api/session',
-      type: 'POST',
-      dataType: 'json',
-      data: credentials,
-      error: function (response) {
-        error && error(response.responseText);
-      },
-      success: function (currentUser) {
-        console.log("logged in!");
-        CurrentUserActions.receiveUser(currentUser);
-        success && success();
-      }
-    });
-  },
+      $.ajax({
+        url: '/api/session',
+        type: 'POST',
+        dataType: 'json',
+        data: credentials,
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (currentUser) {
+          console.log("logged in!");
+          CurrentUserActions.receiveUser(currentUser);
+          success && success();
+        }
+      });
+    },
 
-  logout: function (  ) {
-    $.ajax({
-      url: '/api/session',
-      type: 'DELETE',
-      dataType: 'json',
-      success: function () {
-        console.log("logged out!");
-        CurrentUserActions.resetUser();
-      }
-    });
-  }
+    logout: function (  ) {
+      $.ajax({
+        url: '/api/session',
+        type: 'DELETE',
+        dataType: 'json',
+        success: function () {
+          console.log("logged out!");
+          CurrentUserActions.resetUser();
+        }
+      });
+    },
+
+    fetchCurrentUser: function () {
+      $.ajax({
+        url: '/api/session',
+        type: 'GET',
+        dataType: 'json',
+        success: function (currentUser) {
+          CurrentUserActions.receiveUser(currentUser);
+        }
+      });
+    }
   };
 })(this);

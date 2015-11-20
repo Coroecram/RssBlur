@@ -5,19 +5,45 @@ $(document).ready(function () {
   var IndexRoute = ReactRouter.IndexRoute;
 
   var App = React.createClass({
-    render: function () {
-       return (
-           <div>
-             <header><title>RSS Blur</title></header>
-             {this.props.children}
-           </div>
-       );
-     }
-    });
+
+  mixins: [ReactRouter.History],
+
+  getInitialState: function () {
+    return { currentUser: null };
+  },
+
+  componentWillMount: function () {
+    CurrentUserStore.addChangeListener(this._ensureLoggedIn);
+    SessionApiUtil.fetchCurrentUser();
+  },
+
+  _ensureLoggedIn: function () {
+    if (!CurrentUserStore.isLoggedIn()) {
+      this.history.pushState(null, "/sign_in");
+    }
+    this.setState({currentUser: CurrentUserStore.fetch()});
+  },
+
+  render: function () {
+
+    if (!this.state.currentUser) {
+  return (
+          <img src="assets/images/default-image.JPG" />
+        );
+      }
+
+     return (
+         <div>
+           <header><title>RSS Blur</title></header>
+           {this.props.children}
+         </div>
+     );
+   }
+  });
 
     var routes = (
       <Route path="/" component={App}>
-        <IndexRoute component={SignIn} />
+        <Route path="/sign_in" component={SignIn} />
         <Route path="/create_account" component={SignUp} />
         <Route path="/home" component={UserHome} />
         <Route path="/website/:id" components={{sidebar:UserHome, articles:ArticleIndex}} />

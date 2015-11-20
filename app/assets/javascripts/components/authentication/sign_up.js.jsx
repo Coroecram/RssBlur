@@ -1,30 +1,85 @@
 var SignUp = React.createClass({
+  mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
+
+  getInitialState: function () {
+    return {username: "", email: "", password: "", passwordConfirmation: ""};
+  },
+
+  updateUsername: function (event) {
+    this.setState({username: event.currentTarget.value});
+  },
+
+  updateEmail: function (event) {
+    this.setState({email: event.currentTarget.value});
+  },
+
+  updatePassword: function (event) {
+    this.setState({password: event.currentTarget.value});
+  },
+
+  updatePasswordConfirmation: function (event) {
+    this.setState({passwordConfirmation: event.currentTarget.value});
+  },
+
+  submit: function (e) {
+      e.preventDefault();
+      var credentials = {user: $(e.currentTarget).serializeJSON()};
+      UserApiUtil.createUser(credentials, this.success, this.error);
+    },
+
+  success: function () {
+    this.history.pushState(null, "/home");
+  },
+
+  error: function (message) {
+    alert(message);
+    this.setState({password: "", passwordConfirmation: ""});
+  },
+
+  signIn: function () {
+    this.history.pushState(null, "/sign_in");
+  },
 
   render: function () {
     return (
             <div className="authentication">
-              <h1>RSS Blur</h1>
-              <form className="session signup">
-                <label>Email</label>
+              <h1>RSS Blur - Sign Up</h1>
+              <form className="session signin" onSubmit={ this.submit }>
+                <label>Username
                 <br/>
-                  <input type="email" />
-                  <br/>
-                <label>Username</label>
+                  <input type="text"
+                         name="username"
+                         value={this.state.username}
+                         onChange={this.updateUsername} />
+                </label>
                 <br/>
-                  <input type="text" />
-                  <br/>
-                <label>Password</label>
+                <label>Email
                 <br/>
-                  <input type="password" />
-                  <br/>
-                <label>Confirm Password</label>
+                  <input type="text"
+                         name="email"
+                         value={this.state.email}
+                         onChange={this.updateEmail} />
+                </label>
                 <br/>
-                  <input type="password" />
+                <label>Password
+                <br/>
+                  <input type="password"
+                         name="password"
+                         value={this.state.password}
+                         onChange={this.updatePassword} />
+                  </label>
                   <br/>
-                <input type="submit" value="Sign Up"/>
+                <label>Confirm Password
+                <br/>
+                  <input type="password"
+                         name="password_confirmation"
+                         value={this.state.passwordConfirmation}
+                         onChange={this.updatePasswordConfirmation} />
+                  </label>
+                  <br/>
+                <input type="submit" value="Sign Up" />
+              <div className="route" onClick={this.signIn}>Sign In</div>
               </form>
-              <span>Already a Member?</span><button className="sign-in-button">Sign In</button>
-              <button className="guest-button">Sign In as Guest</button>
             </div>
           );
   }

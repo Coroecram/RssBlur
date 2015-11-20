@@ -44,7 +44,6 @@
     dispatchToken: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (ArticleConstants.ARTICLES_RECEIVED):
-      debugger
         setArticles(payload.articles);
         ArticleStore.emitChange();
         break;
