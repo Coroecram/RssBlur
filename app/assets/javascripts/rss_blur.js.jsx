@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     if (!this.state.currentUser) {
   return (
-          <img src="assets/images/default-image.JPG" />
+          <div>Loading...</div>
         );
       }
 

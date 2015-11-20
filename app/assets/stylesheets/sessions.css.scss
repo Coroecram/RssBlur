@@ -60,8 +60,35 @@ input[type="text"] {
 .session input[type="submit"] {
   text-align: center;
   font-weight: 400;
-  border: solid 1px black;
+  padding: 20px;
+  border: 1px black solid;
   border-radius: 5px;
-  padding: 15px;
+  background: #DDEFEF;
+}
+
+.routes {
+  width: 330px;
+  margin: 10px auto 0 auto;
+}
+
+.routes li:first-child {
+  display: block;
+  float: left;
+  width: 75px;
+  padding: 13px;
+  border: 1px black solid;
+  cursor: pointer;
   background: #78AEAE;
+  border-radius: 5px;
+}
+
+.routes li:last-child {
+  display: block;
+  float: right;
+  width: 75px;
+  padding: 13px;
+  border: 1px black solid;
+  cursor: pointer;
+  background: #6af73b;
+  border-radius: 5px;
 }

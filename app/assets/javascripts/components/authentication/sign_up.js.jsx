@@ -78,7 +78,10 @@ var SignUp = React.createClass({
                   </label>
                   <br/>
                 <input type="submit" value="Sign Up" />
-              <div className="route" onClick={this.signIn}>Sign In</div>
+                <ul className="routes group" >
+                  <li onClick={this.signIn}>Sign In</li>
+                  <li className="guest" onClick={""}>Guest</li>
+                </ul>
               </form>
             </div>
           );
