@@ -1,12 +1,12 @@
 var SignIn = React.createClass({
-  mixins: [ReactRouter.History],
+  mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
     return {handle: "", password: ""};
   },
 
   componentDidMount: function () {
-    this.history.pushState(null, '/home', {});
+
   },
 
   updateHandle: function (event) {
