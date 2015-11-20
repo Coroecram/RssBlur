@@ -22,7 +22,7 @@
 * ApiActions.deleteCollection
 
 ### ApiUtil
-* ApiUtil.fetchUserCollections
+* SessionApiUtil.fetchUserCollections
 * ApiUtil.updateCollection
 * ApiUtil.destroyCollection
 

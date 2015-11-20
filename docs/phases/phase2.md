@@ -19,7 +19,7 @@
 * ApiActions.createWebsite
 
 ### ApiUtil
-* ApiUtil.fetchUserWebsites
+* SessionApiUtil.fetchUserWebsites
 
 ## Gems/Libraries
 * Feedbag

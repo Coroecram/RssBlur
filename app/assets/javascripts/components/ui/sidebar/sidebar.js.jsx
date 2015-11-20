@@ -6,7 +6,7 @@ var Sidebar = React.createClass({
 
   componentDidMount: function () {
     CurrentUserStore.addChangeListener(this._onChange);
-    ApiUtil.fetchUser();
+    SessionApiUtil.fetchUser();
   },
 
   componentWillUnmount: function () {
