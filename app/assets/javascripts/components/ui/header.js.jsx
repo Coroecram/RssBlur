@@ -1,4 +1,4 @@
-var ArticleHeader = React.createClass({
+var Header = React.createClass({
 
   componentDidMount: function () {
     SidebarClickedStore.addChangeListener(this._onChange);
@@ -16,6 +16,7 @@ var ArticleHeader = React.createClass({
     return (
           <div className="articles-header">
             <div className="header-focus"></div>
+            <div className="sign-out" onClick={this.props.clickHandler}> Sign Out </div>
           </div>
           );
   }

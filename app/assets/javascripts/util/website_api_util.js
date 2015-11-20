@@ -4,13 +4,13 @@
 
     fetchWebsites: function () {
       $.get('api/websites', function(websites){
-        ApiActions.receiveAllWebsites(websites);
+        WebsiteApiActions.receiveAllWebsites(websites);
       },
       'json');
     },
     createWebsite: function(url, success, error){
       $.post('api/websites', {url: url}, function(website) {
-        ApiActions.createWebsite(website);
+        WebsiteApiActions.createWebsite(website);
         success();
       },
       'json').fail(function (data) {
@@ -19,7 +19,7 @@
     },
     fetchClickedWebsite: function (id) {
       $.get('api/websites/' + id, function(website){
-        ApiActions.setSidebarClicked(website);
+        WebsiteApiActions.setSidebarClicked(website);
       },
       'json');
     }

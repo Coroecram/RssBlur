@@ -33,7 +33,6 @@ var WebsiteForm = React.createClass({
           <div className="website-form">
             <div className="website-input">
             <label>Website URL</label>
-              <br/>
               <input type="text" value={this.state.url} onChange={this.updateURL} />
               <br/>
               <input type="submit" value="Add" onClick={this.addWebsite}/>

@@ -19,7 +19,7 @@
       });
     },
 
-    logout: function (  ) {
+    logout: function () {
       $.ajax({
         url: '/api/session',
         type: 'DELETE',

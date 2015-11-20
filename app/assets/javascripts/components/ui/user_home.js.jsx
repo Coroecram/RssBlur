@@ -4,17 +4,27 @@ var UserHome = React.createClass({
 
   componentWillMount: function () {
     if (!CurrentUserStore.isLoggedIn()) {
-      this.history.pushState(null, "/sign_in");
+      this._onChange();
     }
   },
 
   componentDidMount: function () {
+    CurrentUserStore.addChangeListener(this._onChange);
     WebsiteApiUtil.fetchWebsites();
+  },
+
+  _onChange: function () {
+    this.history.pushState(null, "/sign_in");
+  },
+
+  signOut: function () {
+    SessionApiUtil.logout();
   },
 
   render: function () {
     return (
             <div className="user-home">
+              <Header clickHandler={this.signOut} />
               <Sidebar />
             </div>
           );

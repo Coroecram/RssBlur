@@ -1,6 +1,6 @@
 .sidebar {
   position: absolute;
-  background: red;
+  background: #ADD3D3;
   width: 229px;
   padding: 5px 5px 0 5px;
   border-right: 1px solid gray;
@@ -48,7 +48,7 @@
   height: 26px;
   border-top: 1px solid gray;
   width: 100%;
-  background: lightgray;
+  background: #DDEFEF;
 }
 
 .sidebar-footer span{
@@ -62,20 +62,31 @@
   font-size: 24px;
   font-weight: 400;
   cursor: pointer;
+  border-right: 1px solid #ccc;
 }
 
 .website-form {
   position: absolute;
+  outline: 1px solid black;
   bottom: 140%;
   left: 0;
   right: 0;
+  width: 288px;
+}
+
+.website-form label {
+  display: block;
+  width: 200px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
 }
 
 .website-input {
   display: block;
   width: 300px;
-  height: 100px;
-  background: orange;
+  height: auto;
+  background: #78AEAE;
 }
 
 .website-input
@@ -93,12 +104,13 @@ input[type="submit"] {
   border: solid 1px black;
   padding: 3px;
   margin: 3px;
+  background: #DDEFEF;
 }
 
 .sidebar .error {
   display: block;
   float: right;
-  width: 200px;
+  width: 230px;
   font-size: 12px;
 }
 
@@ -108,7 +120,7 @@ input[type="submit"] {
   width: 0;
   height: 0;
   background: transparent;
-  border-top: 10px solid blue;
+  border-top: 10px solid #78AEAE;
   border-bottom: none;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
@@ -116,4 +128,15 @@ input[type="submit"] {
 
 .hidden {
   display: none;
+}
+
+.sign-out {
+  display: block;
+  float: right;
+  padding: 20px;
+  margin: 10px;
+  background: white;
+  color: red;
+  border-radius: 50px;
+  cursor: pointer;
 }

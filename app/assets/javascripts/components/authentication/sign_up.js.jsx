@@ -40,6 +40,14 @@ var SignUp = React.createClass({
     this.history.pushState(null, "/sign_in");
   },
 
+  guestLogin: function () {
+    guestUser = {
+                  handle: "7evEUIpk1O1ajjK9lhihQ@belieber.com",
+                  password: "AqXPos8Nz04DPBiBd0BIjQ"
+                };
+    SessionApiUtil.login(guestUser, this.success, this.error);
+  },
+
   render: function () {
     return (
             <div className="authentication">

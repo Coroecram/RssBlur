@@ -6,6 +6,10 @@
     _currentUser = user;
   };
 
+  var resetSignin = function (user) {
+    _currentUser = {};
+  };
+
   var CurrentUserStore = root.CurrentUserStore = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
