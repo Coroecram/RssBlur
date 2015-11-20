@@ -13,8 +13,11 @@ span, article, footer, time, small {
  text-align: inherit;
  text-decoration: inherit;
  vertical-align: inherit;
- box-sizing: inherit;
  background: transparent;
+}
+
+html {
+  height: 100%;
 }
 
 ul {
