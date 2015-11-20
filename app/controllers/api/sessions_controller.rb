@@ -19,8 +19,8 @@ class Api::SessionsController < ApplicationController
 
  def destroy
    sign_out!
-   redirect_to new_session_url
    render json: {}
+   redirect_to root_url
  end
 
  private
