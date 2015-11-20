@@ -26,7 +26,7 @@ gem 'email_validator'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'metainspector'
-gem 'simple-rss'
+gem 'link_thumbnailer'
 
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'

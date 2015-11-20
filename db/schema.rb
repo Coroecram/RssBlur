@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151120144128) do
     t.integer  "website_id",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "details"
+    t.text     "details"
   end
 
   add_index "articles", ["author"], name: "index_articles_on_author", using: :btree
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20151120144128) do
   create_table "user_articles", force: true do |t|
     t.integer "user_id"
     t.integer "article_id"
-    t.boolean "read",       default: false, null: false
+    t.boolean "read",        default: false, null: false
+    t.boolean "pseudo_read", default: false
   end
 
   add_index "user_articles", ["article_id"], name: "index_user_articles_on_article_id", using: :btree

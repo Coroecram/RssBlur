@@ -20,10 +20,9 @@ class Api::ArticlesController < ApplicationController
                                   summary: thumblink.description,
                                   author: ruby_article.dc_creator,
                                   created_date: ruby_article.pubDate,
+                                  details: Nokogiri::HTML(ruby_article.description).elements.to_s,
                                   website_id: params[:website_id])
       end
-      html_doc =
-      @article.detail = Nokogiri::HTML(ruby_article.description).elements.to_s
       @articles.push(@article)
     end
     UserArticle.create(user_id: current_user.id, article_id: @article.id, read: false)

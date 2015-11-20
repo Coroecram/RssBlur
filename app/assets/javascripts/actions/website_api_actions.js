@@ -1,4 +1,4 @@
-window.ApiActions = {
+window.WebsiteApiActions = {
   receiveAllWebsites: function (websites) {
     AppDispatcher.dispatch({
       actionType: WebsiteConstants.WEBSITES_RECEIVED,
@@ -30,6 +30,13 @@ window.ApiActions = {
     AppDispatcher.dispatch({
       actionType: WebsiteConstants.FETCH_WEBSITE,
       website: website
+    });
+  },
+
+  setSidebarClicked: function (object) {
+    AppDispatcher.dispatch({
+      actionType: SidebarClickedConstants.CLICK_RECEIVED,
+      object: object
     });
   }
 };

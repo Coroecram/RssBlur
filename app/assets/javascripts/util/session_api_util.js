@@ -1,12 +1,6 @@
 (function (root) {
 
   var SessionApiUtil = root.SessionApiUtil = {
-    fetchUser: function (user) {
-      $.get('users/holder', function(user){
-        ApiActions.receiveUser(user);
-      },
-      'json');
-    },
 
     login: function (credentials, success, error) {
     $.ajax({
