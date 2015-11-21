@@ -4,8 +4,11 @@ var WebsiteForm = React.createClass({
     return {url: "", error: false};
   },
 
-  addWebsite: function () {
-    WebsiteApiUtil.createWebsite(this.state.url, this.receivedSite, this.receivedError);
+  submit: function (event) {
+    debugger
+    event.preventDefault();
+    var credentials = $(event.currentTarget).serializeJSON();
+    WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
   },
 
   updateURL: function (event) {
@@ -30,14 +33,17 @@ var WebsiteForm = React.createClass({
       error = <div className="error">{this.state.error}</div>;
     }
     return (
-          <div className="website-form">
-            <div className="website-input">
-            <label>Website URL</label>
-              <input type="text" value={this.state.url} onChange={this.updateURL} />
-              <br/>
-              <input type="submit" value="Add" onClick={this.addWebsite}/>
-              {error}
-            </div>
+          <div>
+            <form className="website-form" onSubmit={ this.submit }>
+              <label>Website URL</label>
+                <input type="text"
+                       name="url"
+                       value={this.state.url}
+                       onChange={this.updateURL} />
+                <br/>
+                <input type="submit" value="Add"/>
+                {error}
+            </form>
             <div className="website-form-triangle" />
           </div>
           );

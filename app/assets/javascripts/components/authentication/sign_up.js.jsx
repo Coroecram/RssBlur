@@ -21,8 +21,8 @@ var SignUp = React.createClass({
     this.setState({passwordConfirmation: event.currentTarget.value});
   },
 
-  submit: function (e) {
-      e.preventDefault();
+  submit: function (event) {
+      event.preventDefault();
       var credentials = {user: $(e.currentTarget).serializeJSON()};
       UserApiUtil.createUser(credentials, this.success, this.error);
     },

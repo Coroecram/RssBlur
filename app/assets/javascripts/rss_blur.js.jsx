@@ -18,7 +18,6 @@ $(document).ready(function () {
   },
 
   _ensureLoggedIn: function () {
-    debugger
     if (!CurrentUserStore.isLoggedIn() &&
         (this.props.location.pathname !== "/create_account" ||
         this.props.location.pathname !== "/sign_in")) {

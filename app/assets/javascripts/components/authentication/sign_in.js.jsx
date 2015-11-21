@@ -17,10 +17,10 @@ var SignIn = React.createClass({
     this.setState({password: event.currentTarget.value});
   },
 
-  submit: function (e) {
-      e.preventDefault();
+  submit: function (event) {
+      event.preventDefault();
 
-      var credentials = $(e.currentTarget).serializeJSON();
+      var credentials = $(event.currentTarget).serializeJSON();
       SessionApiUtil.login(credentials, this.success, this.error);
     },
 

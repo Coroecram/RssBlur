@@ -9,7 +9,7 @@
       'json');
     },
     createWebsite: function(url, success, error){
-      $.post('api/websites', {url: url}, function(website) {
+      $.post('api/websites', url, function(website) {
         WebsiteApiActions.createWebsite(website);
         success();
       },

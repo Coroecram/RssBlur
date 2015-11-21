@@ -7,7 +7,6 @@
   border-bottom: 1px solid gray;
 }
 
-
 .sidebar {
   position: absolute;
   background: #ADD3D3;
@@ -92,14 +91,14 @@
   padding: 5px 10px;
 }
 
-.website-input {
+.website-form {
   display: block;
   width: 300px;
   height: auto;
   background: #78AEAE;
 }
 
-.website-input
+.website-form
 input[type="text"] {
   text-align: left;
   height: 20px;
@@ -109,7 +108,7 @@ input[type="text"] {
   font-size: 12px;
 }
 
-.website-input
+.website-form
 input[type="submit"] {
   border: solid 1px black;
   padding: 3px;
