@@ -1,5 +1,9 @@
 var Header = React.createClass({
 
+  getInitialState: function () {
+    return {currentUser: CurrentUserStore.fetch()};
+  },
+
   componentDidMount: function () {
     SidebarClickedStore.addChangeListener(this._onChange);
   },
@@ -14,8 +18,10 @@ var Header = React.createClass({
 
   render: function () {
     return (
-          <div className="articles-header">
-            <div className="header-focus"></div>
+          <div className="articles-header group">
+            <div className="sidebar-header">
+              {this.state.currentUser.username}
+            </div>
             <div className="sign-out" onClick={this.props.clickHandler}> Sign Out </div>
           </div>
           );

@@ -23,6 +23,12 @@ User.create!([{
                email: "user@3.com",
                password: "password",
                password_confirmation:"password"
+            },
+            {
+              username: "Guest",
+              email: "7evEUIpk1O1ajjK9lhihQ@belieber.com",
+              password: "AqXPos8Nz04DPBiBd0BIjQ",
+              password_confirmation:"AqXPos8Nz04DPBiBd0BIjQ"
             }])
 
 Website.create!([{
