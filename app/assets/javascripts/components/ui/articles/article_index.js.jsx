@@ -41,7 +41,6 @@ var ArticleIndex = React.createClass({
     // }
     return (
             <div className="article-index">
-              <ArticleHeader focus={this.state.sidebar} />
               <ul className="article-list">
                   {this.state.articles &&
                     this.state.articles.map(function (article) {
