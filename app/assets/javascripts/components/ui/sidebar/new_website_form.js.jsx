@@ -5,7 +5,6 @@ var WebsiteForm = React.createClass({
   },
 
   submit: function (event) {
-    debugger
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);

@@ -12,13 +12,13 @@ class Api::WebsitesController < ApplicationController
       page = MetaInspector.new(params[:url])
     rescue
     end
+    feed = (page.content_type === "text/xml" ? true : false)
     debugger
-    feed = false
-    feed = MetaInspector.new(page.feed) if page && page.feed
     if (feed)
+      #.meta contains so much information!
       # doc = Nokogiri::XML(open(feed.url))
       # title = doc.xpath("//title").children.first.text
-      # @website = Website.create!({name: title, url: feed.url })
+      # @website = Website.create!({name: title, url: feed.url feed: feed})
       # UserWebsite.create!({user_id: current_user.id, website_id: website.id})
       # @website
     else
