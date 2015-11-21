@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, email: true
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }, confirmation: { allow_nil: true }
-  validates :password_confirmation, presence: true
   validate :check_email_and_password
   validate :check_username_and_password
   before_validation :ensure_session_token
@@ -19,7 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.password_confirmation = "presence_validation"
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
     self.session_token

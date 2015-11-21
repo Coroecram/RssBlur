@@ -30,7 +30,7 @@ gem 'link_thumbnailer'
 
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 group :development do
   gem 'better_errors'

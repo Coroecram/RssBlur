@@ -18,7 +18,9 @@ $(document).ready(function () {
   },
 
   _ensureLoggedIn: function () {
-    if (!CurrentUserStore.isLoggedIn()) {
+    if (!CurrentUserStore.isLoggedIn() &&
+        (this.props.location.pathname !== "/create_account" ||
+        this.props.location.pathname !== "/sign_in")) {
       this.history.pushState(null, "/sign_in");
     }
     this.setState({currentUser: CurrentUserStore.fetch()});
