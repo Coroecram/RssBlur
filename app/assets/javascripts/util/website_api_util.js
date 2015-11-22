@@ -22,6 +22,24 @@
         WebsiteApiActions.setSidebarClicked(website);
       },
       'json');
+    },
+
+    login: function (credentials, success, error) {
+      $.ajax({
+        url: '/api/session',
+        type: 'POST',
+        dataType: 'json',
+        data: credentials,
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (currentUser) {
+          console.log("logged in!");
+          CurrentUserActions.receiveUser(currentUser);
+          success && success();
+        }
+      });
     }
+
   };
 })(this);

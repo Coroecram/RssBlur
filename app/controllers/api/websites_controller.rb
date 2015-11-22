@@ -33,8 +33,7 @@ class Api::WebsitesController < ApplicationController
     render json: Website.find(params[:id])
   end
 
-  def destroy
-
+  def feed
   end
 
   private

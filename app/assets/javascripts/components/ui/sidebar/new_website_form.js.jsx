@@ -1,17 +1,29 @@
 var WebsiteForm = React.createClass({
 
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState: function () {
-    return {url: "", error: false};
+    return {url: "", rss: false, error: false};
   },
 
   submit: function (event) {
     event.preventDefault();
+    debugger
     var credentials = $(event.currentTarget).serializeJSON();
-    WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
+    if (this.state.rss) {
+      this.retrieveRSS
+    } else {
+      WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
+    }
   },
 
-  updateURL: function (event) {
-    this.setState({url: event.currentTarget.value});
+  retrieveRSS: function () {
+    WebsiteApiUtil.retrieveFeed(credentials, this.updateURL, this.receivedError);
+  };
+
+  updateURL: function (data) {
+    debugger
+    this.setState({rss: false})
   },
 
   receivedError: function (data) {
@@ -35,11 +47,14 @@ var WebsiteForm = React.createClass({
           <div>
             <form className="website-form" onSubmit={ this.submit }>
               <label>Website URL</label>
-              <input type="checkbox" className="feed-check" name="rss" />
+              <input type="checkbox"
+                     className="feed-check"
+                     name="rss"
+                     checkedLink={this.linkState('rss')}> Retrieve Feed?
+              </input>
                 <input type="text"
                        name="url"
-                       value={this.state.url}
-                       onChange={this.updateURL} />
+                       valueLink={this.linkState('url')} />
                 <br/>
                 <input type="submit" value="Add"/>
                 {error}
