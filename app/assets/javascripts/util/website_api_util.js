@@ -14,6 +14,7 @@
         success();
       },
       'json').fail(function (data) {
+        debugger
         error(data);
       });
     },

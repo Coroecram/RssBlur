@@ -8,21 +8,21 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
-    begin
-      page = MetaInspector.new(params[:url])
-    rescue
-    end
-    feed = (page.content_type === "text/xml" ? true : false)
-    debugger
-    if (feed)
-      #.meta contains so much information!
-      # doc = Nokogiri::XML(open(feed.url))
-      # title = doc.xpath("//title").children.first.text
-      # @website = Website.create!({name: title, url: feed.url feed: feed})
-      # UserWebsite.create!({user_id: current_user.id, website_id: website.id})
-      # @website
+    if params[:url] =~ URI::regexp
+      begin
+        page = MetaInspector.new(params[:url])
+      rescue
+        console.log("here")
+      end
+      feed = (page.content_type === "text/xml" ? true : false)
+      debugger
+        doc = Nokogiri::XML(open(feed.url))
+        title = doc.xpath("//title").children.first.text
+        @website = Website.create!({name: title, url: feed.url, feed: feed})
+        UserWebsite.create!({user_id: current_user.id, website_id: website.id})
+        @website
     else
-      render json: 'This address does not point to an RSS feed or a website with an RSS feed.',
+      return render json: 'This address does not point to a website or a website with an RSS feed.',
                     status: :unprocessable_entity
     end
   end

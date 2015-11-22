@@ -11,17 +11,18 @@ class Api::ArticlesController < ApplicationController
     page = params[:page].to_i
     range = (page...page+PAGE_SIZE)
     range.each do |idx|
+      debugger
       ruby_article = rss.items[idx]
       thumblink = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(ruby_article.link)
       if !@article
-        @article = Article.create!(url: ruby_article.link,
-                                  title: thumblink.title,
-                                  summary: thumblink.description,
-                                  author: ruby_article.dc_creator,
-                                  created_date: ruby_article.pubDate,
-                                  details: Nokogiri::HTML(ruby_article.description).elements.to_s,
-                                  website_id: params[:website_id])
+        # @article = Article.create!(url: ruby_article.link,
+        #                           title: thumblink.title,
+        #                           summary: thumblink.description,
+        #                           author: ruby_article.dc_creator,
+        #                           created_date: ruby_article.pubDate,
+        #                           details: Nokogiri::HTML(ruby_article.description).elements.to_s,
+        #                           website_id: params[:website_id])
       end
       @articles.push(@article)
     end

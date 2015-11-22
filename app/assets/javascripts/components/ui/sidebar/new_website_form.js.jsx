@@ -18,7 +18,7 @@ var WebsiteForm = React.createClass({
     if (data.statusText === 'timeout') {
       this.setState({error: "The connection timed out. Please Try Again"});
     } else {
-      this.setState({error: "This address does not point to an RSS feed or a website with an RSS feed."})
+      this.setState({error: data.responseText})
     }
   },
 
