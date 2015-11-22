@@ -46,12 +46,11 @@ var WebsiteForm = React.createClass({
     return (
           <div>
             <form className="website-form" onSubmit={ this.submit }>
-              <label for="website-url">Website URL</label>
+              <label htmlFor="website-url">Website URL</label>
               <label className="check-label">Retrieve Feed?
                 <input type="checkbox"
                        className="feed-check"
                        name="rss"
-                       id="rss-checkbox"
                        checkedLink={this.linkState('rss')}>
                      </input>
                 </label>

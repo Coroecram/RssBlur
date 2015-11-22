@@ -5,18 +5,6 @@ var SignIn = React.createClass({
     return {handle: "", password: ""};
   },
 
-  componentDidMount: function () {
-
-  },
-
-  updateHandle: function (event) {
-    this.setState({handle: event.currentTarget.value});
-  },
-
-  updatePassword: function (event) {
-    this.setState({password: event.currentTarget.value});
-  },
-
   submit: function (event) {
       event.preventDefault();
 
