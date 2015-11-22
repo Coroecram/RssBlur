@@ -8,10 +8,10 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
-      debugger
+      # debugger
     if url_validation
       feed = feed_validation
-      debugger
+      # debugger
         # doc = Nokogiri::XML(open(feed.url))
         # title = doc.xpath("//title").children.first.text
         # @website = Website.create!({name: title, url: feed.url, feed: feed})
@@ -29,7 +29,14 @@ class Api::WebsitesController < ApplicationController
 
   def feed
     if url_validation
-      feed = feed_validation
+      page = MetaInspector.new(params[:url])
+      if page.feed
+        feed_uri = URI(page.feed)
+        render json: {url: "#{feed_uri.host}#{feed_uri.path}"}
+      end
+    else
+      return render json: 'This address does not point to a website with an RSS feed.',
+                    status: :unprocessable_entity
     end
   end
 

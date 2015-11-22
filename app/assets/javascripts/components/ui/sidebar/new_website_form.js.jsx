@@ -10,21 +10,19 @@ var WebsiteForm = React.createClass({
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     if (this.state.rss) {
-      debugger
-      this.retrieveRSS();
+      this.retrieveRSS(credentials);
     } else {
-      debugger
       WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
     }
   },
 
-  retrieveRSS: function () {
-    WebsiteApiUtil.retrieveFeed(credentials, this.updateURL, this.receivedError);
+  retrieveRSS: function (credentials) {
+    WebsiteApiUtil.retrieveRSSURL(credentials, this.updateURL, this.receivedError);
   },
 
-  updateURL: function (data) {
+  updateURL: function (feedURL) {
     debugger
-    this.setState({url: ""})
+    this.setState({url: feedURL.url})
     this.setState({rss: false})
   },
 

@@ -24,8 +24,7 @@
       'json');
     },
 
-    retrieveRSS: function (credentials, success, error) {
-      debugger
+    retrieveRSSURL: function (credentials, success, error) {
       $.ajax({
         url: '/api/websites/feed',
         type: 'GET',
@@ -34,8 +33,8 @@
         error: function (response) {
           error && error(response);
         },
-        success: function (currentUser) {
-          success && success();
+        success: function (feedURL) {
+          success && success(feedURL);
         }
       });
     }
