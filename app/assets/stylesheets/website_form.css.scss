@@ -1,0 +1,94 @@
+.website-form {
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 5px;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  width: 288px;
+}
+
+
+.website-form {
+  display: block;
+  width: 300px;
+  height: auto;
+  background: #78AEAE;
+}
+
+.website-form label {
+  display: block;
+  width: auto;
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0 10px 10px;
+}
+
+.website-form
+input[type="checkbox"] {
+  display: inline-block;
+  float: left;
+  margin: 0;
+}
+
+.website-form
+span {
+  font-size: 16px;
+  font-weight: bold;
+}
+.website-form
+input[type="text"] {
+  text-align: left;
+  height: 20px;
+  width: 90%;
+  padding: 3px;
+  margin: 5px 10px;
+  font-size: 12px;
+}
+
+
+.website-form
+input[type="submit"] {
+  border: solid 1px black;
+  border-radius: 8px;
+  padding: 0 10px;
+  margin: 5px 10px;
+  background: #DDEFEF;
+}
+
+.website-form .error {
+  display: block;
+  float: right;
+  width: 230px;
+  font-size: 12px;
+}
+
+.website-form .check-label {
+  position: relative;
+  padding: 15px 0 0 10px;
+}
+
+.check-label span{
+  width: 90px;
+  text-align: left;
+  position: absolute;
+  background: inherit;
+  bottom: -8px;
+  left: 20px;
+  font-size: 12px;
+  border: 0;
+}
+
+.website-form-triangle {
+  position: absolute;
+  left: 3px;
+  width: 0;
+  height: 0;
+  top: -2px;
+  background: transparent;
+  border-top: 10px solid #78AEAE;
+  border-bottom: none;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}

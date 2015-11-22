@@ -46,15 +46,19 @@ var WebsiteForm = React.createClass({
     return (
           <div>
             <form className="website-form" onSubmit={ this.submit }>
-              <label>Website URL</label>
-              <input type="checkbox"
-                     className="feed-check"
-                     name="rss"
-                     checkedLink={this.linkState('rss')}> Retrieve Feed?
-              </input>
-                <input type="text"
-                       name="url"
-                       valueLink={this.linkState('url')} />
+              <label for="website-url">Website URL</label>
+              <label className="check-label">Retrieve Feed?
+                <input type="checkbox"
+                       className="feed-check"
+                       name="rss"
+                       id="rss-checkbox"
+                       checkedLink={this.linkState('rss')}>
+                     </input>
+                </label>
+                  <input type="text"
+                         name="url"
+                         valueLink={this.linkState('url')}
+                         id="website-url"/>
                 <br/>
                 <input type="submit" value="Add"/>
                 {error}
