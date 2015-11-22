@@ -41,16 +41,14 @@ var SignIn = React.createClass({
                 <br/>
                   <input type="text"
                          name="handle"
-                         value={this.state.handle}
-                         onChange={this.updateHandle} />
+                         valueLink={this.linkState('handle')} />
                 </label>
                 <br/>
                 <label>Password
                 <br/>
                   <input type="password"
                          name="password"
-                         value={this.state.password}
-                         onChange={this.updatePassword} />
+                         valueLink={this.linkState('password')} />
                   </label>
                   <br/>
                 <input type="submit" value="Sign In" />

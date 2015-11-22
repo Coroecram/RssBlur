@@ -23,7 +23,7 @@ var SignUp = React.createClass({
 
   submit: function (event) {
       event.preventDefault();
-      var credentials = {user: $(e.currentTarget).serializeJSON()};
+      var credentials = {user: $(event.currentTarget).serializeJSON()};
       UserApiUtil.createUser(credentials, this.success, this.error);
     },
 
@@ -57,32 +57,28 @@ var SignUp = React.createClass({
                 <br/>
                   <input type="text"
                          name="username"
-                         value={this.state.username}
-                         onChange={this.updateUsername} />
+                         valueLink={this.linkState('username')} />
                 </label>
                 <br/>
                 <label>Email
                 <br/>
                   <input type="text"
                          name="email"
-                         value={this.state.email}
-                         onChange={this.updateEmail} />
+                         valueLink={this.linkState('email')} />
                 </label>
                 <br/>
                 <label>Password
                 <br/>
                   <input type="password"
                          name="password"
-                         value={this.state.password}
-                         onChange={this.updatePassword} />
+                         valueLink={this.linkState('password')} />
                   </label>
                   <br/>
                 <label>Confirm Password
                 <br/>
                   <input type="password"
                          name="password_confirmation"
-                         value={this.state.passwordConfirmation}
-                         onChange={this.updatePasswordConfirmation} />
+                         valueLink={this.linkState('passwordConfirmation')} />
                   </label>
                   <br/>
                 <input type="submit" value="Sign Up" />
