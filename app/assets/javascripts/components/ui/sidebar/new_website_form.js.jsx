@@ -22,15 +22,15 @@ var WebsiteForm = React.createClass({
 
   updateURL: function (feedURL) {
     debugger
-    this.setState({url: feedURL.url})
-    this.setState({rss: false})
+    this.setState({url: feedURL.url});
+    this.setState({rss: false});
   },
 
   receivedError: function (data) {
     if (data.statusText === 'timeout') {
       this.setState({error: "The connection timed out. Please Try Again"});
     } else {
-      this.setState({error: data.responseText})
+      this.setState({error: data.responseText});
     }
   },
 
