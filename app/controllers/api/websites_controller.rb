@@ -8,15 +8,9 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
-    url_validation = Website.new(name: 'Test', url: params[:url])
-    debugger
-    if url_validation.valid?
-      begin
-        page = MetaInspector.new(params[:url])
-      rescue
-        console.log("here")
-      end
-      feed = (page.content_type === "text/xml" ? true : false)
+      debugger
+    if url_validation
+      feed = feed_validation
       debugger
         # doc = Nokogiri::XML(open(feed.url))
         # title = doc.xpath("//title").children.first.text
@@ -34,12 +28,28 @@ class Api::WebsitesController < ApplicationController
   end
 
   def feed
+    if url_validation
+      feed = feed_validation
+    end
   end
 
   private
 
   def website_params
     params.require(:website).permit(:url, :folder_id)
+  end
+
+  def url_validation
+    url_validator = Website.new(name: 'Test', url: params[:url])
+    return url_validator.valid?
+  end
+
+  def feed_validation
+    begin
+      page = MetaInspector.new(params[:url])
+    rescue
+    end
+    return (page.content_type === "text/xml" ? true : false)
   end
 
 end

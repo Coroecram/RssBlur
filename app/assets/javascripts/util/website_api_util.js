@@ -24,18 +24,17 @@
       'json');
     },
 
-    login: function (credentials, success, error) {
+    retrieveRSS: function (credentials, success, error) {
+      debugger
       $.ajax({
-        url: '/api/session',
-        type: 'POST',
+        url: '/api/websites/feed',
+        type: 'GET',
         dataType: 'json',
         data: credentials,
         error: function (response) {
-          error && error(response.responseText);
+          error && error(response);
         },
         success: function (currentUser) {
-          console.log("logged in!");
-          CurrentUserActions.receiveUser(currentUser);
           success && success();
         }
       });
