@@ -21,9 +21,7 @@ var WebsiteForm = React.createClass({
   },
 
   updateURL: function (feedURL) {
-    debugger
-    this.setState({url: feedURL.url});
-    this.setState({rss: false});
+    this.setState({rss: false, url: feedURL.url, error: ""});
   },
 
   receivedError: function (data) {

@@ -1,1 +1,1 @@
-json.extract! website, :id, :name, :feed
+json.extract! website, :id, :url, :name, :logo, :is_feed
