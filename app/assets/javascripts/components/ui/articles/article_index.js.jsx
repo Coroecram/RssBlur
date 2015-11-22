@@ -15,7 +15,13 @@ var ArticleIndex = React.createClass({
 
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
-    ArticleApiUtil.fetchArticles(clickedItem, 0);
+    if (clickedItem.feed) {
+      ArticleApiUtil.fetchArticles(clickedItem, 0);
+    } else {
+      // website action set to website, maybe change path?
+      // detailed store.
+      // same goes for article click handler
+    }
     this.setState({sidebar: clickedItem, articles: null});
   },
 
@@ -26,19 +32,11 @@ var ArticleIndex = React.createClass({
   clickHandler: function () {
     // from button below
     // ApiUtil.addArticles(clickedItem.url, ArticleStore.all().length);
+    // detailed store
   },
 
   render: function () {
     var articles;
-    // if (this.state.sidebar) {
-    //   if (this.state.sidebar.articles) {
-    //   debugger
-    //   articles = this.state.sidebar.articles.map(function (article) {
-    //               return <Article article=article />;
-    //              });
-    //
-    //   }
-    // }
     return (
             <div className="article-index">
               <ul className="article-list">

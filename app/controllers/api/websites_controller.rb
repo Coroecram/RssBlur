@@ -11,7 +11,7 @@ class Api::WebsitesController < ApplicationController
       # debugger
     if url_validation
       feed = feed_validation
-      # debugger
+      debugger
         # doc = Nokogiri::XML(open(feed.url))
         # title = doc.xpath("//title").children.first.text
         # @website = Website.create!({name: title, url: feed.url, feed: feed})
