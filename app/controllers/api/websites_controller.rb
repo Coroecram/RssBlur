@@ -1,4 +1,5 @@
 require 'open-uri'
+
 class Api::WebsitesController < ApplicationController
 
   before_action :require_signed_in
@@ -9,14 +10,20 @@ class Api::WebsitesController < ApplicationController
 
   def create
       # debugger
+    url = params[:url]
     if url_validation
       feed = feed_validation
-      debugger
-        # doc = Nokogiri::XML(open(feed.url))
+      if feed
+        url = "http://#{url}" if url !=~ /http?:\/\/[\S]+/
+        debugger
+        # doc = Nokogiri::XML(open("params[:url]))
         # title = doc.xpath("//title").children.first.text
         # @website = Website.create!({name: title, url: feed.url, feed: feed})
         # UserWebsite.create!({user_id: current_user.id, website_id: website.id})
         # @website
+
+      end
+      debugger
     else
       return render json: 'This address does not point to a website or a website with an RSS feed.',
                     status: :unprocessable_entity
@@ -31,8 +38,12 @@ class Api::WebsitesController < ApplicationController
     if url_validation
       page = MetaInspector.new(params[:url])
       if page.feed
-        feed_uri = URI(page.feed)
-        render json: {url: "#{feed_uri.host}#{feed_uri.path}"}
+        metafeed = MetaInspector.new(page.feed)
+        feed_uri = URI(metafeed.feed)
+        return render json: {url: "#{feed_uri.scheme}://#{feed_uri.host}#{feed_uri.path}"}
+      else
+        return render json: 'This address does not point to a website with an RSS feed.',
+                      status: :unprocessable_entity
       end
     else
       return render json: 'This address does not point to a website with an RSS feed.',

@@ -56,15 +56,16 @@ input[type="submit"] {
   border: solid 1px black;
   border-radius: 8px;
   padding: 0 10px;
-  margin: 5px 10px;
+  margin: 5px 5px 5px 10px;
   background: #DDEFEF;
 }
 
 .website-form .error {
   display: block;
   float: right;
-  width: 230px;
+  width: 220px;
   font-size: 12px;
+  padding: 0 5px;
 }
 
 .website-form .check-label {

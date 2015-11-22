@@ -57,6 +57,7 @@ var SignUp = React.createClass({
                 <br/>
                   <input type="text"
                          name="username"
+                         maxLength="22"
                          valueLink={this.linkState('username')} />
                 </label>
                 <br/>
@@ -64,6 +65,7 @@ var SignUp = React.createClass({
                 <br/>
                   <input type="text"
                          name="email"
+                         maxLength="22"
                          valueLink={this.linkState('email')} />
                 </label>
                 <br/>
@@ -71,6 +73,7 @@ var SignUp = React.createClass({
                 <br/>
                   <input type="password"
                          name="password"
+                         maxLength="22"
                          valueLink={this.linkState('password')} />
                   </label>
                   <br/>
@@ -78,6 +81,7 @@ var SignUp = React.createClass({
                 <br/>
                   <input type="password"
                          name="password_confirmation"
+                         maxLength="22"
                          valueLink={this.linkState('passwordConfirmation')} />
                   </label>
                   <br/>

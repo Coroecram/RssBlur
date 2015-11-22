@@ -41,6 +41,7 @@ var SignIn = React.createClass({
                 <br/>
                   <input type="text"
                          name="handle"
+                         maxLength="22"
                          valueLink={this.linkState('handle')} />
                 </label>
                 <br/>
@@ -48,6 +49,7 @@ var SignIn = React.createClass({
                 <br/>
                   <input type="password"
                          name="password"
+                         maxLength="22"
                          valueLink={this.linkState('password')} />
                   </label>
                   <br/>
