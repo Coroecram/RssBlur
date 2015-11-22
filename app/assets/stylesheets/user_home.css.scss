@@ -83,19 +83,27 @@
   width: 288px;
 }
 
-.website-form label {
-  display: block;
-  width: 200px;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 10px;
-}
 
 .website-form {
   display: block;
   width: 300px;
   height: auto;
   background: #78AEAE;
+}
+
+.website-form label {
+  display: block;
+  width: 100px;
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.website-form
+input[type="checkbox"] {
+  display: inline-block;
+  float: left;
 }
 
 .website-form

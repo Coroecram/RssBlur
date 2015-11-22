@@ -9,6 +9,7 @@ class Api::WebsitesController < ApplicationController
 
   def create
     url_validation = Website.new(name: 'Test', url: params[:url])
+    debugger
     if url_validation.valid?
       begin
         page = MetaInspector.new(params[:url])

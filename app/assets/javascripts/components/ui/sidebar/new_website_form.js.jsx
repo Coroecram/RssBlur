@@ -35,6 +35,7 @@ var WebsiteForm = React.createClass({
           <div>
             <form className="website-form" onSubmit={ this.submit }>
               <label>Website URL</label>
+              <input type="checkbox" className="feed-check" name="rss" />
                 <input type="text"
                        name="url"
                        value={this.state.url}
