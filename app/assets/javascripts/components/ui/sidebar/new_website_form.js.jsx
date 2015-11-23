@@ -17,7 +17,7 @@ var WebsiteForm = React.createClass({
   },
 
   componentWillReceiveProps: function () {
-    this.setState({error: false})
+    this.setState({url: "", error: false, rss: false});
   },
 
   retrieveRSS: function (credentials) {

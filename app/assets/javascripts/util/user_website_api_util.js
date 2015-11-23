@@ -2,7 +2,6 @@
 
   var UserWebsiteApiUtil = root.UserWebsiteApiUtil = {
     deleteAssociation: function (website_id) {
-    debugger
       $.ajax({
         url: '/api/user_websites',
         type: 'DELETE',

@@ -12,11 +12,5 @@ window.ArticleApiActions = {
       actionType: ArticleConstants.ARTICLES_RECEIVED,
       articles: articles
     });
-  },
-
-  resetArticles: function () {
-    AppDispatcher.dispatch({
-      actionType: ArticleConstants.ARTICLES_RESET,
-    });
   }
 };

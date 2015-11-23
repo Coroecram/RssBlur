@@ -1,6 +1,12 @@
 var WebsiteListItem = React.createClass({
   mixins: [ReactRouter.History],
 
+  componentDidMount: function () {
+    if (this.props.website.is_feed) {
+      ArticleApiUtil.receiveAllArticles(this.props.website);
+    }
+  },
+
   onClick: function (event) {
     WebsiteApiActions.setSidebarClicked(this.props.website);
     this.history.pushState(null, '/website/' + this.props.website.id, {});

@@ -6,7 +6,7 @@
     _articles = articles;
   };
 
-  var addArticle = function (articles) {
+  var addArticles = function (articles) {
     _articles.concat(articles);
   };
 
@@ -48,11 +48,7 @@
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.ARTICLE_CREATED):
-        addArticle(payload.article);
-        ArticleStore.emitChange();
-        break;
-      case (ArticleConstants.ARTICLES_RESET):
-        addArticle(payload.article);
+        addArticles(payload.article);
         ArticleStore.emitChange();
         break;
         default:
