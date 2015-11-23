@@ -1,11 +1,12 @@
 (function (root) {
 
   var UserWebsiteApiUtil = root.UserWebsiteApiUtil = {
-    deleteAssociation: function (id) {
+    deleteAssociation: function (website_id) {
+    debugger
       $.ajax({
-        url: '/api/user_articles/nil',
+        url: '/api/user_websites',
         type: 'DELETE',
-        data: id,
+        data: {website_id: website_id}
       });
     }
   };
