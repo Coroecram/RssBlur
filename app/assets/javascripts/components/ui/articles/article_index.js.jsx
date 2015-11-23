@@ -1,4 +1,5 @@
 var ArticleIndex = React.createClass({
+
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(), articles: ArticleStore.all()};
   },
@@ -6,17 +7,22 @@ var ArticleIndex = React.createClass({
   componentDidMount: function () {
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
-    WebsiteApiUtil.fetchClickedWebsite(this.props.params.id);
+    if (typeof this.state.sidebar === 'undefined') {
+      WebsiteApiUtil.fetchClickedWebsite(this.props.params.id);
+    } else {
+      this._onSidebarChange();
+    }
   },
 
   componentWillUnmount: function () {
-    SidebarClickedStore.addChangeListener(this._onSidebarChange);
+    SidebarClickedStore.removeChangeListener(this._onSidebarChange);
+    ArticleStore.removeChangeListener(this._onArticlesChange);
   },
 
   _onSidebarChange: function () {
     debugger
     clickedItem = SidebarClickedStore.fetch();
-    if (clickedItem.feed) {
+    if (clickedItem.is_feed) {
       ArticleApiUtil.fetchArticles(clickedItem, 0);
     } else {
       // website action set to website, maybe change path?

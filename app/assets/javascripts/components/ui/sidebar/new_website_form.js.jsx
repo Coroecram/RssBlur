@@ -50,9 +50,9 @@ var WebsiteForm = React.createClass({
       error = <div className="error">{this.state.error}</div>;
     }
     if (this.state.rss) {
-      buttonValue = "Retrieve"
+      buttonValue = "Retrieve";
     } else {
-      buttonValue = "Add"
+      buttonValue = "Add";
     }
     var websiteForm;
 

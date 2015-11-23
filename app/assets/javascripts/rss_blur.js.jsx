@@ -22,9 +22,8 @@ $(document).ready(function () {
         (this.props.location.pathname !== "/create_account" ||
         this.props.location.pathname !== "/sign_in")) {
       this.history.pushState(null, "/sign_in");
-    } else {
-      this.history.pushState(null, "/home")
     }
+    
     this.setState({currentUser: CurrentUserStore.fetch()});
   },
 

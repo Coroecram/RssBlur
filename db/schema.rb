@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121185221) do
+ActiveRecord::Schema.define(version: 20151123191806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151121185221) do
     t.integer  "website_id",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "details"
+    t.text     "image"
   end
 
   add_index "articles", ["author"], name: "index_articles_on_author", using: :btree
@@ -72,10 +72,9 @@ ActiveRecord::Schema.define(version: 20151121185221) do
     t.string   "url",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "logo"
+    t.text     "logo"
     t.boolean  "is_feed",     default: false
-    t.string   "logo_color"
-    t.string   "description"
+    t.text     "description"
   end
 
   add_index "websites", ["url"], name: "index_websites_on_url", using: :btree

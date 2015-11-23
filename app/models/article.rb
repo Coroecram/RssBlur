@@ -4,5 +4,4 @@ class Article < ActiveRecord::Base
   belongs_to :website
   has_many :user_articles
   has_many :users, through: :user_articles
-  attr_accessor :detail
 end

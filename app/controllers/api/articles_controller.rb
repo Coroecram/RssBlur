@@ -6,7 +6,6 @@ class Api::ArticlesController < ApplicationController
   PAGE_SIZE = 10
 
   def index
-    debugger
     @articles = []
     rss = RSS::Parser.parse(open(params[:url]))
     page = params[:page].to_i
@@ -15,20 +14,20 @@ class Api::ArticlesController < ApplicationController
       ruby_article = rss.items[idx]
       thumblink = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(ruby_article.link)
+      if !@article
+        debugger
+        @article = Article.create!(url: ruby_article.link,
+                                  title: thumblink.title,
+                                  author: ruby_article.dc_creator,
+                                  summary: thumblink.description,
+                                  image: thumblink.images.first.src,
+                                  created_date: ruby_article.pubDate,
+                                  website_id: params[:website_id])
+      end
       debugger
-      # if !@article
-
-        # @article = Article.create!(url: ruby_article.link,
-        #                           title: thumblink.title,
-        #                           summary: thumblink.description,
-        #                           author: ruby_article.dc_creator,
-        #                           created_date: ruby_article.pubDate,
-        #                           details: Nokogiri::HTML(ruby_article.description).elements.to_s,
-        #                           website_id: params[:website_id])
-      # end
-      # @articles.push(@article)
+      @articles.push(@article)
     end
-    # UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false)
+    UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false)
 
     @articles
   end
