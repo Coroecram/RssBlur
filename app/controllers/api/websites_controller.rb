@@ -10,8 +10,12 @@ class Api::WebsitesController < ApplicationController
 
   def create
     url = params[:url]
-      debugger
-    if url_validation
+
+    @website = Website.find_by_url(url)
+    if @website
+      UserWebsite.create!({user_id: current_user.id, website_id: @website.id})
+      @website
+    elsif url_validation
       feed = feed_validation
       page = MetaInspector.new(params[:url])
       url = page.url
