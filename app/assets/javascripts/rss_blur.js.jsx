@@ -52,9 +52,9 @@ $(document).ready(function () {
       <Route path="/" component={App}>
         <Route path="/sign_in" component={SignIn} />
         <Route path="/create_account" component={SignUp} />
-        <Route path="/home" component={UserHome}>
-          <Route path="/website/:id" component={ArticleIndex} />
-        </Route>
+          <Route path="/home" component={UserHome}>
+            <Route path="/website/:id" component={ArticleIndex} />
+          </Route>
       </Route>
     );
 

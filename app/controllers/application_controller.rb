@@ -27,4 +27,14 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless signed_in?
   end
 
+  def require_user_website
+    websites = current_user.websites
+    websites.each do |website|
+      if website.id == params[:website_id]
+        return true
+      end
+    end
+    return false
+  end
+
 end
