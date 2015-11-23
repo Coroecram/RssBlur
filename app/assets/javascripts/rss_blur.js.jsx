@@ -22,8 +22,12 @@ $(document).ready(function () {
         (this.props.location.pathname !== "/create_account" ||
         this.props.location.pathname !== "/sign_in")) {
       this.history.pushState(null, "/sign_in");
+    } else {
+      if (this.props.location.pathname === "/") {
+        this.history.pushState(null, "/home");
+      }
     }
-    
+
     this.setState({currentUser: CurrentUserStore.fetch()});
   },
 
@@ -48,8 +52,9 @@ $(document).ready(function () {
       <Route path="/" component={App}>
         <Route path="/sign_in" component={SignIn} />
         <Route path="/create_account" component={SignUp} />
-        <Route path="/home" component={UserHome} />
-        <Route path="/website/:id" components={{sidebar:UserHome, articles:ArticleIndex}} />
+        <Route path="/home" component={UserHome}>
+          <Route path="/website/:id" component={ArticleIndex} />
+        </Route>
       </Route>
     );
 

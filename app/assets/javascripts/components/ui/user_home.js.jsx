@@ -23,9 +23,10 @@ var UserHome = React.createClass({
 
   render: function () {
     return (
-            <div className="user-home">
+            <div className="user-home group">
               <Header clickHandler={this.signOut} />
               <Sidebar />
+              {this.props.children}
             </div>
           );
   }

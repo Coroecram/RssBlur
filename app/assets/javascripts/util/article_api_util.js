@@ -4,7 +4,6 @@
     fetchArticles: function (feed) {
       $.get('api/articles', {url: feed.url, website_id: feed.id},
       function(articles){
-        debugger
         ArticleApiActions.receiveAllArticles(articles);
       },
       'json');

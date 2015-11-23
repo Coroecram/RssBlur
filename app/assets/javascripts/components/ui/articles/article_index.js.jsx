@@ -44,11 +44,11 @@ var ArticleIndex = React.createClass({
   render: function () {
     var articles;
     return (
-            <div className="article-index">
+            <div className="article-index group">
               <ul className="article-list">
                   {this.state.articles &&
                     this.state.articles.map(function (article) {
-                              return <ArticleListItem article={article} />
+                              return <ArticleListItem key={article.id} article={article} />
                              })
                   }
               </ul>

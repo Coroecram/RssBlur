@@ -3,4 +3,6 @@ class UserWebsite < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :website
+
+  has_many :user_articles, through: :website
 end

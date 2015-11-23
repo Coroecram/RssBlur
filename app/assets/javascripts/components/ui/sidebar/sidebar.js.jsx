@@ -24,7 +24,7 @@ var Sidebar = React.createClass({
                     </div>
     }
     return (
-          <div className="sidebar">
+          <div className="sidebar group">
             {sidebar}
             <SidebarFooter />
           </div>

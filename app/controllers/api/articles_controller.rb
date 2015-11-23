@@ -22,9 +22,11 @@ class Api::ArticlesController < ApplicationController
                                   image: thumblink.images.first.src,
                                   created_date: ruby_article.pubDate,
                                   website_id: params[:website_id])
-        UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false, pseudo_read: false)
       end
       @articles.push(@article)
+
+    user_article = UserArticle.find_by_user_id_and_article_id(current_user.id, @article.id)
+    UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false, pseudo_read: false) unless user_article
     end
 
     @articles

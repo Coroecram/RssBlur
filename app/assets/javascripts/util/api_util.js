@@ -1,4 +1,4 @@
-$.ajaxSetup({timeout: 5000});
+// $.ajaxSetup({timeout: 5000});
 (function (root) {
 
   var ApiUtil = root.ApiUtil = {

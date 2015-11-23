@@ -5,5 +5,5 @@ class Website < ActiveRecord::Base
   has_many :user_websites
   has_many :users, through: :user_websites
   has_many :articles
-
+  has_many :user_articles, through: :articles
 end

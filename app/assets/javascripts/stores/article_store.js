@@ -6,6 +6,10 @@
     _articles = articles;
   };
 
+  var resetArticles = function () {
+    _articles = [];
+  };
+
   var addArticles = function (articles) {
     _articles.concat(articles);
   };
@@ -49,6 +53,10 @@
         break;
       case (ArticleConstants.ARTICLE_CREATED):
         addArticles(payload.article);
+        ArticleStore.emitChange();
+        break;
+      case (ArticleConstants.RESET_ARTICLES):
+        resetArticles();
         ArticleStore.emitChange();
         break;
         default:
