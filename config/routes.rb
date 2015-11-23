@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :websites, only: [:index, :create, :show, :destroy]
     resources :articles, only: [:index, :show]
     resources :users, except: [:new, :edit]
-    resource :session, only: [:create, :destroy, :show]
+    delete "user_websites/:website_id" => "user_websites#destroy"
   end
 end
