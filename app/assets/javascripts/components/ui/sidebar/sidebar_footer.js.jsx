@@ -13,13 +13,9 @@ var SidebarFooter = React.createClass({
   },
 
   render: function () {
-    var websiteForm;
-    if (this.state.formShow) {
-      websiteForm = <WebsiteForm />;
-    }
     return (
             <div className="sidebar-footer">
-              {websiteForm}
+              <WebsiteForm show={this.state.formShow} />
               <span onClick={this.toggleNewWebsiteForm}>+</span>
               <div className="footer-options" />
               <div className="footer-settings" />

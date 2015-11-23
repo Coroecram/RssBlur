@@ -12,7 +12,6 @@
           error && error(response.responseText);
         },
         success: function (currentUser) {
-          console.log("logged in!");
           CurrentUserActions.receiveUser(currentUser);
           success && success();
         }
@@ -25,7 +24,6 @@
         type: 'DELETE',
         dataType: 'json',
         success: function () {
-          console.log("logged out!");
           CurrentUserActions.resetUser();
         }
       });

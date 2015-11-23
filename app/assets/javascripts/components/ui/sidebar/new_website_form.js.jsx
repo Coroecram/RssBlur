@@ -16,6 +16,10 @@ var WebsiteForm = React.createClass({
     }
   },
 
+  componentWillReceiveProps: function () {
+    this.setState({error: false})
+  },
+
   retrieveRSS: function (credentials) {
     WebsiteApiUtil.retrieveRSSURL(credentials, this.updateURL, this.receivedError);
   },
@@ -41,27 +45,32 @@ var WebsiteForm = React.createClass({
     if (this.state.error) {
       error = <div className="error">{this.state.error}</div>;
     }
-    return (
-          <div>
-            <form className="website-form" onSubmit={ this.submit }>
-              <label htmlFor="website-url">Website URL</label>
-              <label className="check-label">Retrieve Feed?
-                <input type="checkbox"
-                       className="feed-check"
-                       name="rss"
-                       checkedLink={this.linkState('rss')}>
-                     </input>
-                </label>
-                  <input type="text"
-                         name="url"
-                         valueLink={this.linkState('url')}
-                         id="website-url"/>
-                <br/>
-                <input type="submit" value="Add"/>
-                {error}
-            </form>
-            <div className="website-form-triangle" />
-          </div>
-          );
+    var websiteForm;
+
+    if (this.props.show) {
+      websiteForm = (
+                      <div>
+                        <form className="website-form" autoComplete="off" onSubmit={ this.submit }>
+                          <label htmlFor="website-url">Website URL</label>
+                          <label className="check-label">Retrieve Feed?
+                            <input type="checkbox"
+                                   className="feed-check"
+                                   name="rss"
+                                   checkedLink={this.linkState('rss')}>
+                                 </input>
+                            </label>
+                              <input type="text"
+                                     name="url"
+                                     valueLink={this.linkState('url')}
+                                     id="website-url"/>
+                            <br/>
+                            <input type="submit" value="Add"/>
+                            {error}
+                        </form>
+                        <div className="website-form-triangle" />
+                      </div>
+      );
+    }
+    return  <div>{websiteForm}</div>;
   }
 });

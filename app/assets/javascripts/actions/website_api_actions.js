@@ -34,6 +34,7 @@ window.WebsiteApiActions = {
   },
 
   setSidebarClicked: function (object) {
+    debugger
     AppDispatcher.dispatch({
       actionType: SidebarClickedConstants.CLICK_RECEIVED,
       object: object

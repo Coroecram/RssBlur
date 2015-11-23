@@ -2,12 +2,13 @@ var WebsiteListItem = React.createClass({
   mixins: [ReactRouter.History],
 
   onClick: function (event) {
-    ApiActions.setSidebarClicked(this.props.website);
+    WebsiteApiActions.setSidebarClicked(this.props.website);
     this.history.pushState(null, '/website/' + this.props.website.id, {});
   },
 
   deleteWebsite: function (event) {
-    ApiActions.deleteWebsite(this.props.website.id);
+    debugger
+    WebsiteApiActions.deleteWebsite(this.props.website.id);
   },
 
   render: function () {

@@ -10,14 +10,19 @@ class Api::WebsitesController < ApplicationController
 
   def create
     url = params[:url]
+      debugger
     if url_validation
       feed = feed_validation
       page = MetaInspector.new(params[:url])
       url = page.url
       if feed
+        root_uri = URI(params[:url])
+        root_url = "#{root_uri.scheme}://#{root_uri.host}"
+        root_page = MetaInspector.new(root_url)
         doc = Nokogiri::XML(open(url))
         name = doc.xpath("//title").children.first.text
-        description = page.description
+        logo = root_page.images.favicon
+        description = root_page.description
       else
         url = page.url
         name = page.title
@@ -45,16 +50,8 @@ class Api::WebsitesController < ApplicationController
     if url_validation
       page = MetaInspector.new(params[:url])
       if page.feed
-        metafeed = MetaInspector.new(page.feed)
-        if metafeed.feed
-          feed_uri = URI(metafeed.feed)
-        else
-          feed_uri = URI(page.feed)
-        end
+        feed_uri = URI(page.feed)
         return render json: {url: "#{feed_uri.scheme}://#{feed_uri.host}#{feed_uri.path}"}
-      else
-        return render json: 'This address does not point to a website with an RSS feed.',
-                      status: :unprocessable_entity
       end
     else
       return render json: 'This address does not point to a website with an RSS feed.',

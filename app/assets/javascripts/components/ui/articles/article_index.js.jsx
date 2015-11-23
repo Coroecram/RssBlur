@@ -14,6 +14,7 @@ var ArticleIndex = React.createClass({
   },
 
   _onSidebarChange: function () {
+    debugger
     clickedItem = SidebarClickedStore.fetch();
     if (clickedItem.feed) {
       ArticleApiUtil.fetchArticles(clickedItem, 0);
