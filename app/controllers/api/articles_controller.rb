@@ -15,7 +15,6 @@ class Api::ArticlesController < ApplicationController
       thumblink = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(ruby_article.link)
       if !@article
-        debugger
         @article = Article.create!(url: ruby_article.link,
                                   title: thumblink.title,
                                   author: ruby_article.dc_creator,
@@ -23,11 +22,10 @@ class Api::ArticlesController < ApplicationController
                                   image: thumblink.images.first.src,
                                   created_date: ruby_article.pubDate,
                                   website_id: params[:website_id])
+        UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false, pseudo_read: false)
       end
-      debugger
       @articles.push(@article)
     end
-    UserArticle.create!(user_id: current_user.id, article_id: @article.id, read: false)
 
     @articles
   end
