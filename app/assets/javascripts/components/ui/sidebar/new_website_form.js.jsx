@@ -16,8 +16,12 @@ var WebsiteForm = React.createClass({
     }
   },
 
-  componentWillReceiveProps: function () {
+  blankState: function () {
     this.setState({url: "", error: false, rss: false});
+  },
+
+  componentWillReceiveProps: function () {
+    this.blankState();
   },
 
   retrieveRSS: function (credentials) {
@@ -37,13 +41,18 @@ var WebsiteForm = React.createClass({
   },
 
   receivedSite: function () {
-    this.setState({error: false});
+    this.blankState();
   },
 
   render: function () {
     var error;
     if (this.state.error) {
       error = <div className="error">{this.state.error}</div>;
+    }
+    if (this.state.rss) {
+      buttonValue = "Retrieve"
+    } else {
+      buttonValue = "Add"
     }
     var websiteForm;
 
@@ -64,7 +73,7 @@ var WebsiteForm = React.createClass({
                                      valueLink={this.linkState('url')}
                                      id="website-url"/>
                             <br/>
-                            <input type="submit" value="Add"/>
+                            <input type="submit" value={buttonValue}/>
                             {error}
                         </form>
                         <div className="website-form-triangle" />

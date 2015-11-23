@@ -4,12 +4,24 @@ var SidebarFooter = React.createClass({
     return {formShow: false};
   },
 
+  componentDidMount: function () {
+    WebsiteStore.addChangeListener(this._onChange);
+    SidebarClickedStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function () {
+    WebsiteStore.removeChangeListener(this._onChange);
+    SidebarClickedStore.addChangeListener(this._onChange);
+  },
+
   toggleNewWebsiteForm: function () {
     this.setState({formShow: !this.state.formShow});
   },
 
   _onChange: function () {
-    this.setState({formShow: false});
+    if (this.state.formShow) {
+      this.setState({formShow: false});
+    }
   },
 
   render: function () {
