@@ -2,9 +2,9 @@ var WebsiteListItem = React.createClass({
   mixins: [ReactRouter.History],
 
   componentDidMount: function () {
-    if (this.props.website.is_feed) {
-      ArticleApiUtil.receiveAllArticles(this.props.website);
-    }
+    // if (this.props.website.is_feed) {
+    //   ArticleApiUtil.fetchArticles(this.props.website);
+    // }
   },
 
   onClick: function (event) {
