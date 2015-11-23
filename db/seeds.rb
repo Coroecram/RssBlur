@@ -52,34 +52,34 @@ Website.create!([{
                   is_feed: true
                  }])
 
-# UserWebsite.create!([{
-#                       user_id: 1,
-#                       website_id: 1,
-#                       folder_id: 0
-#                     },
-#                     {
-#                       user_id: 1,
-#                       website_id: 2,
-#                       folder_id: 0
-#                     },
-#                     {
-#                       user_id: 1,
-#                       website_id: 3,
-#                       folder_id: 0
-#                     },
-#                         {
-#                           user_id: 2,
-#                           website_id: 1,
-#                           folder_id: 0
-#                         },
-#                         {
-#                           user_id: 2,
-#                           website_id: 2,
-#                           folder_id: 0
-#                         },
-#                             {
-#                               user_id: 3,
-#                               website_id: 3,
-#                               folder_id: 0
-#                             }
-#                     ])
+UserWebsite.create!([{
+                      user_id: 1,
+                      website_id: 6,
+                      folder_id: 0
+                    },
+                    {
+                      user_id: 1,
+                      website_id: 7,
+                      folder_id: 0
+                    },
+                    {
+                      user_id: 1,
+                      website_id: 8,
+                      folder_id: 0
+                    },
+                        {
+                          user_id: 2,
+                          website_id: 6,
+                          folder_id: 0
+                        },
+                        {
+                          user_id: 2,
+                          website_id: 7,
+                          folder_id: 0
+                        },
+                            {
+                              user_id: 3,
+                              website_id: 8,
+                              folder_id: 0
+                            }
+                    ])
