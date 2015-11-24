@@ -52,6 +52,13 @@ var ArticleIndex = React.createClass({
                              })
                   }
               </ul>
+              <ul className="detail-article-list">
+              {this.state.articles &&
+                this.state.articles.map(function (article) {
+                          return <ArticleDetail key={article.id} article={article} />
+                         })
+              }
+              </ul>
             </div>
           );
   }

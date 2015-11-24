@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializejson
+//= require dateFormat.min
 //= require jfeed
 //= require react
 //= require react_ujs
