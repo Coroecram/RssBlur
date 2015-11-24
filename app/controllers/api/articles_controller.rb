@@ -10,6 +10,7 @@ class Api::ArticlesController < ApplicationController
 
   def index
     @articles = []
+    debugger
     rss = Feedjira::Feed.fetch_and_parse params[:url]
     page = params[:page].to_i
     range = (page...page+PAGE_SIZE)
@@ -42,7 +43,6 @@ class Api::ArticlesController < ApplicationController
     thumblink = LinkThumbnailer.generate(jira_entry.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
     url = jira_entry.url
     title = jira_entry.title || "Untitled"
-    debugger
     author = jira_entry.author || "anonymous"
     summary = summary_parser(jira_entry, thumblink, meta_page)
     image = image_parser(jira_entry, thumblink, meta_page)
@@ -55,7 +55,8 @@ class Api::ArticlesController < ApplicationController
     meta_summary = meta_page.meta.to_h["og:description"]
     feedjira_summary = jira_entry.summary
     thumb_summary = thumblink.description
-    return meta_summary || feedjira_summary || thumb_summary || ""
+    debugger
+    return meta_summary || thumb_summary || feedjira_summary || ""
   end
 
   def image_parser(jira_entry, thumblink, meta_page)

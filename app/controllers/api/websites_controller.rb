@@ -16,14 +16,15 @@ class Api::WebsitesController < ApplicationController
       url = page.url
       @website = Website.find_by_url(url)
       if @website
-        UserWebsite.create!({user_id: current_user.id, website_id: @website.id})
+        debugger
+        UserWebsite.create({user_id: current_user.id, website_id: @website.id})
         return @website
       elsif feed
         root_uri = URI(params[:url])
         root_url = "#{root_uri.scheme}://#{root_uri.host}"
         root_page = MetaInspector.new(root_url)
         doc = Nokogiri::XML(open(url))
-        name = doc.xpath("//title").children.first.text
+        name = "#{doc.xpath("//title").children.first.text} Feed"
         logo = root_page.images.favicon
         description = root_page.description
       else
