@@ -24,7 +24,6 @@ class Api::ArticlesController < ApplicationController
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article)
-      debugger
       next_article = Article.find_or_create_by(created_date: created_date) do |article|
                                                 article.title = title
                                                 article.author = author
@@ -33,7 +32,6 @@ class Api::ArticlesController < ApplicationController
                                                 article.url = url
                                                 article.website_id = params[:website_id]
                                               end
-                                              debugger
       @articles.push(next_article)
       UserArticle.find_or_create_by(article_id: next_article.id) do |user_article|
                                    user_id = current_user.id,
