@@ -50,6 +50,30 @@ Website.create!([{
                   logo: "http://www.blogsmithmedia.com/www.engadget.com/media/favicon-16x16.png",
                   description: "Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics",
                   is_feed: true
+                 },
+                 { name: "Colossal",
+                   url: "http://feeds.feedburner.com/colossal",
+                   logo: "http://www.thisiscolossal.com/favicon.ico?v=6",
+                   is_feed: true,
+                   description: "© 2010-2015 Christopher Jobson, all rights reserve..."
+                 },
+                 { name: "Lifehacker",
+                   url: "http://feeds.gawker.com/lifehacker/full",
+                   logo: nil,
+                   is_feed: true,
+                   description: "Google FeedBurner lets you stay on top of the late..."
+                 },
+                 { name: "Next Big Future",
+                   url: "http://feeds.feedburner.com/blogspot/advancednano",
+                   logo: "http://nextbigfuture.com/favicon.ico",
+                   is_feed: true,
+                   description: ""
+                 },
+                 { name: "Gizmodo",
+                   url: "http://feeds.gawker.com/gizmodo/full",
+                   logo: nil,
+                   is_feed: true,
+                   description: "Google FeedBurner lets you stay on top of the late..."
                  }])
 
 UserWebsite.create!([{
@@ -81,5 +105,19 @@ UserWebsite.create!([{
                               user_id: 3,
                               website_id: 3,
                               folder_id: 0
-                            }
-                    ])
+                            },
+                            {
+                              user_id: 4,
+                              website_id: 4,
+                              folder_id: 0
+                            },
+                            {
+                              user_id: 4,
+                              website_id: 6,
+                              folder_id: 0
+                            },
+                            {
+                              user_id: 4,
+                              website_id: 7,
+                              folder_id: 0
+                            }])
