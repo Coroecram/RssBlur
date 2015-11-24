@@ -32,20 +32,20 @@ User.create!([{
             }])
 
 Website.create!([{
-                  name: "WIRED",
+                  name: "WIRED Feed",
                   url: "http://www.wired.com/feed/",
                   logo: "http://www.wired.com/wp-content/themes/Phoenix/assets/images/favicon.ico",
                   description: "Get in-depth coverage of current and future trends in technology, and how they are shaping business, entertainment, communications, science, politics, and culture at WIRED.",
                   is_feed: true
                  },
                  {
-                  name: "The Nation",
+                  name: "The Nation Feed",
                   url: "http://www.thenation.com/feed/?post_type=article",
                   logo: "http://www.thenation.com/wp-content/themes/thenation/images/favicon.ico",
                   is_feed: true
                  },
                  {
-                  name: "Engadget | Technology News, Advice and Features",
+                  name: "Engadget Feed",
                   url: "http://www.engadget.com/rss.xml",
                   logo: "http://www.blogsmithmedia.com/www.engadget.com/media/favicon-16x16.png",
                   description: "Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics",

@@ -16,7 +16,6 @@ class Api::WebsitesController < ApplicationController
       url = page.url
       @website = Website.find_by_url(url)
       if @website
-        debugger
         UserWebsite.create({user_id: current_user.id, website_id: @website.id})
         return @website
       elsif feed
@@ -53,9 +52,11 @@ class Api::WebsitesController < ApplicationController
   def feed
     if url_validation
       page = MetaInspector.new(params[:url])
-      if page.feed
-        feed_uri = URI(page.feed)
-        return render json: {url: "#{feed_uri.scheme}://#{feed_uri.host}#{feed_uri.path}"}
+      if page.url == "http://www.thenation.com/"
+        render json: {url: "http://www.thenation.com/feed/?post_type=article"}
+      elsif page.feed
+        url = page.feed
+        return render json: {url: "url"}
       end
     else
       return render json: 'This address does not point to a website with an RSS feed.',
@@ -70,8 +71,7 @@ class Api::WebsitesController < ApplicationController
   end
 
   def url_validation
-    url_validator = Website.new(name: 'Test', url: params[:url])
-    return url_validator.valid?
+    !!URI.parse(params[:url])
   end
 
   def feed_validation
