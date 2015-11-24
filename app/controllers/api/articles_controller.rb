@@ -12,11 +12,9 @@ class Api::ArticlesController < ApplicationController
   def index
     @articles = []
     begin
-      debugger
       rss = RSS::Parser.parse(params[:url], do_validate=false)
     rescue
       rss = Feedjira::Feed.fetch_and_parse params[:url]
-      debugger
     end
     page = params[:page].to_i
     range = (page...page+PAGE_SIZE)
@@ -45,6 +43,7 @@ class Api::ArticlesController < ApplicationController
   private
 
   def article_parser(rss_entry)
+    debugger
     meta_page = MetaInspector.new(rss_entry.url)
     thumblink = LinkThumbnailer.generate(rss_entry.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
     url = rss_entry.url
@@ -92,5 +91,13 @@ class RSS::Rss::Channel::Item
 
   def summary
     return self.description
+  end
+
+  def url
+    return self.link
+  end
+
+  def published
+    return self.pubDate
   end
 end
