@@ -1,5 +1,6 @@
 var ArticleDetail = React.createClass({
   render: function () {
+    debugger
     var articleDate = new Date(this.props.article.created_date);
     var detailDate = DateFormat.format.date(articleDate, "h:mm p MMMM d, yyyy");
     return (

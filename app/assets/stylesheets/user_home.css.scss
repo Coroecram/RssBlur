@@ -7,22 +7,26 @@
   top: 40px;
   bottom: 0;
 }
+.sidebar-ul {
+  overflow:hidden;
+  overflow-y:scroll;
+}
 
-.sidebar li {
+.sidebar-ul li {
   position: relative;
   display: block;
   float: left;
-  width: 223px;
+  width: 208px;
   height: 21px;
   padding: 2px;
   border: 1px solid lightblue;
   background: #DDEFEF;
-  line-height: 25px;
+  line-height: 23px;
   text-align: center;
   cursor: pointer;
 }
 
-.sidebar li:hover {
+.sidebar-ul li:hover {
   background: yellow;
   border: 1px solid black;
 }
@@ -35,7 +39,7 @@
   top: 0;
   right: 0;
   background: inherit;
-  line-height: 30px;
+  line-height: 28px;
   font-weight: 600;
   color: darkred;
 }

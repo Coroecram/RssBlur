@@ -18,7 +18,7 @@ var Websites = React.createClass({
 
   render: function () {
     return(
-      <ul>
+      <ul className="sidebar-ul">
         {this.state.websites.map(function (website) {
           return <WebsiteListItem key={website.id} website={website} />;
         })}
