@@ -1,11 +1,11 @@
 .article-list {
   position: absolute;
-  left: 242px;
-  right: 0px;
-  height:450px;
-  overflow:hidden;
-  overflow-y:scroll;
-  border-top: 2px solid  #78AEAE;
+  left: 240px;
+  top: 42px;
+  bottom: 2px;
+  width: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .listed-article {
@@ -13,7 +13,7 @@
   padding: 10px;
   border-bottom: 1px solid #aaa;
   background: #DDEFEF;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .article-index > li:last-child {
@@ -28,7 +28,8 @@
 
 .listed-article p {
   display: block;
-  margin: 0 0 10px 0;
+  margin: 0 0 3px 0;
+  color: #aaa;
 }
 
 .listed-article > p:last-child {
@@ -40,20 +41,21 @@
   font-weight: bold;
 }
 
-.small-article-title {
-  font-size: 16px;
+.listed-article .small-article-title {
+  font-size: 14px;
+  color: #000;
   font-weight: bold;
   text-decoration: underline;
 }
 
 .detail-article-list {
   position: absolute;
-  left: 242px;
-  top: 493px;
-  right: 0px;
-  bottom: 10px;
-  overflow:hidden;
-  overflow-y:scroll;
+  left: 542px;
+  top: 42px;
+  right: 2px;
+  bottom: 2px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .detail-article {

@@ -10,8 +10,8 @@ class Api::WebsitesController < ApplicationController
 
   def create
     url = params[:url]
-    if url_validation
-      feed = feed_validation
+    if url_validation(url)
+      feed = feed_validation(url)
       page = MetaInspector.new(params[:url])
       url = page.url
       @website = Website.find_by_url(url)
@@ -50,8 +50,9 @@ class Api::WebsitesController < ApplicationController
   end
 
   def feed
-    if url_validation
-      page = MetaInspector.new(params[:url])
+    url = params[:url]
+    if url_validation(url)
+      page = MetaInspector.new(url)
       if page.url == "http://www.thenation.com/"
         render json: {url: "http://www.thenation.com/feed/?post_type=article"}
       elsif page.feed
@@ -70,13 +71,10 @@ class Api::WebsitesController < ApplicationController
     params.require(:website).permit(:url, :folder_id)
   end
 
-  def url_validation
-    !!URI.parse(params[:url])
-  end
 
-  def feed_validation
+  def feed_validation(url)
     begin
-      page = MetaInspector.new(params[:url])
+      page = MetaInspector.new(url)
     rescue
     end
     return (page.content_type === "text/xml" ? true : false)

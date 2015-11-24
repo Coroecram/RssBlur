@@ -37,4 +37,12 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def url_validation(url)
+    begin
+      !!URI.parse(url)
+    rescue
+      return false
+    end
+  end
+
 end
