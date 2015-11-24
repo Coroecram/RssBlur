@@ -5,6 +5,7 @@ require 'link_thumbnailer'
 class Api::ArticlesController < ApplicationController
   PAGE_SIZE = 10
 
+  before_action :require_signed_in
   before_action :require_user_website, only: :index
 
   def index
