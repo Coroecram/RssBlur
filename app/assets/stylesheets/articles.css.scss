@@ -1,11 +1,12 @@
 .article-list {
   position: absolute;
-  left: 240px;
+  left: 242px;
   right: 0px;
   height:450px;
   overflow:hidden;
   overflow-y:scroll;
-  border-bottom: 5px solid black;
+  border-top: 2px solid  #78AEAE;
+  border-bottom: 3px solid #ccc;
 }
 
 .listed-article {
@@ -36,6 +37,10 @@
   margin: 0;
 }
 
+.listed-article .author {
+  font-weight: bold;
+}
+
 .small-article-title {
   font-size: 16px;
   font-weight: bold;
@@ -44,10 +49,10 @@
 
 .detail-article-list {
   position: absolute;
-  left: 240px;
+  left: 242px;
   top: 493px;
   right: 0px;
-  height:450px;
+  bottom: 0;
   overflow:hidden;
   overflow-y:scroll;
 }
@@ -66,7 +71,7 @@
 .detail-image {
   height: 200px;
   width: 400px;
-  margin: 15px;
+  margin: 15px 0;
 }
 
 .detail-article p {
@@ -89,4 +94,23 @@
 
 .detail-article-list > li:last-child {
   border-bottom: 0px;
+}
+
+.detail-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.article-date {
+  font-size: 12px;
+  color: gray;
+}
+
+.detail-author {
+  font-weight: bold;
+}
+.article-summary {
+  line-height: 24px;
+  font-size: 16px;
 }

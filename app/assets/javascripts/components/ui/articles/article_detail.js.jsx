@@ -6,8 +6,8 @@ var ArticleDetail = React.createClass({
             <li className="detail-article group">
               <img className="detail-image" src={this.props.article.image} />
               <p className="detail-title"><strong>{this.props.article.title}</strong></p>
-              <p className="article-date">{detailDate}</p>
               <p className="detail-author">{this.props.article.author}</p>
+              <p className="article-date">{detailDate}</p>
               <p className="article-summary">{this.props.article.summary}</p>
             </li>
           );
