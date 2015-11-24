@@ -4,7 +4,6 @@ require 'feedjira'
 require 'rss'
 
 class Api::ArticlesController < ApplicationController
-  PAGE_SIZE = 10
 
   before_action :require_signed_in
   before_action :require_user_website, only: :index
@@ -20,7 +19,7 @@ class Api::ArticlesController < ApplicationController
       rss = RSS::Parser.parse(params[:url], do_validate=false)
     end
     page = params[:page].to_i
-    range = (page...page+PAGE_SIZE)
+    range = (page...page+rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article)
