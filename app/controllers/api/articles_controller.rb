@@ -1,6 +1,6 @@
 require 'open-uri'
-require 'rss'
 require 'link_thumbnailer'
+require 'feedjira'
 
 class Api::ArticlesController < ApplicationController
   PAGE_SIZE = 10
@@ -10,20 +10,20 @@ class Api::ArticlesController < ApplicationController
 
   def index
     @articles = []
-    rss = RSS::Parser.parse(open(params[:url]))
+    rss = Feedjira::Feed.fetch_and_parse params[:url]
+    debugger
     page = params[:page].to_i
     range = (page...page+PAGE_SIZE)
     range.each do |idx|
-      ruby_article = rss.items[idx]
-      thumblink = LinkThumbnailer.generate(ruby_article.link, image_limit: 1, http_open_timeout: 2, image_stats: false)
-      uri = URI(ruby_article.link)
-      url = "#{uri.scheme}://#{uri.host}#{uri.path}"
+      jira_article = rss.entries[idx]
+      url, title, author, summary, image, created_date = article_parser(jira_article)
+      thumblink = LinkThumbnailer.generate(jira_article.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(url)
       if !@article
         img_uri = URI(thumblink.images.first.src) if thumblink.images.first.src
         img_url = "#{img_uri.scheme}://#{img_uri.host}#{img_uri.path}" if img_uri
-        @article = Article.create!(url: url,
-                                  title: thumblink.title || "Untitled",
+        @article = Article.create!(url: jira_article.url,
+                                  title: jira_article.title || "Untitled",
                                   author: ruby_article.dc_creator || "anonymous",
                                   summary: thumblink.description || "",
                                   image: img_url || image_path('default-image.JPG'),
@@ -37,6 +37,15 @@ class Api::ArticlesController < ApplicationController
     end
 
     @articles
+  end
+
+  private
+
+  def article_parser(entry)
+    # title, author, summary, image, created_date
+    url = entry.url
+    title = entry.title
+    meta_page = MetaInspector.new(url)
   end
 
 end
