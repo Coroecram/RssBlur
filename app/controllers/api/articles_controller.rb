@@ -11,23 +11,19 @@ class Api::ArticlesController < ApplicationController
   def index
     @articles = []
     rss = Feedjira::Feed.fetch_and_parse params[:url]
-    debugger
     page = params[:page].to_i
     range = (page...page+PAGE_SIZE)
     range.each do |idx|
       jira_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(jira_article)
-      thumblink = LinkThumbnailer.generate(jira_article.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
       @article = Article.find_by_url(url)
       if !@article
-        img_uri = URI(thumblink.images.first.src) if thumblink.images.first.src
-        img_url = "#{img_uri.scheme}://#{img_uri.host}#{img_uri.path}" if img_uri
-        @article = Article.create!(url: jira_article.url,
-                                  title: jira_article.title || "Untitled",
-                                  author: ruby_article.dc_creator || "anonymous",
-                                  summary: thumblink.description || "",
-                                  image: img_url || image_path('default-image.JPG'),
-                                  created_date: ruby_article.pubDate,
+        @article = Article.create!(url: url,
+                                  title: title,
+                                  author: author,
+                                  summary: summary,
+                                  image: image,
+                                  created_date: created_date,
                                   website_id: params[:website_id])
       end
       @articles.push(@article)
@@ -41,11 +37,38 @@ class Api::ArticlesController < ApplicationController
 
   private
 
-  def article_parser(entry)
-    # title, author, summary, image, created_date
-    url = entry.url
-    title = entry.title
-    meta_page = MetaInspector.new(url)
+  def article_parser(jira_entry)
+    meta_page = MetaInspector.new(jira_entry.url)
+    thumblink = LinkThumbnailer.generate(jira_entry.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
+    url = jira_entry.url
+    title = jira_entry.title || "Untitled"
+    debugger
+    author = jira_entry.author || "anonymous"
+    summary = summary_parser(jira_entry, thumblink, meta_page)
+    image = image_parser(jira_entry, thumblink, meta_page)
+    created_date = created_date_parser(jira_entry, thumblink, meta_page)
+    params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') }
+    params.push(created_date)
+  end
+
+  def summary_parser(jira_entry, thumblink, meta_page)
+    meta_summary = meta_page.meta.to_h["og:description"]
+    feedjira_summary = jira_entry.summary
+    thumb_summary = thumblink.description
+    return meta_summary || feedjira_summary || thumb_summary || ""
+  end
+
+  def image_parser(jira_entry, thumblink, meta_page)
+    meta_image_url = meta_page.meta.to_h["og:image"]
+    thumb_link_img_uri = URI(thumblink.images.first.src) if thumblink.images.first.src
+    thumb_link_img_url = "#{thumb_link_img_uri.scheme}://#{thumb_link_img_uri.host}#{thumb_link_img_uri.path}" if thumb_link_img_uri
+    return meta_image_url || thumb_link_img_url || image_path('default-image.JPG')
+  end
+
+  def created_date_parser(jira_entry, thumblink, meta_page)
+    jira_entry_created = jira_entry.published
+    meta_created = meta_page.meta.to_h["article:published_time"]
+    return jira_entry_created || meta_created || nil
   end
 
 end
