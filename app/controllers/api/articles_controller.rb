@@ -64,8 +64,8 @@ class Api::ArticlesController < ApplicationController
     summary = noko_page.text
     if noko_page.css('img').empty?
       noko_page = Nokogiri::HTML(open(rss_entry.url))
-      image = noko_page.css('img').first['src']
     end
+    image = noko_page.css('img').first['src']
     created_date = rss_entry.published
     params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
