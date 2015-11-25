@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def current_user
-    current_user = User.find_by_session_token(session[:session_token])
-    current_user.nil? ? nil : current_user
+    @current_user ||= User.find_by_session_token(session[:session_token])
+    @current_user.nil? ? nil : @current_user
   end
 
   def signed_in?
