@@ -12,6 +12,7 @@ class Api::ArticlesController < ApplicationController
     @articles = []
     user_articles = UserArticle.where('user_id = ?', current_user.id)
     current_articles = Article.where('website_id = ?', params[:website_id])
+                              # .order(created_date: :desc)
     current_articles = current_articles.to_a.map(&:serializable_hash)
     begin
       rss = Feedjira::Feed.fetch_and_parse params[:url]
@@ -23,22 +24,33 @@ class Api::ArticlesController < ApplicationController
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article)
-      next_article = Article.find_or_create_by(created_date: created_date) do |article|
-                                                article.title = title
-                                                article.author = author
-                                                article.summary = summary
-                                                article.image = image
-                                                article.url = url
-                                                article.website_id = params[:website_id]
+      next_article = current_articles.bsearch do |article|
+                                                article["created_date"].to_i == created_date.to_i
                                               end
+      next_article ||= Article.create(
+                                      url: url,
+                                      title: title,
+                                      author: author,
+                                      summary: summary,
+                                      image: image,
+                                      created_date: created_date,
+                                      website_id: params[:website_id]
+                                     )
       @articles.push(next_article)
-      UserArticle.find_or_create_by(article_id: next_article.id) do |user_article|
-                                   user_id = current_user.id,
-                                   read = false,
-                                   pseudo_read = false
-                                end
+      article_id = next_article["id"] || next_article.id
+      user_article = user_articles.bsearch do |userarticle|
+                                                      userarticle["user_id"] == current_user.id &&
+                                                      userarticle["article_id"] == article_id
+                                                   end
+      user_article ||  UserArticle.create(
+                                          user_id: current_user.id,
+                                          article_id: article_id,
+                                          read: false,
+                                          pseudo_read: false
+                                         )
     end
-    @articles
+    @articles.to_json
+    # debugger
   end
 
   private
