@@ -1,5 +1,4 @@
 require 'open-uri'
-require 'link_thumbnailer'
 require 'feedjira'
 require 'rss'
 
@@ -45,7 +44,6 @@ class Api::ArticlesController < ApplicationController
       user_article = user_articles.select do |userarticle|
                                               userarticle["article_id"].to_i == article_id
                                           end
-                                        # debugger
        UserArticle.create!(
                           user_id: current_user.id,
                           article_id: article_id,
@@ -59,41 +57,19 @@ class Api::ArticlesController < ApplicationController
   private
 
   def article_parser(rss_entry)
-    begin
-      meta_page = MetaInspector.new(rss_entry.url)
-      thumblink = LinkThumbnailer.generate(rss_entry.url, image_limit: 1, http_open_timeout: 2, image_stats: false)
-    rescue
-    end
     url = rss_entry.url
+    noko_page = Nokogiri::HTML(rss_entry.summary)
     title = rss_entry.title || "Untitled"
     author = rss_entry.author || "anonymous"
-    summary = summary_parser(rss_entry, thumblink, meta_page)
-    image = image_parser(thumblink, meta_page)
-    created_date = created_date_parser(rss_entry, thumblink, meta_page)
+    summary = noko_page.text
+    if noko_page.css('img').empty?
+      noko_page = Nokogiri::HTML(open(rss_entry.url))
+      image = noko_page.css('img').first['src']
+    end
+    created_date = rss_entry.published
     params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
   end
-
-  def summary_parser(rss_entry, thumblink, meta_page)
-    rss_summary = rss_entry.summary
-    meta_summary = meta_page.meta.to_h["og:description"] if meta_page
-    thumb_summary = thumblink.description if thumblink
-    return meta_summary || thumb_summary || rss_summary || ""
-  end
-
-  def image_parser(thumblink, meta_page)
-    meta_image_url = meta_page.meta.to_h["og:image"] if meta_page && url_validation(meta_page.meta.to_h["og:image"])
-    thumb_link_img_uri = URI(thumblink.images.first.src) if thumblink && url_validation(thumblink.images.first.src)
-    thumb_link_img_url = "#{thumb_link_img_uri.scheme}://#{thumb_link_img_uri.host}#{thumb_link_img_uri.path}" if url_validation(thumb_link_img_uri)
-    return meta_image_url || thumb_link_img_url || nil
-  end
-
-  def created_date_parser(rss_entry, thumblink, meta_page)
-    rss_entry_created = rss_entry.published
-    meta_created = meta_page.meta.to_h["article:published_time"] if meta_page
-    return rss_entry_created || meta_created || nil
-  end
-
 end
 
 class RSS::Rss
