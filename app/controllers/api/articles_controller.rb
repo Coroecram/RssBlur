@@ -43,7 +43,7 @@ class Api::ArticlesController < ApplicationController
       @articles.push(next_article)
       user_article_keys[new_article_id] || UserArticle.create!(
                                                         user_id: current_user.id,
-                                                        article_id: article_id,
+                                                        article_id: new_article_id,
                                                         read: false,
                                                         pseudo_read: false
                                                       )

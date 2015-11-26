@@ -59,13 +59,16 @@
 }
 
 .detail-article {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
   background: #DDEFEF;
-  padding: 15px;
+  font-size: 14px;
 }
 
 .detail-article:hover {
   border: 1px solid black;
-  padding: 14px;
+  padding: 9px;
   background:  #78AEAE;
   cursor: pointer;
 }
@@ -86,14 +89,6 @@
 .detail-article > p:last-child {
   display: block;
   margin: 0;
-}
-
-.detail-article {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #aaa;
-  background: #DDEFEF;
-  font-size: 14px;
 }
 
 .detail-article-list > li:last-child {
