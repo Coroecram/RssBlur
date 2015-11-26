@@ -49,7 +49,7 @@ var SignIn = React.createClass({
                 <br/>
                   <input type="password"
                          name="password"
-                         maxLength="22"
+                        maxLength="35"
                          valueLink={this.linkState('password')} />
                   </label>
                   <br/>

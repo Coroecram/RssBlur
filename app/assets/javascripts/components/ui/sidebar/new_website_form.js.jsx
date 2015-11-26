@@ -10,6 +10,7 @@ var WebsiteForm = React.createClass({
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     if (this.state.rss) {
+      this.setState({error: "Retrieving RSS URL..."})
       this.retrieveRSS(credentials);
     } else {
       WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
@@ -25,6 +26,7 @@ var WebsiteForm = React.createClass({
   },
 
   retrieveRSS: function (credentials) {
+  this.setState({error: Retrieving website RSS URL...})
     WebsiteApiUtil.retrieveRSSURL(credentials, this.updateURL, this.receivedError);
   },
 
@@ -61,13 +63,13 @@ var WebsiteForm = React.createClass({
                       <div>
                         <form className="website-form" autoComplete="off" onSubmit={ this.submit }>
                           <label htmlFor="website-url">Website URL</label>
-                          <label className="check-label">Retrieve Feed?
                             <input type="checkbox"
                                    className="feed-check"
+                                   id="rss-check"
                                    name="rss"
                                    checkedLink={this.linkState('rss')}>
                                  </input>
-                            </label>
+                          <label htmlFor="rss-check" className="check-label">Retrieve Feed?</label>
                               <input type="text"
                                      name="url"
                                      valueLink={this.linkState('url')}

@@ -34,9 +34,9 @@ gem 'rails_12factor', group: :production
 gem 'feedjira'
 
 group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'better_errors'
   gem 'binding_of_caller'
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
 # Use Capistrano for deployment

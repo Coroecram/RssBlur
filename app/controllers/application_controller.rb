@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def url_validation(url)
     begin
-      !!URI.parse(url)
+      url =~ URI::ABS_URI
     rescue
       return false
     end

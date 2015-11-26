@@ -13,7 +13,7 @@ var ArticleDetail = React.createClass({
               <p className="detail-title"><strong>{this.props.article.title}</strong></p>
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
-              <p className="article-summary">{this.props.article.summary}</p>
+              <p className="article-summary">{this.props.article.summary.substr(0, 300)}</p>
             </li>
           );
   }

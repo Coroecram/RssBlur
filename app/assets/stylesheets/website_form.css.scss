@@ -28,9 +28,7 @@
 
 .website-form
 input[type="checkbox"] {
-  display: inline-block;
-  float: left;
-  margin: 0;
+  margin: 15px 0 0 0;
 }
 
 .website-form
@@ -51,7 +49,6 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-
 .website-form
 input[type="submit"] {
   border: solid 1px black;
@@ -64,25 +61,21 @@ input[type="submit"] {
 .website-form .error {
   display: block;
   float: right;
-  width: 220px;
+  width: 200px;
   font-size: 12px;
   padding: 0 5px;
 }
 
-.website-form .check-label {
+.website-form .check-label{
+  padding: 14px 3px 0 10px;
   position: relative;
-  padding: 11px 0 0 10px;
-}
-
-.check-label span{
-  width: 90px;
   text-align: left;
-  position: absolute;
-  background: inherit;
-  bottom: -8px;
-  left: 25px;
   font-size: 12px;
   border: 0;
+}
+
+.website-form .check-label:hover{
+  cursor: pointer;
 }
 
 .website-form-triangle {

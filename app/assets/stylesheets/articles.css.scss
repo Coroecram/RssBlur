@@ -70,8 +70,8 @@
 }
 
 .detail-image {
-  height: 200px;
-  width: 400px;
+  height: calc(100%/3);
+  width: 60%;
   margin: 15px 0;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .detail-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: underline;
 }
