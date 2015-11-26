@@ -10,7 +10,6 @@ var WebsiteForm = React.createClass({
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     if (this.state.rss) {
-      this.setState({error: "Retrieving RSS URL..."})
       this.retrieveRSS(credentials);
     } else {
       WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
@@ -26,7 +25,7 @@ var WebsiteForm = React.createClass({
   },
 
   retrieveRSS: function (credentials) {
-  this.setState({error: Retrieving website RSS URL...})
+    this.setState({error: "Retrieving website RSS URL..."});
     WebsiteApiUtil.retrieveRSSURL(credentials, this.updateURL, this.receivedError);
   },
 
