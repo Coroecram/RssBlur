@@ -19,7 +19,30 @@ var ArticleIndex = React.createClass({
     ArticleStore.removeChangeListener(this._onArticlesChange);
   },
 
+  componentDidUpdate: function() {
+    var articleListUL = $('.article-list')
+    var articleDetailUL = $('.detail-article-list')
+    var articleListScroll = [];
+    var articleDetailScroll = [];
+    if (this.state.articles && !this.state.heightSet) {
+      var articleListChildren = articleListUL.children();
+      var articleDetailChildren = articleDetailUL.children();
+      for (var i = 0; i < this.state.articles.length; i++) {
+        var listScrollHeight = articleListChildren[i].scrollHeight +
+                              (articleListScroll[i-1] ?
+                               articleListScroll[i-1].elementHeight : 0)
+        var detailScrollHeight = articleDetailChildren[i].scrollHeight +
+                             (articleDetailScroll[i-1] ?
+                              articleDetailScroll[i-1].elementHeight : 0)
+        articleListScroll[i] = {elementHeight: listScrollHeight};
+        articleDetailScroll[i] = {elementHeight: detailScrollHeight};
+      };
+      this.setState({articleListScroll: articleListScroll, articleDetailScroll: articleDetailScroll, heightSet: true})
+    }
+  },
+
   _onSidebarChange: function () {
+    debugger
     clickedItem = SidebarClickedStore.fetch();
     if (clickedItem.is_feed) {
       ArticleApiUtil.fetchArticles(clickedItem, 0);
@@ -28,7 +51,7 @@ var ArticleIndex = React.createClass({
       // detailed store.
       // same goes for article click handler
     }
-    this.setState({sidebar: clickedItem, articles: null});
+    this.setState({sidebar: clickedItem, articles: null, heightSet: false});
   },
 
   _onArticlesChange: function () {
