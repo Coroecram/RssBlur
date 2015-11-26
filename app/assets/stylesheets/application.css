@@ -11,11 +11,7 @@
  * file per style scope.
  *
  *= require reset
+ *= reqiore stroll.min
  *= require_tree .
  *= require_self
  */
-
-  #content {
-    background: #78AEAE;
-    height: 100%;
-  }

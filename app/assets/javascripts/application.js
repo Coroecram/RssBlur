@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery.serializejson
 //= require dateFormat.min
-//= require jfeed
+//= require stroll.min
 //= require react
 //= require react_ujs
 //= require react_router
