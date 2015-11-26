@@ -9,11 +9,16 @@ class Api::ArticlesController < ApplicationController
 
   def index
     @articles = []
-    user_articles = UserArticle.where('user_id = ?', current_user.id)
     current_articles = Article.where('website_id = ?', params[:website_id])
-                              # .order(created_date: :desc)
+                              .order(created_date: :desc)
     current_articles = current_articles.to_a.map(&:serializable_hash)
+    current_articles_ids = current_articles.map{ |article| article["id"] }
+    user_articles = UserArticle.where('user_id = ? AND article_id IN (?)', current_user.id, current_articles_ids)
+    current_article_keys = {}
+    current_articles.each { |article| current_article_keys[article["created_date"].to_i] = article }
     user_articles = user_articles.to_a.map(&:serializable_hash)
+    user_article_keys = {}
+    user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
     begin
       rss = Feedjira::Feed.fetch_and_parse params[:url]
     rescue
@@ -24,11 +29,8 @@ class Api::ArticlesController < ApplicationController
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article)
-      next_article = current_articles.select do |article|
-                                                article["created_date"].to_i == created_date.to_i
-                                             end
-
-      next_article[0] ||= Article.create!(
+      next_article = current_article_keys[created_date.to_i] ||
+                     Article.create!(
                                       url: url,
                                       title: title,
                                       author: author,
@@ -36,20 +38,15 @@ class Api::ArticlesController < ApplicationController
                                       image: image,
                                       created_date: created_date,
                                       website_id: params[:website_id]
-                                     )
-
-      next_article = next_article.first
-      article_id = next_article["id"] || next_article.id
+                                    )
+      new_article_id = next_article["id"] || next_article.id
       @articles.push(next_article)
-      user_article = user_articles.select do |userarticle|
-                                              userarticle["article_id"].to_i == article_id
-                                          end
-       UserArticle.create!(
-                          user_id: current_user.id,
-                          article_id: article_id,
-                          read: false,
-                          pseudo_read: false
-                         ) if user_article.empty?
+      user_article_keys[new_article_id] || UserArticle.create!(
+                                                        user_id: current_user.id,
+                                                        article_id: article_id,
+                                                        read: false,
+                                                        pseudo_read: false
+                                                      )
     end
     render json: @articles
   end

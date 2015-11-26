@@ -71,9 +71,11 @@
 }
 
 .detail-image {
-  height: calc(100%/3);
+  height: 30%;
   width: 60%;
   margin: 15px 0;
+  border: 1px solid #000;
+  border-radius: 5px;
 }
 
 .detail-article p {
