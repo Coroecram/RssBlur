@@ -15,6 +15,8 @@
 //= require jquery.serializejson
 //= require dateFormat.min
 //= require stroll.min
+//= require TimerMixin
+//= require scrollTo
 //= require react
 //= require react_ujs
 //= require react_router

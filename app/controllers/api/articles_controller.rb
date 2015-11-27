@@ -14,8 +14,10 @@ class Api::ArticlesController < ApplicationController
     current_articles = current_articles.to_a.map(&:serializable_hash)
     current_articles_ids = current_articles.map{ |article| article["id"] }
     user_articles = UserArticle.where('user_id = ? AND article_id IN (?)', current_user.id, current_articles_ids)
-    current_article_keys = {}
-    current_articles.each { |article| current_article_keys[article["created_date"].to_i] = article }
+    current_article_created_keys = {}
+    current_article_url_keys = {}
+    current_articles.each { |article| current_article_created_keys[article["created_date"].to_i] = article }
+    current_articles.each { |article| current_article_url_keys[article["url"]] = article }
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
@@ -29,7 +31,8 @@ class Api::ArticlesController < ApplicationController
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article)
-      next_article = current_article_keys[created_date.to_i] ||
+      next_article = current_article_created_keys[created_date.to_i] ||
+                     current_article_url_keys[url] ||
                      Article.create!(
                                       url: url,
                                       title: title,

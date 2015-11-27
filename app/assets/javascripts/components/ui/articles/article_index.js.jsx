@@ -1,7 +1,14 @@
 var ArticleIndex = React.createClass({
 
+   mixins: [TimerMixin],
+
+
   getInitialState: function () {
-    return {sidebar: SidebarClickedStore.fetch(), articles: ArticleStore.all()};
+    return {sidebar: SidebarClickedStore.fetch(),
+            articles: ArticleStore.all(),
+            listIdx: 0,
+            detailIdx: 0,
+            scrolling: false};
   },
 
   componentDidMount: function () {
@@ -30,19 +37,20 @@ var ArticleIndex = React.createClass({
       for (var i = 0; i < this.state.articles.length; i++) {
         var listScrollHeight = articleListChildren[i].scrollHeight +
                               (articleListScroll[i-1] ?
-                               articleListScroll[i-1].elementHeight : 0)
+                               articleListScroll[i-1].totalHeight : 0)
         var detailScrollHeight = articleDetailChildren[i].scrollHeight +
                              (articleDetailScroll[i-1] ?
-                              articleDetailScroll[i-1].elementHeight : 0)
-        articleListScroll[i] = {elementHeight: listScrollHeight};
-        articleDetailScroll[i] = {elementHeight: detailScrollHeight};
+                              articleDetailScroll[i-1].totalHeight : 0)
+        articleListScroll[i] = {totalHeight: listScrollHeight,
+                                elementHeight: articleListChildren[i].scrollHeight};
+        articleDetailScroll[i] = {totalHeight: detailScrollHeight,
+                                  elementHeight: articleDetailChildren[i].scrollHeight};
       };
       this.setState({articleListScroll: articleListScroll, articleDetailScroll: articleDetailScroll, heightSet: true})
     }
   },
 
   _onSidebarChange: function () {
-    debugger
     clickedItem = SidebarClickedStore.fetch();
     if (clickedItem.is_feed) {
       ArticleApiUtil.fetchArticles(clickedItem, 0);
@@ -58,24 +66,50 @@ var ArticleIndex = React.createClass({
     this.setState({articles: ArticleStore.all()});
   },
 
-  clickHandler: function () {
-    // from button below
-    // ApiUtil.addArticles(clickedItem.url, ArticleStore.all().length);
-    // detailed store
+  listScroll: function() {
+    var articleListUL = $('.article-list');
+    var articleDetailUL = $('.detail-article-list');
+    var bottomCutoff = this.state.articleListScroll[this.state.listIdx].totalHeight -
+                       (this.state.articleListScroll[this.state.listIdx].elementHeight/2);
+    var topCutoff = this.state.listIdx === 0 ? 0 :
+                    this.state.articleListScroll[this.state.listIdx-1].totalHeight -
+                    (this.state.articleListScroll[this.state.listIdx-1].elementHeight/2);
+    if (!this.state.scrolling) {
+      if (articleListUL.scrollTop() > bottomCutoff) {
+        articleDetailUL.scrollTo(articleDetailUL.children()[this.state.listIdx+1])
+        this.setTimeout(this.clearScrolling, 250);
+        this.setState({listIdx: this.state.listIdx + 1,
+                       detailIdx: this.state.listIdx + 1,
+                       scrolling: true});
+      } else if (articleListUL.scrollTop() < topCutoff) {
+          articleDetailUL.scrollTo(articleDetailUL.children()[this.state.listIdx-1])
+          this.setTimeout(this.clearScrolling, 250);
+          this.setState({listIdx: this.state.listIdx - 1,
+                         detailIdx: this.state.listIdx - 1,
+                         scrolling: true});
+        }
+      }
+  },
+
+  detailScroll: function() {
+  },
+
+  clearScrolling: function () {
+    this.setState({scrolling: false});
   },
 
   render: function () {
     var articles;
     return (
             <div className="article-index group">
-              <ul className="article-list">
+              <ul className="article-list" onScroll={this.listScroll}>
                   {this.state.articles &&
                     this.state.articles.map(function (article) {
                               return <ArticleListItem key={article.id} article={article} />
                              })
                   }
               </ul>
-              <ul className="detail-article-list">
+              <ul className="detail-article-list" onScroll={this.detailScroll} >
               {this.state.articles &&
                 this.state.articles.map(function (article) {
                           return <ArticleDetail key={article.id} article={article} />

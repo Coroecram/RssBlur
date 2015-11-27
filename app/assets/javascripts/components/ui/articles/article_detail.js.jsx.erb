@@ -7,15 +7,14 @@ var ArticleDetail = React.createClass({
   render: function () {
     var articleDate = new Date(this.props.article.created_date);
     var detailDate = DateFormat.format.date(articleDate, "h:mm p MMMM d, yyyy");
-    var readMore = (this.props.article.summary.length > 300 ? " || Click to read more..." :
-                                                              "")
     return (
             <li className="detail-article group" id="{this.article.id}" onClick={this._onClick}>
               <img className="detail-image" src={this.props.article.image || '<%= image_path('default-image.JPG') %>'} />
               <p className="detail-title"><strong>{this.props.article.title}</strong></p>
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
-              <p className="article-summary">{this.props.article.summary.substr(0, 300)}{readMore}</p>
+              <p className="article-summary">{this.props.article.summary.substr(0, 300)}</p>
+              <div className="site-button">Click Here to Visit Site</div>
             </li>
           );
   }
