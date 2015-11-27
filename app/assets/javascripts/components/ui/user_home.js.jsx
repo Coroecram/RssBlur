@@ -24,8 +24,8 @@ var UserHome = React.createClass({
   render: function () {
     return (
             <div className="user-home group">
-              <Header clickHandler={this.signOut} />
-              <Sidebar />
+              <Header key={"header"}clickHandler={this.signOut} />
+              <Sidebar key={"sidebar"} />
               {this.props.children}
             </div>
           );

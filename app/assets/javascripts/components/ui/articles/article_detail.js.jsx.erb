@@ -12,7 +12,7 @@ var ArticleDetail = React.createClass({
               <img className="detail-image"
                    src={this.props.article.image ||
                         '<%= image_path('default-image.JPG') %>'}
-                    />
+                   className="detail-image" />
               <p className="detail-title"><strong>{this.props.article.title}</strong></p>
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
