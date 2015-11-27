@@ -97,7 +97,14 @@ var ArticleIndex = React.createClass({
       // detailed store.
       // same goes for article click handler
     }
-    this.setState({sidebar: clickedItem, articles: null, heightSet: false});
+    this.setState({sidebar: clickedItem,
+                   articles: null,
+                   scrollsSet: false,
+                   heightsAdjusted: false,
+                   loaded: 0,
+                   listIdx: 0,
+                   detailIdx: 0,
+                   isScrolling: false};
   },
 
   _onArticlesChange: function () {
@@ -125,7 +132,6 @@ var ArticleIndex = React.createClass({
                                                     this.state.listIdx :
                                                      this.state.detailIdx);
       var fraction = (e.currentTarget.className === 'article-list' ? 2 : 4);
-      debugger
       var bottomCutoff = toCheckHeights[idx].totalHeight -
                          (toCheckHeights[idx].elementHeight/fraction);
       var topCutoff = (idx === 0 ? 0 :
