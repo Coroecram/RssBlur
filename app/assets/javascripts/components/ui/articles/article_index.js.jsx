@@ -60,28 +60,30 @@ var ArticleIndex = React.createClass({
   },
 
   heightAdjuster: function () {
-   var articleDetailUL = $('.detail-article-list')
-   var detailIdx;
+   var articleDetailUL = $('.detail-article-list');
+   var articleListUL = $('.article-list');
+   var idx = 0;
    if (this.state.articleDetailScroll) {
      changedCount = 0;
      for (var i = 0; i < this.state.articleDetailScroll.length; i++) {
        var currentImageHeight = $('.detail-image')[i].height;
        if (currentImageHeight > 5){
          changedCount++
-         this.state.articleDetailScroll[i].elementHeight += currentImageHeight;
-         this.state.articleDetailScroll[i].totalHeight = (i === 0 ?
-                                                 this.state.articleDetailScroll[i].elementHeight :
-                                                 this.state.articleDetailScroll[i-1].totalHeight +
-                                                 this.state.articleDetailScroll[i].elementHeight)
-         this.state.articleDetailScroll[i].heightAdjusted = true;
+         if (!this.state.articleDetailScroll[i].heightAdjusted) {
+           this.state.articleDetailScroll[i].elementHeight += currentImageHeight;
+           this.state.articleDetailScroll[i].totalHeight = (i === 0 ?
+                                                   this.state.articleDetailScroll[i].elementHeight :
+                                                   this.state.articleDetailScroll[i-1].totalHeight +
+                                                   this.state.articleDetailScroll[i].elementHeight)
+           this.state.articleDetailScroll[i].heightAdjusted = true;
+        }
        }
        if (articleDetailUL.scrollTop() > this.state.articleDetailScroll[i].totalHeight) {
-         debugger
-         detailIdx = i;
+         idx = i;
        }
      }
-    this.setState({ detailIdx: detailIdx,
-                    heightsAdjusted: (changedCount === this.state.articleDetailScroll.length ?
+    this.autoScroll(articleListUL, idx);
+    this.setState({ heightsAdjusted: (changedCount === this.state.articleDetailScroll.length ?
                                       true : false)})
    }
   },
@@ -123,6 +125,7 @@ var ArticleIndex = React.createClass({
                                                     this.state.listIdx :
                                                      this.state.detailIdx);
       var fraction = (e.currentTarget.className === 'article-list' ? 2 : 4);
+      debugger
       var bottomCutoff = toCheckHeights[idx].totalHeight -
                          (toCheckHeights[idx].elementHeight/fraction);
       var topCutoff = (idx === 0 ? 0 :
@@ -145,7 +148,7 @@ var ArticleIndex = React.createClass({
                       function() {this.clearScrolling(idx)}.bind(this));
   },
 
-  clearScrolling: function () {
+  clearScrolling: function (idx) {
     this.setState({isScrolling: false, listIdx: idx, detailIdx: idx});
   },
 
