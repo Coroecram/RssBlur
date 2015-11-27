@@ -1,18 +1,14 @@
-var listIdx = 0;
-var isScrolling = false;
-
 var ArticleIndex = React.createClass({
-
-   mixins: [TimerMixin],
-
-
 
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
             articles: ArticleStore.all(),
-            heightSet: false,
-            heightAdjusted: false,
-            loaded: 0};
+            scrollsSet: false,
+            heightsAdjusted: false,
+            loaded: 0,
+            listIdx: 0,
+            detailIdx: 0,
+            isScrolling: false};
   },
 
   componentDidMount: function () {
@@ -32,7 +28,8 @@ var ArticleIndex = React.createClass({
 
   componentDidUpdate: function() {
     if (this.state.articles &&
-        !this.state.heightSet) {
+        !this.state.scrollsSet) {
+      var listIdx;
       var articleListUL = $('.article-list')
       var articleDetailUL = $('.detail-article-list')
       var articleListScroll = [];
@@ -51,16 +48,42 @@ var ArticleIndex = React.createClass({
         articleDetailScroll[i] = {totalHeight: detailScrollHeight,
                                   elementHeight: articleDetailChildren[i].scrollHeight,
                                   heightAdjusted: false};
+        if (articleListUL.scrollTop() >= articleListScroll[i].totalHeight){
+          listIdx = i;
+        }
       };
-      this.setState({articleListScroll: articleListScroll, articleDetailScroll: articleDetailScroll, heightSet: true});
+      this.setState({articleListScroll: articleListScroll,
+                     articleDetailScroll: articleDetailScroll,
+                     listIdx: listIdx,
+                     scrollsSet: true});
     }
   },
 
   heightAdjuster: function () {
-    console.log("original height: " + toCheckHeights[listIdx].totalHeight);
-    console.log("current image height: " + currentImageHeight);
-    console.log("adjusted total height: " + toCheckHeights[listIdx].totalHeight);
-    console.log("adjusted element height: " + toCheckHeights[listIdx].elementHeight);
+   var articleDetailUL = $('.detail-article-list')
+   var detailIdx;
+   if (this.state.articleDetailScroll) {
+     changedCount = 0;
+     for (var i = 0; i < this.state.articleDetailScroll.length; i++) {
+       var currentImageHeight = $('.detail-image')[i].height;
+       if (currentImageHeight > 5){
+         changedCount++
+         this.state.articleDetailScroll[i].elementHeight += currentImageHeight;
+         this.state.articleDetailScroll[i].totalHeight = (i === 0 ?
+                                                 this.state.articleDetailScroll[i].elementHeight :
+                                                 this.state.articleDetailScroll[i-1].totalHeight +
+                                                 this.state.articleDetailScroll[i].elementHeight)
+         this.state.articleDetailScroll[i].heightAdjusted = true;
+       }
+       if (articleDetailUL.scrollTop() > this.state.articleDetailScroll[i].totalHeight) {
+         debugger
+         detailIdx = i;
+       }
+     }
+    this.setState({ detailIdx: detailIdx,
+                    heightsAdjusted: (changedCount === this.state.articleDetailScroll.length ?
+                                      true : false)})
+   }
   },
 
   _onSidebarChange: function () {
@@ -80,58 +103,50 @@ var ArticleIndex = React.createClass({
   },
 
   joinScroll: function(e) {
-    if (!isScrolling &&
-        this.state.articleListScroll &&
-        this.state.articleDetailScroll) {
+    if (!this.state.heightsAdjusted) {
+      this.heightAdjuster();
+    }
+    if (!this.state.isScrolling &&
+        this.state.heightsAdjusted) {
       var articleListUL = $('.article-list');
       var articleDetailUL = $('.detail-article-list');
       var toCheckHeights = (e.currentTarget.className === 'article-list' ?
                                                   this.state.articleListScroll :
                                                   this.state.articleDetailScroll);
       var toCheck = (e.currentTarget.className === 'article-list' ?
-                                                  articleListUL :
-                                                  articleDetailUL);
+                                                      articleListUL :
+                                                      articleDetailUL);
       var toScroll = (e.currentTarget.className === 'article-list' ?
-                                                  articleDetailUL :
-                                                  articleListUL);
+                                                      articleDetailUL :
+                                                      articleListUL);
+      var idx = (e.currentTarget.className === 'article-list' ?
+                                                    this.state.listIdx :
+                                                     this.state.detailIdx);
       var fraction = (e.currentTarget.className === 'article-list' ? 2 : 4);
-      if (e.currentTarget.className === 'detail-article-list' &&
-          !toCheckHeights[listIdx].heightAdjusted) {
-        var currentImageHeight = $('.detail-image')[listIdx].height;
-        if (currentImageHeight > 5){
-          toCheckHeights[listIdx].elementHeight += currentImageHeight;
-          toCheckHeights[listIdx].totalHeight = (listIdx === 0 ?
-                                                  toCheckHeights[listIdx].elementHeight :
-                                                  toCheckHeights[listIdx-1].totalHeight +
-                                                  toCheckHeights[listIdx].elementHeight)
-          toCheckHeights[listIdx].heightAdjusted = true;
-
-        }
-      };
-      var bottomCutoff = toCheckHeights[listIdx].totalHeight -
-                         (toCheckHeights[listIdx].elementHeight/fraction);
-      var topCutoff = (listIdx === 0 ? 0 :
-                      toCheckHeights[listIdx-1].totalHeight -
-                      (toCheckHeights[listIdx-1].elementHeight/2));
+      var bottomCutoff = toCheckHeights[idx].totalHeight -
+                         (toCheckHeights[idx].elementHeight/fraction);
+      var topCutoff = (idx === 0 ? 0 :
+                      toCheckHeights[idx-1].totalHeight -
+                      (toCheckHeights[idx-1].elementHeight/2));
       if (toCheck.scrollTop() > bottomCutoff) {
-        listIdx = listIdx + 1;
-        isScrolling = true;
-        toScroll.scrollTo(toScroll.children()[listIdx],
-                          {duration: 250},
-                          function() {this.clearScrolling()}.bind(this));
+        idx = idx + 1;
+        this.autoScroll(toScroll, idx);
       } else if (toCheck.scrollTop() < topCutoff) {
-          listIdx = listIdx - 1;
-          isScrolling = true;
-          toScroll.scrollTo(toScroll.children()[listIdx],
-                            {duration: 250},
-                            function() {this.clearScrolling()}.bind(this));
+          idx = idx - 1;
+          this.autoScroll(toScroll, idx);
         }
       }
   },
 
+  autoScroll: function (toScroll, idx) {
+    isScrolling = true;
+    toScroll.scrollTo(toScroll.children()[idx],
+                      {duration: 250},
+                      function() {this.clearScrolling(idx)}.bind(this));
+  },
+
   clearScrolling: function () {
-    isScrolling = false;
-    heightAdjusted = false;
+    this.setState({isScrolling: false, listIdx: idx, detailIdx: idx});
   },
 
   render: function () {
