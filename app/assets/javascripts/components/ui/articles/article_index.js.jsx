@@ -84,10 +84,6 @@ var ArticleIndex = React.createClass({
          idx = i;
        }
      }
-    if (origIdx != idx){
-      debugger
-      this.autoScroll(articleListUL, idx);
-    }
     this.setState({ heightsAdjusted: (changedCount === this.state.articleDetailScroll.length ?
                                       true : false)})
    }
@@ -119,12 +115,12 @@ var ArticleIndex = React.createClass({
     if (!isScrolling) {
       var articleListUL = $('.article-list');
       var articleDetailUL = $('.detail-article-list');
-      var toCheckHeights = (e.currentTarget.className === 'article-list' ?
-                                                                            this.state.articleListScroll :
-                                                                            this.state.articleDetailScroll);
       var toCheck = (e.currentTarget.className === 'article-list' ?
                                                                     articleListUL :
                                                                     articleDetailUL);
+      var toCheckHeights = (e.currentTarget.className === 'article-list' ?
+                                                                            this.state.articleListScroll :
+                                                                            this.state.articleDetailScroll);
       var toScroll = (e.currentTarget.className === 'article-list' ?
                                                                       articleDetailUL :
                                                                       articleListUL);
@@ -137,11 +133,6 @@ var ArticleIndex = React.createClass({
       var topCutoff = (idx === 0 ? 0 :
                       toCheckHeights[idx-1].totalHeight -
                       (toCheckHeights[idx-1].elementHeight/2));
-      console.log("topCutOff: " + topCutoff);
-      console.log("bottomCutOff: " + bottomCutoff);
-      console.log("elementHeight:" + toCheckHeights[idx].elementHeight )
-      console.log("totalHeight:" + toCheckHeights[idx].totalHeight )
-      console.log("actual tHeight:" + toCheck.children()[idx].scrollHeight )
       if (toCheck.scrollTop() > bottomCutoff) {
         idx = idx + 1;
         this.autoScroll(toScroll, idx);
