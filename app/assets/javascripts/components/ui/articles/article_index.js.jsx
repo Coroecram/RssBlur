@@ -1,14 +1,17 @@
+var listIdx = 0;
+var isScrolling = false;
+
 var ArticleIndex = React.createClass({
 
    mixins: [TimerMixin],
 
 
+
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
             articles: ArticleStore.all(),
-            listIdx: 0,
-            detailIdx: 0,
-            scrolling: false};
+            heightSet: false,
+            loaded: 0};
   },
 
   componentDidMount: function () {
@@ -26,27 +29,33 @@ var ArticleIndex = React.createClass({
     ArticleStore.removeChangeListener(this._onArticlesChange);
   },
 
+  _onImageResize: function () {
+    debugger
+  },
+
   componentDidUpdate: function() {
-    var articleListUL = $('.article-list')
-    var articleDetailUL = $('.detail-article-list')
-    var articleListScroll = [];
-    var articleDetailScroll = [];
-    if (this.state.articles && !this.state.heightSet) {
+    if (this.state.articles &&
+        !this.state.heightSet) {
+      var articleListUL = $('.article-list')
+      var articleDetailUL = $('.detail-article-list')
+      var articleListScroll = [];
+      var articleDetailScroll = [];
       var articleListChildren = articleListUL.children();
       var articleDetailChildren = articleDetailUL.children();
       for (var i = 0; i < this.state.articles.length; i++) {
-        var listScrollHeight = articleListChildren[i].scrollHeight +
+      // debugger
+        var listScrollHeight = articleListChildren[i].scrollHeight + 1 +
                               (articleListScroll[i-1] ?
                                articleListScroll[i-1].totalHeight : 0)
-        var detailScrollHeight = articleDetailChildren[i].scrollHeight +
+        var detailScrollHeight = articleDetailChildren[i].scrollHeight + 1 +
                              (articleDetailScroll[i-1] ?
                               articleDetailScroll[i-1].totalHeight : 0)
         articleListScroll[i] = {totalHeight: listScrollHeight,
-                                elementHeight: articleListChildren[i].scrollHeight};
+                                elementHeight: articleListChildren[i].scrollHeight+1};
         articleDetailScroll[i] = {totalHeight: detailScrollHeight,
                                   elementHeight: articleDetailChildren[i].scrollHeight};
       };
-      this.setState({articleListScroll: articleListScroll, articleDetailScroll: articleDetailScroll, heightSet: true})
+      this.setState({articleListScroll: articleListScroll, articleDetailScroll: articleDetailScroll, heightSet: true});
     }
   },
 
@@ -66,54 +75,72 @@ var ArticleIndex = React.createClass({
     this.setState({articles: ArticleStore.all()});
   },
 
-  listScroll: function() {
-    var articleListUL = $('.article-list');
-    var articleDetailUL = $('.detail-article-list');
-    var bottomCutoff = this.state.articleListScroll[this.state.listIdx].totalHeight -
-                       (this.state.articleListScroll[this.state.listIdx].elementHeight/2);
-    var topCutoff = this.state.listIdx === 0 ? 0 :
-                    this.state.articleListScroll[this.state.listIdx-1].totalHeight -
-                    (this.state.articleListScroll[this.state.listIdx-1].elementHeight/2);
-    if (!this.state.scrolling) {
-      if (articleListUL.scrollTop() > bottomCutoff) {
-        articleDetailUL.scrollTo(articleDetailUL.children()[this.state.listIdx+1])
-        this.setTimeout(this.clearScrolling, 250);
-        this.setState({listIdx: this.state.listIdx + 1,
-                       detailIdx: this.state.listIdx + 1,
-                       scrolling: true});
-      } else if (articleListUL.scrollTop() < topCutoff) {
-          articleDetailUL.scrollTo(articleDetailUL.children()[this.state.listIdx-1])
-          this.setTimeout(this.clearScrolling, 250);
-          this.setState({listIdx: this.state.listIdx - 1,
-                         detailIdx: this.state.listIdx - 1,
-                         scrolling: true});
+  joinScroll: function(e) {
+    if (!isScrolling &&
+        this.state.articleListScroll &&
+        this.state.artcileDetailScroll) {
+      var articleListUL = $('.article-list');
+      var articleDetailUL = $('.detail-article-list');
+      var toCheckHeights = (e.currentTarget.className === 'article-list' ?
+                                                  this.state.articleListScroll :
+                                                  this.state.articleDetailScroll);
+      var toCheck = (e.currentTarget.className === 'article-list' ?
+                                                  articleListUL :
+                                                  articleDetailUL);
+      var toScroll = (e.currentTarget.className === 'article-list' ?
+                                                  articleDetailUL :
+                                                  articleListUL);
+      var fraction = (e.currentTarget.className === 'article-list' ? 2 : 4);
+      var bottomCutoff = toCheckHeights[listIdx].totalHeight -
+                         (toCheckHeights[listIdx].elementHeight/fraction);
+      var topCutoff = (listIdx === 0 ? 0 :
+                      toCheckHeights[listIdx-1].totalHeight -
+                      (toCheckHeights[listIdx-1].elementHeight/2));
+        console.log('here');
+        console.log(bottomCutoff);
+        console.log(toCheck.scrollTop());
+      if ((toCheck.scrollTop()-40) > bottomCutoff) {
+        console.log('down');
+        console.log(listIdx);
+        listIdx = listIdx + 1;
+        isScrolling = true;
+        toScroll.children()[listIdx].scrollIntoView(true);
+        this.clearScrolling();
+      } else if ((toCheck.scrollTop()-40) < topCutoff) {
+        // debugger
+          console.log('up');
+          console.log(listIdx);
+          listIdx = listIdx - 1;
+          isScrolling = true;
+          toScroll.children()[listIdx].scrollIntoView(true);
+                            // function(){this.clearScrolling()}.bind(this))
         }
       }
   },
 
-  detailScroll: function() {
-  },
-
   clearScrolling: function () {
-    this.setState({scrolling: false});
+    // debugger
+    console.log('clear');
+    isScrolling = false;
   },
 
   render: function () {
-    var articles;
     return (
             <div className="article-index group">
-              <ul className="article-list" onScroll={this.listScroll}>
+              <ul className="article-list" onScroll={this.joinScroll}>
                   {this.state.articles &&
                     this.state.articles.map(function (article) {
                               return <ArticleListItem key={article.id} article={article} />
                              })
                   }
               </ul>
-              <ul className="detail-article-list" onScroll={this.detailScroll} >
+              <ul className="detail-article-list"  >
               {this.state.articles &&
                 this.state.articles.map(function (article) {
-                          return <ArticleDetail key={article.id} article={article} />
-                         })
+                          return <ArticleDetail key={article.id}
+                                                article={article}
+                                                loadHandler={this.loadedImageCounter}/>
+                         }.bind(this))
               }
               </ul>
             </div>

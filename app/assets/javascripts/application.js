@@ -19,6 +19,7 @@
 //= require scrollTo
 //= require react
 //= require react_ujs
+//= require resizeable
 //= require react_router
 //= require flux
 //= require eventemitter

@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'metainspector'
 
 class Api::WebsitesController < ApplicationController
 
@@ -10,13 +11,17 @@ class Api::WebsitesController < ApplicationController
 
   def create
     url = params[:url]
-    if url_validation(url)
+    begin
+      page = MetaInspector.new(url)
+    rescue
+      page = false
+    end
+    if page
       feed = feed_validation(url)
-      page = MetaInspector.new(params[:url])
       url = page.url
       @website = Website.find_by_url(url)
       if @website
-        UserWebsite.create({user_id: current_user.id, website_id: @website.id})
+        UserWebsite.find_or_create_by(user_id: current_user.id, website_id: @website.id)
         return @website
       elsif feed
         root_uri = URI(params[:url])
@@ -51,13 +56,17 @@ class Api::WebsitesController < ApplicationController
 
   def feed
     url = params[:url]
-    if url_validation(url)
+    begin
       page = MetaInspector.new(url)
+    rescue
+      page = false
+    end
+    if page
       if page.url == "http://www.thenation.com/"
         render json: {url: "http://www.thenation.com/feed/?post_type=article"}
       elsif page.feed
         url = page.feed
-        return render json: {url: "url"}
+        return render json: {url: url}
       end
     else
       return render json: 'This address does not point to a website with an RSS feed.',
