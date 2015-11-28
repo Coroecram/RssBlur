@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151128165501) do
   create_table "periodic_jobs", force: true do |t|
     t.string   "type"
     t.text     "job"
+    t.string   "url"
     t.integer  "interval"
     t.datetime "last_run_at"
     t.datetime "created_at"
