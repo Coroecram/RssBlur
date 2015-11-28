@@ -1,7 +1,7 @@
 var UnreadCount = React.createClass({
 
   getInitialState: function () {
-    return {unreadCount: undefined};
+    return ({unreadCount: ""});
   },
 
   componentDidMount: function () {
@@ -17,3 +17,13 @@ var UnreadCount = React.createClass({
   _onSidebarChange: function () {
 
   },
+
+  render: function () {
+    var unreadCount = this.state.unreadCount;
+    return(
+            <div>
+              <p className={"unread-count"}>{this.state.unreadCount}</p>
+            </div>
+          );
+  }
+});

@@ -9,18 +9,18 @@
       'json');
     },
 
-    fetchUnreadCount: function (id, success) {
+    fetchUnreadCount: function (id, success, error) {
+      debugger
       $.ajax({
-        url: '/api/users',
-        type: 'POST',
+        url: '/api/user_articles/unread/' + id,
+        type: 'GET',
         dataType: 'json',
-        data: credentials,
         error: function (response) {
           error && error(response.responseText);
         },
-        success: function (currentUser) {
-          CurrentUserActions.receiveUser(currentUser);
-          success && success();
+        success: function (unread) {
+          debugger
+          success && success(unread.count);
           }
         });
     }

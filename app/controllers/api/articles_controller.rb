@@ -48,7 +48,7 @@ class Api::ArticlesController < ApplicationController
                                                         user_id: current_user.id,
                                                         article_id: new_article_id,
                                                         read: false,
-                                                        pseudo_read: false
+                                                        website_id: params[:website_id].to_i
                                                       )
     end
     render json: @articles
