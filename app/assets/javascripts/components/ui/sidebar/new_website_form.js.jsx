@@ -1,6 +1,6 @@
 var WebsiteForm = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function () {
     return {url: "", error: false};
@@ -9,11 +9,12 @@ var WebsiteForm = React.createClass({
   submit: function (event) {
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
+    this.setState({error: "Retrieving RSS Feed..."})
     WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
   },
 
   blankState: function () {
-    this.setState({url: "", error: false});
+    this.setState({url: "", error: "Enter URL to an RSS feed or Website with an RSS Feed"});
   },
 
   componentWillReceiveProps: function () {
@@ -28,7 +29,8 @@ var WebsiteForm = React.createClass({
     }
   },
 
-  receivedSite: function () {
+  receivedSite: function (website) {
+    debugger
     this.blankState();
   },
 

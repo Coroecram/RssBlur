@@ -11,7 +11,7 @@
     createWebsite: function(url, success, error){
       $.post('api/websites', url, function(website) {
         WebsiteApiActions.createWebsite(website);
-        success();
+        success(website);
       },
       'json').fail(function (data) {
         error(data);

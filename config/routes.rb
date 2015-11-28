@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: {format: :json} do
-    get 'websites/feed' => "websites#feed"
     resources :websites, only: [:index, :create, :show, :destroy]
     resources :articles, only: [:index, :show]
     resources :users, except: [:new, :edit]

@@ -42,14 +42,14 @@ class Api::WebsitesController < ApplicationController
                                   logo: logo})
       UserWebsite.create!({user_id: current_user.id, website_id: @website.id})
       @website
+    else
+      return render json: 'This address does not point to a website with an RSS feed.',
+                    status: :unprocessable_entity
     end
   end
 
   def show
     @website = Website.find(params[:id].to_i)
-    url = @website.url
-    debugger
-    doc = Nokogiri::XML(open(url))
     @website
   end
 
