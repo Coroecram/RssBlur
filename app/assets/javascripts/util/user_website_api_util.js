@@ -5,10 +5,7 @@
       $.ajax({
         url: '/api/user_websites',
         type: 'DELETE',
-        data: {website_id: website_id},
-        success: function () {
-          ArticleApiActions.resetAllArticles();
-        }
+        data: {website_id: website_id}
       });
     }
   };
