@@ -53,7 +53,6 @@ class Api::WebsitesController < ApplicationController
     @website
   end
 
-
   private
 
   def website_params

@@ -30,8 +30,9 @@ var WebsiteForm = React.createClass({
   },
 
   receivedSite: function (website) {
-    debugger
     this.blankState();
+    WebsiteApiActions.setSidebarClicked(website);
+    this.history.pushState(null, '/websites/' + website.id, {});
   },
 
   render: function () {

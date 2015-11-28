@@ -2,8 +2,6 @@ var isScrolling = false;
 
 var ArticleIndex = React.createClass({
 
-  mixins: [ReactRouter.History],
-
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
             articles: ArticleStore.all()};
@@ -25,6 +23,7 @@ var ArticleIndex = React.createClass({
   },
 
   _onSidebarChange: function () {
+    debugger
     clickedItem = SidebarClickedStore.fetch();
     ArticleApiUtil.fetchArticles(clickedItem);
     this.setState({sidebar: clickedItem,
@@ -32,7 +31,9 @@ var ArticleIndex = React.createClass({
   },
 
   _onArticlesChange: function () {
-    this.setState({articles: ArticleStore.all()});
+    debugger
+    newArticles = ArticleStore.all();
+    this.setState({articles: newArticles});
   },
 
   autoScroll: function (toScroll, idx) {
@@ -55,6 +56,7 @@ var ArticleIndex = React.createClass({
   },
 
   render: function () {
+    debugger
     return (
             <div className="article-index group">
               <ul className="article-list">
