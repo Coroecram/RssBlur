@@ -18,7 +18,8 @@ class Api::WebsitesController < ApplicationController
     end
     if page
       feed = feed_validation(url)
-      url = page.url
+      url = page.feed
+      url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
       @website = Website.find_by_url(url)
       if @website
         UserWebsite.find_or_create_by(user_id: current_user.id, website_id: @website.id)
@@ -32,21 +33,15 @@ class Api::WebsitesController < ApplicationController
         logo = root_page.images.favicon
         description = root_page.description
       else
-        url = page.url
-        name = page.title
-        logo = page.images.favicon
-        description = page.description
+        return render json: 'This address does not point to a website with an RSS feed.',
+                      status: :unprocessable_entity
       end
-        @website = Website.create!({name: name,
-                                    url: url,
-                                    description: description,
-                                    logo: logo,
-                                    is_feed: feed})
-        UserWebsite.create!({user_id: current_user.id, website_id: @website.id})
-        @website
-    else
-      return render json: 'This address does not point to a website or a website with an RSS feed.',
-                    status: :unprocessable_entity
+      @website = Website.create!({name: name,
+                                  url: url,
+                                  description: description,
+                                  logo: logo})
+      UserWebsite.create!({user_id: current_user.id, website_id: @website.id})
+      @website
     end
   end
 
@@ -56,6 +51,13 @@ class Api::WebsitesController < ApplicationController
     debugger
     doc = Nokogiri::XML(open(url))
     @website
+  end
+
+
+  private
+
+  def website_params
+    params.require(:website).permit(:url, :folder_id)
   end
 
   def feed
@@ -77,13 +79,6 @@ class Api::WebsitesController < ApplicationController
                     status: :unprocessable_entity
     end
   end
-
-  private
-
-  def website_params
-    params.require(:website).permit(:url, :folder_id)
-  end
-
 
   def feed_validation(url)
     begin
