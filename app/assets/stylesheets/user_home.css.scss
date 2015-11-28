@@ -36,6 +36,20 @@
   border: 1px solid black;
 }
 
+.unread-count {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  bottom: 1px;
+  float: left;
+  font-size: 10px;
+  font-weight: bold;
+  color: #DDEFEF;
+  background: #78AEAE;
+  border-radius: 5px;
+  padding: 0 6px;
+}
+
 .delete-website {
   display: inline;
   position: absolute;

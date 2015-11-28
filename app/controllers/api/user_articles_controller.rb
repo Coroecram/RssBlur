@@ -1,16 +1,8 @@
 class Api::UserArticlesController < ApplicationController
 
   def unread
-    debugger
-    @unread = {count: 0}
+    count = UserArticle.where('user_id = ? AND website_id = ? AND read = false', current_user.id, params[:id].to_i).count
+    @unread = {count: count}
   end
 
-end
-
-
-uas = UserArticle.all
-
-uas.each do |ua|
-  ua.website_id = ua.website.id
-  ua.save!
 end

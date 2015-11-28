@@ -11,7 +11,35 @@
 
     fetchUnreadCount: function (id, success, error) {
       $.ajax({
-        url: '/api/user_articles/unread/' + id,
+        url: '/api/user_articles/unreadcount/' + id,
+        type: 'GET',
+        dataType: 'json',
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (unread) {
+          success && success(unread.count);
+          }
+        });
+    },
+
+    markRead: function (id, success, error) {
+      $.ajax({
+        url: '/api/user_articles/unreadcount/' + id,
+        type: 'GET',
+        dataType: 'json',
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (unread) {
+          success && success(unread.count);
+          }
+        });
+    },
+
+    markAllRead: function (id, success, error) {
+      $.ajax({
+        url: '/api/user_articles/unreadcount/' + id,
         type: 'GET',
         dataType: 'json',
         error: function (response) {
@@ -22,5 +50,6 @@
           }
         });
     }
+
   };
 })(this);

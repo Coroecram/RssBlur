@@ -18,6 +18,10 @@ var UnreadCount = React.createClass({
 
   },
 
+  setUnreadCount: function (count) {
+    this.setState({unreadCount: count});
+  },
+
   render: function () {
     var unreadCount = this.state.unreadCount;
     return(
