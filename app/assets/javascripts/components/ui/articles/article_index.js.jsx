@@ -26,15 +26,9 @@ var ArticleIndex = React.createClass({
 
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
-    if (clickedItem.is_feed) {
-      ArticleApiUtil.fetchArticles(clickedItem);
-    } else {
-      this.history.pushState(null, "/website/focus/" + clickedItem.id)
-    }
+    ArticleApiUtil.fetchArticles(clickedItem);
     this.setState({sidebar: clickedItem,
-                   articles: null,
-                   scrollsSet: false,
-                   heightsAdjusted: false});
+                   articles: null});
   },
 
   _onArticlesChange: function () {

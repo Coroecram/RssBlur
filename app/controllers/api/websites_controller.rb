@@ -60,26 +60,6 @@ class Api::WebsitesController < ApplicationController
     params.require(:website).permit(:url, :folder_id)
   end
 
-  def feed
-    url = params[:url]
-    begin
-      page = MetaInspector.new(url)
-    rescue
-      page = false
-    end
-    if page
-      if page.url == "http://www.thenation.com/"
-        render json: {url: "http://www.thenation.com/feed/?post_type=article"}
-      elsif page.feed
-        url = page.feed
-        return render json: {url: url}
-      end
-    else
-      return render json: 'This address does not point to a website with an RSS feed.',
-                    status: :unprocessable_entity
-    end
-  end
-
   def feed_validation(url)
     begin
       page = MetaInspector.new(url)

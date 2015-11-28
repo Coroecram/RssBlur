@@ -36,43 +36,36 @@ Website.create!([{
                   url: "http://www.wired.com/feed/",
                   logo: "http://www.wired.com/wp-content/themes/Phoenix/assets/images/favicon.ico",
                   description: "Get in-depth coverage of current and future trends in technology, and how they are shaping business, entertainment, communications, science, politics, and culture at WIRED.",
-                  is_feed: true
                  },
                  {
                   name: "The Nation Feed",
                   url: "http://www.thenation.com/feed/?post_type=article",
                   logo: "http://www.thenation.com/wp-content/themes/thenation/images/favicon.ico",
-                  is_feed: true
                  },
                  {
                   name: "Engadget Feed",
                   url: "http://www.engadget.com/rss.xml",
                   logo: "http://www.blogsmithmedia.com/www.engadget.com/media/favicon-16x16.png",
                   description: "Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics",
-                  is_feed: true
                  },
                  { name: "Colossal",
                    url: "http://feeds.feedburner.com/colossal",
                    logo: "http://www.thisiscolossal.com/favicon.ico?v=6",
-                   is_feed: true,
                    description: "© 2010-2015 Christopher Jobson, all rights reserve..."
                  },
                  { name: "Lifehacker",
                    url: "http://feeds.gawker.com/lifehacker/full",
                    logo: nil,
-                   is_feed: true,
                    description: "Google FeedBurner lets you stay on top of the late..."
                  },
                  { name: "Next Big Future",
                    url: "http://feeds.feedburner.com/blogspot/advancednano",
                    logo: "http://nextbigfuture.com/favicon.ico",
-                   is_feed: true,
                    description: ""
                  },
                  { name: "Gizmodo",
                    url: "http://feeds.gawker.com/gizmodo/full",
                    logo: nil,
-                   is_feed: true,
                    description: "Google FeedBurner lets you stay on top of the late..."
                  }])
 
