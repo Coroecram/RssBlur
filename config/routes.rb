@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :edit]
     resource :session, only: [:create, :destroy, :show]
     delete "user_websites" => "user_websites#destroy"
+    get "user_articles/unread/:id" => "user_articles#unread"
   end
 end
