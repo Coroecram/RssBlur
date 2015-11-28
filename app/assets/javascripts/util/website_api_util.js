@@ -1,3 +1,4 @@
+$.ajaxSetup({timeout: 5000});
 (function (root) {
 
   var WebsiteApiUtil = root.WebsiteApiUtil = {

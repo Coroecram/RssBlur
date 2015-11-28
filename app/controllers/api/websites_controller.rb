@@ -17,7 +17,7 @@ class Api::WebsitesController < ApplicationController
       page = false
     end
     if page
-      feed = feed_validation(url)
+      feed = (page.content_type === "text/xml" ? true : false)
       url = page.feed
       url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
       @website = Website.find_by_url(url)
@@ -57,14 +57,6 @@ class Api::WebsitesController < ApplicationController
 
   def website_params
     params.require(:website).permit(:url, :folder_id)
-  end
-
-  def feed_validation(url)
-    begin
-      page = MetaInspector.new(url)
-    rescue
-    end
-    return (page.content_type === "text/xml" ? true : false)
   end
 
 end
