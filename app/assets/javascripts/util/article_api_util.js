@@ -10,7 +10,6 @@
     },
 
     fetchUnreadCount: function (id, success, error) {
-      debugger
       $.ajax({
         url: '/api/user_articles/unread/' + id,
         type: 'GET',
@@ -19,7 +18,6 @@
           error && error(response.responseText);
         },
         success: function (unread) {
-          debugger
           success && success(unread.count);
           }
         });
