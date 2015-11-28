@@ -3,7 +3,7 @@ var mainIdx = 0;
 
 var ArticleIndex = React.createClass({
 
-  mixins: [TimerMixin],
+  mixins: [TimerMixin, ReactRouter.History],
 
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
@@ -86,11 +86,9 @@ var ArticleIndex = React.createClass({
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
     if (clickedItem.is_feed) {
-      ArticleApiUtil.fetchArticles(clickedItem, 0);
+      ArticleApiUtil.fetchArticles(clickedItem);
     } else {
-      // website action set to website, maybe change path?
-      // detailed store.
-      // same goes for article click handler
+      this.history.pushState(null, "/website/focus/" + clickedItem.id)
     }
     this.setState({sidebar: clickedItem,
                    articles: null,
