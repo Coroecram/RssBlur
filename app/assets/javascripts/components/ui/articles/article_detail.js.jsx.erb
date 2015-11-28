@@ -8,7 +8,7 @@ var ArticleDetail = React.createClass({
     var articleDate = new Date(this.props.article.created_date);
     var detailDate = DateFormat.format.date(articleDate, "h:mm p MMMM d, yyyy");
     return (
-            <li className="detail-article" id="{this.article.id}" onClick={this._onClick}>
+            <li className="detail-article" id="{this.article.id}">
               <img className="detail-image"
                    src={this.props.article.image ||
                         '<%= image_path('default-image.JPG') %>'}
@@ -17,7 +17,7 @@ var ArticleDetail = React.createClass({
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
               <p className="article-summary">{this.props.article.summary.substr(0, 300)}</p>
-              <div className="site-button">Click Here to Visit Site</div>
+              <div className="site-button" onClick={this._onClick}>Click Here to Visit Site</div>
             </li>
           );
   }

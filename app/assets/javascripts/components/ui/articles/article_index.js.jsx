@@ -31,8 +31,8 @@ var ArticleIndex = React.createClass({
     if (this.state.articles &&
         !this.state.scrollsSet) {
       var listIdx;
-      var articleListUL = $('.article-list')
-      var articleDetailUL = $('.detail-article-list')
+      var articleListUL = $('.article-list');
+      var articleDetailUL = $('.detail-article-list');
       var articleListScroll = [];
       var articleDetailScroll = [];
       var articleListChildren = articleListUL.children();
@@ -134,6 +134,7 @@ var ArticleIndex = React.createClass({
       }
   },
 
+
   autoScroll: function (toScroll, idx) {
     isScrolling = true;
     toScroll.scrollTo(toScroll.children()[idx],
@@ -145,20 +146,32 @@ var ArticleIndex = React.createClass({
     isScrolling = false;
   },
 
+  _listClick: function (e) {
+    var articleListUL = $('.article-list');
+    var articleDetailUL = $('.detail-article-list');
+    idx = parseInt(e.currentTarget.dataset.index);
+    this.autoScroll(articleListUL, idx);
+    this.autoScroll(articleDetailUL, idx);
+  },
+
   render: function () {
     return (
             <div className="article-index group">
               <ul className="article-list" onScroll={this.joinScroll}>
                   {this.state.articles &&
-                    this.state.articles.map(function (article) {
-                              return <ArticleListItem key={45+article.id} article={article} />
-                             })
+                    this.state.articles.map(function (article, idx) {
+                              return <ArticleListItem key={"listed"+article.id}
+                                                      index={idx}
+                                                      clickHandler={this._listClick}
+                                                      article={article} />
+                             }.bind(this))
                   }
               </ul>
               <ul className="detail-article-list"  onScroll={this.joinScroll}>
               {this.state.articles &&
-                this.state.articles.map(function (article) {
-                          return <ArticleDetail key={9999999+article.id}
+                this.state.articles.map(function (article, idx) {
+                          return <ArticleDetail key={"930xkdeetsl9"+article.id}
+                                                index={idx}
                                                 article={article}/>
                          })
               }

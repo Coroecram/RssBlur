@@ -69,9 +69,17 @@
   font-size: 14px;
 }
 
-.detail-article:hover {
-  border: 1px solid black;
+.site-button {
+  width: 100px;
+  background: #ADD3D3;
+  text-align: center;
+  font-weight: bold;
+  border: 3px solid black;
   padding: 9px;
+}
+
+.site-button:hover {
+  color: #fff;
   background:  #78AEAE;
   cursor: pointer;
 }
