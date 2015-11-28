@@ -3,7 +3,7 @@ var WebsiteListItem = React.createClass({
 
   onClick: function (event) {
     WebsiteApiActions.setSidebarClicked(this.props.website);
-    this.history.pushState(null, '/website/' + this.props.website.id, {});
+    this.history.pushState(null, '/websites/' + this.props.website.id, {});
   },
 
   deleteWebsite: function (event) {

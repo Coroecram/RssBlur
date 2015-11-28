@@ -88,6 +88,7 @@ var ArticleIndex = React.createClass({
     if (clickedItem.is_feed) {
       ArticleApiUtil.fetchArticles(clickedItem);
     } else {
+      debugger
       this.history.pushState(null, "/website/focus/" + clickedItem.id)
     }
     this.setState({sidebar: clickedItem,

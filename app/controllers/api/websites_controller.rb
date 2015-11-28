@@ -51,7 +51,11 @@ class Api::WebsitesController < ApplicationController
   end
 
   def show
-    render json: Website.find(params[:id])
+    @website = Website.find(params[:id].to_i)
+    url = @website.url
+    debugger
+    doc = Nokogiri::XML(open(url))
+    @website
   end
 
   def feed
