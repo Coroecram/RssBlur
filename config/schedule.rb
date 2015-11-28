@@ -7,9 +7,9 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 5.seconds do
-  runner "RunIntervalPeriodicJob.job_to_run_on_interval"
-end
+# every 5.seconds do
+#   runner "RunIntervalPeriodicJob.job_to_run_on_interval"
+# end
 
 #
 # every 4.days do
