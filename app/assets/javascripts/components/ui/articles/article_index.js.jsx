@@ -23,7 +23,6 @@ var ArticleIndex = React.createClass({
   },
 
   _onSidebarChange: function () {
-    debugger
     clickedItem = SidebarClickedStore.fetch();
     ArticleApiUtil.fetchArticles(clickedItem);
     this.setState({sidebar: clickedItem,
@@ -31,7 +30,6 @@ var ArticleIndex = React.createClass({
   },
 
   _onArticlesChange: function () {
-    debugger
     newArticles = ArticleStore.all();
     this.setState({articles: newArticles});
   },
@@ -56,7 +54,6 @@ var ArticleIndex = React.createClass({
   },
 
   render: function () {
-    debugger
     return (
             <div className="article-index group">
               <ul className="article-list">
