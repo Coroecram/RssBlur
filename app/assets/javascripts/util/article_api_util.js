@@ -9,7 +9,7 @@
       'json');
     },
 
-    fetchUnreadCount: function (id, success, error) {
+    fetchUnread: function (id, success, error) {
       $.ajax({
         url: '/api/user_articles/unreadcount/' + id,
         type: 'GET',
@@ -17,8 +17,8 @@
         error: function (response) {
           error && error(response.responseText);
         },
-        success: function (unread) {
-          success && success(unread.count);
+        success: function (data) {
+          success && success(data);
           }
         });
     },

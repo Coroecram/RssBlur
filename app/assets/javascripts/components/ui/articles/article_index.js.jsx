@@ -53,7 +53,9 @@ var ArticleIndex = React.createClass({
     this.autoScroll(articleListUL, idx);
     this.autoScroll(articleDetailUL, idx);
     if (this.state.articleListClick === idx) {
-      ArticleApiUtil.markread(idx)
+      ArticleApiUtil.markRead(idx);
+    } else {
+      this.setState({articleListClick: idx})
     }
   },
 
