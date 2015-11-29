@@ -11,7 +11,7 @@
 
     fetchUnread: function (id, success, error) {
       $.ajax({
-        url: '/api/user_articles/unreadcount/' + id,
+        url: '/api/user_articles/unread/' + id,
         type: 'GET',
         dataType: 'json',
         error: function (response) {
@@ -23,9 +23,24 @@
         });
     },
 
+    fetchUnreadCount: function (id, success, error) {
+      $.ajax({
+        url: '/api/user_articles/unreadcount/' + id,
+        type: 'GET',
+        dataType: 'json',
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (data) {
+          debugger
+          success && success(data);
+          }
+        });
+    },
+
     markRead: function (id, success, error) {
       $.ajax({
-        url: 'user_articles/unread/' + id,
+        url: 'user_articles/read/' + id,
         type: 'POST',
         dataType: 'json',
         error: function (response) {
@@ -39,7 +54,7 @@
 
     markAllRead: function (id, success, error) {
       $.ajax({
-        url: 'user_articles/unreads',
+        url: 'user_articles/allread',
         type: 'POST',
         dataType: 'json',
         error: function (response) {
