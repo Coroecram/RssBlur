@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
   has_many :websites, through: :user_websites
+  has_many :folders, through: :user_websites
   has_many :user_websites, dependent: :destroy
   has_many :user_articles, dependent: :destroy
   has_many :articles, through: :user_articles
