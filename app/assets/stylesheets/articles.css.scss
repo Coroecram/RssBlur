@@ -8,8 +8,19 @@
   overflow-y: scroll;
 }
 
+
 .listed-article {
   text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+  color: #000;
+  background: #DDEFEF;
+  font-size: 12px;
+}
+
+.read {
+  text-align: left;
+  color: #C1BEBE;
   padding: 10px;
   border-bottom: 1px solid #aaa;
   background: #DDEFEF;
@@ -30,7 +41,6 @@
 .listed-article p {
   display: block;
   margin: 5px 0 5px 0;
-  color: #000;
 }
 
 .listed-article > p:last-child {
@@ -43,7 +53,6 @@
 }
 
 .listed-article .small-article-title {
-  color: #000;
   font-weight: bold;
   text-decoration: underline;
 }
