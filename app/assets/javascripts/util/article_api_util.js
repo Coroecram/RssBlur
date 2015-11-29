@@ -47,7 +47,7 @@
         },
         success: function (unread) {
           ArticleApiActions.markedRead();
-          success && success(articleId);
+          success && success();
           }
         });
     },

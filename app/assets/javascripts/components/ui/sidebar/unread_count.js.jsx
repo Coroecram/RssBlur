@@ -14,7 +14,6 @@ var UnreadCount = React.createClass({
   },
 
   _onChange: function () {
-    debugger
     ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 

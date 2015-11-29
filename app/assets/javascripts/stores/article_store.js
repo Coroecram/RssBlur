@@ -56,7 +56,6 @@
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.MARKED_READ):
-      debugger
         ArticleStore.emitChange();
         break;
         default:

@@ -2,6 +2,7 @@ var ArticleDetail = React.createClass({
 
   _onClick: function () {
     window.open(this.props.article.url);
+    ArticleApiUtil.markRead(this.props.articleId);
   },
 
   render: function () {
