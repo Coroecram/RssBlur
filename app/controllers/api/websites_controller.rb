@@ -6,7 +6,6 @@ class Api::WebsitesController < ApplicationController
   before_action :require_signed_in
 
   def index
-    debugger
     render json: current_user.websites
   end
 
@@ -18,7 +17,7 @@ class Api::WebsitesController < ApplicationController
       page = false
     end
     if page
-      feed = (page.content_type === "text/xml" ? true : false)
+      feed = feed_validation(page)
       url = page.feed
       url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
       @website = Website.find_by_url(url)
@@ -26,11 +25,11 @@ class Api::WebsitesController < ApplicationController
         UserWebsite.find_or_create_by(user_id: current_user.id, website_id: @website.id)
         return @website
       elsif feed
-        root_uri = URI(params[:url])
+        root_uri = URI(page.url)
         root_url = "#{root_uri.scheme}://#{root_uri.host}"
         root_page = MetaInspector.new(root_url)
         doc = Nokogiri::XML(open(url))
-        name = "#{doc.xpath("//title").children.first.text} Feed"
+        name = "#{doc.xpath("//title").children.first.text[0..10]} Feed"
         logo = root_page.images.favicon
         description = root_page.description
       else
@@ -56,8 +55,13 @@ class Api::WebsitesController < ApplicationController
 
   private
 
-  def website_params
-    params.require(:website).permit(:url, :folder_id)
+  def feed_validation(page)
+    begin
+      feed = MetaInspector.new(page.feed)
+    rescue
+      feed = page
+    end
+    return (feed.content_type === "text/xml" ? true : false)
   end
 
 end

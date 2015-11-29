@@ -30,7 +30,7 @@ class Api::ArticlesController < ApplicationController
     range = (page...page+rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
-      url, title, author, summary, image, created_date = article_parser(rss_article)
+      url, title, author, summary, image, created_date = article_parser(rss_article, rss)
       next_article = current_article_created_keys[created_date.to_i] ||
                      current_article_url_keys[url] ||
                      Article.create!(
@@ -56,7 +56,7 @@ class Api::ArticlesController < ApplicationController
 
   private
 
-  def article_parser(rss_entry)
+  def article_parser(rss_entry, source)
     url = rss_entry.url
     noko_page = Nokogiri::HTML(rss_entry.summary)
     title = rss_entry.title || "Untitled"
