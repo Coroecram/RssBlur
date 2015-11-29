@@ -5,6 +5,14 @@ var SignUp = React.createClass({
     return {username: "", email: "", password: "", passwordConfirmation: ""};
   },
 
+  componentDidMount: function () {
+    CurrentUserStore.addChangeListener(this._signedUp);
+  },
+
+  componentWillUnmount: function () {
+    CurrentUserStore.removeChangeListener(this._signedUp);
+  },
+
   updateUsername: function (event) {
     this.setState({username: event.currentTarget.value});
   },
@@ -28,7 +36,11 @@ var SignUp = React.createClass({
     },
 
   success: function () {
-    this.history.pushState(null, "/home");
+    alert("Welcome to RSSBlur!");
+  },
+
+  _signedUp: function () {
+    this.history.pushState(null, "/websites/1")
   },
 
   error: function (message) {

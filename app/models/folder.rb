@@ -1,4 +1,4 @@
-class UserWebsite < ActiveRecord::Base
+class Folder < ActiveRecord::Base
   validates :name, length: { maximum: 20 }
 
   has_many :user_websites

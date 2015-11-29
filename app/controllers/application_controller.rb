@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
     session[:session_token] = user.reset_session_token!
   end
 
+  def sign_up!(user)
+    session[:session_token] = user.reset_session_token!
+    root_folder = Folder.create!({root: true})
+    user_website = UserWebsite.create!({user_id: user.id, website_id: 1, folder_id: root_folder.id})
+    root_folder.update({user_website_id: user_website.id})
+  end
+
   def sign_out!
     current_user.reset_session_token!
     session[:session_token] = nil

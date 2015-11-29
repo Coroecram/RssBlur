@@ -12,6 +12,7 @@
         error && error(response.responseText);
       },
       success: function (currentUser) {
+        debugger
         CurrentUserActions.receiveUser(currentUser);
         success && success();
         }
