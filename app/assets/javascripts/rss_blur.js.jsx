@@ -17,6 +17,10 @@ $(document).ready(function () {
     SessionApiUtil.fetchCurrentUser();
   },
 
+  componentWillUnmount: function () {
+    CurrentUserStore.removeChangeListener(this._ensureLoggedIn);
+  },
+
   _ensureLoggedIn: function () {
     if (!CurrentUserStore.isLoggedIn() &&
         (this.props.location.pathname !== "/create_account" ||

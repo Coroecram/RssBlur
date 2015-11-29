@@ -6,6 +6,7 @@ class Api::WebsitesController < ApplicationController
   before_action :require_signed_in
 
   def index
+    debugger
     render json: current_user.websites
   end
 

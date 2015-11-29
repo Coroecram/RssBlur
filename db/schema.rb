@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128223642) do
+ActiveRecord::Schema.define(version: 20151129125728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20151128223642) do
   add_index "articles", ["url"], name: "index_articles_on_url", using: :btree
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
+  create_table "folders", force: true do |t|
+    t.string   "name"
+    t.integer  "user_website_id"
+    t.boolean  "root",            default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "folders", ["root"], name: "index_folders_on_root", using: :btree
+  add_index "folders", ["user_website_id"], name: "index_folders_on_user_website_id", using: :btree
+
   create_table "periodic_jobs", force: true do |t|
     t.string   "type"
     t.text     "job"
@@ -44,10 +55,12 @@ ActiveRecord::Schema.define(version: 20151128223642) do
   end
 
   create_table "user_articles", force: true do |t|
-    t.integer "user_id"
-    t.integer "article_id"
-    t.boolean "read",       default: false, null: false
-    t.integer "website_id", default: 0,     null: false
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.boolean  "read",       default: false, null: false
+    t.integer  "website_id", default: 0,     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_articles", ["article_id"], name: "index_user_articles_on_article_id", using: :btree
