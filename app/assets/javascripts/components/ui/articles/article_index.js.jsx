@@ -4,11 +4,13 @@ var ArticleIndex = React.createClass({
 
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
-            articles: ArticleStore.all(),
+            articles: null,
+            unreadArticleIds: null,
             articleListClick: null};
   },
 
   componentDidMount: function () {
+    this.fetchUnreads();
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
     if (typeof this.state.sidebar === 'undefined') {
@@ -21,6 +23,19 @@ var ArticleIndex = React.createClass({
   componentWillUnmount: function () {
     SidebarClickedStore.removeChangeListener(this._onSidebarChange);
     ArticleStore.removeChangeListener(this._onArticlesChange);
+  },
+
+  fetchUnreads: function () {
+    ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads);
+  },
+
+  setUnreads: function (data) {
+    unreads = {};
+    for (var i = 0; i < data.length; i++) {
+      articleId = data[i].article_id;
+      unreads[articleId] = true;
+    }
+    this.setState({unreadArticleIds: unreads})
   },
 
   _onSidebarChange: function () {
@@ -50,10 +65,12 @@ var ArticleIndex = React.createClass({
     var articleListUL = $('.article-list');
     var articleDetailUL = $('.detail-article-list');
     idx = parseInt(e.currentTarget.dataset.index);
+    articleId = parseInt(e.currentTarget.dataset.articleId);
     this.autoScroll(articleListUL, idx);
     this.autoScroll(articleDetailUL, idx);
     if (this.state.articleListClick === idx) {
-      ArticleApiUtil.markRead(idx);
+      ArticleApiUtil.markRead(articleId);
+      debugger
     } else {
       this.setState({articleListClick: idx})
     }
@@ -65,8 +82,13 @@ var ArticleIndex = React.createClass({
               <ul className="article-list">
                   {this.state.articles &&
                     this.state.articles.map(function (article, idx) {
+                      if (this.state.unreadArticleIds) {
+                        var readVal = this.state.unreadArticleIds[parseInt(article.id)]
+                      }
                               return <ArticleListItem key={"listed"+article.id}
+                                                      article-id={article.id}
                                                       index={idx}
+                                                      unread={readVal}
                                                       clickHandler={this._listClick}
                                                       article={article} />
                              }.bind(this))

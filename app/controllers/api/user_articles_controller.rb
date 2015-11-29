@@ -17,9 +17,8 @@ class Api::UserArticlesController < ApplicationController
   def mark_read
     user_article = UserArticle.where('user_id = ? AND
                         article_id = ?',
-                        current_user.id, params[:id].to_i)
-    debugger
-    user_article.update!(read: true)
+                        current_user.id, params[:id].to_i).first
+    user_article.update(read: true)
   end
 
   def mark_all_read

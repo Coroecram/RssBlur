@@ -1,3 +1,3 @@
 json.array! @unread do |unread|
-  json.extract! unread, :id
+  json.extract! unread, :article_id
 end

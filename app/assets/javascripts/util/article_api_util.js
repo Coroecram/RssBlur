@@ -32,15 +32,14 @@
           error && error(response.responseText);
         },
         success: function (data) {
-          debugger
           success && success(data);
           }
         });
     },
 
-    markRead: function (id, success, error) {
+    markRead: function (articleId, websiteId, success, error) {
       $.ajax({
-        url: 'user_articles/read/' + id,
+        url: '/api/user_articles/read/' + articleId,
         type: 'POST',
         dataType: 'json',
         error: function (response) {
@@ -54,7 +53,7 @@
 
     markAllRead: function (id, success, error) {
       $.ajax({
-        url: 'user_articles/allread',
+        url: '/api/user_articles/allread',
         type: 'POST',
         dataType: 'json',
         error: function (response) {
