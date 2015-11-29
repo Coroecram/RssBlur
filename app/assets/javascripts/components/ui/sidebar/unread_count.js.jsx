@@ -5,7 +5,7 @@ var UnreadCount = React.createClass({
   },
 
   componentDidMount: function () {
-    SidebarClickedStore.addChangeListener(this._onSidebarChange);
+    ArticleStore.addChangeListener(this._onChange);
     ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 
@@ -14,7 +14,7 @@ var UnreadCount = React.createClass({
     ArticleStore.removeChangeListener(this._onArticlesChange);
   },
 
-  _onSidebarChange: function () {
+  _onChange: function () {
     ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 

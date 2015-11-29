@@ -4,7 +4,8 @@ var ArticleIndex = React.createClass({
 
   getInitialState: function () {
     return {sidebar: SidebarClickedStore.fetch(),
-            articles: ArticleStore.all()};
+            articles: ArticleStore.all(),
+            articleListClick: null};
   },
 
   componentDidMount: function () {
@@ -51,6 +52,9 @@ var ArticleIndex = React.createClass({
     idx = parseInt(e.currentTarget.dataset.index);
     this.autoScroll(articleListUL, idx);
     this.autoScroll(articleDetailUL, idx);
+    if (this.state.articleListClick === idx) {
+      ArticleApiUtil.markread(idx)
+    }
   },
 
   render: function () {
