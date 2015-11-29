@@ -13,6 +13,13 @@ window.ArticleApiActions = {
     });
   },
 
+  receiveAllArticles: function (articles) {
+    AppDispatcher.dispatch({
+      actionType: ArticleConstants.ARTICLES_RECEIVED,
+      articles: articles
+    });
+  },
+
   resetAllArticles: function () {
     AppDispatcher.dispatch({
       actionType: ArticleConstants.RESET_ARTICLES
