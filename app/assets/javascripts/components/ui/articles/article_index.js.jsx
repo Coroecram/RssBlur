@@ -38,6 +38,12 @@ var ArticleIndex = React.createClass({
     this.setState({unreadArticleIds: unreads})
   },
 
+  setRead: function (key) {
+    unreads = this.state.unreadArticleIds;
+    unreads[key] = false;
+    this.setState({unreadArticleIds: unreads});
+  },
+
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
     ArticleApiUtil.fetchArticles(clickedItem);
@@ -68,9 +74,9 @@ var ArticleIndex = React.createClass({
     articleId = parseInt(e.currentTarget.dataset.articleId);
     this.autoScroll(articleListUL, idx);
     this.autoScroll(articleDetailUL, idx);
-    if (this.state.articleListClick === idx) {
-      ArticleApiUtil.markRead(articleId);
-      debugger
+    if (this.state.articleListClick === idx &&
+        e.currentTarget.dataset.unread) {
+      ArticleApiUtil.markRead(articleId, this.setRead);
     } else {
       this.setState({articleListClick: idx})
     }

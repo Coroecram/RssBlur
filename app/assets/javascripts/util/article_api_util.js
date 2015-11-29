@@ -37,7 +37,7 @@
         });
     },
 
-    markRead: function (articleId, websiteId, success, error) {
+    markRead: function (articleId, success, error) {
       $.ajax({
         url: '/api/user_articles/read/' + articleId,
         type: 'POST',
@@ -46,7 +46,8 @@
           error && error(response.responseText);
         },
         success: function (unread) {
-          success && success(unread.count);
+          ArticleApiActions.markedRead();
+          success && success(articleId);
           }
         });
     },

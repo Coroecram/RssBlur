@@ -19,6 +19,7 @@ class Api::UserArticlesController < ApplicationController
                         article_id = ?',
                         current_user.id, params[:id].to_i).first
     user_article.update(read: true)
+    render json: {}
   end
 
   def mark_all_read

@@ -17,5 +17,11 @@ window.ArticleApiActions = {
     AppDispatcher.dispatch({
       actionType: ArticleConstants.RESET_ARTICLES
     });
+  },
+
+  markedRead: function () {
+    AppDispatcher.dispatch({
+      actionType: ArticleConstants.MARKED_READ
+    });
   }
 };
