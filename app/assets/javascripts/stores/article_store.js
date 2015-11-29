@@ -3,7 +3,15 @@
   var CHANGE_EVENT = 'changed';
 
   var setArticles = function (articles) {
-    _articles = articles;
+    uniqueArticles = [];
+    uniqueIds = {};
+    for (var i = 0; i < articles.length; i++) {
+      if (!uniqueIds[articles[i].id]) {
+        uniqueIds[articles[i].id] = true;
+        uniqueArticles.push(articles[i]);
+      }
+    }
+    _articles = uniqueArticles;
   };
 
   var resetArticles = function () {
