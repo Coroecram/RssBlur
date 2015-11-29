@@ -54,6 +54,11 @@ class Api::ArticlesController < ApplicationController
     render json: @articles
   end
 
+  def all
+    @articles = (current_user.articles).order(created_date: :desc)
+    render json: @articles
+  end
+
   private
 
   def article_parser(rss_entry, source)

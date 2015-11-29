@@ -13,7 +13,9 @@ var ArticleIndex = React.createClass({
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
     if (typeof this.state.sidebar === 'undefined') {
-      WebsiteApiUtil.fetchClickedWebsite(this.props.params.id);
+      this.props.params.id ?
+            WebsiteApiUtil.fetchClickedWebsite(this.props.params.id) :
+            null;
     } else {
       this._onSidebarChange();
     }
@@ -39,13 +41,17 @@ var ArticleIndex = React.createClass({
 
   _onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
-    ArticleApiUtil.fetchArticles(clickedItem);
+    clickedItem === "all" ?
+      ArticleApiUtil.fetchAllArticles() :
+      ArticleApiUtil.fetchArticles(clickedItem)
     this.setState({sidebar: clickedItem,
                    articles: null});
   },
 
   _onArticlesChange: function () {
-    ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads);
+    clickedItem === "all" ?
+      undefined :
+      ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
     this.setState({articles: ArticleStore.all()});
   },
 

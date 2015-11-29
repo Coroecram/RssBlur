@@ -9,6 +9,14 @@
       'json');
     },
 
+    fetchAllArticles: function () {
+      $.get('api/allarticles', {},
+      function(articles){
+        ArticleApiActions.receiveAllArticles(articles);
+      },
+      'json');
+    },
+
     fetchUnread: function (id, success, error) {
       $.ajax({
         url: '/api/user_articles/unread/' + id,
