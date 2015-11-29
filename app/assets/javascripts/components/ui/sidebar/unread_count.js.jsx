@@ -15,7 +15,7 @@ var UnreadCount = React.createClass({
   },
 
   _onSidebarChange: function () {
-
+    ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 
   setUnreadCount: function (count) {

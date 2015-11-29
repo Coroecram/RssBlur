@@ -46,7 +46,7 @@ $(document).ready(function () {
          </div>
      );
    }
-  });
+ });
 
     var routes = (
       <Route path="/" component={App}>

@@ -25,8 +25,8 @@
 
     markRead: function (id, success, error) {
       $.ajax({
-        url: '/api/user_articles/unreadcount/' + id,
-        type: 'GET',
+        url: 'user_articles/unread/' + id,
+        type: 'POST',
         dataType: 'json',
         error: function (response) {
           error && error(response.responseText);
@@ -39,8 +39,8 @@
 
     markAllRead: function (id, success, error) {
       $.ajax({
-        url: '/api/user_articles/unreadcount/' + id,
-        type: 'GET',
+        url: 'user_articles/unreads',
+        type: 'POST',
         dataType: 'json',
         error: function (response) {
           error && error(response.responseText);
