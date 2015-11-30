@@ -13,12 +13,16 @@
 ### Views
 * static/root.html.erb
 * user/:id/index.html.erb
+* User#create
+* Session#create
+* Session#destroy
 
 ## Flux
 ### Components
 * App
-* Index
+* SignIn
+* SignOut
 
 ## Gems/Libraries
 * BCrypt
-* jFeed
+* React.Router

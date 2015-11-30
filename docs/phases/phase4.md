@@ -1,10 +1,12 @@
-# Phase 4: Search and Sort (1 days)
+# Phase 4: Unread, Pagination, Search and Sort (2 days)
 
-## Flux
+## React/Flux
+
 ### Stores
-* SearchResults
+* UnreadStore
 
-### Views (React Components)
+### Components
+* Total Unread
 * Search
   - SearchResults*
 * Sort
@@ -12,10 +14,14 @@
     - ArticlesListed*
 
 ### Actions
-* ApiActions.searchSites
-* ApiActions.searchArticles
-* ApiActions.sortSites
-* ApiActions.sortArticles
+* UnreadApiActions.totalUnread
+* UnreadApiActions.addUnread
+* UnreadApiActions.updateUnread
+* ArticleApiActions.sortArticles
+
+### Utils
+* UnreadApiUtil.fetchUnread
+* ArticleApiUtil.searchArticles
 
 ## Gems/Libraries
-* TBD
+* Kaminari

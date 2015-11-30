@@ -3,23 +3,34 @@
 ## Rails
 ### Models
 * Website
+* UserWebsite
 
 ### Controllers
 * Api::WebsitesController (create, index, delete, show, update)
 
 ## Flux
 ### Components
-* LinkView (sidebar)
-* RSSForm
+* Header
+* Sidebar
+* Websites
+* WebsiteList
+* SidebarFooter
+* NewWebsiteForm
+
 
 ### Stores
 * WebsiteStore
+* SidebarClickedStore
 
 ### Actions
-* ApiActions.createWebsite
+* WebsiteApiActions.createWebsite
+* WebsiteApiActions.fetchUserWebsites
+* WebsiteApiActions.deleteWebsite
+* WebsiteApiActions.setSidebarClicked
+
 
 ### ApiUtil
-* SessionApiUtil.fetchUserWebsites
-
-## Gems/Libraries
-* Feedbag
+* WebsiteApiUtil.fetchUserWebsites
+* WebsiteApiUtil.fetchWebsite
+* WebsiteApiUtil.createWebsite
+* WebsiteApiUtil.deleteWebsite

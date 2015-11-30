@@ -13,14 +13,18 @@ RSSBlur allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] Create an account
-- [x] Log in / Log out
-- [ ] Compile RSS feeds, request new articles at regular intervals
-- [ ] Organize website feeds into folders
-- [ ] Organize articles into folders
-- [ ] Tag articles and websites with category tags and search them by tag
-- [ ] Search through article titles for blocks of text
-- [ ] Keep track of read and unread articles
+- [x] React-Based Authentication
+- [x] React-Based Authorization
+- [x] Add new Website to User via pop-up form
+- [x] Organize website feeds into clickable sidebar list
+- [x] Organize articles into list and summary components
+- [x] Add dynamic scrolling to articles on-click of list
+- [x] Add unread counter and update in real-time
+- [ ] Loading Animations
+- [ ] Pagination for Article lists
+- [ ] Edit profile menu
+- [ ] Profile pics with AWS storage
+- [ ] Add Right Click Menu for CRUD options
 
 ## Design Docs
 * [View Wireframes][view]
@@ -44,66 +48,55 @@ to those sites will be provided.
 
 Phase 2 will allow for the addition of website RSS feeds for the User. The
 site will host a single database for each unique website, which users can then
-link to with a join table. By default, the website will refresh a user's feed by
-a specified interval that will be user-controlled in a later point of
-development. I will be using the jQuery plugin jFeed (https://github.com/jfhovinne/jFeed)
-to handle the RSS/XML requests as JSON objects. With the RSS feed API working,
-I will work on the sidebar to view the data coming through.
+link to with a join table. Websites will have to be checked as valid RSS feeds,
+and then added to both the Website database and UserWebsite database when created
+ I will be using the Feedjira gem or the built-in Rails RSS parser to handle the
+ RSS/XML requests and NOKOGIRI to parse them out. With the RSS feed API working,
+I will work on the sidebar to view the data coming through in a selectable list.
 
 [Details][phase-two]
 
-### Phase 3: Articles, Folders, and LinkView (2 days)
+### Phase 3: Articles and UserArticles (2 days)
 
 Phase 3 will be concerned with the centerpiece of my website, the articles.
-(I will definitely need to configure how many articles are pre-cached in the
-database and how to handle garbage collecting/updating the database as the project, views, and my
-understanding of jFeed progresses.) Websites and articles can then be associated
-with different folders which can be created, destroyed, and renamed. This will
-be reflected in new formatting in the sidebar.  Articles will be able to be
- read, tagged, organized, and categorized. Folders will be able to be added,
-  organized, renamed, and destroyed.
+Articles will have to be parsed from the RSS feeds correctly and the relevant information
+passed down the the components. Also, UserArticles will have to be created when
+an user retrieves and Article, and deleted on deletion of the website the User
+and Article are associated with.
 
 [Details][phase-three]
 
-### Phase 4: Search and Sort (1 days)
+### Phase 4: Unread, Pagination, Search and Sort (2 days)
 
-Phase 4 introduces two new features. First, users can search for specific
-articles, based on their title or author, in a selected subset of websites or
-the complete collection of websites the are subscribed to. The second function
-will allow users to sort their article views based upon different criteria.
-(date and read, for starters).
+Phase 4 introduces new features for articles. First, unread articles will be calculated for each UserWebsite and displayed, in real-time, next to the listed website name. Next, users will be able to bring up more articles when they reach the bottom of the scroll. This will be done with the Kaminari gem. (Ideally, there would even be infinite scrolling). Finally, a component will be added to search and display articles with certain criteria. Finally, when the articles are loaded and displayed, they can be sorted by another component without pinging the database again.
 
 [Details][phase-four]
 
-### Phase 5: React Components for Actions (2 days)
 
-Phase 5 will be concerned with the implementation and presentation of the
-different actions required for the website. These will revolve around 2
-components, the RightClickMenu and UserSettings. This is where the UX will be
- created to work with the back end.
+### Phase 5: Profile Info and AWS (1 day)
+
+Phase 5 will be a bit of old and new. I will be going back to the User model and adding a menu with components that will allow a user to change their password and profile pic. For the new, I will be setting up an AWS account linked to my project where I will store the profile pictures.
 
 [Details][phase-five]
 
-### Phase 6: Article Collections (1 day)
+### Phase 6: Right-Click CRUD Component (1 day)
 
-Phase 6 will add a custom feature which is the creation of collections
-of articles. Much like websites, these will hold a number of articles with links.
-The user can create reading lists of different articles they enjoyed. Other users
-can then view each others' collections.
+Phase 6 will be creating a component that comes up on right click that will hold the UX functionality for the different items. This component can be reinterpreted for the different data objects but, to start, will be focused on the CRUD commands for Websites in the sidebar and sorting in the Article components. It will link in to most of the Api actions and Utils already created.
 
 [Details][phase-six]
 
 
 ### Bonus Features (TBD)
-- [ ] Loading Animations
-- [ ] Pagination / infinite scroll for Articles
-- [ ] Profile Page
-- [ ] Multiple sessions to share articles
+- [ ] Guest login controls and walkthrough
+- [ ] Add folders to organize websites
+- [ ] Sign in via Facebook, Twitter, etc.
+- [ ] Sharing articles via social media accounts with one-click
+- [ ] Internal Commenting on Articles
+- [ ] Personal Blogs and Article Collections
+- [ ] Upvoting of Articles, Blogs and Collections
 - [ ] Highlighting in Article share
 - [ ] Public/Private settings
 - [ ] Friends Between Users
-- [ ] Internal Commenting Among Friends on Articles
-- [ ] Upvoting of Articles and Collections
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

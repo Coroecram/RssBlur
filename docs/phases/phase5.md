@@ -1,4 +1,4 @@
-# Phase 5: React Components for Actions (2 days)
+# Phase 5: Profile Info and AWS (1 day)
 
 ## Rails
 ### Models
@@ -7,20 +7,11 @@
 
 ## Flux
 ### Views (React Components)
-* RightClickMenu
 * UserSettings
 * UserAvatar
-* TBD
 
 ### Actions
-* ApiActions.receiveAllWebsites
-* ApiActions.removeWebsite
-* ApiActions.muteSite
-* ApiActions.updateArticles
-* ApiActions.receiveAllFolders
-* ApiActions.createFolder
-* ApiActions.updateFolder
-* ApiActions.deleteFolder
+
 
 ### ApiUtil
 * ApiUtil.fetchAllArticles

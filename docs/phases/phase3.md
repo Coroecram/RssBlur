@@ -1,27 +1,32 @@
-# Phase 3: Articles, Folders, and LinkView (2 days)
+# Phase 3: Articles and UserArticles (2 days)
 
 ## Rails
 ### Models
 * Article
-* Folder
+* UserArticle
 
 ### Controllers
 * Api::ArticlesController (create, index, delete, show, update)
-* Api::FolderController (create, index, delete, show, update)
+* Api::UserArticlesController (create, index, delete, update)
 
 ### Views
-* /users/:id/folders/:id
-* /users/:id/websites/:id/articles
+* /websites/:id
 
+## React/Flux
 
-## Flux
 ### Components
-* LinkView
-* Article Detail
+* ArticleList
+* ArticleListItem
+* ArticleDetail
+* ArticleDetailItem
 
 ### Stores
-* Article
-* Folder
+* ArticlesStore
 
-## Gems/Libraries
-* TBD
+### Actions
+* ArticleApiActions.fetchArticles
+* ArticleApiActions.resetArticles
+
+### ApiUtil
+* ArticleApiUtil.fetchArticles
+* ArticleApiUtil.deleteUserArticles
