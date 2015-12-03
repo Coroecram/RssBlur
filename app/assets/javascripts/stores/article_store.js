@@ -53,7 +53,7 @@
       this.emit(CHANGE_EVENT);
     },
 
-    dispatchToken: AppDispatcher.register(function (payload) {
+    dispatchToken: ArticleDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (ArticleConstants.ARTICLES_RECEIVED):
         setArticles(payload.articles);

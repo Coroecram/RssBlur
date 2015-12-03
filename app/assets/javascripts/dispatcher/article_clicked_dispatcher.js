@@ -1,0 +1,1 @@
+ArticleClickedDispatcher = new Flux.Dispatcher();

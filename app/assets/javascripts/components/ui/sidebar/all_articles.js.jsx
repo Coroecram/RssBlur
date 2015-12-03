@@ -6,11 +6,13 @@ var AllArticles = React.createClass({
   },
 
   componentDidMount: function () {
-    ArticleStore.addChangeListener(this._onChange);
+    ArticleStore.addChangeListener(this._onArticleChange);
+    UnreadStore.addChangeListener(this._onUnreadChange);
   },
 
-  componentWillMount: function () {
-    ArticleStore.removeChangeListener(this._onChange);
+  componentWillUnmount: function () {
+    ArticleStore.removeChangeListener(this._onArticleChange);
+    UnreadStore.removeChangeListener(this._onUnreadChange);
   },
 
   onClick: function (event) {
@@ -18,19 +20,13 @@ var AllArticles = React.createClass({
     this.history.pushState(null, '/all_feeds/', {});
   },
 
-  deleteWebsite: function (event) {
-    event.stopPropagation();
-    WebsiteApiActions.deleteWebsite(this.props.website.id);
+  _onArticleChange: function () {
+    debugger
+    UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 
-  _onChange: function () {
-    unreadCounters = $('.unread-count');
-    var total = 0;
-    for (var i = 1; i < unreadCounters.length; i++) {
-      toAdd = parseInt($(unreadCounters[i]).text());
-      total += (toAdd !== toAdd ? 0 : toAdd);
-      this.setState({totalUnreadCount: total});
-    }
+  _onUnreadChange: function () {
+    this.setState({totalUnreadCount: UnreadStore.fetch()});
   },
 
   render: function () {

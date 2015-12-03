@@ -52,7 +52,7 @@
       this.emit(CHANGE_EVENT);
     },
 
-    dispatchToken: AppDispatcher.register(function (payload) {
+    dispatchToken: WebsiteDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (WebsiteConstants.WEBSITES_RECEIVED):
         setWebsites(payload.websites);

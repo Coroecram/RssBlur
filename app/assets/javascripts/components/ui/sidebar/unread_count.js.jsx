@@ -5,20 +5,21 @@ var UnreadCount = React.createClass({
   },
 
   componentDidMount: function () {
-    ArticleStore.addChangeListener(this._onChange);
+    ArticleStore.addChangeListener(this._onArticleChange);
     ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 
   componentWillUnmount: function () {
-    ArticleStore.removeChangeListener(this._onChange);
+    ArticleStore.removeChangeListener(this._onArticleChange);
   },
 
-  _onChange: function () {
+  _onArticleChange: function () {
     ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
   },
 
   setUnreadCount: function (count) {
     this.setState({unreadCount: count});
+    UnreadActions.passUnreads(this.state.unreadCount);
   },
 
   render: function () {
