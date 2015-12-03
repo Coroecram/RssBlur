@@ -6,7 +6,7 @@ var UnreadCount = React.createClass({
 
   componentDidMount: function () {
     ArticleStore.addChangeListener(this._onArticleChange);
-    ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
+    ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setInitialUnreadState);
   },
 
   componentWillUnmount: function () {
@@ -14,10 +14,14 @@ var UnreadCount = React.createClass({
   },
 
   _onArticleChange: function () {
-    ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadCount);
+    ArticleApiUtil.fetchUnreadCount(this.props.website.id, this.setUnreadState);
   },
 
-  setUnreadCount: function (count) {
+  setInitialUnreadState: function (count) {
+    this.setState({unreadCount: count});
+  },
+
+  setUnreadState: function (count) {
     this.setState({unreadCount: count});
     UnreadActions.passUnreads(this.state.unreadCount);
   },

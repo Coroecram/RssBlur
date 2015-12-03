@@ -1,14 +1,12 @@
 window.UnreadActions = {
   passUnreads: function (unreadCount) {
-    debugger
-    AppDispatcher.dispatch({
-      actionType: UnreadConstants.SENT_UNREAD,
+    UnreadDispatcher.dispatch({
+      actionType: UnreadConstants.PASS_UNREAD,
       count: unreadCount
     });
   },
   subtractUnreads: function (unreadCount) {
-    debugger
-    AppDispatcher.dispatch({
+    UnreadDispatcher.dispatch({
       actionType: UnreadConstants.RESET_UNREAD,
       count: unreadCount
     });

@@ -40,7 +40,7 @@
           error && error(response.responseText);
         },
         success: function (data) {
-          success && success(data);
+          success && success(data.count);
           }
         });
     },

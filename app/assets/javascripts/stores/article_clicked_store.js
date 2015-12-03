@@ -25,7 +25,7 @@
       this.emit(CHANGE_EVENT);
     },
 
-    dispatchToken: ArticleClickedDispatcher.register(function (payload) {
+    dispatchToken: ArticleDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (ArticleClickedConstants.CLICK_RECEIVED):
         setClicked(payload.id);

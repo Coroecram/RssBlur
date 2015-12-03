@@ -21,7 +21,6 @@ var AllArticles = React.createClass({
   },
 
   _onArticleChange: function () {
-    debugger
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 
@@ -32,6 +31,7 @@ var AllArticles = React.createClass({
   render: function () {
     return(
             <li onClick={this.onClick} className="website-list-item group">
+              <p className={"unread-count"}>{this.state.totalUnreadCount}</p>
               <p>All Articles</p>
             </li>
           );

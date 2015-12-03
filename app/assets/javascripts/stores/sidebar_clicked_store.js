@@ -24,7 +24,7 @@
       this.emit(CHANGE_EVENT);
     },
 
-    dispatchToken: SidebarClickedDispatcher.register(function (payload) {
+    dispatchToken: WebsiteDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (SidebarClickedConstants.CLICK_RECEIVED):
         setClicked(payload.object);
