@@ -11,7 +11,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def all
-    @articles = (current_user.articles).order(created_date: :desc)
+    @articles = (current_user.articles).order(created_date: :desc).limit('30')
     render json: @articles
   end
 

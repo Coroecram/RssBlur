@@ -64,6 +64,7 @@ class CurrentArticleParser
                                                         website_id: @website_id
                                                       )
       end
+
     return @articles
   end
 
