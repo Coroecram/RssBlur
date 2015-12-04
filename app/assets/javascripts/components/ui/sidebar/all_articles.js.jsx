@@ -11,6 +11,7 @@ var AllArticles = React.createClass({
   },
 
   componentWillUnmount: function () {
+    UnreadActions.subtractUnreads(this.state.totalUnreadCount)
     ArticleStore.removeChangeListener(this._onArticleChange);
     UnreadStore.removeChangeListener(this._onUnreadChange);
   },
@@ -21,6 +22,7 @@ var AllArticles = React.createClass({
   },
 
   _onArticleChange: function () {
+    debugger
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 
