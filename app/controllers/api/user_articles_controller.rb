@@ -1,13 +1,13 @@
 class Api::UserArticlesController < ApplicationController
 
   def unread
-    @unread = UserArticle.where('user_id = ? AND
+    @unreads = UserArticle.where('user_id = ? AND
                               website_id = ? AND
                               read = false', current_user.id, params[:id].to_i)
   end
 
   def all_unread
-    @unread = UserArticle.where('user_id = ? AND
+    @unreads = UserArticle.where('user_id = ? AND
                                 read = false', current_user.id)
   end
 

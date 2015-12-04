@@ -50,7 +50,7 @@ var ArticleIndex = React.createClass({
 
   _onArticlesChange: function () {
     clickedItem === "all" ?
-      undefined :
+      ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
     this.setState({articles: ArticleStore.all()});
   },

@@ -33,7 +33,7 @@
 
     fetchAllUnread: function (success, error) {
       $.ajax({
-        url: '/api/user_articles/allunread',
+        url: '/api/user_articles/all_unread',
         type: 'GET',
         dataType: 'json',
         error: function (response) {

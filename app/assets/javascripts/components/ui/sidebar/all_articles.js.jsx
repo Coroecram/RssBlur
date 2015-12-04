@@ -30,7 +30,6 @@ var AllArticles = React.createClass({
   },
 
   render: function () {
-    debugger
     return(
             <li onClick={this.onClick} className="website-list-item group">
               <p className={"unread-count"}>{this.state.totalUnreadCount}</p>

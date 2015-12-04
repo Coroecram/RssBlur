@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     delete "user_websites" => "user_websites#destroy"
     get "user_articles/unreadcount/:id" => "user_articles#unread_count"
     get "user_articles/unread/:id" => "user_articles#unread"
-    get "user_articles/allunread" => "user_articles#all_unread"
+    get "user_articles/all_unread" => "user_articles#all_unread"
     get "allarticles" => "articles#all"
     post "user_articles/read/:id" => "user_articles#mark_read"
-    post "user_articles/allread" => "user_articles#mark_all_read"
+    post "user_articles/all_read" => "user_articles#mark_all_read"
   end
 end
