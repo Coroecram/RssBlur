@@ -18,7 +18,6 @@ var UnreadCount = React.createClass({
   },
 
   setUnreadState: function (count) {
-    debugger
     this.setState({unreadCount: count});
     UnreadActions.passUnreads(this.state.unreadCount);
   },

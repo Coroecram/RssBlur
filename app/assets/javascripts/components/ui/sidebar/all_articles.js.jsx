@@ -22,7 +22,6 @@ var AllArticles = React.createClass({
   },
 
   _onArticleChange: function () {
-    debugger
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 
