@@ -31,6 +31,20 @@
         });
     },
 
+    fetchAllUnread: function (success, error) {
+      $.ajax({
+        url: '/api/user_articles/allunread',
+        type: 'GET',
+        dataType: 'json',
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (data) {
+          success && success(data);
+          }
+        });
+    },
+
     fetchUnreadCount: function (id, success, error) {
       $.ajax({
         url: '/api/user_articles/unreadcount/' + id,
@@ -60,7 +74,7 @@
         });
     },
 
-    markAllRead: function (id, success, error) {
+    markAllRead: function (success, error) {
       $.ajax({
         url: '/api/user_articles/allread',
         type: 'POST',

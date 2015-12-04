@@ -6,6 +6,11 @@ class Api::UserArticlesController < ApplicationController
                               read = false', current_user.id, params[:id].to_i)
   end
 
+  def all_unread
+    @unread = UserArticle.where('user_id = ? AND
+                                read = false', current_user.id)
+  end
+
   def unread_count
      count = UserArticle.where('user_id = ? AND
                               website_id = ? AND
