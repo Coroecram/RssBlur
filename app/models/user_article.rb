@@ -5,4 +5,8 @@ class UserArticle < ActiveRecord::Base
   belongs_to :article
 
   has_one :website, through: :article
+
+  def self.current_user_articles(article_ids)
+    self.where('user_id = ? AND article_id IN (?)', current_user.id, article_ids)
+  end
 end
