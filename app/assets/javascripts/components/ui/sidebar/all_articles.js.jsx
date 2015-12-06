@@ -6,6 +6,7 @@ var AllArticles = React.createClass({
   },
 
   componentDidMount: function () {
+    WebsiteApiActions.setSidebarClicked("all");
     ArticleStore.addChangeListener(this._onArticleChange);
     UnreadStore.addChangeListener(this._onUnreadChange);
   },

@@ -5,8 +5,8 @@ class Article < ActiveRecord::Base
   has_many :user_articles
   has_many :users, through: :user_articles
 
-  def self.by_website
-    Article.where('website_id = ?', @website_id)
+  def self.by_website(website_id)
+    Article.where('website_id = ?', website_id)
                          .order(created_date: :desc)
   end
 end
