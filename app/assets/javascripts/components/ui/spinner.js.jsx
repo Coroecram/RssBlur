@@ -3,9 +3,10 @@ var Spinner = React.createClass({
     return (
           <div className="spinner">
             <img className="spinner-image"
-               src={this.props.article.image ||
-                    '<%= image_path('infinity.gif') %>'}
+               src={this.props.source}
             />
+            <br/>
+            <p>Your articles are coming into focus...</p>
           </div>
           );
   }

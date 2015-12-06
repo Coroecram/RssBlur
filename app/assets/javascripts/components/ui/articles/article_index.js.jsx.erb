@@ -3,8 +3,8 @@ var isScrolling = false;
 var ArticleIndex = React.createClass({
 
   getInitialState: function () {
-    debugger
-    return {sidebar: SidebarClickedStore.fetch(),
+    return {source: '<%= image_path('infinity.gif') %>',
+            sidebar: SidebarClickedStore.fetch(),
             articles: null,
             unreadArticleIds: null};
   },
@@ -14,9 +14,10 @@ var ArticleIndex = React.createClass({
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
     if (typeof this.state.sidebar === 'undefined') {
+      this.render();
       this.props.params.id ?
             WebsiteApiUtil.fetchClickedWebsite(this.props.params.id) :
-            WebsiteApiActions.setSidebarClicked("all");;
+            WebsiteApiActions.setSidebarClicked("all");
     } else {
       this._onSidebarChange();
     }
@@ -80,34 +81,38 @@ var ArticleIndex = React.createClass({
   },
 
   render: function () {
-    return (
-            <div className="article-index group">
-              <ul className="article-list">
-                  {this.state.articles &&
-                    this.state.articles.map(function (article, idx) {
-                      if (this.state.unreadArticleIds) {
-                        var readVal = this.state.unreadArticleIds[parseInt(article.id)]
-                      }
-                              return <ArticleListItem key={"listed"+article.id}
-                                                      article-id={article.id}
-                                                      index={idx}
-                                                      unread={readVal}
-                                                      clickHandler={this._listClick}
-                                                      article={article} />
-                             }.bind(this))
-                  }
-              </ul>
-              <ul className="detail-article-list">
-              {this.state.articles &&
-                this.state.articles.map(function (article, idx) {
-                          return <ArticleDetail key={"deets"+article.id}
-                                                articleId={article.id}
-                                                index={idx}
-                                                article={article}/>
-                         })
-              }
-              </ul>
-            </div>
-          );
+    if (!this.state.articles) {
+      return <Spinner source={this.state.source}/>
+    } else {
+        return (
+              <div className="article-index group">
+                <ul className="article-list">
+                    {this.state.articles &&
+                      this.state.articles.map(function (article, idx) {
+                        if (this.state.unreadArticleIds) {
+                          var readVal = this.state.unreadArticleIds[parseInt(article.id)]
+                        }
+                                return <ArticleListItem key={"listed"+article.id}
+                                                        article-id={article.id}
+                                                        index={idx}
+                                                        unread={readVal}
+                                                        clickHandler={this._listClick}
+                                                        article={article} />
+                               }.bind(this))
+                    }
+                </ul>
+                <ul className="detail-article-list">
+                {this.state.articles &&
+                  this.state.articles.map(function (article, idx) {
+                            return <ArticleDetail key={"deets"+article.id}
+                                                  articleId={article.id}
+                                                  index={idx}
+                                                  article={article}/>
+                           })
+                }
+                </ul>
+              </div>
+            );
+      }
   }
 });
