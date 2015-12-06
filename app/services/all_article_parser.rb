@@ -9,12 +9,14 @@ class AllArticleParser
   end
 
   def fetch_articles
-    @user.websites.each do |website|
-      articles = ArticleParser.new(@user.id, 0,
-                                   website.id, website.url)
-      @articles.concat(articles.articles.flatten)
+    if @user.websites
+      @user.websites.each do |website|
+        articles = ArticleParser.new(@user.id, 0,
+                                     website.id, website.url)
+        @articles.concat(articles.articles.flatten)
+      end
+      @articles = @articles.sort_by { |article| article["created_at"] }
     end
-    @articles = @articles.sort_by { |article| article["created_at"] }
   end
-
+  @articles
 end

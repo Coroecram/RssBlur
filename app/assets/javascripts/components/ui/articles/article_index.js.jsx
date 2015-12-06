@@ -3,6 +3,7 @@ var isScrolling = false;
 var ArticleIndex = React.createClass({
 
   getInitialState: function () {
+    debugger
     return {sidebar: SidebarClickedStore.fetch(),
             articles: null,
             unreadArticleIds: null};
@@ -15,7 +16,7 @@ var ArticleIndex = React.createClass({
     if (typeof this.state.sidebar === 'undefined') {
       this.props.params.id ?
             WebsiteApiUtil.fetchClickedWebsite(this.props.params.id) :
-            null;
+            WebsiteApiActions.setSidebarClicked("all");;
     } else {
       this._onSidebarChange();
     }
