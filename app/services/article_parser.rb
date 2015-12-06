@@ -2,38 +2,38 @@ require 'open-uri'
 require 'feedjira'
 require 'rss'
 
-class CurrentArticleParser
+class ArticleParser
   attr_reader :articles
 
-  def initialize(current_user_id, page, website_id, url)
+  def initialize(user_id, page, website_id, url)
     @articles = []
-    @current_user_id = current_user_id
+    @user_id = user_id
     @page = page
     @website_id = website_id
     @url = url
-    current_articles
+    articles
   end
 
-  def current_articles
-    current_articles = Article.where('website_id = ?', @website_id)
+  def articles
+    articles = Article.where('website_id = ?', @website_id)
                            .order(created_date: :desc)
-    current_articles = current_articles.to_a.map(&:serializable_hash)
-    current_articles_ids = current_articles.map{ |article| article["id"] }
-    user_articles = UserArticle.current_user_articles(@current_user_id, current_articles_ids)
+    articles = articles.to_a.map(&:serializable_hash)
+    articles_ids = articles.map{ |article| article["id"] }
+    user_articles = UserArticle.user_articles(@user_id, articles_ids)
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
-    current_article_created_keys = {}
-    current_article_url_keys = {}
-    current_articles.each { |article| current_article_created_keys[article["created_date"].to_i] = article }
-    current_articles.each { |article| current_article_url_keys[article["url"]] = article }
+    article_created_keys = {}
+    article_url_keys = {}
+    articles.each { |article| article_created_keys[article["created_date"].to_i] = article }
+    articles.each { |article| article_url_keys[article["url"]] = article }
 
-    return feed_parse(current_article_created_keys, current_article_url_keys, user_article_keys)
+    return feed_parse(article_created_keys, article_url_keys, user_article_keys)
   end
 
   private
 
-  def feed_parse(current_article_created_keys, current_article_url_keys, user_article_keys)
+  def feed_parse(article_created_keys, article_url_keys, user_article_keys)
     begin
       rss = Feedjira::Feed.fetch_and_parse @url
     rescue
@@ -44,8 +44,8 @@ class CurrentArticleParser
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
-      next_article = current_article_created_keys[created_date.to_i] ||
-                     current_article_url_keys[url] ||
+      next_article = article_created_keys[created_date.to_i] ||
+                     article_url_keys[url] ||
                      Article.create!(
                                       url: url,
                                       title: title,
@@ -58,7 +58,7 @@ class CurrentArticleParser
       new_article_id = next_article["id"] || next_article.id
       @articles.push(next_article)
       user_article_keys[new_article_id] || UserArticle.create!(
-                                                        user_id: @current_user_id,
+                                                        user_id: @user_id,
                                                         article_id: new_article_id,
                                                         read: false,
                                                         website_id: @website_id
