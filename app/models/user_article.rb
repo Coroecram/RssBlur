@@ -6,7 +6,7 @@ class UserArticle < ActiveRecord::Base
 
   has_one :website, through: :article
 
-  def self.current_user_articles(current_user_id, article_ids)
-    self.where('user_id = ? AND article_id IN (?)', current_user_id, article_ids)
+  def self.user_articles(user_id, article_ids)
+    self.where('user_id = ? AND article_id IN (?)', user_id, article_ids)
   end
 end

@@ -15,25 +15,24 @@ class ArticleParser
   end
 
   def articles
-    articles = Article.where('website_id = ?', @website_id)
-                           .order(created_date: :desc)
+    articles = Article.by_website(@website_id)
     articles = articles.to_a.map(&:serializable_hash)
     articles_ids = articles.map{ |article| article["id"] }
     user_articles = UserArticle.user_articles(@user_id, articles_ids)
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
-    article_created_keys = {}
-    article_url_keys = {}
-    articles.each { |article| article_created_keys[article["created_date"].to_i] = article }
-    articles.each { |article| article_url_keys[article["url"]] = article }
+    article_by_created_date = {}
+    article_by_url = {}
+    articles.each { |article| article_by_created_date[article["created_date"].to_i] = article }
+    articles.each { |article| article_by_url[article["url"]] = article }
 
-    return feed_parse(article_created_keys, article_url_keys, user_article_keys)
+    return feed_parse(article_by_created_date, article_by_url, user_article_keys)
   end
 
   private
 
-  def feed_parse(article_created_keys, article_url_keys, user_article_keys)
+  def feed_parse(article_by_created_date, article_by_url, user_article_keys)
     begin
       rss = Feedjira::Feed.fetch_and_parse @url
     rescue
@@ -44,8 +43,8 @@ class ArticleParser
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
-      next_article = article_created_keys[created_date.to_i] ||
-                     article_url_keys[url] ||
+      next_article = article_by_created_date[created_date.to_i] ||
+                     article_by_url[url] ||
                      Article.create!(
                                       url: url,
                                       title: title,
