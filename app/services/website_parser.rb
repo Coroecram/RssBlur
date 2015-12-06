@@ -19,7 +19,7 @@ class WebsiteParser
     end
     if page
       feed = feed_validation(page)
-      url = page.feed
+      url = page.feed || page.url
       url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
       @website = Website.find_by_url(url)
       if @website
@@ -30,7 +30,7 @@ class WebsiteParser
         root_uri = URI(page.url)
         root_url = "#{root_uri.scheme}://#{root_uri.host}"
         root_page = MetaInspector.new(root_url)
-        doc = Nokogiri::XML(open(url))
+        doc = Nokogiri::XML(open(root_url))
         name = "#{doc.xpath("//title").children.first.text[0..10]} Feed"
         logo = root_page.images.favicon
         description = root_page.description
@@ -56,7 +56,7 @@ class WebsiteParser
     rescue
       feed = page
     end
-    return (feed.content_type === "text/xml" ? true : false)
+    return (feed.content_type === "text/xml" || "application/rss+xml" ? true : false)
   end
 
 end

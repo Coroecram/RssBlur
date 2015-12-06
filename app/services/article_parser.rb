@@ -39,7 +39,7 @@ class ArticleParser
       rss = RSS::Parser.parse(@url, do_validate=false)
     end
     page = @page
-    range = (@page...@page+5)
+    range = (@page...rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
