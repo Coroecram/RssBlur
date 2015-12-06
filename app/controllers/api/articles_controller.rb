@@ -11,7 +11,8 @@ class Api::ArticlesController < ApplicationController
   end
 
   def all
-    @articles = AllArticleParser.new(current_user)
+    articles = AllArticleParser.new(current_user)
+    @articles = articles.articles
     render json: @articles
   end
 

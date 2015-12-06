@@ -12,9 +12,9 @@ class AllArticleParser
     @user.websites.each do |website|
       articles = ArticleParser.new(@user.id, 0,
                                    website.id, website.url)
-      @articles.push(articles.articles)
+      @articles.concat(articles.articles.flatten)
     end
-    debugger
+    @articles = @articles.sort_by { |article| article["created_at"] }
   end
 
 end
