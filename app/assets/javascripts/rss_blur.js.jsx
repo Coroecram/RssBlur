@@ -56,6 +56,7 @@ $(document).ready(function () {
       <Route path="/" component={App}>
         <Route path="/sign_in" component={SignIn} />
         <Route path="/create_account" component={SignUp} />
+        <Route path="/user_settings" component={UserSettings} />
           <Route path="/home" component={UserHome}>
             <Route path="/all_feeds" component={ArticleIndex} />
             <Route path="/websites/:id" component={ArticleIndex} />

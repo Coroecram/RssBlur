@@ -14,6 +14,8 @@
 }
 
 .profile-settings {
+  position: relative;
+  z-index:1;
   float: right;
   padding: 1px 2.5px;
   margin: 0 10px;
@@ -28,13 +30,12 @@
   text-align: right;
 }
 
-.settings-menu{
+.settings-menu-ul{
   position: absolute;
   float: right;
   right: 10px;
-  top: 22px;
+  top: 15px;
   padding: 5px;
-  margin: 0 10px;
   width: 125px;
   background: #FFE9D7;
   cursor: pointer;

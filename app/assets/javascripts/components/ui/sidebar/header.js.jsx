@@ -1,6 +1,4 @@
 var Header = React.createClass({
-    mixins: [ReactRouter.History],
-
   getInitialState: function () {
     return {currentUser: CurrentUserStore.fetch(),
             settings: false};
@@ -22,21 +20,12 @@ var Header = React.createClass({
     this.setState({settings: !this.state.settings});
   },
 
-  _signOut: function () {
-    SessionApiUtil.logout();
-  },
-
   render: function () {
     var username =  /Guest.{16}/.exec(this.state.currentUser.username) ?
                         "Guest" : this.state.currentUser.username;
-    var settings
+    var settingsMenu
     if (this.state.settings) {
-      settings = (
-        <ul className="settings-menu group">
-          <li className="settings-option">Profile Settings</li>
-          <li className="settings-option" onClick={this._signOut}>Sign Out</li>
-        </ul>
-      );
+      settingsMenu = <Menu />
     }
     return (
           <div className="articles-header group">
@@ -45,7 +34,7 @@ var Header = React.createClass({
             </div>
             <div className="profile-settings" onClick={this._profileSettings}>
               <i className="fa fa-cog"></i>
-              {settings}
+              {settingsMenu}
             </div>
           </div>
           );
