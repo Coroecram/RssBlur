@@ -22,7 +22,6 @@
       url: '/api/guest_user',
       type: 'POST',
       dataType: 'json',
-      data: credentials,
       error: function (response) {
         error && error(response.responseText);
       },
