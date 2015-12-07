@@ -15,8 +15,39 @@
 
 .profile-settings {
   float: right;
-  padding: 5px;
+  padding: 1px 2.5px;
   margin: 0 10px;
+  width: 14px;
   background: #FFE9D7;
   cursor: pointer;
+  border-radius: 50%
+}
+
+.profile-settings i {
+  width: 14px;
+  text-align: right;
+}
+
+.settings-menu{
+  position: absolute;
+  float: right;
+  right: 10px;
+  top: 22px;
+  padding: 5px;
+  margin: 0 10px;
+  width: 125px;
+  background: #FFE9D7;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.settings-menu li{
+  padding: 3px 0;
+  border-bottom: 1px solid #FFFFE3;
+  font-weight: 500;
+}
+
+.settings-menu li:hover{
+  background: #FFFFE3;
 }

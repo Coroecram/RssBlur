@@ -19,6 +19,7 @@ var Header = React.createClass({
   },
 
   _profileSettings: function () {
+    this.setState({settings: !this.state.settings});
   },
 
   _signOut: function () {
@@ -31,9 +32,9 @@ var Header = React.createClass({
     var settings
     if (this.state.settings) {
       settings = (
-        <ul>
-          <li className="settings">Profile Settings</li>
-          <li className="settings" onClick={this._signOut}>Sign Out</li>
+        <ul className="settings-menu group">
+          <li className="settings-option">Profile Settings</li>
+          <li className="settings-option" onClick={this._signOut}>Sign Out</li>
         </ul>
       );
     }
@@ -42,10 +43,10 @@ var Header = React.createClass({
             <div className="focus-header">
               {"Welcome, " + username}
             </div>
-            <div className="profile-settings" onclick={this._profileSettings}>
+            <div className="profile-settings" onClick={this._profileSettings}>
               <i className="fa fa-cog"></i>
+              {settings}
             </div>
-            {settings}
           </div>
           );
   }
