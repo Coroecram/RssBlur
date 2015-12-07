@@ -14,10 +14,11 @@ class GuestUser
                          password: password,
                          password_confirmation: password
                         })
-                        debugger
-    the_onion = Website.find_by_url("http://www.theonion.com/feeds/rss")
-    engadget = Website.find_by_url("http://www.engadget.com/rss.xml")
-    UserWebsite.create({user_id: @user.id, website_id: the_onion.id})
-    UserWebsite.create({user_id: @user.id, website_id: engadget.id})
+
+  end
+
+  def seed_sites
+    UserWebsite.create({user_id: @user.id, website_id: 16})
+    UserWebsite.create({user_id: @user.id, website_id: 3})
   end
 end

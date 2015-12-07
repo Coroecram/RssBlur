@@ -12,9 +12,9 @@ class Api::UsersController < ApplicationController
 
  def create
    @user = User.new(user_params)
+   debugger
    if @user
      sign_up!(@user)
-     debugger
      render :show
    else
      render json: @user.errors.full_messages.to_sentence, status: 401
@@ -22,7 +22,10 @@ class Api::UsersController < ApplicationController
  end
 
  def create_guest
-   @user = GuestUser.new().user
+   guest = GuestUser.new()
+   @user = guest.user
+   sign_in!(@user)
+   guest.seed_sites
    render :show
  end
 

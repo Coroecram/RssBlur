@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     session[:session_token] = user.reset_session_token!
   end
 
+  def self.sign_in!(user)
+    session[:session_token] = user.reset_session_token!
+  end
+
   def sign_up!(user)
     session[:session_token] = user.reset_session_token!
     root_folder = Folder.create!({root: true})
@@ -31,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in
-    redirect_to new_session_url unless signed_in?
+    redirect_to root unless signed_in?
   end
 
   def require_user_website

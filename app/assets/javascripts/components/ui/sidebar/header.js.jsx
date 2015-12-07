@@ -28,7 +28,7 @@ var Header = React.createClass({
             <div className="focus-header">
               {"Welcome, " + username}
             </div>
-            <div className="profile-settings"><i className="fa fa-cog">???</i></div>
+            <div className="profile-settings"><i className="fa fa-cog"></i></div>
           </div>
           );
   }

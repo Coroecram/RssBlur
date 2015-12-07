@@ -1,6 +1,6 @@
 class Api::WebsitesController < ApplicationController
 
-  before_action :require_signed_in, except: :find
+  before_action :require_signed_in
 
   def index
     render json: current_user.websites
