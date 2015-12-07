@@ -19,6 +19,7 @@ class GuestUser
 
   def seed_sites
     UserWebsite.create({user_id: @user.id, website_id: 10})
-    UserWebsite.create({user_id: @user.id, website_id: 7})
+    UserWebsite.create({user_id: @user.id, website_id: 11})
+    UserWebsite.create({user_id: @user.id, website_id: 13})
   end
 end

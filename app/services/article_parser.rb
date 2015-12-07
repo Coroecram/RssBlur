@@ -73,9 +73,7 @@ class ArticleParser
     title = rss_entry.title || "Untitled"
     author = rss_entry.author || "anonymous"
     summary = noko_page.text
-    if noko_page.css('img').empty?
-      noko_page = Nokogiri::HTML(open(rss_entry.url))
-    end
+    noko_page = Nokogiri::HTML(open(rss_entry.url)) if noko_page.css('img').empty?
     image = noko_page.css('img').first['src'] if noko_page.css('img').first['src'] =~ URI::regexp
     created_date = rss_entry.published
     params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }

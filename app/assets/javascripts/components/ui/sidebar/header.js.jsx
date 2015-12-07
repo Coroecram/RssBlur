@@ -23,7 +23,7 @@ var Header = React.createClass({
   },
 
   _signOut: function () {
-
+    SessionApiUtil.logout();
   },
 
   render: function () {
