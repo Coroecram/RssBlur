@@ -40,7 +40,7 @@ var SignUp = React.createClass({
   },
 
   _signedUp: function () {
-    this.history.pushState(null, "/websites/1")
+    this.history.pushState(null, "/home")
   },
 
   error: function (message) {
@@ -52,12 +52,8 @@ var SignUp = React.createClass({
     this.history.pushState(null, "/sign_in");
   },
 
-  guestLogin: function () {
-    guestUser = {
-                  handle: "7evEUIpk1O1ajjK9lhihQ@belieber.com",
-                  password: "AqXPos8Nz04DPBiBd0BIjQ"
-                };
-    SessionApiUtil.login(guestUser, this.success, this.error);
+  _guestLogin: function () {
+    UserApiUtil.createGuest(this.success);
   },
 
   render: function () {

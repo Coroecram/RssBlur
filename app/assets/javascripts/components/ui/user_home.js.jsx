@@ -17,14 +17,10 @@ var UserHome = React.createClass({
     this.history.pushState(null, "/sign_in");
   },
 
-  signOut: function () {
-    SessionApiUtil.logout();
-  },
-
   render: function () {
     return (
             <div className="user-home group">
-              <Header key={"header"}clickHandler={this.signOut} />
+              <Header key={"header"} />
               <Sidebar key={"sidebar"} />
               {this.props.children}
             </div>

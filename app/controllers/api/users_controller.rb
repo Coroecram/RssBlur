@@ -20,6 +20,11 @@ class Api::UsersController < ApplicationController
    end
  end
 
+ def create_guest
+   @user = GuestUser.new().user
+   render :show
+ end
+
  private
  def user_params
    params.require(:user).permit(:username, :email, :password, :password_confirmation)

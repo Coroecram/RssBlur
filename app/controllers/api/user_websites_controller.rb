@@ -1,6 +1,6 @@
 class Api::UserWebsitesController < ApplicationController
 
-  before_action :require_signed_in
+  before_action :require_signed_in except: :guest_create
   before_action :require_user_website, only: :index
 
   def destroy

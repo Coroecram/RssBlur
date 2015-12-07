@@ -12,7 +12,21 @@
         error && error(response.responseText);
       },
       success: function (currentUser) {
-        debugger
+        CurrentUserActions.receiveUser(currentUser);
+        success && success();
+        }
+      });
+    },
+    createGuest: function (success, error) {
+    $.ajax({
+      url: '/api/guest_user',
+      type: 'POST',
+      dataType: 'json',
+      data: credentials,
+      error: function (response) {
+        error && error(response.responseText);
+      },
+      success: function (currentUser) {
         CurrentUserActions.receiveUser(currentUser);
         success && success();
         }

@@ -24,12 +24,8 @@ var SignIn = React.createClass({
     this.history.pushState(null, '/create_account');
   },
 
-  guestLogin: function () {
-    guestUser = {
-                  handle: "7evEUIpk1O1ajjK9lhihQ@belieber.com",
-                  password: "AqXPos8Nz04DPBiBd0BIjQ"
-                };
-    SessionApiUtil.login(guestUser, this.success, this.error);
+  _guestLogin: function () {
+    UserApiUtil.createGuest(this.success);
   },
 
   render: function () {
@@ -56,7 +52,7 @@ var SignIn = React.createClass({
                 <input type="submit" value="Sign In" />
               <ul className="routes group" >
                 <li onClick={this.signUp}>Sign Up</li>
-                <li className="guest" onClick={this.guestLogin}>Guest</li>
+                <li className="guest" onClick={this._guestLogin}>Guest</li>
               </ul>
               </form>
             </div>

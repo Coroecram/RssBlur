@@ -1,4 +1,5 @@
 var Header = React.createClass({
+    mixins: [ReactRouter.History],
 
   getInitialState: function () {
     return {currentUser: CurrentUserStore.fetch()};
@@ -16,13 +17,18 @@ var Header = React.createClass({
     this.setState({articles: ArticleStore.all()});
   },
 
+  _profileSettings: function () {
+  },
+
   render: function () {
+    var username =  /Guest.{16}/.exec(this.state.currentUser.username) ?
+                        "Guest" : this.state.currentUser.username;
     return (
           <div className="articles-header group">
             <div className="focus-header">
-              {"Welcome, " + this.state.currentUser.username}
+              {"Welcome, " + username}
             </div>
-            <div className="sign-out" onClick={this.props.clickHandler}> Sign Out </div>
+            <div className="profile-settings"><i className="fa fa-cog">???</i></div>
           </div>
           );
   }
