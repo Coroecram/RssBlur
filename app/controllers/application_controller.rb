@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in
-    redirect_to root unless signed_in?
+    redirect_to '/sign_in' unless signed_in?
   end
 
   def require_user_website
