@@ -7,7 +7,7 @@ var UserSettings = React.createClass({
 
   _changePassword: function (event) {
     debugger
-    var credentials = {user: $(event.currentTarget).serializeJSON()};
+    var credentials = $(event.currentTarget).serializeJSON();
     UserApiUtil.updateUser(credentials)
   },
 

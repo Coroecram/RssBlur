@@ -12,7 +12,6 @@ class Api::UsersController < ApplicationController
 
   def create
    @user = User.new(user_params)
-   debugger
    if @user
      sign_up!(@user)
      render :show
@@ -22,7 +21,11 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    debugger
+    if current_user.update({password: params['password'], password_confirmation: params['password_confirmation']})
+      render json: {}, status: 200
+    else
+      render json: current_user.errors.full_messages.to_sentence, status 401
+    end
   end
 
   def create_guest
