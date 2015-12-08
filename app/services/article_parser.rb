@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'feedjira'
 require 'rss'
-require 'byebug'
 
 class ArticleParser
   attr_reader :articles
