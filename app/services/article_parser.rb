@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'feedjira'
 require 'rss'
+require 'byebug'
 
 class ArticleParser
   attr_reader :articles
@@ -43,8 +44,8 @@ class ArticleParser
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
-      next_article = article_by_created_date[created_date.to_i] ||
-                     article_by_url[url] ||
+      next_article = article_by_url[url] ||
+                     article_by_created_date[created_date.to_i] ||
                      Article.create!(
                                       url: url,
                                       title: title,
@@ -56,12 +57,14 @@ class ArticleParser
                                     )
       new_article_id = next_article["id"] || next_article.id
       @articles.push(next_article)
-      user_article_keys[new_article_id] || UserArticle.create!(
-                                                        user_id: @user_id,
-                                                        article_id: new_article_id,
-                                                        read: false,
-                                                        website_id: @website_id
-                                                      )
+        if !user_article_keys[new_article_id]
+         UserArticle.create!(
+                              user_id: @user_id,
+                              article_id: new_article_id,
+                              read: false,
+                              website_id: @website_id
+                            )
+        end
       end
 
     return @articles

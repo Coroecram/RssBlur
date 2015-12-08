@@ -7,11 +7,11 @@ class User < ActiveRecord::Base
   validate :check_email_and_password
   validate :check_username_and_password
   before_validation :ensure_session_token
+  has_attached_file :avatar, styles: { medium: "100x100>", thumb: "50x50>" }, default_url: "/images/default-image.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] },
                                 size: { in: 0..2.megabytes }
 
-  has_attached_file :avatar, styles: { medium: "100x100>", thumb: "50x50>" }, default_url: "/images/default-image.png"
   has_many :websites, through: :user_websites
   has_many :folders, through: :user_websites
   has_many :user_websites, dependent: :destroy

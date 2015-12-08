@@ -19,7 +19,6 @@
     },
 
     logout: function () {
-      debugger
       $.ajax({
         url: '/api/session',
         type: 'DELETE',
