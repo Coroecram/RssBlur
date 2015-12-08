@@ -25,7 +25,6 @@
       dataType: 'json',
       data: credentials,
       error: function (response) {
-        debugger
         error && error(response.responseText);
       },
       success: function () {

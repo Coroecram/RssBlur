@@ -22,11 +22,9 @@ class Api::UsersController < ApplicationController
 
   def update
     if current_user.update({password: params['password'], password_confirmation: params['password_confirmation']})
-      debugger
       render json: {}, status: 200
     else
-      debugger
-      render json: current_user.errors.full_messages.to_sentence, status: 401
+      render json: current_user.errors.full_messages.to_sentence, status: 422
     end
   end
 
