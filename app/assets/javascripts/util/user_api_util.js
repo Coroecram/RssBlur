@@ -25,10 +25,10 @@
       dataType: 'json',
       data: credentials,
       error: function (response) {
+        debugger
         error && error(response.responseText);
       },
-      success: function (currentUser) {
-        CurrentUserActions.receiveUser(currentUser);
+      success: function () {
         success && success();
         }
       });
