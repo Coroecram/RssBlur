@@ -2,15 +2,15 @@ class Api::UsersController < ApplicationController
 
   before_action :require_signed_in, only: [:show, :index]
 
- def index
+  def index
    @users = User.all
- end
+  end
 
- def show
+  def show
    @user = User.find(params[:id])
- end
+  end
 
- def create
+  def create
    @user = User.new(user_params)
    debugger
    if @user
@@ -19,19 +19,22 @@ class Api::UsersController < ApplicationController
    else
      render json: @user.errors.full_messages.to_sentence, status: 401
    end
- end
+  end
 
- def create_guest
+  def update
+    debugger
+  end
+
+  def create_guest
    guest = GuestUser.new()
    @user = guest.user
-   debugger
    sign_in!(@user)
    guest.seed_sites
    render :show
- end
+  end
 
- private
- def user_params
+  private
+  def user_params
    params.require(:user).permit(:username, :email, :password, :password_confirmation)
- end
+  end
 end

@@ -5,6 +5,12 @@ var UserSettings = React.createClass({
     return {password: "", passwordConfirmation: ""};
   },
 
+  _changePassword: function (event) {
+    debugger
+    var credentials = {user: $(event.currentTarget).serializeJSON()};
+    UserApiUtil.updateUser(credentials)
+  },
+
 render: function () {
   return (
           <div className="user-settings">
