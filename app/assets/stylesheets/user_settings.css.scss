@@ -1,0 +1,95 @@
+
+.user-settings {
+  position: relative;
+  width: 500px;
+  margin: auto;
+  padding: 100px;
+  text-align: center;
+}
+
+.user-settings h1 {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  width: 90%;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+.subform:first-of-type {
+  margin-bottom: 5px;
+}
+
+.subform {
+  padding-top: 10px;
+  border: 1px solid #A9A9A9;
+}
+
+.large-thumb {
+  height: 98px;
+  width: 98px;
+  border: 1px solid black;
+  margin: 0 0 10px 10px;
+  float: left;
+}
+
+#uploadBtn {
+  float: left;
+  width: 250px;
+  margin: 20px 0 15px 25px;
+}
+
+.upload-button {
+  display: inline-block;
+  float: left;
+  margin: 17px 0 0 25px;
+  border: 1px solid black;
+  padding: 2px 6px;
+  color: #000000;
+  background: #FFE9D7;
+  cursor: pointer;
+}
+
+.upload-button:active {
+  box-shadow: 0;
+}
+
+.update-form {
+  width: 80%;
+  padding: 20px;
+  border: 1px solid black;
+  text-align: center;
+  background: #D6C4B5;
+}
+
+.update-form h2 {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5px 0 10px 0;
+}
+
+.update-form
+input[type="password"],
+input[type="email"],
+input[type="text"] {
+  height: 25px;
+  width: 300px;
+  border: solid 1px black;
+  margin: 10px auto;
+  text-align:center;
+  font-size: 10px;
+  background: #FFE9D7;
+}
+
+.update-form input[type="submit"] {
+  margin: 10px 0;
+  text-align: center;
+  font-weight: 500;
+  padding: 3px 6px;
+  border: 1px black solid;
+  background: #FFE9D7;
+}
