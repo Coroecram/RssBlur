@@ -34,6 +34,7 @@ gem 'rails_12factor', group: :production
 gem 'feedjira'
 gem "paperclip", "~> 4.3"
 gem "figaro"
+gem 'aws-sdk-v1'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
