@@ -22,17 +22,15 @@ class ArticleParser
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
-    article_by_created_date = {}
     article_by_url = {}
-    articles.each { |article| article_by_created_date[article["created_date"].to_i] = article }
     articles.each { |article| article_by_url[article["url"]] = article }
 
-    return feed_parse(article_by_created_date, article_by_url, user_article_keys)
+    return feed_parse(article_by_url, user_article_keys)
   end
 
   private
 
-  def feed_parse(article_by_created_date, article_by_url, user_article_keys)
+  def feed_parse(article_by_url, user_article_keys)
     begin
       rss = Feedjira::Feed.fetch_and_parse @url
     rescue
@@ -44,7 +42,6 @@ class ArticleParser
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
       next_article = article_by_url[url] ||
-                     article_by_created_date[created_date.to_i] ||
                      Article.create!(
                                       url: url,
                                       title: title,
