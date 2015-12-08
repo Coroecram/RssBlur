@@ -3,7 +3,7 @@ class UserWebsite < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :website
-  belongs_to :folder
+  # belongs_to :folder
 
   has_many :user_articles, through: :website
 end
