@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
  def create_guest
    guest = GuestUser.new()
    @user = guest.user
+   debugger
    sign_in!(@user)
    guest.seed_sites
    render :show

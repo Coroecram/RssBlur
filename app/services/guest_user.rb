@@ -14,7 +14,6 @@ class GuestUser
                          password: password,
                          password_confirmation: password
                         })
-
   end
 
   def seed_sites
