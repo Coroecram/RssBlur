@@ -31,6 +31,22 @@ var UserSettings = React.createClass({
     }
   },
 
+  _changeAvatar: function(event) {
+    event.preventDefault();
+
+    var file = this.state.imageFile;
+
+    var formData = new FormData();
+      formData.append("post[title]", title);
+      formData.append("post[image]", file);
+
+      UserApiUtil.createAvatar(formData, this.resetForm);
+    },
+
+  resetForm: function() {
+    this.setState({ imageUrl: "", imageFile: null });
+  },
+
 render: function () {
   return (
           <div className="user-settings">
@@ -39,7 +55,7 @@ render: function () {
               <i onClick={ this._backHome }
               className="fa fa-home"></i>
             </h1>
-            <div className="update" onSubmit={ this._changePassword }>
+            <div className="update">
             <form className="update-avatar" onSubmit={ this._changeAvatar }>
               <div className="profile-pic subform group">
                   <h2>Current Avatar</h2>
