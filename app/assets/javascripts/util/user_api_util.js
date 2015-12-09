@@ -30,7 +30,6 @@
         error && error(response.responseText);
       },
       success: function (user) {
-        debugger
         success && success();
         CurrentUserActions.updateUser(user);
         }

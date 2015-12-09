@@ -13,7 +13,6 @@ window.CurrentUserActions = {
   },
 
   updateUser: function (user) {
-    debugger
     AppDispatcher.dispatch({
       actionType: CurrentUserConstants.USER_UPDATED,
       user: user
