@@ -22,7 +22,8 @@ class Api::UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      render json: {}, status: 200
+      @user = current_user
+      render :show
     else
       render json: current_user.errors.full_messages.to_sentence, status: 422
     end
