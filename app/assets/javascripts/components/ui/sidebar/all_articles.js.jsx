@@ -7,14 +7,14 @@ var AllArticles = React.createClass({
 
   componentDidMount: function () {
     WebsiteApiActions.setSidebarClicked("all");
-    ArticleStore.addChangeListener(this._onArticleChange);
-    UnreadStore.addChangeListener(this._onUnreadChange);
+    ArticleStore.addChangeListener(this.onArticleChange);
+    UnreadStore.addChangeListener(this.onUnreadChange);
   },
 
   componentWillUnmount: function () {
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
-    ArticleStore.removeChangeListener(this._onArticleChange);
-    UnreadStore.removeChangeListener(this._onUnreadChange);
+    ArticleStore.removeChangeListener(this.onArticleChange);
+    UnreadStore.removeChangeListener(this.onUnreadChange);
   },
 
   onClick: function (event) {
@@ -22,11 +22,11 @@ var AllArticles = React.createClass({
     this.history.pushState(null, '/all_feeds/', {});
   },
 
-  _onArticleChange: function () {
+  onArticleChange: function () {
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 
-  _onUnreadChange: function () {
+  onUnreadChange: function () {
     this.setState({totalUnreadCount: UnreadStore.fetch()});
   },
 
