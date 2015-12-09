@@ -5,6 +5,10 @@ var UserSettings = React.createClass({
     return {password: "", passwordConfirmation: ""};
   },
 
+  _backHome: function () {
+    this.history.pushState(null, '/home')
+  },
+
   _changePassword: function (event) {
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
@@ -14,7 +18,11 @@ var UserSettings = React.createClass({
 render: function () {
   return (
           <div className="user-settings">
-            <h1>     User Settings<i className="fa fa-home"></i></h1>  
+            <h1>
+              User Settings
+              <i onClick={ this._backHome }
+              className="fa fa-home"></i>
+            </h1>
             <form className="update-form" onSubmit={ this._changePassword }>
             <div className="profile-pic subform group">
                 <h2>Current Avatar</h2>
