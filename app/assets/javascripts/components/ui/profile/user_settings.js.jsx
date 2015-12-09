@@ -15,7 +15,7 @@ var UserSettings = React.createClass({
     UserApiUtil.updateUser(credentials);
   },
 
-  changeFile: function(event) {
+  _changeFile: function(event) {
     var reader = new FileReader();
     var file = event.currentTarget.files[0];
     var that = this;
@@ -37,10 +37,8 @@ var UserSettings = React.createClass({
     var file = this.state.imageFile;
 
     var formData = new FormData();
-      formData.append("post[title]", title);
-      formData.append("post[image]", file);
-
-      UserApiUtil.createAvatar(formData, this.resetForm);
+      formData.append("user[avatar]", file);
+      UserApiUtil.updateUser(formData, this.resetForm);
     },
 
   resetForm: function() {
@@ -61,7 +59,7 @@ render: function () {
                   <h2>Current Avatar</h2>
                 <img className="large-thumb">
                 </img>
-                <input id="uploadBtn" type="file" onChange={this.changeFile} className="upload" />
+                <input id="uploadBtn" type="file" onChange={this._changeFile} className="upload" />
                 <input type="submit" value="Update Avatar" />
                 <img className="preview" src={this.state.imageUrl} />
                 <p>Image</p><p>Preview</p>

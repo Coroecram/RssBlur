@@ -18,12 +18,14 @@
       });
     },
 
-    updateUser: function (credentials, success, error) {
+    updateUser: function (attributes, success, error) {
     $.ajax({
       url: '/api/users/current',
       type: 'PATCH',
+      processData: false,
+      contentType: false,
       dataType: 'json',
-      data: credentials,
+      data: attributes,
       error: function (response) {
         error && error(response.responseText);
       },
