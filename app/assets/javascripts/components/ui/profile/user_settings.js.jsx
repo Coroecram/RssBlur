@@ -47,8 +47,7 @@ var UserSettings = React.createClass({
       var file = this.state.imageFile;
 
       var formData = new FormData();
-      debugger
-        this.setState({ fileUploader: false });
+        // this.setState({ fileUploader: false });
         formData.append("user[avatar]", file);
 
         UserApiUtil.updateUser(formData, this.resetForm, this.showFileUploader);
@@ -57,7 +56,7 @@ var UserSettings = React.createClass({
 
   resetForm: function() {
     debugger
-    this.setState({ fileUploader: true, imageUrl: "", imageFile: null });
+    // this.setState({ fileUploader: true, imageUrl: "", imageFile: null });
   },
 
   showFileUploader: function () {
