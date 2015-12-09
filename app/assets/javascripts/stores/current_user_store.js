@@ -51,7 +51,7 @@
         CurrentUserStore.emitChange();
         break;
       case (CurrentUserConstants.USER_UPDATED):
-        setUpdate(user);
+        setUpdate(payload.user);
         CurrentUserStore.emitChange();
         break;
         default:
