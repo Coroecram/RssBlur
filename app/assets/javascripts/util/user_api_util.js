@@ -29,8 +29,10 @@
       error: function (response) {
         error && error(response.responseText);
       },
-      success: function () {
+      success: function (user) {
+        debugger
         success && success();
+        CurrentUserActions.updateUser(user);
         }
       });
     },

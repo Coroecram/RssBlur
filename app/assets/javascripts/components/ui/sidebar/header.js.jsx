@@ -5,15 +5,21 @@ var Header = React.createClass({
   },
 
   componentDidMount: function () {
-    SidebarClickedStore.addChangeListener(this._onChange);
+    SidebarClickedStore.addChangeListener(this.onSidebarChange);
+    CurrentUserStore.addChangeListener(this.onUserChange);
   },
 
   componentWillUnmount: function () {
-    SidebarClickedStore.removeChangeListener(this._onChange);
+    SidebarClickedStore.removeChangeListener(this.onSidebarChange);
+    CurrentUserStore.removeChangeListener(this.onUserChange);
   },
 
-  _onChange: function () {
+  onSidebarChange: function () {
     this.setState({articles: ArticleStore.all()});
+  },
+
+  onUserChange: function () {
+    this.setState({currentUser: CurrentUserStore.fetch()})
   },
 
   _profileSettings: function () {

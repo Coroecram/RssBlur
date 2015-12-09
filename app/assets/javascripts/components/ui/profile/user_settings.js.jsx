@@ -2,11 +2,25 @@ var UserSettings = React.createClass({
   mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {user: CurrentUserStore.fetch(),
+    return {currentUser: CurrentUserStore.fetch(),
             password: "",
             passwordConfirmation: "",
             imageUrl: "",
             imageFile: null};
+  },
+
+  componentDidMount: function () {
+    CurrentUserStore.addChangeListener(this.onUserChange);
+  },
+
+  componentWillUnmount: function () {
+    CurrentUserStore.removeChangeListener(this.onUserChange);
+  },
+
+
+  onUserChange: function () {
+    debugger
+    this.setState({currentUser: CurrentUserStore.fetch()})
   },
 
   backHome: function () {
@@ -70,7 +84,7 @@ render: function () {
             <form className="update-avatar" onSubmit={ this.changeAvatar }>
               <div className="profile-pic subform group">
                   <h2>Change Avatar</h2>
-                <img className="large-thumb">
+                <img className="large-thumb" src={this.state.currentUser.avatar}>
                 </img>
                 <input id="uploadBtn" type="file" onChange={this.changeFile}/>
                 <input type="submit" value="Update Avatar" />

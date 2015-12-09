@@ -10,6 +10,10 @@
     _currentUser = {};
   };
 
+  var setUpdate = function (user) {
+    _currentUser = user;
+  };
+
   var CurrentUserStore = root.CurrentUserStore = $.extend({}, EventEmitter.prototype, {
 
     fetch: function () {
@@ -44,6 +48,10 @@
         break;
       case (CurrentUserConstants.USER_SIGN_OUT):
         resetSignin();
+        CurrentUserStore.emitChange();
+        break;
+      case (CurrentUserConstants.USER_UPDATED):
+        setUpdate(user);
         CurrentUserStore.emitChange();
         break;
         default:
