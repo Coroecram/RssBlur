@@ -17,6 +17,21 @@
   margin: 0 0 10px 0;
 }
 
+.user-settings h1 > span {
+  margin-right: -45px;
+}
+
+.user-settings i {
+  float: right;
+  margin-right: 15px;
+  padding-top: 10px;
+}
+
+.user-settings i:hover {
+  float: right;
+  cursor: pointer;
+}
+
 .subform:first-of-type {
   margin-bottom: 5px;
 }

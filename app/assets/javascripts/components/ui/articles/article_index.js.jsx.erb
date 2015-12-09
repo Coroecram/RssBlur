@@ -14,7 +14,6 @@ var ArticleIndex = React.createClass({
     SidebarClickedStore.addChangeListener(this._onSidebarChange);
     ArticleStore.addChangeListener(this._onArticlesChange);
     if (typeof this.state.sidebar === 'undefined') {
-      debugger
       this.props.params.id ?
             WebsiteApiUtil.fetchClickedWebsite(this.props.params.id) :
             WebsiteApiActions.setSidebarClicked("all");

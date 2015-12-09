@@ -6,9 +6,9 @@ var AllArticles = React.createClass({
   },
 
   componentDidMount: function () {
+    WebsiteApiActions.setSidebarClicked("all");
     ArticleStore.addChangeListener(this._onArticleChange);
     UnreadStore.addChangeListener(this._onUnreadChange);
-    // debugger
   },
 
   componentWillUnmount: function () {
@@ -23,7 +23,6 @@ var AllArticles = React.createClass({
   },
 
   _onArticleChange: function () {
-    debugger
     UnreadActions.subtractUnreads(this.state.totalUnreadCount)
   },
 

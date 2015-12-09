@@ -14,7 +14,7 @@ var UserSettings = React.createClass({
 render: function () {
   return (
           <div className="user-settings">
-            <h1>User Settings</h1>
+            <h1>     User Settings<i className="fa fa-home"></i></h1>  
             <form className="update-form" onSubmit={ this._changePassword }>
             <div className="profile-pic subform group">
                 <h2>Current Avatar</h2>
