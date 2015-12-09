@@ -21,7 +21,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    debugger
     if current_user.update(user_params)
       render json: {}, status: 200
     else

@@ -11,8 +11,14 @@ var UserSettings = React.createClass({
 
   _changePassword: function (event) {
     event.preventDefault();
+    var formData = new FormData();
     var credentials = $(event.currentTarget).serializeJSON();
-    UserApiUtil.updateUser(credentials);
+    var password = credentials.password;
+    var confirmation = credentials.password_confirmation;
+
+    formData.append("user[password]", password);
+    formData.append("user[password_confirmation]", confirmation);
+    UserApiUtil.updateUser(formData, this.resetForm);
   },
 
   _changeFile: function(event) {
