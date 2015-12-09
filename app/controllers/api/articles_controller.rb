@@ -11,8 +11,8 @@ class Api::ArticlesController < ApplicationController
   end
 
   def all
-    articles = AllArticleParser.new(current_user)
-    @articles = articles.articles
+    AllArticleParser.new(current_user)
+    @articles = current_user.articles.order(created_date: :desc)
     render json: @articles
   end
 

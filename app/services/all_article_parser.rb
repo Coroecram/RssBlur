@@ -13,10 +13,7 @@ class AllArticleParser
       @user.websites.each do |website|
         articles = ArticleParser.new(@user.id, 0,
                                      website.id, website.url)
-        @articles.concat(articles.articles.flatten)
       end
-      @articles = @articles.sort_by { |article| article["created_at"] }.reverse
     end
   end
-  @articles
 end
