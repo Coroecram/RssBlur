@@ -2,7 +2,7 @@ var UserSettings = React.createClass({
   mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {password: "", passwordConfirmation: ""};
+    return {password: "", passwordConfirmation: "", imageUrl: "", imageFile: null};
   },
 
   _backHome: function () {
@@ -13,6 +13,22 @@ var UserSettings = React.createClass({
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     UserApiUtil.updateUser(credentials);
+  },
+
+  changeFile: function(event) {
+    var reader = new FileReader();
+    var file = event.currentTarget.files[0];
+    var that = this;
+
+    reader.onloadend = function() {
+      that.setState({ imageUrl: reader.result, imageFile: file });
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({ imageUrl: "", imageFile: null });
+    }
   },
 
 render: function () {
@@ -28,8 +44,10 @@ render: function () {
                 <h2>Current Avatar</h2>
               <img className="large-thumb">
               </img>
-              <input id="uploadBtn" type="file" className="upload" />
+              <input id="uploadBtn" type="file" onChange={this.changeFile} className="upload" />
               <div className="upload-button">Update Avatar</div>
+              <img className="preview" src={this.state.imageUrl} />
+              <p>Image</p><p>Preview</p>
             </div>
             <div className="subform">
               <h2>Change Password</h2>
