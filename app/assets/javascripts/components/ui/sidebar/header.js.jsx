@@ -22,7 +22,7 @@ var Header = React.createClass({
     this.setState({currentUser: CurrentUserStore.fetch()})
   },
 
-  _profileSettings: function () {
+  profileSettings: function () {
     this.setState({settings: !this.state.settings});
   },
 
@@ -35,10 +35,11 @@ var Header = React.createClass({
     }
     return (
           <div className="articles-header group">
+            <img className="user-avatar" src={this.state.currentUser.avatar} />
             <div className="focus-header">
               {"Welcome, " + username}
             </div>
-            <div className="profile-settings" onClick={this._profileSettings}>
+            <div className="profile-settings" onClick={this.profileSettings}>
               <i className="fa fa-cog"></i>
               {settingsMenu}
             </div>
