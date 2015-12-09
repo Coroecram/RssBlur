@@ -5,7 +5,6 @@
   var setArticles = function (articles) {
     uniqueArticles = [];
     uniqueIds = {};
-    debugger
     for (var i = 0; i < articles.length; i++) {
       if (!uniqueIds[articles[i].id]) {
         uniqueIds[articles[i].id] = true;

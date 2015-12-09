@@ -39,17 +39,19 @@ render: function () {
               <i onClick={ this._backHome }
               className="fa fa-home"></i>
             </h1>
-            <form className="update-form" onSubmit={ this._changePassword }>
-            <div className="profile-pic subform group">
-                <h2>Current Avatar</h2>
-              <img className="large-thumb">
-              </img>
-              <input id="uploadBtn" type="file" onChange={this.changeFile} className="upload" />
-              <div className="upload-button">Update Avatar</div>
-              <img className="preview" src={this.state.imageUrl} />
-              <p>Image</p><p>Preview</p>
-            </div>
-            <div className="subform">
+            <div className="update" onSubmit={ this._changePassword }>
+            <form className="update-avatar" onSubmit={ this._changeAvatar }>
+              <div className="profile-pic subform group">
+                  <h2>Current Avatar</h2>
+                <img className="large-thumb">
+                </img>
+                <input id="uploadBtn" type="file" onChange={this.changeFile} className="upload" />
+                <input type="submit" value="Update Avatar" />
+                <img className="preview" src={this.state.imageUrl} />
+                <p>Image</p><p>Preview</p>
+              </div>
+            </form>
+            <form className="update-password" onSubmit={ this._changePassword }>
               <h2>Change Password</h2>
                 <label>New Password
                 <br/>
@@ -68,8 +70,8 @@ render: function () {
                   </label>
                   <br/>
                 <input type="submit" value="Change Password" />
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         );
 }
