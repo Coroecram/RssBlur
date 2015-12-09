@@ -15,7 +15,7 @@ class AllArticleParser
                                      website.id, website.url)
         @articles.concat(articles.articles.flatten)
       end
-      @articles = @articles.sort_by { |article| article["created_at"] }
+      @articles = @articles.sort_by { |article| article["created_at"] }.reverse
     end
   end
   @articles
