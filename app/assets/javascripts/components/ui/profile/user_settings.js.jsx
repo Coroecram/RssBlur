@@ -8,11 +8,11 @@ var UserSettings = React.createClass({
             imageFile: null};
   },
 
-  _backHome: function () {
+  backHome: function () {
     this.history.pushState(null, '/home')
   },
 
-  _changePassword: function (event) {
+  changePassword: function (event) {
     event.preventDefault();
     var formData = new FormData();
     var credentials = $(event.currentTarget).serializeJSON();
@@ -24,7 +24,7 @@ var UserSettings = React.createClass({
     UserApiUtil.updateUser(formData, this.resetForm);
   },
 
-  _changeFile: function(event) {
+  changeFile: function(event) {
     var reader = new FileReader();
     var file = event.currentTarget.files[0];
     var that = this;
@@ -40,7 +40,7 @@ var UserSettings = React.createClass({
     }
   },
 
-  _changeAvatar: function(event) {
+  changeAvatar: function(event) {
     event.preventDefault();
     if (this.state.imageFile) {
       var file = this.state.imageFile;
@@ -62,22 +62,22 @@ render: function () {
           <div className="user-settings">
             <h1>
               User Settings
-              <i onClick={ this._backHome }
+              <i onClick={ this.backHome }
               className="fa fa-home"></i>
             </h1>
             <div className="update">
-            <form className="update-avatar" onSubmit={ this._changeAvatar }>
+            <form className="update-avatar" onSubmit={ this.changeAvatar }>
               <div className="profile-pic subform group">
                   <h2>Change Avatar</h2>
                 <img className="large-thumb">
                 </img>
-                <input id="uploadBtn" type="file" onChange={this._changeFile}/>
+                <input id="uploadBtn" type="file" onChange={this.changeFile}/>
                 <input type="submit" value="Update Avatar" />
                 <img className="preview" src={this.state.imageUrl} />
                 <p>New</p><p>Avatar</p>
               </div>
             </form>
-            <form className="update-password" onSubmit={ this._changePassword }>
+            <form className="update-password" onSubmit={ this.changePassword }>
               <h2>Change Password</h2>
                 <label>New Password
                 <br/>
