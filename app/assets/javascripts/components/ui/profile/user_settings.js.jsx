@@ -2,7 +2,8 @@ var UserSettings = React.createClass({
   mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {password: "",
+    return {user: CurrentUserStore.fetch(),
+            password: "",
             passwordConfirmation: "",
             imageUrl: "",
             imageFile: null};
