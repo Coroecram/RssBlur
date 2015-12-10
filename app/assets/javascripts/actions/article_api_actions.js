@@ -34,7 +34,7 @@ window.ArticleApiActions = {
 
   search: function (query) {
     ArticleDispatcher.dispatch({
-      actionType: ArticleConstants.ARTICLES_RECEIVED,
+      actionType: ArticleConstants.SEARCH,
       query: query
     });
   },

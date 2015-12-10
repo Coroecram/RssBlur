@@ -16,8 +16,4 @@ class Api::ArticlesController < ApplicationController
     render json: @articles
   end
 
-  def search
-    debugger
-  end
-
 end

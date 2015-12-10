@@ -14,6 +14,5 @@ Rails.application.routes.draw do
     post "user_articles/read/:id" => "user_articles#mark_read"
     post "user_articles/all_read" => "user_articles#mark_all_read"
     post "guest_user" => "users#create_guest"
-    get "search", to: "articles#search"
   end
 end

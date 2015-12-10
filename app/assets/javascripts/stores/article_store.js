@@ -4,10 +4,9 @@
   var searchQuery = "";
 
   var setArticles = function (articles) {
-    debugger
     uniqueArticles = [];
     uniqueIds = {};
-    for (var i = 0; i < _articles.length; i++) {
+    for (var i = 0; i < articles.length; i++) {
       if (!uniqueIds[articles[i].id]) {
         uniqueIds[articles[i].id] = true;
         uniqueArticles.push(articles[i]);
@@ -31,13 +30,11 @@
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
 
     all: function () {
-      debugger
       if (searchQuery === "") {
         return _articles.slice(0);
       } else {
-        var query = new RegExp(searchQuery)
+        var query = new RegExp(searchQuery, 'i')
         var _articleSet = [];
-        debugger
         for (var i = 0; i < _articles.length; i++) {
           if  (_articles[i].title.search(query) != -1 ||
                _articles[i].author.search(query) != -1 ||
@@ -45,7 +42,7 @@
                   _articleSet.push(_articles[i]);
                 }
         }
-        debugger
+        return _articleSet;
       }
     },
 
