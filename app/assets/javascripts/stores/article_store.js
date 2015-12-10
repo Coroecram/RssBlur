@@ -1,12 +1,13 @@
 (function (root) {
   var _articles = [];
   var CHANGE_EVENT = 'changed';
+  var searchQuery = "";
 
   var setArticles = function (articles) {
     debugger
     uniqueArticles = [];
     uniqueIds = {};
-    for (var i = 0; i < articles.length; i++) {
+    for (var i = 0; i < _articles.length; i++) {
       if (!uniqueIds[articles[i].id]) {
         uniqueIds[articles[i].id] = true;
         uniqueArticles.push(articles[i]);
@@ -23,10 +24,29 @@
     _articles.concat(articles);
   };
 
+  var setQuery = function(query) {
+    searchQuery = query;
+  };
+
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
 
     all: function () {
-      return _articles.slice(0);
+      debugger
+      if (searchQuery === "") {
+        return _articles.slice(0);
+      } else {
+        var query = new RegExp(searchQuery)
+        var _articleSet = [];
+        debugger
+        for (var i = 0; i < _articles.length; i++) {
+          if  (_articles[i].title.search(query) != -1 ||
+               _articles[i].author.search(query) != -1 ||
+               _articles[i].summary.search(query) != -1) {
+                  _articleSet.push(_articles[i]);
+                }
+        }
+        debugger
+      }
     },
 
     reset: function () {
@@ -60,8 +80,8 @@
         setArticles(payload.articles);
         ArticleStore.emitChange();
         break;
-      case (SearchResultConstants.RECEIVE_RESULTS):
-        setArticles(payload.results);
+      case (ArticleConstants.SEARCH):
+        setQuery(payload.query);
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.ARTICLE_CREATED):

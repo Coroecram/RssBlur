@@ -30,5 +30,12 @@ window.ArticleApiActions = {
     ArticleDispatcher.dispatch({
       actionType: ArticleConstants.MARKED_READ
     });
-  }
+  },
+
+  search: function (query) {
+    ArticleDispatcher.dispatch({
+      actionType: ArticleConstants.ARTICLES_RECEIVED,
+      query: query
+    });
+  },
 };

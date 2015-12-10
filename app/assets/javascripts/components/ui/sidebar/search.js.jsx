@@ -1,14 +1,14 @@
 var Search = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
+  mixins: [React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {query: "", page: 1};
+    return {query: ""};
   },
 
-  submit: function (event) {
+  search: function (event) {
     event.preventDefault();
-    SearchApiUtil.search(this.state.query, this.state.page, this.blankState);
+    ArticleApiActions.search(this.state.query);
   },
 
   blankState: function () {
@@ -21,17 +21,13 @@ var Search = React.createClass({
 
   render: function () {
       return (
-              <div>
-                <form className="search-form" autoComplete="off" onSubmit={ this.submit }>
+              <div className="search-form">
                   <label htmlFor="query" >Search for Articles:</label>
                       <input type="text"
                              name="query"
                              valueLink={this.linkState('query')}
+                             onInput={this.search}
                              id="website-url"/>
-                    <button type="submit" className="search">
-                      <i className="fa fa-search" onClick={ this.submit } ></i>
-                    </button>
-                </form>
               </div>
             );
     }
