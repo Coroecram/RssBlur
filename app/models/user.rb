@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
+  attr_accessor :display, :preview, :thumb
 
   validates :email, presence: true, uniqueness: true, email: true
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
@@ -62,6 +63,12 @@ class User < ActiveRecord::Base
 
   def check_username_and_password
     errors.add(:password, "can't be the same as username") if username == password
+  end
+
+  def merge_images
+    return self.as_json.merge({thumb: self.avatar(:thumb),
+                               display: self.avatar(:display),
+                               preview: self.avatar(:preview)})
   end
 
 end

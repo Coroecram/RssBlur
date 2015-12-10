@@ -19,7 +19,6 @@ var UserSettings = React.createClass({
 
 
   onUserChange: function () {
-    debugger
     this.setState({currentUser: CurrentUserStore.fetch()})
   },
 
@@ -84,7 +83,7 @@ render: function () {
             <form className="update-avatar" onSubmit={ this.changeAvatar }>
               <div className="profile-pic subform group">
                   <h2>Change Avatar</h2>
-                <img className="large-thumb" src={this.state.currentUser.avatar}>
+                <img className="large-thumb" src={this.state.currentUser.display}>
                 </img>
                 <input id="uploadBtn" type="file" onChange={this.changeFile}/>
                 <input type="submit" value="Update Avatar" />

@@ -35,7 +35,7 @@ var Header = React.createClass({
     }
     return (
           <div className="articles-header group">
-            <img className="user-avatar" src={this.state.currentUser.avatar} />
+            <img className="user-avatar" src={this.state.currentUser.thumb} />
             <div className="focus-header">
               {"Welcome, " + username}
             </div>
