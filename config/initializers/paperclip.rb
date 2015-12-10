@@ -1,1 +1,1 @@
-Paperclip::Attachment.default_options[:use_timestamp] = false
+# Paperclip::Attachment.default_options[:use_timestamp] = false
