@@ -6,14 +6,10 @@ var Search = React.createClass({
     return {query: "", page: 1};
   },
 
-  onInput: function (e) {
-    e.preventDefault()
+  submit: function (event) {
+    event.preventDefault();
     debugger
-    this.history.pushState(null, null, {
-      query: this.state.query,
-      page: 1
-    });
-    SearchApiUtil(this.state.query, this.state.page)
+    SearchApiUtil(this.state.query, this.state.page);
   },
 
   componentWillReceiveProps: function (newProps) {
@@ -38,12 +34,10 @@ var Search = React.createClass({
                              name="query"
                              valueLink={this.linkState('query')}
                              id="website-url"/>
-                    <br/>
-                    <button type="submit" class="search">
-                      <i class="fa fa-search" onClick={ this.submit } ></i>
+                    <button type="submit" className="search">
+                      <i className="fa fa-search" onClick={ this.submit } ></i>
                     </button>
                 </form>
-                <div className="website-form-triangle" />
               </div>
             );
     }

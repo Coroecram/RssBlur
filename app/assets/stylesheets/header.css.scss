@@ -13,6 +13,26 @@
   margin: 5px 10px;
 }
 
+.search-form {
+  display: block;
+  width: 600px;
+  height: 30px;
+  margin: auto;
+}
+
+.search-form label {
+  font-weight: 700;
+}
+
+.search-form
+  input[type="text"] {
+  height: 25px;
+  margin: 5px 10px 10px 5px;
+  font-size: 16px;
+  text-align: left;
+}
+
+
 .profile-settings {
   position: relative;
   z-index:1;

@@ -43,6 +43,7 @@ var Header = React.createClass({
               <i className="fa fa-cog"></i>
               {settingsMenu}
             </div>
+            <Search />
           </div>
           );
   }
