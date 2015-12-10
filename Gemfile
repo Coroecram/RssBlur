@@ -32,9 +32,9 @@ gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'
 gem 'rails_12factor', group: :production
 gem 'feedjira'
-gem "paperclip", "~> 4.3"
+gem "paperclip"
 gem "figaro"
-gem 'aws-sdk-v1'
+gem 'aws-sdk', '~> 1.6'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

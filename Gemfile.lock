@@ -31,6 +31,8 @@ GEM
     ansi (1.5.0)
     arel (5.0.1.20140414130214)
     ast (2.1.0)
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -307,7 +309,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-v1
+  aws-sdk (~> 1.6)
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
@@ -326,7 +328,7 @@ DEPENDENCIES
   launchy
   link_thumbnailer
   metainspector
-  paperclip (~> 4.3)
+  paperclip
   pg
   pry-rails
   rails (= 4.1.8)
