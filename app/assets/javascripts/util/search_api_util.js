@@ -1,6 +1,6 @@
 var SearchApiUtil = {
 
-  search: function (query, page) {
+  search: function (query, page, success) {
     $.ajax({
       url: '/api/search',
       type: 'GET',
@@ -8,6 +8,7 @@ var SearchApiUtil = {
       data: {query: query, page: page},
       success: function (results) {
         SearchResultActions.receiveResults(results);
+        success && success();
       }
     });
   },

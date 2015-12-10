@@ -1,6 +1,6 @@
 var SearchResultActions = {
   receiveResults: function (results) {
-    AppDispatcher.dispatch({
+    ArticleDispatcher.dispatch({
       actionType: SearchResultConstants.RECEIVE_RESULTS,
       results: results
     });

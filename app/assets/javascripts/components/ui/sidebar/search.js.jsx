@@ -8,8 +8,7 @@ var Search = React.createClass({
 
   submit: function (event) {
     event.preventDefault();
-    debugger
-    SearchApiUtil.search(this.state.query, this.state.page);
+    SearchApiUtil.search(this.state.query, this.state.page, this.blankState);
   },
 
   blankState: function () {

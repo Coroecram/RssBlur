@@ -60,7 +60,7 @@
         ArticleStore.emitChange();
         break;
       case (SearchResultConstants.RECEIVE_RESULTS):
-        setArticles(payload.articles);
+        setArticles(payload.results);
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.ARTICLE_CREATED):
