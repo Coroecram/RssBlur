@@ -3,6 +3,7 @@
   var CHANGE_EVENT = 'changed';
 
   var setArticles = function (articles) {
+    debugger
     uniqueArticles = [];
     uniqueIds = {};
     for (var i = 0; i < articles.length; i++) {
