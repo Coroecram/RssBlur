@@ -3,13 +3,22 @@ var Search = React.createClass({
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function () {
-    return {query: ""};
+    return {query: "", page: 1};
   },
 
-  submit: function (event) {
-    event.preventDefault();
+  onInput: function (e) {
+    e.preventDefault()
     debugger
-    ArticleStore.search(this.state.query);
+    this.history.pushState(null, null, {
+      query: this.state.query,
+      page: 1
+    });
+    SearchApiUtil(this.state.query, this.state.page)
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    this.setState({query: newProps.location.query.query,
+                   page: newProps.location.query.page})
   },
 
   blankState: function () {
