@@ -9,12 +9,7 @@ var Search = React.createClass({
   submit: function (event) {
     event.preventDefault();
     debugger
-    SearchApiUtil(this.state.query, this.state.page);
-  },
-
-  componentWillReceiveProps: function (newProps) {
-    this.setState({query: newProps.location.query.query,
-                   page: newProps.location.query.page})
+    SearchApiUtil.search(this.state.query, this.state.page);
   },
 
   blankState: function () {
