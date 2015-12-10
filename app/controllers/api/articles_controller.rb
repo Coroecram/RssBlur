@@ -18,13 +18,6 @@ class Api::ArticlesController < ApplicationController
 
   def search
     debugger
-    articles = current_user.articles.find_by_title(params[:query]),
-                                    .find_by_author(params[:query]),
-                                    .find_by_summary(params[:query]),
-                                    .page(params[:page]),
-                                    .order(created_date: :desc)
-    debugger
-    @articles = articles.articles
   end
 
 end
