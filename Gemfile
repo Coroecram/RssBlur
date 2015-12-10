@@ -35,6 +35,7 @@ gem 'feedjira'
 gem "paperclip"
 gem "figaro"
 gem 'aws-sdk'
+gem 'pg_search'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
