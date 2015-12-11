@@ -37,7 +37,7 @@ var Search = React.createClass({
 
       return (
               <div className="search-form">
-                  <label htmlFor="query" >Search for Articles:</label>
+                  <label htmlFor="query" >Search Articles:</label>
                       <input type="text"
                              name="query"
                              onChange={ this.search }
