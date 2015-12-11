@@ -15,9 +15,9 @@
 
 .search-form {
   display: block;
-  width: 600px;
+  width: 800px;
   height: 30px;
-  margin: auto;
+  margin-left: 30%;
 }
 
 .search-form label {
@@ -33,6 +33,29 @@
   text-align: left;
 }
 
+.filters {
+  display: inline;
+}
+
+.filter-choices {
+  display: inline;
+}
+
+.filters p {
+  display: inline;
+  font-size: 14px;
+}
+
+.filter-choices > p {
+  font-size: 12px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.active {
+  font-size: 14px;
+  font-weight: 700;
+}
 
 .profile-settings {
   position: relative;
@@ -43,6 +66,7 @@
   width: 14px;
   cursor: pointer;
 }
+
 
 .profile-settings i {
   width: 14px;

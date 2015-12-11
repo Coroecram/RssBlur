@@ -13,6 +13,7 @@ var Search = React.createClass({
   },
 
   chooseFilter: function (event) {
+    this.setState({filter: event.target.textContent.toLowerCase()})
   },
 
   componentWillReceiveProps: function () {
@@ -20,7 +21,11 @@ var Search = React.createClass({
   },
 
   render: function () {
-    var allActive = (this.state.)
+    var allActive = (this.state.filter === "all" ? "active" : "");
+    var titleActive = (this.state.filter === "title" ? "active" : "");
+    var summaryActive = (this.state.filter === "summary" ? "active" : "");
+    var authorActive = (this.state.filter === "author" ? "active" : "");
+
       return (
               <div className="search-form">
                   <label htmlFor="query" >Search for Articles:</label>
