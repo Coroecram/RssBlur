@@ -32,10 +32,10 @@ window.ArticleApiActions = {
     });
   },
 
-  search: function (query) {
+  search: function (searchParams) {
     ArticleDispatcher.dispatch({
       actionType: ArticleConstants.SEARCH,
-      query: query
+      searchParams: searchParams
     });
   },
 };

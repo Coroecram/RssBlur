@@ -5,7 +5,8 @@ var Search = React.createClass({
   },
 
   search: function (event) {
-    ArticleApiActions.search(event.currentTarget.value);
+    searchParams = [event.currentTarget.value, this.state.filter];
+    ArticleApiActions.search(searchParams);
   },
 
   blankState: function () {
