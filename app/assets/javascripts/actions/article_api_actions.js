@@ -20,7 +20,7 @@ window.ArticleApiActions = {
     });
   },
 
-  resetAllArticles: function () {
+  resetArticles: function () {
     ArticleDispatcher.dispatch({
       actionType: ArticleConstants.RESET_ARTICLES
     });

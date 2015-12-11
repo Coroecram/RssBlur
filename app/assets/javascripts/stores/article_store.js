@@ -113,7 +113,7 @@
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.RESET_ARTICLES):
-        resetArticles();
+        ArticleStore.reset();
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.SEARCH):

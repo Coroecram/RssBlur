@@ -43,6 +43,7 @@ var ArticleIndex = React.createClass({
 
   onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
+    ArticleApiActions.resetArticles();
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllArticles(1) :
       ArticleApiUtil.fetchArticles(clickedItem, 1)
