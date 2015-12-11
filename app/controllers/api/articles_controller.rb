@@ -11,9 +11,13 @@ class Api::ArticlesController < ApplicationController
   end
 
   def all
-    AllArticleParser.new(current_user)
-    @articles = current_user.articles.order(created_date: :desc)
-    render json: @articles
+    unless current_user.websites.length == 0
+      AllArticleParser.new(current_user)
+      @articles = current_user.articles.order(created_date: :desc)
+      render json: @articles
+    else
+      render json: {}
+    end
   end
 
 end

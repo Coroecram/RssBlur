@@ -9,13 +9,20 @@
       'json');
     },
 
-    fetchAllArticles: function () {
-      $.get('api/allarticles', {},
-      function(articles){
-        ArticleApiActions.receiveAllArticles(articles);
-      },
-      'json');
-    },
+    fetchAllArticles: function (success, error) {
+      $.ajax({
+        url: '/api/all_articles',
+        type: 'GET',
+        dataType: 'json',
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (data) {
+          ArticleApiActions.receiveAllArticles(data);
+          success && success(data);
+          }
+      });
+  },
 
     fetchUnread: function (id, success, error) {
       $.ajax({

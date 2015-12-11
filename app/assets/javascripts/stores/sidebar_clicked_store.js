@@ -30,6 +30,11 @@
         setClicked(payload.object);
         SidebarClickedStore.emitChange();
         break;
+      case (WebsiteConstants.WEBSITE_DELETE):
+      debugger
+        setClicked("all");
+        SidebarClickedStore.emitChange();
+        break;
         default:
       }
     })
