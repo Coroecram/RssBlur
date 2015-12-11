@@ -61,10 +61,11 @@ var ArticleIndex = React.createClass({
 
   incrementPage: function () {
     debugger
-    var per = this.state.page === 1 ? this.state.articles.length : 10;
+    var page = this.state.page
+    var per = (page === 1 ? this.state.articles.length : 10);
     clickedItem === "all" ?
-      ArticleApiUtil.fetchAllArticles(this.state.page + 1) :
-      ArticleApiUtil.fetchArticles(clickedItem, this.state.page + 1, per)
+      ArticleApiUtil.fetchAllArticles(page + 1) :
+      ArticleApiUtil.fetchArticles(clickedItem, page + 1, per)
     this.setState({page: page += 1});
   },
 
@@ -95,6 +96,9 @@ var ArticleIndex = React.createClass({
     if (!this.state.articles) {
       return <Spinner source={this.state.source}/>
     } else {
+      var nextPage = <li className="next-page" onClick={this.incrementPage}>
+                        Load More Articles
+                     </li>
         return (
               <div className="article-index group">
                 <ul className="article-list">
@@ -113,6 +117,7 @@ var ArticleIndex = React.createClass({
                                                         article={article} />
                                }.bind(this))
                     }
+                    {nextPage}
                 </ul>
                 <ul className="detail-article-list">
                 {this.state.articles &&
@@ -125,6 +130,7 @@ var ArticleIndex = React.createClass({
                                                   article={article}/>
                            }.bind(this))
                 }
+                           {nextPage}
                 </ul>
               </div>
             );

@@ -149,3 +149,21 @@
   margin: 0 30px;
   z-index: 2;
 }
+
+.next-page {
+  display: block;
+  float: left;
+  width: calc(100% - 38px);
+  text-align: center;
+  padding: 20px;
+  background: #FFE9D7;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.next-page:hover {
+  border: 1px solid black;
+  padding: 18px;
+  background:  #fffea3;
+  cursor: pointer;
+}
