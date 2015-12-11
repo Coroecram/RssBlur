@@ -14,7 +14,7 @@
         url: '/api/all_articles',
         type: 'GET',
         dataType: 'json',
-        data: {page: page}
+        data: {page: page},
         error: function (response) {
           error && error(response.responseText);
         },

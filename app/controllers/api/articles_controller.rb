@@ -4,17 +4,20 @@ class Api::ArticlesController < ApplicationController
   before_action :require_user_website, only: :index
 
   def index
-    debugger
-    articles = ArticleParser.new(current_user.id, params[:page],
-                                 params[:website_id].to_i, params[:url])
-    @articles = articles.articles
+    if params[:page] == 0
+      articles = ArticleParser.new(current_user.id,
+                                  params[:website_id].to_i, params[:url])
+                                 @articles = articles.articles
+    else
+      @articles = Article.by_website(params[:website_id]).page(params[:page]).per(10)
+    end
     render json: @articles
   end
 
   def all
-    debugger
     unless current_user.websites.length == 0
       AllArticleParser.new(current_user)
+    debugger
       @articles = current_user.articles.order(created_date: :desc)
                                        .page(params[:page])
       render json: @articles

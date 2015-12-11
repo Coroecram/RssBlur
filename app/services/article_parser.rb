@@ -5,17 +5,16 @@ require 'rss'
 class ArticleParser
   attr_reader :articles
 
-  def initialize(user_id, page, website_id, url)
+  def initialize(user_id, website_id, url)
     @articles = []
     @user_id = user_id
-    @page = page
     @website_id = website_id
     @url = url
     articles
   end
 
   def articles
-    articles = Article.by_website(@website_id).page(@page)
+    articles = Article.by_website(@website_id)
     articles = articles.to_a.map(&:serializable_hash)
     articles_ids = articles.map{ |article| article["id"] }
     user_articles = UserArticle.user_articles(@user_id, articles_ids)
@@ -36,8 +35,7 @@ class ArticleParser
     rescue
       rss = RSS::Parser.parse(@url, do_validate=false)
     end
-    page = @page
-    range = (@page...rss.entries.length)
+    range = (0...rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, image, created_date = article_parser(rss_article, rss)
