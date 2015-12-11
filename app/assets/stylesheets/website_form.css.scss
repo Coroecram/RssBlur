@@ -36,7 +36,7 @@ span {
   font-size: 16px;
   font-weight: bold;
 }
-.website-form
+.website-form >
 input[type="text"] {
   text-align: left;
   height: 20px;
@@ -49,7 +49,7 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-.website-form
+.website-form >
 input[type="submit"] {
   border: solid 1px black;
   border-radius: 8px;
@@ -63,6 +63,7 @@ input[type="submit"] {
   width: 200px;
   font-size: 12px;
   padding: 0 5px;
+  float: right;
 }
 
 .website-form .check-label{
