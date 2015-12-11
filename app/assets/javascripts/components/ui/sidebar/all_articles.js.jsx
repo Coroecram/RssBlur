@@ -7,12 +7,13 @@ var AllArticles = React.createClass({
 
   componentDidMount: function () {
     WebsiteApiActions.setSidebarClicked("all");
+    UnreadActions.subtractUnreads(this.state.totalUnreadCount);
     ArticleStore.addChangeListener(this.onArticleChange);
     UnreadStore.addChangeListener(this.onUnreadChange);
   },
 
   componentWillUnmount: function () {
-    UnreadActions.subtractUnreads(this.state.totalUnreadCount)
+    UnreadActions.subtractUnreads(this.state.totalUnreadCount);
     ArticleStore.removeChangeListener(this.onArticleChange);
     UnreadStore.removeChangeListener(this.onUnreadChange);
   },
