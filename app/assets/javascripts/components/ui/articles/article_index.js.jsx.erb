@@ -61,9 +61,10 @@ var ArticleIndex = React.createClass({
 
   incrementPage: function () {
     debugger
+    var per = this.state.page === 1 ? this.state.articles.length : 10;
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllArticles(this.state.page + 1) :
-      ArticleApiUtil.fetchArticles(clickedItem, this.state.page + 1)
+      ArticleApiUtil.fetchArticles(clickedItem, this.state.page + 1, per)
     this.setState({page: page += 1});
   },
 

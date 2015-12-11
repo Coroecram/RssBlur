@@ -1,8 +1,11 @@
 (function (root) {
 
   var ArticleApiUtil = root.ArticleApiUtil = {
-    fetchArticles: function (feed) {
-      $.get('api/articles', {url: feed.url, website_id: feed.id},
+    fetchArticles: function (feed, page, per) {
+      $.get('api/articles', {url: feed.url,
+                             website_id: feed.id,
+                             page: page,
+                             per: per},
       function(articles){
         ArticleApiActions.receiveAllArticles(articles);
       },
