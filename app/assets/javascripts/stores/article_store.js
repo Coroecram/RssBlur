@@ -3,6 +3,7 @@
   var CHANGE_EVENT = 'changed';
   var searchQuery = "";
   var searchFilter = "";
+  var articleSet = []
 
   var setArticles = function (articles) {
     uniqueArticles = [];
@@ -25,8 +26,8 @@
   };
 
   var setQuery = function(searchParams) {
-    searchQuery = query;
-    searchFilter = query;
+    searchQuery = searchParams[0];
+    searchFilter = searchParams[1];
   };
 
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
@@ -35,44 +36,48 @@
       if (searchQuery === "") {
         return _articles.slice(0);
       } else {
-        return searchResults
+        return this.searchResults();
       }
     },
 
     searchResults: function () {
+      articleSet = [];
         var query = new RegExp(searchQuery, 'i')
-        var _articleSet = [];
         for (var i = 0; i < _articles.length; i++) {
+          var n = articleSet.length
           if (searchFilter === "all") {
-              this.searchTitle(article[i], query);
-              this.searchSummary(article[i], query);
-              this.searchAuthor(article[i], query);
+              this.searchTitle(_articles[i], query, n);
+              this.searchSummary(_articles[i], query, n);
+              this.searchAuthor(_articles[i], query, n);
             } else if (searchFilter === "title") {
-              this.searchTitle(article[i], query);
+              this.searchTitle(_articles[i], query, n);
             } else if (searchFilter === "summary") {
-              this.searchSummary(article[i], query);
+              this.searchSummary(_articles[i], query, n);
             } else if (searchFilter === "author") {
-              this.searchAuthor(article[i], query);
+              this.searchAuthor(_articles[i], query, n);
             }
         }
-            return _articleSet;
+      return articleSet;
     },
 
-    searchTitle: function (article, regex) {
-      if  (article.title.search(query) != -1) {
-        _articleSet.push(article);
+    searchTitle: function (article, query, length) {
+      if  (article.title.search(query) != -1 &&
+           length === articleSet.length) {
+        articleSet.push(article);
       }
     },
 
-    searchSummary: function (article, regex) {
-      if  (article.summary.search(query) != -1) {
-        _articleSet.push(article);
+    searchSummary: function (article, query, length) {
+      if  (article.summary.search(query) != -1 &&
+           length === articleSet.length) {
+        articleSet.push(article);
       }
     },
 
-    searchAuthor: function(article, regex) {
-      if  (article.author.search(query) != -1) {
-        _articleSet.push(article);
+    searchAuthor: function(article, query, length) {
+      if  (article.author.search(query) != -1 &&
+           length === articleSet.length) {
+        articleSet.push(article);
       }
     },
 

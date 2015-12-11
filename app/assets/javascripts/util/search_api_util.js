@@ -7,7 +7,6 @@ var SearchApiUtil = {
       dataType: 'json',
       data: {query: query, page: page},
       success: function (results) {
-        debugger
         SearchResultActions.receiveResults(results);
         success && success();
       }
