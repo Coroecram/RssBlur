@@ -15,7 +15,7 @@ class ArticleParser
   end
 
   def articles
-    articles = Article.by_website(@website_id)
+    articles = Article.by_website(@website_id).page(@page)
     articles = articles.to_a.map(&:serializable_hash)
     articles_ids = articles.map{ |article| article["id"] }
     user_articles = UserArticle.user_articles(@user_id, articles_ids)
