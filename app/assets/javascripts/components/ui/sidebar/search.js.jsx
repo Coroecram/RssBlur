@@ -5,7 +5,9 @@ var Search = React.createClass({
   },
 
   search: function (event) {
-    searchParams = [event.currentTarget.value, this.state.filter];
+    var query = event.currentTarget.value;
+    this.setState({query: query});
+    searchParams = [query, this.state.filter];
     ArticleApiActions.search(searchParams);
   },
 
@@ -14,7 +16,13 @@ var Search = React.createClass({
   },
 
   chooseFilter: function (event) {
-    this.setState({filter: event.target.textContent.toLowerCase()})
+    var filter = event.target.textContent.toLowerCase();
+    this.setState({filter: filter})
+    this.changeSearchFilter(filter)
+  },
+
+  changeSearchFilter: function (filter) {
+    ArticleApiActions.search([this.state.query, filter]);
   },
 
   componentWillReceiveProps: function () {
