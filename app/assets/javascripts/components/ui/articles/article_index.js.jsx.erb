@@ -5,6 +5,7 @@ var ArticleIndex = React.createClass({
   getInitialState: function () {
     return {source: '<%= image_path('infinity.gif') %>',
             sidebar: SidebarClickedStore.fetch(),
+            page: 0,
             articles: null,
             unreadArticleIds: null};
   },
@@ -46,7 +47,8 @@ var ArticleIndex = React.createClass({
       ArticleApiUtil.fetchAllArticles() :
       ArticleApiUtil.fetchArticles(clickedItem)
     this.setState({sidebar: clickedItem,
-                   articles: null});
+                   articles: null,
+                   page: 1});
   },
 
   onArticleChange: function () {
