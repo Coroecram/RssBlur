@@ -17,7 +17,6 @@ class Api::ArticlesController < ApplicationController
   def all
     unless current_user.websites.length == 0
       AllArticleParser.new(current_user)
-    debugger
       @articles = current_user.articles.order(created_date: :desc)
                                        .page(params[:page])
       render json: @articles

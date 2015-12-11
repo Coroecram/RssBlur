@@ -14,7 +14,7 @@
         uniqueArticles.push(articles[i]);
       }
     }
-    _articles.concat(uniqueArticles);
+    _articles = _articles.concat(uniqueArticles);
   };
 
   var resetArticles = function () {
