@@ -14,6 +14,7 @@
         uniqueArticles.push(articles[i]);
       }
     }
+    debugger
     _articles = _articles.concat(uniqueArticles);
   };
 
@@ -109,6 +110,7 @@
     dispatchToken: ArticleDispatcher.register(function (payload) {
       switch (payload.actionType) {
       case (ArticleConstants.ARTICLES_RECEIVED):
+      debugger
         setArticles(payload.articles);
         ArticleStore.emitChange();
         break;

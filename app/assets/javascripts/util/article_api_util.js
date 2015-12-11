@@ -1,15 +1,24 @@
 (function (root) {
 
   var ArticleApiUtil = root.ArticleApiUtil = {
-    fetchArticles: function (feed, page, per) {
-      $.get('api/articles', {url: feed.url,
-                             website_id: feed.id,
-                             page: page,
-                             per: per},
-      function(articles){
-        ArticleApiActions.receiveAllArticles(articles);
-      },
-      'json');
+    fetchArticles: function (feed, page, per, success, error) {
+      $.ajax({
+        url: '/api/articles',
+        type: 'GET',
+        dataType: 'json',
+        data:  {url: feed.url,
+                website_id: feed.id,
+                page: page,
+                per: per},
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (data) {
+          debugger
+          ArticleApiActions.receiveAllArticles(data);
+          success && success(data);
+          }
+      });
     },
 
     fetchAllArticles: function (page, success, error) {
