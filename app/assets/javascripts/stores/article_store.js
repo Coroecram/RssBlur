@@ -112,6 +112,10 @@
         setArticles(payload.articles);
         ArticleStore.emitChange();
         break;
+      case (ArticleConstants.RESET_ARTICLES):
+        resetArticles();
+        ArticleStore.emitChange();
+        break;
       case (ArticleConstants.SEARCH):
         setQuery(payload.searchParams);
         ArticleStore.emitChange();

@@ -5,7 +5,7 @@ var ArticleIndex = React.createClass({
   getInitialState: function () {
     return {source: '<%= image_path('infinity.gif') %>',
             sidebar: SidebarClickedStore.fetch(),
-            page: 0,
+            page: 1,
             articles: null,
             unreadArticleIds: null};
   },
@@ -44,8 +44,8 @@ var ArticleIndex = React.createClass({
   onSidebarChange: function () {
     clickedItem = SidebarClickedStore.fetch();
     clickedItem === "all" ?
-      ArticleApiUtil.fetchAllArticles() :
-      ArticleApiUtil.fetchArticles(clickedItem)
+      ArticleApiUtil.fetchAllArticles(1) :
+      ArticleApiUtil.fetchArticles(clickedItem, 1)
     this.setState({sidebar: clickedItem,
                    articles: null,
                    page: 1});
@@ -56,6 +56,13 @@ var ArticleIndex = React.createClass({
       ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
     this.setState({articles: ArticleStore.all()});
+  },
+
+  incrementPage: function () {
+    clickedItem === "all" ?
+      ArticleApiUtil.fetchAllArticles(this.state.page) :
+      ArticleApiUtil.fetchArticles(clickedItem, this.state.page)
+    this.setState({page: page += 1});
   },
 
   autoScroll: function (toScroll, idx) {
@@ -94,6 +101,8 @@ var ArticleIndex = React.createClass({
                           var readVal = this.state.unreadArticleIds[parseInt(article.id)]
                         }
                                 return <ArticleListItem key={"listed"+article.id}
+                                                        page={this.state.page}
+                                                        incrementPage={this.incrementPage}
                                                         article-id={article.id}
                                                         index={idx}
                                                         unread={readVal}
@@ -106,6 +115,8 @@ var ArticleIndex = React.createClass({
                 {this.state.articles &&
                   this.state.articles.map(function (article, idx) {
                             return <ArticleDetail key={"deets"+article.id}
+                                                  page={this.state.page}
+                                                  incrementPage={this.incrementPage}
                                                   articleId={article.id}
                                                   index={idx}
                                                   article={article}/>

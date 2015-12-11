@@ -9,11 +9,12 @@
       'json');
     },
 
-    fetchAllArticles: function (success, error) {
+    fetchAllArticles: function (page, success, error) {
       $.ajax({
         url: '/api/all_articles',
         type: 'GET',
         dataType: 'json',
+        data: {page: page}
         error: function (response) {
           error && error(response.responseText);
         },
