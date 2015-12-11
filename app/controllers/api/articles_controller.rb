@@ -10,7 +10,7 @@ class Api::ArticlesController < ApplicationController
                                  @articles = articles.articles
     else
       @articles = Article.by_website(params[:website_id]).page(params[:page]).per(params[:per])
-      UserArticleCreator.new(@articles, current_user.id)
+      UserArticleCreator.new(@articles, current_user.id, params[:website_id])
       debugger
     end
     render json: @articles

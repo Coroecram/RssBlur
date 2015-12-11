@@ -3,14 +3,14 @@ class UserArticleCreator
     @articles = articles
     @user_id = user_id
     @website_id = website_id
-    
+
     create_user_articles
   end
 
   def create_user_articles
     articles = @articles.to_a.map(&:serializable_hash)
     articles_ids = articles.map{ |article| article["id"] }
-    user_articles = UserArticle.user_website_articles(@user_id, articles_ids)
+    user_articles = UserArticle.user_website_articles(@user_id, @website_id, articles_ids)
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
