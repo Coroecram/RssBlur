@@ -6,6 +6,7 @@ var ArticleIndex = React.createClass({
     return {source: '<%= image_path('infinity.gif') %>',
             sidebar: SidebarClickedStore.fetch(),
             page: 1,
+            per: 0,
             articles: null,
             unreadArticleIds: null};
   },
@@ -61,7 +62,11 @@ var ArticleIndex = React.createClass({
 
   incrementPage: function () {
     var page = this.state.page;
-    var per = (page === 1 ? this.state.articles.length : 10);
+    var per = this.state.per;
+    if (page === 1) {
+      per = this.state.articles.length;
+      this.setState({per: per})
+    }
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllArticles(page + 1) :
       ArticleApiUtil.fetchArticles(clickedItem, page + 1, per)
