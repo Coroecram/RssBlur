@@ -36,20 +36,18 @@ var Search = React.createClass({
     var authorActive = (this.state.filter === "author" ? "active" : "");
 
       return (
-              <div className="search-form">
+              <div className="search-form group">
                   <label htmlFor="query" >Search Articles:</label>
                       <input type="text"
                              name="query"
                              onChange={ this.search }
                              id="website-url"/>
-                    <div className="filters">
                       <p>Search By: </p>
                       <div className="filter-choices" onClick={ this.chooseFilter }>
                         <p className={allActive}>All</p>
                         <p className={titleActive}>Title</p>
                         <p className={summaryActive}>Summary</p>
                         <p className={authorActive}>Author</p>
-                      </div>
                     </div>
               </div>
             );

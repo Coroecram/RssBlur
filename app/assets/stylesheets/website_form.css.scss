@@ -25,11 +25,6 @@
 }
 
 .website-form
-input[type="checkbox"] {
-  margin: 15px 0 0 0;
-}
-
-.website-form
 span {
   font-size: 16px;
   font-weight: bold;
@@ -38,10 +33,11 @@ span {
 input[type="text"] {
   text-align: left;
   height: 20px;
-  width: 90%;
+  width: 93%;
   padding: 10px;
   margin: 5px 10px;
   font-size: 12px;
+  background: #D6C4B5;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -50,6 +46,7 @@ input[type="text"] {
 .website-form >
 input[type="submit"] {
   padding: 3px 10px;
+  font-weight: 600;
   margin: 5px 5px 5px 10px;
   background: #D6C4B5;
 }
