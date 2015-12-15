@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validate :check_username_and_password
   before_validation :ensure_session_token
   has_attached_file :avatar, styles: { display: "98x98>", preview: "48x48>", thumb: "28x28>" },
-                             default_url: "default-image.jpg"
+                             default_url: "rss-blur-circle.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] },
                                 size: { in: 0..2.megabytes }
