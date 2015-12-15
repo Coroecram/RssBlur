@@ -86,7 +86,7 @@ Phase 6 will be creating a component that comes up on right click that will hold
 [Details][phase-six]
 
 
-### Bonus Features (TBD)
+### Bonus Features
 - [x] Guest login controls and walkthrough
 - [x] Search articles by title, summary or author
 - [ ] Search and Sort articles by time published
