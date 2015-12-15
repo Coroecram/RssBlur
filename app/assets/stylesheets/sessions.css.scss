@@ -10,13 +10,13 @@
 }
 
 .session-header {
-  height: 10%;
-  width: 20%;
+  height: 15%;
+  width: 30%;
   margin: 0 auto;
 }
 
 .session {
-  width: 20%;
+  width: 30%;
   padding: 2%;
   margin: 0 auto;
   border: 1px solid black;
@@ -60,6 +60,10 @@ input[type="text"] {
   margin: 5px 5px 5px 10%;
   float: left;
   background: #D6C4B5;
+}
+
+.session p:last-of-type {
+  margin-left: 10px;
 }
 
 .session p:hover {
