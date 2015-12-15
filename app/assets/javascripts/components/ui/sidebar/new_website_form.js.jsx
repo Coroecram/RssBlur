@@ -51,7 +51,6 @@ var WebsiteForm = React.createClass({
                                      name="url"
                                      valueLink={this.linkState('url')}
                                      id="website-url"/>
-                            <br/>
                             <input type="submit" value="Add"/>
                             {error}
                         </form>
