@@ -45,8 +45,8 @@ var SignIn = React.createClass({
                         maxLength="42"
                          valueLink={this.linkState('password')} />
                   </label>
-                  <p className="guest" onClick={this._guestLogin}>Guest</p>
                   <p onClick={this.signUp}>Sign Up</p>
+                  <p className="guest" onClick={this._guestLogin}>Guest?</p>
                 <input type="submit" value="Sign In" />
               </form>
             </div>
