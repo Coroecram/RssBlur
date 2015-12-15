@@ -7,90 +7,67 @@
   width: 500px;
   margin: auto;
   padding: 100px;
-  text-align: center;
 }
 
 .authentication h1 {
-  font-size: 50px;
+  font-size: 24px;
   font-weight: 700;
   text-align: center;
   margin: 0 0 10px 0;
 }
 
-.authentication button {
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid black;
-  background: #FFE9D7;
-}
-
 .session {
-  width: 80%;
-  padding: 50px;
+  width: 50%;
+  padding: 5px;
+  margin: 0 auto;
   border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
   background: #D6C4B5;
 }
 
-.session label {
-  display:  block;
-  width: auto;
-  font-size: 32px;
+.session span {
+  display: block;
+  font-size: 16px;
   font-weight: 500;
+  margin: 5px 0 0 5px;
 }
 
 .session
 input[type="password"],
 input[type="email"],
 input[type="text"] {
-  height: 50px;
-  width: 300px;
-  border: solid 1px black;
-  border-radius: 5px;
-  margin: 10px auto;
-  text-align:center;
-  font-size: 24px;
+  display: block;
+  height: 24px;
+  width: 240px;
+  padding: 0 5px;
+  margin: 3px auto;
+  font-size: 16px;
   background: #FFE9D7;
 }
 
 .session input[type="submit"] {
   text-align: center;
+  font-size: 16px;
   font-weight: 700;
-  padding: 20px;
-  border: 1px black solid;
-  border-radius: 5px;
+  padding: 3px;
+  margin: 5px 5px 0 0;
   background: #FFE9D7;
-}
-
-.routes {
-  width: 330px;
-  margin: 10px auto 0 auto;
-  font-weight: bold;
-  text-align: center;
-}
-
-.routes li:first-child {
-  display: block;
-  float: left;
-  width: 75px;
-  padding: 13px;
-  border: 1px black solid;
-  cursor: pointer;
-  background: #FFFFE3;
-  border-radius: 5px;
-}
-
-.routes li:last-child {
-  display: block;
   float: right;
-  width: 75px;
-  padding: 13px;
-  border: 1px black solid;
+}
+
+.session p {
+  padding: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px 5px 5px 20px;
+  float: left;
+  background: #D6C4B5;
+}
+
+.session p:hover {
   cursor: pointer;
+}
+
+.guest {
+  padding: 5px 3px;
   background: #6af73b;
-  border-radius: 5px;
 }

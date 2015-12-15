@@ -32,28 +32,22 @@ var SignIn = React.createClass({
     return (
             <div className="authentication">
               <h1>RSS Blur - Sign In</h1>
-              <form className="session signin" onSubmit={ this.submit }>
+              <form className="session signin group" onSubmit={ this.submit }>
                 <label>Username or Email
-                <br/>
                   <input type="text"
                          name="handle"
-                         maxLength="22"
+                         maxLength="20"
                          valueLink={this.linkState('handle')} />
                 </label>
-                <br/>
                 <label>Password
-                <br/>
                   <input type="password"
                          name="password"
-                        maxLength="35"
+                        maxLength="42"
                          valueLink={this.linkState('password')} />
                   </label>
-                  <br/>
+                  <p className="guest" onClick={this._guestLogin}>Guest</p>
+                  <p onClick={this.signUp}>Sign Up</p>
                 <input type="submit" value="Sign In" />
-              <ul className="routes group" >
-                <li onClick={this.signUp}>Sign Up</li>
-                <li className="guest" onClick={this._guestLogin}>Guest</li>
-              </ul>
               </form>
             </div>
           );

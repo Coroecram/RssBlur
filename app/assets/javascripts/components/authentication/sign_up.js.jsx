@@ -60,44 +60,34 @@ var SignUp = React.createClass({
     return (
             <div className="authentication">
               <h1>RSS Blur - Sign Up</h1>
-              <form className="session signin" onSubmit={ this.submit }>
+              <form className="session signin group" onSubmit={ this.submit }>
                 <label>Username
-                <br/>
                   <input type="text"
                          name="username"
-                         maxLength="22"
+                         maxLength="20"
                          valueLink={this.linkState('username')} />
                 </label>
-                <br/>
                 <label>Email
-                <br/>
                   <input type="text"
                          name="email"
-                         maxLength="22"
+                         maxLength="20"
                          valueLink={this.linkState('email')} />
                 </label>
-                <br/>
                 <label>Password
-                <br/>
                   <input type="password"
                          name="password"
-                         maxLength="35"
+                         maxLength="42"
                          valueLink={this.linkState('password')} />
                   </label>
-                  <br/>
                 <label>Confirm Password
-                <br/>
                   <input type="password"
                          name="password_confirmation"
-                         maxLength="35"
+                         maxLength="42"
                          valueLink={this.linkState('passwordConfirmation')} />
                   </label>
-                  <br/>
+                  <p className="guest" onClick={this._guestLogin}>Guest</p>
+                  <p onClick={this.signIn}>Sign In</p>
                 <input type="submit" value="Sign Up" />
-                <ul className="routes group" >
-                  <li onClick={this.signIn}>Sign In</li>
-                  <li className="guest" onClick={""}>Guest</li>
-                </ul>
               </form>
             </div>
           );
