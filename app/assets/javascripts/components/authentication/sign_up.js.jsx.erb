@@ -59,7 +59,9 @@ var SignUp = React.createClass({
   render: function () {
     return (
             <div className="authentication">
-              <h1>RSS Blur - Sign Up</h1>
+              <img className="session-header"
+                   src={'<%= image_path('rssblur-logo-final.png') %>'}
+              />
               <form className="session signin group" onSubmit={ this.submit }>
                 <label>Username
                   <input type="text"
