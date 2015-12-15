@@ -21,6 +21,7 @@ class WebsiteParser
       feed = feed_validation(page)
       url = page.feed || page.url
       url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
+      url = "http://www.wired.com/feed/" if page.url == "http://www.wired.com/"
       @website = Website.find_by_url(url)
       if @website
         UserWebsite.find_or_create_by(user_id: @user_id, website_id: @website.id)
@@ -34,7 +35,6 @@ class WebsiteParser
         begin
           name = "#{doc.xpath("//title").children.first.text[0..10]} Feed"
         rescue
-          debugger
           name = "#{root_page.host[0..10]} Feed"
         end
         logo = root_page.images.favicon
