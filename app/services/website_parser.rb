@@ -31,7 +31,12 @@ class WebsiteParser
         root_url = "#{root_uri.scheme}://#{root_uri.host}"
         root_page = MetaInspector.new(root_url)
         doc = Nokogiri::XML(open(root_url))
-        name = "#{doc.xpath("//title").children.first.text[0..10]} Feed"
+        begin
+          name = "#{doc.xpath("//title").children.first.text[0..10]} Feed"
+        rescue
+          debugger
+          name = "#{root_page.host[0..10]} Feed"
+        end
         logo = root_page.images.favicon
         description = root_page.description
       else
