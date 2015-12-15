@@ -5,8 +5,6 @@ var Spinner = React.createClass({
             <img className="spinner-image"
                src={this.props.source}
             />
-            <br/>
-            <p>Your articles are coming into focus...</p>
           </div>
           );
   }
