@@ -20,11 +20,11 @@ RSSBlur allows users to:
 - [x] Organize articles into list and summary components
 - [x] Add dynamic scrolling to articles on-click of list
 - [x] Add unread counter and update in real-time
-- [ ] Loading Animations
-- [ ] Pagination for Article lists
-- [ ] Edit profile menu
-- [ ] Profile pics with AWS storage
-- [ ] Add Right Click Menu for CRUD options
+- [x] Loading Animations
+- [x] Pagination for Article lists
+- [x] Edit profile menu
+- [x] Profile pics with AWS storage
+
 
 ## Design Docs
 * [View Wireframes][view]
@@ -87,9 +87,13 @@ Phase 6 will be creating a component that comes up on right click that will hold
 
 
 ### Bonus Features (TBD)
-- [ ] Guest login controls and walkthrough
-- [ ] Add folders to organize websites
+- [x] Guest login controls and walkthrough
+- [x] Search articles by title, summary or author
+- [ ] Search and Sort articles by time published
 - [ ] Sign in via Facebook, Twitter, etc.
+- [ ] Sign in via Facebook, Twitter, etc.
+- [ ] Add Right Click Menu for CRUD options
+- [ ] Add folders to organize websites
 - [ ] Sharing articles via social media accounts with one-click
 - [ ] Internal Commenting on Articles
 - [ ] Personal Blogs and Article Collections
