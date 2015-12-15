@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://rssblur.herokuapp.com
 
 ## Minimum Viable Product
 
@@ -92,8 +92,8 @@ Phase 6 will be creating a component that comes up on right click that will hold
 - [ ] Search and Sort articles by time published
 - [ ] Sign in via Facebook, Twitter, etc.
 - [ ] Sign in via Facebook, Twitter, etc.
-- [ ] Add Right Click Menu for CRUD options
-- [ ] Add folders to organize websites
+- [ ] Right Click Menu for CRUD options
+- [ ] Folders to organize websites
 - [ ] Sharing articles via social media accounts with one-click
 - [ ] Internal Commenting on Articles
 - [ ] Personal Blogs and Article Collections
