@@ -5,7 +5,7 @@ window.UnreadActions = {
       count: unreadCount
     });
   },
-  subtractUnreads: function (unreadCount) {
+  resetUnreads: function (unreadCount) {
     UnreadDispatcher.dispatch({
       actionType: UnreadConstants.RESET_UNREAD,
       count: unreadCount

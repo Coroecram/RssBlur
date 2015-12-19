@@ -5,7 +5,6 @@ var Websites = React.createClass({
   },
 
   componentDidMount: function () {
-    WebsiteApiActions.setSidebarClicked("all");
     WebsiteStore.addChangeListener(this._onChange);
   },
 

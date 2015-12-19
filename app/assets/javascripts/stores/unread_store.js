@@ -6,8 +6,8 @@
     _count += count;
   };
 
-  var resetUnreads = function (count) {
-    _count -= count;
+  var resetUnreads = function () {
+    _count = 0;
   };
 
   var UnreadStore = root.UnreadStore = $.extend({}, EventEmitter.prototype, {

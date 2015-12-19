@@ -6,16 +6,16 @@ var AllArticles = React.createClass({
   },
 
   componentDidMount: function () {
-    WebsiteApiActions.setSidebarClicked("all");
-    UnreadActions.subtractUnreads(this.state.totalUnreadCount);
-    ArticleStore.addChangeListener(this.onArticleChange);
+    UnreadActions.resetUnreads();
+    SidebarClickedStore.addChangeListener(this.onSidebarChange);
     UnreadStore.addChangeListener(this.onUnreadChange);
   },
 
   componentWillUnmount: function () {
     UnreadActions.subtractUnreads(this.state.totalUnreadCount);
-    ArticleStore.removeChangeListener(this.onArticleChange);
+    SidebarClickedStore.removeChangeListener(this.onSidebarChange);
     UnreadStore.removeChangeListener(this.onUnreadChange);
+    this.setState({totalUnreadCount: 0});
   },
 
   onClick: function (event) {
@@ -23,8 +23,8 @@ var AllArticles = React.createClass({
     this.history.pushState(null, '/all_feeds/', {});
   },
 
-  onArticleChange: function () {
-    UnreadActions.subtractUnreads(this.state.totalUnreadCount)
+  onSidebarChange: function () {
+    UnreadActions.resetUnreads();
   },
 
   onUnreadChange: function () {
@@ -34,6 +34,7 @@ var AllArticles = React.createClass({
   render: function () {
     return(
             <li onClick={this.onClick} className="website-list-item group">
+              <p className={"unread-count"}>{this.state.totalUnreadCount}</p>
               <p>All Articles</p>
             </li>
           );
