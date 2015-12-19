@@ -19,7 +19,6 @@ var WebsiteListItem = React.createClass({
     }
     return(
             <li onClick={this.onClick} className="website-list-item group">
-              <UnreadCount website={this.props.website}/>
               <p>{websiteName}</p>
               <div className="delete-website" onClick={this.deleteWebsite}>X</div>
             </li>
