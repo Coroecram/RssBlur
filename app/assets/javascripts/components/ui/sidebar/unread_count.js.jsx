@@ -26,6 +26,7 @@ var UnreadCount = React.createClass({
     var unreadCount = this.state.unreadCount;
     return(
             <div>
+              <p className={"unread-count"}>{this.state.unreadCount}</p>
             </div>
           );
   }
