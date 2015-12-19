@@ -28,8 +28,8 @@ $.ajaxSetup({timeout: 10000});
         error: function (response) {
           error && error(response);
         },
-        success: function (data) {
-          success && success();
+        success: function (website) {
+          success && success(website);
         }
       });
     },

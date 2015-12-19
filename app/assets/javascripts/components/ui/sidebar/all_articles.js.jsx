@@ -12,7 +12,7 @@ var AllArticles = React.createClass({
   },
 
   componentWillUnmount: function () {
-    UnreadActions.subtractUnreads(this.state.totalUnreadCount);
+    UnreadActions.resetUnreads();
     SidebarClickedStore.removeChangeListener(this.onSidebarChange);
     UnreadStore.removeChangeListener(this.onUnreadChange);
     this.setState({totalUnreadCount: 0});

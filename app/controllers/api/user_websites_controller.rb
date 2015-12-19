@@ -1,8 +1,5 @@
 class Api::UserWebsitesController < ApplicationController
 
-  before_action :require_signed_in
-  before_action :require_user_website, only: :index
-
   def destroy
     @userwebsite = UserWebsite.find_by_user_id_and_website_id(current_user.id, params[:website_id])
     user_articles = @userwebsite.user_articles
@@ -10,4 +7,5 @@ class Api::UserWebsitesController < ApplicationController
     UserWebsite.delete(@userwebsite)
     render json: {}
   end
+
 end
