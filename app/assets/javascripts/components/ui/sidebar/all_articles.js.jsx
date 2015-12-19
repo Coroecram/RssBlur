@@ -7,7 +7,7 @@ var AllArticles = React.createClass({
 
   componentDidMount: function () {
     UnreadActions.resetUnreads();
-    SidebarClickedStore.addChangeListener(this.onSidebarChange);
+    ArticleStore.addChangeListener(this.onArticleChange);
     UnreadStore.addChangeListener(this.onUnreadChange);
   },
 
@@ -23,7 +23,7 @@ var AllArticles = React.createClass({
     this.history.pushState(null, '/all_feeds/', {});
   },
 
-  onSidebarChange: function () {
+  onArticleChange: function () {
     UnreadActions.resetUnreads();
   },
 
