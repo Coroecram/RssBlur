@@ -70,7 +70,8 @@ class ArticleParser
   def article_parser(rss_entry, source)
     url = rss_entry.url
     noko_page = Nokogiri::HTML(rss_entry.summary)
-    title = rss_entry.title || "Untitled"
+    title = rss_entry.title
+    title = "Untitled" unless title || title == ""
     author = rss_entry.author || "anonymous"
     summary = noko_page.text[0..300]
     noko_page = Nokogiri::HTML(open(rss_entry.url)) if noko_page.css('img').empty?
