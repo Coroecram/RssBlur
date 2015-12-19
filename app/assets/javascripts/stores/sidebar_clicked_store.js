@@ -3,7 +3,6 @@
   var CHANGE_EVENT = 'changed';
 
   var setClicked = function (object) {
-    debugger
     _sidebarClicked = object;
   };
 

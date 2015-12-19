@@ -21,7 +21,7 @@ $.ajaxSetup({timeout: 10000});
 
     createWebsite: function (url, success, error) {
       $.ajax({
-        url: '/api/websites'
+        url: '/api/websites',
         type: 'POST',
         dataType: 'json',
         data: url,
@@ -41,8 +41,9 @@ $.ajaxSetup({timeout: 10000});
         type: 'GET',
         dataType: 'json',
         data: id,
-        error: function (response) {
-          error && error(response);
+        error: function () {
+          error && error();
+          WebsiteApiActions.setSidebarClicked("all");
         },
         success: function (website) {
           success && success();

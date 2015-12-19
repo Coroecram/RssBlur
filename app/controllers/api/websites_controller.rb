@@ -17,8 +17,8 @@ class Api::WebsitesController < ApplicationController
   end
 
   def show
-    @website = Website.find(params[:id].to_i)
-    @website
+    @website = current_user.websites.find(params[:id].to_i)
+    @website || "all"
   end
 
 end

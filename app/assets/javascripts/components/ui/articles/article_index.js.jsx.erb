@@ -1,6 +1,7 @@
 var isScrolling = false;
 
 var ArticleIndex = React.createClass({
+  mixins: [ReactRouter.History],
 
   getInitialState: function () {
     return {source: '<%= image_path('loading.gif') %>',
@@ -17,7 +18,9 @@ var ArticleIndex = React.createClass({
     ArticleStore.addChangeListener(this.onArticleChange);
     if (typeof this.state.sidebar === 'undefined') {
       this.props.params.id ?
-            WebsiteApiUtil.fetchClickedWebsite(this.props.params.id) :
+            WebsiteApiUtil.fetchClickedWebsite(this.props.params.id,
+                                               null,
+                                               this.notAWebsite) :
             WebsiteApiActions.setSidebarClicked("all");
     } else {
       this.onSidebarChange();
@@ -54,11 +57,14 @@ var ArticleIndex = React.createClass({
   },
 
   onArticleChange: function () {
-    debugger
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
     this.setState({articles: ArticleStore.all()});
+  },
+
+  notAWebsite: function () {
+    this.history.pushState(null, '/all_feeds')
   },
 
   incrementPage: function () {
