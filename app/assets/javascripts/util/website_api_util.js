@@ -3,26 +3,52 @@ $.ajaxSetup({timeout: 10000});
 
   var WebsiteApiUtil = root.WebsiteApiUtil = {
 
-    fetchWebsites: function () {
-      $.get('api/websites', function(websites){
-        WebsiteApiActions.receiveAllWebsites(websites);
-      },
-      'json');
-    },
-    createWebsite: function(url, success, error){
-      $.post('api/websites', url, function(website) {
-        WebsiteApiActions.createWebsite(website);
-        success(website);
-      },
-      'json').fail(function (data) {
-        error(data);
+    fetchWebsites: function (id, success, error) {
+      $.ajax({
+        url: '/api/websites',
+        type: 'GET',
+        dataType: 'json',
+        data: id,
+        error: function (response) {
+          error && error(response);
+        },
+        success: function (websites) {
+          success && success();
+          WebsiteApiActions.receiveAllWebsites(websites);
+        }
       });
     },
-    fetchClickedWebsite: function (id) {
-      $.get('api/websites/' + id, function(website){
-        WebsiteApiActions.setSidebarClicked(website);
-      },
-      'json');
+
+    createWebsite: function (url, success, error) {
+      $.ajax({
+        url: '/api/websites'
+        type: 'POST',
+        dataType: 'json',
+        data: url,
+        error: function (response) {
+          error && error(response);
+        },
+        success: function (data) {
+          success && success();
+        }
+      });
+    },
+
+
+    fetchClickedWebsite: function (id, success, error) {
+      $.ajax({
+        url: '/api/websites/' + id,
+        type: 'GET',
+        dataType: 'json',
+        data: id,
+        error: function (response) {
+          error && error(response);
+        },
+        success: function (website) {
+          success && success();
+          WebsiteApiActions.setSidebarClicked(website);
+        }
+      });
     },
 
     retrieveRSSURL: function (credentials, success, error) {

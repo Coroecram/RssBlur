@@ -13,15 +13,15 @@ $(document).ready(function () {
   },
 
   componentWillMount: function () {
-    CurrentUserStore.addChangeListener(this._ensureLoggedIn);
+    CurrentUserStore.addChangeListener(this.ensureLoggedIn);
     SessionApiUtil.fetchCurrentUser();
   },
 
   componentWillUnmount: function () {
-    CurrentUserStore.removeChangeListener(this._ensureLoggedIn);
+    CurrentUserStore.removeChangeListener(this.ensureLoggedIn);
   },
 
-  _ensureLoggedIn: function () {
+  ensureLoggedIn: function () {
     if (!CurrentUserStore.isLoggedIn() &&
         (this.props.location.pathname !== "/create_account" ||
         this.props.location.pathname !== "/sign_in")) {

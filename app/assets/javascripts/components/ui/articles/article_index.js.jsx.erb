@@ -54,6 +54,7 @@ var ArticleIndex = React.createClass({
   },
 
   onArticleChange: function () {
+    debugger
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
