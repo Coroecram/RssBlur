@@ -8,8 +8,8 @@ var WebsiteListItem = React.createClass({
 
   deleteWebsite: function (event) {
     event.stopPropagation();
-    WebsiteApiActions.deleteWebsite(this.props.website.id);
     this.history.pushState(null, '/all_feeds');
+    WebsiteApiActions.deleteWebsite(this.props.website.id);
   },
 
   render: function () {
