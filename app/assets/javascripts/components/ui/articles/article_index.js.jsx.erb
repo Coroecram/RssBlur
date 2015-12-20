@@ -57,6 +57,11 @@ var ArticleIndex = React.createClass({
   },
 
   onArticleChange: function () {
+    debugger
+    if (ArticleStore.all() === []) {
+      WebsiteApiActions.setSidebarClicked("all");
+      return;
+    }
     clickedItem === "all" ?
       ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)

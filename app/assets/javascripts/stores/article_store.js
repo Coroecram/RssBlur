@@ -32,8 +32,10 @@
 
   var deleteWebsiteArticles = function (website_id) {
     for (var i = 0; i < _articles.length; i++){
+      debugger
       if (_articles[i].website_id === website_id) {
         _articles.splice(i, 1);
+        i--
       }
     };
   };
@@ -136,7 +138,6 @@
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.WEBSITE_DELETED):
-      debugger
         deleteWebsiteArticles(payload.id);
         ArticleStore.emitChange();
         break;
