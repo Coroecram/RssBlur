@@ -17,12 +17,12 @@ window.WebsiteApiActions = {
     UnreadDispatcher.dispatch({
       actionType: UnreadConstants.RESET_UNREAD,
     });
-    ArticleDispatcher.dispatch({
-      actionType: ArticleConstants.WEBSITE_DELETED,
-      id: id
-    });
     WebsiteDispatcher.dispatch({
       actionType: WebsiteConstants.WEBSITE_DELETE,
+      id: id
+    });
+    ArticleDispatcher.dispatch({
+      actionType: ArticleConstants.WEBSITE_DELETED,
       id: id
     });
   },

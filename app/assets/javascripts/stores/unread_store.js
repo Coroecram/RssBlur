@@ -4,6 +4,7 @@
 
   var addUnreads = function (count) {
     _count += count;
+    debugger
   };
 
   var resetUnreads = function () {
