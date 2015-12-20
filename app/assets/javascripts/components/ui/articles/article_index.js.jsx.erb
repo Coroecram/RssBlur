@@ -32,6 +32,11 @@ var ArticleIndex = React.createClass({
     ArticleStore.removeChangeListener(this.onArticleChange);
   },
 
+  componentWillReceiveProps: function () {
+    debugger
+    WebsiteApiActions.setSidebarClicked("all");
+  },
+
   fetchUnreads: function () {
     ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads);
   },

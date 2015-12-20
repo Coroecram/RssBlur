@@ -14,6 +14,9 @@ window.WebsiteApiActions = {
   },
 
   deleteWebsite: function (id) {
+    UnreadDispatcher.dispatch({
+      actionType: UnreadConstants.RESET_UNREAD,
+    });
     ArticleDispatcher.dispatch({
       actionType: ArticleConstants.WEBSITE_DELETED,
       id: id
