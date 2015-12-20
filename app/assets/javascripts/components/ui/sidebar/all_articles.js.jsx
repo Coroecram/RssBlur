@@ -7,13 +7,15 @@ var AllArticles = React.createClass({
 
   componentDidMount: function () {
     UnreadActions.resetUnreads();
+    WebsiteStore.addChangeListener(this.onWebsiteChange);
     ArticleStore.addChangeListener(this.onArticleChange);
     UnreadStore.addChangeListener(this.onUnreadChange);
   },
 
   componentWillUnmount: function () {
     UnreadActions.resetUnreads();
-    SidebarClickedStore.removeChangeListener(this.onSidebarChange);
+    WebsiteStore.addChangeListener(this.onWebsiteChange);
+    ArticleStore.removeChangeListener(this.onArticleChange);
     UnreadStore.removeChangeListener(this.onUnreadChange);
     this.setState({totalUnreadCount: 0});
   },
@@ -21,6 +23,15 @@ var AllArticles = React.createClass({
   onClick: function (event) {
     WebsiteApiActions.setSidebarClicked("all");
     this.history.pushState(null, '/all_feeds', {});
+  },
+
+  onWebsiteChange: function () {
+    if (ArticleStore.all().length === 0) {
+      this.history.pushState(null, '/all_feeds', {});
+    }
+    if (WebsiteStore.all().length === 0) {
+      this.setState({totalUnreadCount: UnreadStore.fetch()});
+    }
   },
 
   onArticleChange: function () {
