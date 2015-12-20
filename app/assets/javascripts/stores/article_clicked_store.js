@@ -31,7 +31,6 @@
         setClicked(payload.id);
         ArticleClickedStore.emitChange();
         break;
-        default:
       }
     })
   });

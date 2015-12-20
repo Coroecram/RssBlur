@@ -10,7 +10,6 @@ var UserHome = React.createClass({
 
   componentDidMount: function () {
     CurrentUserStore.addChangeListener(this.onUserChange);
-    WebsiteStore.addChangeListener(this.onWebsiteChange)
     WebsiteApiUtil.fetchWebsites();
   },
 
@@ -22,10 +21,6 @@ var UserHome = React.createClass({
     if (!CurrentUserStore.isLoggedIn()) {
       this.history.pushState(null, "/sign_in");
     }
-  },
-
-  onWebsiteChange: function () {
-    this.history.pushState(null, "all_feeds")
   },
 
   render: function () {

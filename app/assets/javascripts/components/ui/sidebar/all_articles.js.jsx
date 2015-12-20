@@ -20,7 +20,7 @@ var AllArticles = React.createClass({
 
   onClick: function (event) {
     WebsiteApiActions.setSidebarClicked("all");
-    this.history.pushState(null, '/all_feeds/', {});
+    this.history.pushState(null, '/all_feeds', {});
   },
 
   onArticleChange: function () {

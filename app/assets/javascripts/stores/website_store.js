@@ -13,7 +13,6 @@
   var deleteWebsite = function (id) {
       for (var i = 0; i < _websites.length; i++){
         if (id === _websites[i].id) {
-          
           _websites.splice(i, 1);
         }
       }
@@ -70,7 +69,6 @@
         WebsiteStore.setWebsite(payload.website);
         WebsiteStore.emitChange();
         break;
-        default:
       }
     })
   });

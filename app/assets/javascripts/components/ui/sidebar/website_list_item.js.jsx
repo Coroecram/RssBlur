@@ -13,7 +13,7 @@ var WebsiteListItem = React.createClass({
 
   deleteSuccess: function () {
     WebsiteApiActions.deleteWebsite(this.props.website.id);
-    // this.history.pushState(null, '/all_feeds');
+    this.history.pushState(null, '/all_feeds', {});
   },
 
   render: function () {

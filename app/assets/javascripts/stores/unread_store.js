@@ -36,8 +36,7 @@
         break;
       case (UnreadConstants.RESET_UNREAD):
         resetUnreads(payload.count);
-        break;
-        default:
+        break;      
       }
     })
   });

@@ -25,9 +25,16 @@
     _articles.concat(articles);
   };
 
-  var setQuery = function(searchParams) {
+  var setQuery = function (searchParams) {
     searchQuery = searchParams[0];
     searchFilter = searchParams[1];
+  };
+
+  var deleteWebsiteArticles = function (website_id) {
+    debugger
+    for (var i = 0; i < _articles.length; i++){
+
+    }
   };
 
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
@@ -127,7 +134,10 @@
       case (ArticleConstants.MARKED_READ):
         ArticleStore.emitChange();
         break;
-        default:
+      case (WebsiteConstants.WEBSITE_DELETE):
+        deleteWebsiteArticles(payload.id);
+        ArticleStore.emitChange();
+        break;
       }
     })
   });

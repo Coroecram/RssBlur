@@ -54,7 +54,7 @@
         setUpdate(payload.user);
         CurrentUserStore.emitChange();
         break;
-        default:
+      
       }
     })
   });
