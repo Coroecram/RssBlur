@@ -12,11 +12,13 @@
 .session-header {
   height: 15%;
   width: 30%;
+  min-width: 200px;
   margin: 0 auto;
 }
 
 .session {
   width: 30%;
+  min-width: 250px;
   padding: 2%;
   margin: 0 auto;
   border: 1px solid black;
