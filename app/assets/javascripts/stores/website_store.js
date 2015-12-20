@@ -16,7 +16,6 @@
           _websites.splice(i, 1);
         }
       }
-      return null;
     };
 
   var WebsiteStore = root.WebsiteStore = $.extend({}, EventEmitter.prototype, {

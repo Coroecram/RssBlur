@@ -31,10 +31,11 @@
   };
 
   var deleteWebsiteArticles = function (website_id) {
-    debugger
     for (var i = 0; i < _articles.length; i++){
-
-    }
+      if (_articles[i].website_id === website_id) {
+        _articles.splice(i, 1);
+      }
+    };
   };
 
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
@@ -134,7 +135,8 @@
       case (ArticleConstants.MARKED_READ):
         ArticleStore.emitChange();
         break;
-      case (WebsiteConstants.WEBSITE_DELETE):
+      case (ArticleConstants.WEBSITE_DELETED):
+      debugger
         deleteWebsiteArticles(payload.id);
         ArticleStore.emitChange();
         break;

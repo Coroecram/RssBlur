@@ -12,6 +12,7 @@ var WebsiteListItem = React.createClass({
   },
 
   deleteSuccess: function () {
+    debugger
     WebsiteApiActions.deleteWebsite(this.props.website.id);
     this.history.pushState(null, '/all_feeds', {});
   },

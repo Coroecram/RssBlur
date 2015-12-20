@@ -18,6 +18,10 @@ window.WebsiteApiActions = {
       actionType: WebsiteConstants.WEBSITE_DELETE,
       id: id
     });
+    ArticleDispatcher.dispatch({
+      actionType: ArticleConstants.WEBSITE_DELETED,
+      id: id
+    });
   },
 
   createWebsiteError: function () {
