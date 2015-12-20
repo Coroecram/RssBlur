@@ -29,9 +29,7 @@ var AllArticles = React.createClass({
     if (ArticleStore.all().length === 0) {
       this.history.pushState(null, '/all_feeds', {});
     }
-    if (WebsiteStore.all().length === 0) {
-      this.setState({totalUnreadCount: UnreadStore.fetch()});
-    }
+    this.setState({totalUnreadCount: UnreadStore.fetch()});
   },
 
   onArticleChange: function () {

@@ -35,8 +35,8 @@
         UnreadStore.emitChange();
         break;
       case (UnreadConstants.RESET_UNREAD):
-        resetUnreads(payload.count);
-        break;      
+        resetUnreads();
+        break;
       }
     })
   });

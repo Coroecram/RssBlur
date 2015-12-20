@@ -74,9 +74,9 @@ var ArticleIndex = React.createClass({
       per = this.state.articles.length;
       this.setState({per: per})
     }
-    clickedItem === "all" ?
+    this.state.sidebar === "all" ?
       ArticleApiUtil.fetchAllArticles(page + 1) :
-      ArticleApiUtil.fetchArticles(clickedItem, page + 1, per)
+      ArticleApiUtil.fetchArticles(this.state.sidebar, page + 1, per)
     this.setState({page: page += 1});
   },
 
