@@ -26,7 +26,7 @@
 * WebsiteApiActions.createWebsite
 * WebsiteApiActions.fetchUserWebsites
 * WebsiteApiActions.deleteWebsite
-* WebsiteApiActions.setSidebarClicked
+* SidebarActions.setSidebarClicked
 
 
 ### ApiUtil

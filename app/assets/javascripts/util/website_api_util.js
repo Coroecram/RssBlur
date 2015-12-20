@@ -43,11 +43,11 @@ $.ajaxSetup({timeout: 10000});
         data: id,
         error: function () {
           error && error();
-          WebsiteApiActions.setSidebarClicked("all");
+          SidebarActions.setSidebarClicked("all");
         },
         success: function (website) {
           success && success();
-          WebsiteApiActions.setSidebarClicked(website);
+          SidebarActions.setSidebarClicked(website);
         }
       });
     },

@@ -21,7 +21,7 @@ var AllArticles = React.createClass({
   },
 
   onClick: function (event) {
-    WebsiteApiActions.setSidebarClicked("all");
+    SidebarActions.setSidebarClicked("all");
     this.history.pushState(null, '/all_feeds', {});
   },
 
@@ -30,6 +30,7 @@ var AllArticles = React.createClass({
       this.history.pushState(null, '/all_feeds', {});
     }
     this.setState({totalUnreadCount: UnreadStore.fetch()});
+    debugger
   },
 
   onArticleChange: function () {

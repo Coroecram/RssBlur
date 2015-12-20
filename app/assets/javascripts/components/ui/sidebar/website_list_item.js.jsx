@@ -2,7 +2,7 @@ var WebsiteListItem = React.createClass({
   mixins: [ReactRouter.History],
 
   onClick: function (event) {
-    WebsiteApiActions.setSidebarClicked(this.props.website);
+    SidebarActions.setSidebarClicked(this.props.website);
     this.history.pushState(null, '/websites/' + this.props.website.id, {});
   },
 

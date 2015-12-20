@@ -1,1 +1,0 @@
-SidebarClickedDispatcher = new Flux.Dispatcher();

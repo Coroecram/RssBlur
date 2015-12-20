@@ -32,7 +32,7 @@ var WebsiteForm = React.createClass({
   receivedSite: function (website) {
     this.blankState();
     WebsiteApiActions.createWebsite(website);
-    WebsiteApiActions.setSidebarClicked(website);
+    SidebarActions.setSidebarClicked(website);
     this.history.pushState(null, '/websites/' + website.id, {});
   },
 

@@ -1,0 +1,1 @@
+SidebarDispatcher = new Flux.Dispatcher();

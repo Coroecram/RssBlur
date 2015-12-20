@@ -31,19 +31,5 @@ window.WebsiteApiActions = {
     WebsiteDispatcher.dispatch({
       actionType: WebsiteConstants.WEBSITE_ERROR
     });
-  },
-
-  fetchWebsite: function (website) {
-    WebsiteDispatcher.dispatch({
-      actionType: WebsiteConstants.FETCH_WEBSITE,
-      website: website
-    });
-  },
-
-  setSidebarClicked: function (object) {
-    WebsiteDispatcher.dispatch({
-      actionType: SidebarClickedConstants.CLICK_RECEIVED,
-      object: object
-    });
   }
 };

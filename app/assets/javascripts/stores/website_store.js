@@ -37,7 +37,6 @@
       return null;
     },
 
-
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
     },
@@ -62,10 +61,6 @@
         break;
       case (WebsiteConstants.WEBSITE_DELETE):
         deleteWebsite(payload.id);
-        WebsiteStore.emitChange();
-        break;
-      case (WebsiteConstants.FETCH_WEBSITE):
-        WebsiteStore.setWebsite(payload.website);
         WebsiteStore.emitChange();
         break;
       }

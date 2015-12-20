@@ -21,7 +21,7 @@ var ArticleIndex = React.createClass({
             WebsiteApiUtil.fetchClickedWebsite(this.props.params.id,
                                                null,
                                                this.notAWebsite) :
-            WebsiteApiActions.setSidebarClicked("all");
+            SidebarActions.setSidebarClicked("all");
     } else {
       this.onSidebarChange();
     }
@@ -30,11 +30,6 @@ var ArticleIndex = React.createClass({
   componentWillUnmount: function () {
     SidebarClickedStore.removeChangeListener(this.onSidebarChange);
     ArticleStore.removeChangeListener(this.onArticleChange);
-  },
-
-  componentWillReceiveProps: function () {
-    debugger
-    WebsiteApiActions.setSidebarClicked("all");
   },
 
   fetchUnreads: function () {
