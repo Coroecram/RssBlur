@@ -27,6 +27,7 @@ var AllArticles = React.createClass({
 
   onWebsiteChange: function () {
     if (ArticleStore.all().length === 0) {
+      SidebarActions.setSidebarClicked("all");
       this.history.pushState(null, '/all_feeds', {});
     }
     this.setState({totalUnreadCount: UnreadStore.fetch()});
