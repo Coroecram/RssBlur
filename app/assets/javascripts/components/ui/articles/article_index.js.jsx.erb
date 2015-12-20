@@ -46,9 +46,9 @@ var ArticleIndex = React.createClass({
   },
 
   onSidebarChange: function () {
-    clickedItem = SidebarClickedStore.fetch();
+    var clickedItem = SidebarClickedStore.fetch();
     ArticleApiActions.resetArticles();
-    clickedItem === "all" ?
+     clickedItem === "all" ?
       ArticleApiUtil.fetchAllArticles(1) :
       ArticleApiUtil.fetchArticles(clickedItem, 1)
     this.setState({sidebar: clickedItem,
@@ -57,8 +57,7 @@ var ArticleIndex = React.createClass({
   },
 
   onArticleChange: function () {
-    clickedItem = SidebarClickedStore.fetch();
-    clickedItem === "all" ?
+    this.state.sidebar === "all" ?
       ArticleApiUtil.fetchAllUnread(this.setUnreads) :
       ArticleApiUtil.fetchUnread(this.props.params.id, this.setUnreads)
     this.setState({articles: ArticleStore.all()});
@@ -108,11 +107,17 @@ var ArticleIndex = React.createClass({
     if (!this.state.articles) {
       return <Spinner source={this.state.source}/>
     } else {
-      var nextPage = this.state.articles.length ?
-                      <li className="next-page" onClick={this.incrementPage}>
+      var nextPage
+      if (this.state.sidebar != "all" && this.state.articles.length != 0) {
+          nextPage = <li className="next-page" onClick={this.incrementPage}>
                         Load More Articles
-                     </li> :
-                     <li className="no-articles">No Articles</li>
+                     </li>
+      } else if (this.state.sidebar === "all" && this.state.articles.length != 0) {
+          nextPage = undefined;
+      } else {
+            nextPage = <li className="no-articles">No Articles</li>
+      }
+
         return (
               <div className="article-index group">
                 <ul className="article-list">
