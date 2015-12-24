@@ -93,18 +93,16 @@ render: function () {
             </form>
             <form className="update-password" onSubmit={ this.changePassword }>
               <h2>Change Password</h2>
-                <label>New Password
                   <input type="password"
                          name="password"
                          maxLength="30"
-                         valueLink={this.linkState('password')} />
-                  </label>
-                <label>Confirm Password
+                         valueLink={this.linkState('password')}
+                         placeholder={'New Password'} />
                   <input type="password"
                          name="password_confirmation"
                          maxLength="30"
-                         valueLink={this.linkState('passwordConfirmation')} />
-                  </label>
+                         valueLink={this.linkState('passwordConfirmation')}
+                         placeholder={'Confirm Password'} />
                 <input type="submit" value="Change Password" />
               </form>
             </div>
