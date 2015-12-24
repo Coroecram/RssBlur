@@ -37,11 +37,10 @@ var Search = React.createClass({
 
       return (
               <div className="search-form group">
-                  <label htmlFor="query" >Search Articles:</label>
                       <input type="text"
-                             name="query"
                              onChange={ this.search }
-                             id="website-url"/>
+                             id="website-url"
+                             placeholder={'Search Articles'} />
                       <p>Search By: </p>
                       <div className="filter-choices" onClick={ this.chooseFilter }>
                         <p className={allActive}>All</p>
