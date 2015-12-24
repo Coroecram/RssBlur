@@ -129,10 +129,6 @@
         setQuery(payload.searchParams);
         ArticleStore.emitChange();
         break;
-      case (ArticleConstants.ARTICLE_CREATED):
-        addArticles(payload.article);
-        ArticleStore.emitChange();
-        break;
       case (ArticleConstants.MARKED_READ):
         ArticleStore.emitChange();
         break;

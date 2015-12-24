@@ -31,7 +31,6 @@ var AllArticles = React.createClass({
       this.history.pushState(null, '/all_feeds', {});
     }
     this.setState({totalUnreadCount: UnreadStore.fetch()});
-    debugger
   },
 
   onArticleChange: function () {

@@ -4,7 +4,6 @@
 
   var addUnreads = function (count) {
     _count += count;
-    debugger
   };
 
   var resetUnreads = function () {
@@ -12,7 +11,6 @@
   };
 
   var UnreadStore = root.UnreadStore = $.extend({}, EventEmitter.prototype, {
-
     fetch: function () {
       return _count;
     },
