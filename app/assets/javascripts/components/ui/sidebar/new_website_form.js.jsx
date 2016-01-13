@@ -19,7 +19,6 @@ var WebsiteForm = React.createClass({
 
   componentDidUpdate: function () {
     if (this.props.show) {
-      debugger
       React.findDOMNode(this.refs.url).focus()
     }
   },
@@ -59,7 +58,8 @@ var WebsiteForm = React.createClass({
                                      name="url"
                                      ref="url"
                                      valueLink={this.linkState('url')}
-                                     id="website-url"/>
+                                     id="website-url"
+                                     placeholder={'www.websitewithRSSfeedhere.com'} />                                
                             <input type="submit" value="Add"/>
                             {error}
                         </form>
