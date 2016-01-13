@@ -5,6 +5,10 @@ var SignIn = React.createClass({
     return {handle: "", password: ""};
   },
 
+  componentDidMount: function(){
+    React.findDOMNode(this.refs.handle).focus();
+  },
+
   submit: function (event) {
       event.preventDefault();
 
@@ -37,6 +41,7 @@ var SignIn = React.createClass({
               <form className="session signin group" onSubmit={ this.submit }>
                   <input type="text"
                          name="handle"
+                         ref="handle"
                          maxLength="20"
                          valueLink={this.linkState('handle')}
                          placeholder={'Username or Email'} />
