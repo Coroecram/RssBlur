@@ -11,6 +11,7 @@ var UserSettings = React.createClass({
 
   componentDidMount: function () {
     CurrentUserStore.addChangeListener(this.onUserChange);
+    React.findDOMNode(this.refs.password).focus();    
   },
 
   componentWillUnmount: function () {
@@ -95,6 +96,7 @@ render: function () {
               <h2>Change Password</h2>
                   <input type="password"
                          name="password"
+                         ref="password"
                          maxLength="30"
                          valueLink={this.linkState('password')}
                          placeholder={'New Password'} />
