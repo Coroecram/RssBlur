@@ -4,6 +4,10 @@ var Search = React.createClass({
     return {query: "", filter: "all"};
   },
 
+  componentDidMount: function(){
+    React.findDOMNode(this.refs.search).focus();
+  },
+
   search: function (event) {
     var query = event.currentTarget.value;
     this.setState({query: query});
@@ -39,7 +43,8 @@ var Search = React.createClass({
               <div className="search-form group">
                       <input type="text"
                              onChange={ this.search }
-                             id="website-url"
+                             id="search"
+                             ref="search"
                              placeholder={'Search Articles'} />
                       <p>Search By: </p>
                       <div className="filter-choices" onClick={ this.chooseFilter }>
