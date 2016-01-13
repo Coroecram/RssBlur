@@ -17,6 +17,13 @@ var WebsiteForm = React.createClass({
     this.setState({url: "", error: "Enter URL to an RSS feed or Website with an RSS Feed"});
   },
 
+  componentDidUpdate: function () {
+    if (this.props.show) {
+      debugger
+      React.findDOMNode(this.refs.url).focus()
+    }
+  },
+
   componentWillReceiveProps: function () {
     this.blankState();
   },
@@ -44,12 +51,13 @@ var WebsiteForm = React.createClass({
     var websiteForm;
 
     if (this.props.show) {
-      websiteForm = (
+            websiteForm = (
                       <div>
                         <form className="website-form" autoComplete="off" onSubmit={ this.submit }>
                           <label htmlFor="website-url">Website URL</label>
                               <input type="text"
                                      name="url"
+                                     ref="url"
                                      valueLink={this.linkState('url')}
                                      id="website-url"/>
                             <input type="submit" value="Add"/>
