@@ -84,10 +84,13 @@ var ArticleIndex = React.createClass({
     isScrolling = true;
     toScroll.scrollTo(toScroll.children()[idx],
                       {duration: 250},
-                      function() {TimerMixin.setTimeout(function () {this.clearScrolling()}.bind(this), 300)}.bind(this));
+                      function() {
+                        window.setTimeout(function () {this.clearScrolling()}.bind(this), 300)
+                      }.bind(this));
   },
 
   clearScrolling: function () {
+    debugger
     isScrolling = false;
   },
 
