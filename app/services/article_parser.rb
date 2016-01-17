@@ -23,8 +23,10 @@ class ArticleParser
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
     article_by_url = {}
     article_by_title = {}
-    articles.each { |article| article_by_url[article["url"]] = article }
-    articles.each { |article| article_by_title[article["title"]] = article }
+    articles.each  do |article|
+      article_by_url[article["url"]] = article
+      article_by_title[article["title"]] = article
+    end
 
     return feed_parse(article_by_url, article_by_title, user_article_keys)
   end
