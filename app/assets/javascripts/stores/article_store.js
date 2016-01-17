@@ -3,11 +3,11 @@
   var CHANGE_EVENT = 'changed';
   var searchQuery = "";
   var searchFilter = "";
-  var articleSet = []
+  var articleSet = [];
 
   var setArticles = function (articles) {
     uniqueArticles = [];
-    uniqueIds = {};
+    var uniqueIds = setUniques();
     for (var i = 0; i < articles.length; i++) {
       if (!uniqueIds[articles[i].id]) {
         uniqueIds[articles[i].id] = true;
@@ -16,6 +16,14 @@
     }
     debugger
     _articles = _articles.concat(uniqueArticles);
+  };
+
+  var setUniques = function () {
+    var uniqueIds = {};
+    for (var i = 0; i < _articles.length; i++) {
+      uniqueIds[_articles[i].id] = true;
+    }
+    return uniqueIds;
   };
 
   var resetArticles = function () {
