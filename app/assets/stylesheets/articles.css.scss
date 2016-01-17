@@ -47,6 +47,10 @@
   margin: 0;
 }
 
+.article-list > li:last-child {
+  border-radius: 5px;
+}
+
 .listed-article .author {
   font-weight: bold;
 }
