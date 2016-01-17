@@ -10,21 +10,21 @@ var UserSettings = React.createClass({
   },
 
   componentDidMount: function () {
-    CurrentUserStore.addChangeListener(this.onUserChange);
-    React.findDOMNode(this.refs.password).focus();    
+    CurrentUserStore.addChangeListener(this._onUserChange);
+    React.findDOMNode(this.refs.password).focus();
   },
 
   componentWillUnmount: function () {
-    CurrentUserStore.removeChangeListener(this.onUserChange);
+    CurrentUserStore.removeChangeListener(this._onUserChange);
   },
 
 
-  onUserChange: function () {
-    this.setState({currentUser: CurrentUserStore.fetch()})
+  _onUserChange: function () {
+    this.setState({currentUser: CurrentUserStore.fetch()});
   },
 
   backHome: function () {
-    this.history.pushState(null, '/home')
+    this.history.pushState(null, '/all_feeds');
   },
 
   changePassword: function (event) {
