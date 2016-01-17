@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   has_many :users, through: :user_articles
 
   def self.by_website(website_id)
+    debugger
     Article.where('website_id = ?', website_id)
                          .order(created_date: :desc)
   end

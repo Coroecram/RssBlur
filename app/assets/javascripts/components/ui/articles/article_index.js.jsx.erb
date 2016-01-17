@@ -70,7 +70,6 @@ var ArticleIndex = React.createClass({
   incrementPage: function () {
     var page = this.state.page;
     var per = this.state.per;
-    debugger
     if (page === 1) {
       per = this.state.articles.length;
       this.setState({per: per})

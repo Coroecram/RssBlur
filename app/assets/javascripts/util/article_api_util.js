@@ -14,6 +14,7 @@
           error && error(response.responseText);
         },
         success: function (data) {
+          debugger
           ArticleApiActions.receiveAllArticles(data);
           success && success(data);
           }
