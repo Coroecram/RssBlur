@@ -24,7 +24,7 @@ class ArticleParser
     article_by_url = {}
     article_by_title = {}
     articles.each { |article| article_by_url[article["url"]] = article }
-    articles.each { |article| article_by_url[article["title"]] = article }
+    articles.each { |article| article_by_title[article["title"]] = article }
 
     return feed_parse(article_by_url, article_by_title, user_article_keys)
   end

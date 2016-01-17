@@ -79,6 +79,7 @@
 
 .site-button {
   width: 100px;
+  border-radius: 3px;
   background: #D6C4B5;
   text-align: center;
   font-weight: bold;
@@ -86,7 +87,7 @@
 }
 
 .site-button:hover {
-  background:  #FFFFE3;
+  background:  #ab9c90;
   cursor: pointer;
 }
 
@@ -94,6 +95,7 @@
   height: 30%;
   width: 60%;
   margin: 15px 0;
+  border-radius: 3px;
 }
 
 .detail-article p {
@@ -108,6 +110,7 @@
 
 .detail-article-list > li:last-child {
   border-bottom: 0px;
+  border-radius: 5px;
 }
 
 .detail-title {
@@ -144,6 +147,7 @@
   width: auto;
   margin: 0 30px;
   z-index: 2;
+  border-radius: 3px;
 }
 
 .next-page {
@@ -160,7 +164,7 @@
 .next-page:hover {
   border: 1px solid black;
   padding: 18px;
-  background:  #fffea3;
+  background:  #ab9c90;
   cursor: pointer;
 }
 
