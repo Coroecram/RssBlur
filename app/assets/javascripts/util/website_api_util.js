@@ -34,7 +34,6 @@ $.ajaxSetup({timeout: 10000});
       });
     },
 
-
     fetchClickedWebsite: function (id, success, error) {
       $.ajax({
         url: '/api/websites/' + id,

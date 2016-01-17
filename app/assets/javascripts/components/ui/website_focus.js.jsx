@@ -26,10 +26,6 @@ var WebsiteFocus = React.createClass({
     this.setState({sidebar: clickedItem});
   },
 
-  _onFetchSuccess: function () {
-    debugger
-  },
-
   _onFetchFail: function () {
     this.setState({focus: "failed"});
   },

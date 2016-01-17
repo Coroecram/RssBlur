@@ -7,9 +7,9 @@ class Api::ArticlesController < ApplicationController
     if params[:page] == "1"
       articles = ArticleParser.new(current_user.id,
                                   params[:website_id].to_i, params[:url])
-      @articles = articles.articles
-      debugger
+      @articles = articles.article_store
     else
+      params[:per] ||= 20
       @articles = Article.by_website(params[:website_id]).page(params[:page]).per(params[:per])
       UserArticleCreator.new(@articles, current_user.id, params[:website_id])
     end

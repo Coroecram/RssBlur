@@ -3,10 +3,10 @@ require 'feedjira'
 require 'rss'
 
 class ArticleParser
-  attr_reader :articles
+  attr_reader :article_store
 
   def initialize(user_id, website_id, url)
-    @articles = []
+    @article_store = []
     @user_id = user_id
     @website_id = website_id
     @url = url
@@ -55,7 +55,7 @@ class ArticleParser
                                       website_id: @website_id
                                     )
       new_article_id = next_article["id"] || next_article.id
-      @articles.push(next_article)
+      @article_store.push(next_article)
         if !user_article_keys[new_article_id]
          UserArticle.create!(
                               user_id: @user_id,
@@ -66,7 +66,7 @@ class ArticleParser
         end
       end
 
-    return @articles
+    @article_store
   end
 
   def article_parser(rss_entry, source)

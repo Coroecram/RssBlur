@@ -3,7 +3,6 @@ class AllArticleParser
 
   def initialize(user)
     @user = user
-    @articles = []
 
     fetch_articles
   end

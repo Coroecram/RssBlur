@@ -61,7 +61,7 @@ class WebsiteParser
     rescue
       feed = page
     end
-    return (feed.content_type === "text/xml" || "application/rss+xml" ? true : false)
+    return (feed.content_type == "text/xml" || "application/rss+xml" ? true : false)
   end
 
 end

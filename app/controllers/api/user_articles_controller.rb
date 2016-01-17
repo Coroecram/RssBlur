@@ -27,8 +27,4 @@ class Api::UserArticlesController < ApplicationController
     render json: {}
   end
 
-  def mark_all_read
-    debugger
-  end
-
 end
