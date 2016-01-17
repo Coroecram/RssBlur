@@ -33,6 +33,23 @@
   cursor: pointer;
 }
 
+.update {
+  width: 80%;
+  padding: 20px;
+  border-radius: 3px;
+  background: #D6C4B5;
+  text-align: center;
+}
+
+.update h2 {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5px 0 15px 0;
+}
+
 .update-avatar {
   margin-bottom: 5px;
   padding-top: 10px;
@@ -66,6 +83,7 @@
   color: #000000;
   background: #FFE9D7;
   cursor: pointer;
+  border-radius: 3px;
 }
 .upload {
   display: block;
@@ -83,23 +101,6 @@
 .profile-pic p {
   float: left;
   margin: 5px;
-}
-
-.update {
-  width: 80%;
-  padding: 20px;
-  border-radius: 3px;
-  background: #D6C4B5;
-  text-align: center;
-}
-
-.update h2 {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 5px 0 15px 0;
 }
 
 .update-password span {
@@ -125,4 +126,5 @@ input[type="password"] {
   text-align: center;
   padding: 3px 6px;
   background: #FFE9D7;
+  border-radius: 3px;
 }
