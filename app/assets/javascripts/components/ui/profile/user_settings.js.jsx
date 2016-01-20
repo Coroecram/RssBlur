@@ -18,7 +18,6 @@ var UserSettings = React.createClass({
     CurrentUserStore.removeChangeListener(this._onUserChange);
   },
 
-
   _onUserChange: function () {
     this.setState({currentUser: CurrentUserStore.fetch()});
   },

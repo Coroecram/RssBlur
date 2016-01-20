@@ -65,6 +65,5 @@ $.ajaxSetup({timeout: 10000});
         }
       });
     }
-
   };
 })(this);
