@@ -96,3 +96,15 @@ html {
   font-weight: 400;
   cursor: pointer;
 }
+
+.sidebar-footer span > label{
+  position: absolute;
+  z-index: 1;
+  left: 23px;
+  height: 22px;
+  width: 125px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
