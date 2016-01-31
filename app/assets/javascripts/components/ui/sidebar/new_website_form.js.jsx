@@ -31,7 +31,7 @@ var WebsiteForm = React.createClass({
     if (data.statusText === 'timeout') {
       this.setState({error: "The connection timed out. Please Try Again"});
     } else {
-      this.setState({error: "Please try again or enter a valid website."});
+      this.setState({error: "Please try again or enter a valid RSS Feed website."});
     }
   },
 
@@ -59,7 +59,7 @@ var WebsiteForm = React.createClass({
                                      ref="url"
                                      valueLink={this.linkState('url')}
                                      id="website-url"
-                                     placeholder={'www.websitewithRSSfeedhere.com'} />                                
+                                     placeholder={'www.websitewithRSSfeedhere.com'} />
                             <input type="submit" value="Add"/>
                             {error}
                         </form>
