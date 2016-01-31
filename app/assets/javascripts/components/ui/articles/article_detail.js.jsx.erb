@@ -13,8 +13,9 @@ var ArticleDetail = React.createClass({
               <img className="detail-image"
                    src={this.props.article.image ||
                         '<%= image_path('default-image.JPG') %>'}
+                   onClick={this._onClick}
               />
-              <p className="detail-title"><strong>{this.props.article.title}</strong></p>
+              <p className="detail-title" onClick={this._onClick}><strong>{this.props.article.title}</strong></p>
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
               <p className="article-summary">{this.props.article.summary.substr(0, 300)}</p>

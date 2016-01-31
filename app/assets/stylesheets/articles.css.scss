@@ -85,19 +85,6 @@
   font-size: 14px;
 }
 
-.site-button {
-  width: 100px;
-  border-radius: 3px;
-  background: #D6C4B5;
-  text-align: center;
-  font-weight: bold;
-  padding: 6px;
-}
-
-.site-button:hover {
-  background:  #ab9c90;
-  cursor: pointer;
-}
 
 .detail-image {
   height: 30%;
@@ -137,6 +124,25 @@
 .article-summary {
   line-height: 24px;
   font-size: 16px;
+}
+
+.site-button {
+  width: 100px;
+  border-radius: 3px;
+  background: #D6C4B5;
+  text-align: center;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.site-button:hover {
+  background:  #ab9c90;
+  cursor: pointer;
+}
+
+.detail-image:hover,
+.detail-title:hover{
+  cursor: pointer;
 }
 
 .spinner {
