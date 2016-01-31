@@ -13,6 +13,7 @@ var WebsiteListItem = React.createClass({
 
   deleteSuccess: function () {
     WebsiteApiActions.deleteWebsite(this.props.website.id);
+    this.history.pushState(null, '/all_feeds', {});
   },
 
   render: function () {
@@ -21,10 +22,10 @@ var WebsiteListItem = React.createClass({
       websiteName = websiteName.slice(0,20) + "...";
     }
     return(
-            <li onClick={this.onClick} className="website-list-item group">
-              <UnreadCount website={this.props.website}/>
+            <li onClick={ this.onClick } className="website-list-item group">
+              <UnreadCount website={ this.props.website }/>
               <p>{websiteName}</p>
-              <div className="delete-website" onClick={this.deleteWebsite}>X</div>
+              <div className="delete-website" onClick={ this.deleteWebsite }>X</div>
             </li>
           );
   }
