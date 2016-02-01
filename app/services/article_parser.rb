@@ -32,7 +32,6 @@ class ArticleParser
   end
 
   private
-
   def feed_parse(article_by_url, article_by_title, user_article_keys)
     begin
       rss = Feedjira::Feed.fetch_and_parse @url
@@ -65,20 +64,20 @@ class ArticleParser
                             )
         end
       end
-
     @article_store
   end
 
-  def article_parser(rss_entry, source)
-    url = rss_entry.url
-    noko_page = Nokogiri::HTML(rss_entry.summary)
-    title = rss_entry.title
+  def article_parser(rss_article, source)
+    url = rss_article.url
+    noko_page = Nokogiri::HTML(rss_article.summary)
+    meta_page = MetaInspector.new(url)
+    title = meta_page.title
     title = "Untitled" unless title || title == ""
-    author = rss_entry.author || "anonymous"
+    author = meta_page.meta['author'] || rss_article.author || "anonymous"
     summary = noko_page.text[0..300]
-    noko_page = Nokogiri::HTML(open(rss_entry.url)) if noko_page.css('img').empty?
-    image = noko_page.css('img').first['src'] if noko_page.css('img').first['src'] =~ URI::regexp
-    created_date = rss_entry.published
+    noko_page = Nokogiri::HTML(open(rss_article.url)) if noko_page.css('img').empty?
+    image = meta_page.images.best || noko_page.css('img').first['src'] if noko_page.css('img').first['src'] =~ URI::regexp
+    created_date = rss_article.published
     params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
   end
