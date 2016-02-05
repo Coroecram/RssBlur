@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
    @user = User.new(user_params)
    if @user.valid?
      sign_up!(@user)
-     UserMailer.welcome_email(@user).deliver_later
+     UserMailer.welcome_email(@user).deliver
      render :show
    else
      render json: @user.errors.full_messages, status: 401
