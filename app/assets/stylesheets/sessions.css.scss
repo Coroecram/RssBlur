@@ -34,7 +34,10 @@
 .session-error {
   color: red;
   font-size: 18px;
-  font-weight: 1000px;
+}
+
+.session-error:not(:first-child) {
+  margin-top: 5px;
 }
 
 .session
