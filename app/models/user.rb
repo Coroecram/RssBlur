@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   attr_reader :password
   attr_accessor :display, :preview, :thumb
 
-  validates :email, presence: true, uniqueness: true, email: true
+  validates :email, presence: true, uniqueness: true
+  validates :email, email: true, :if => Proc.new {|entry| !entry.email.blank?}
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }, confirmation: { allow_nil: true }
   validate :check_email_and_password
