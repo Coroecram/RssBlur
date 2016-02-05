@@ -21,7 +21,7 @@ var SignIn = React.createClass({
   },
 
   error: function (message) {
-    this.setState({error: message});
+    this.setState({error: message, password: ""});
   },
 
   signUp: function () {
