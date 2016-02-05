@@ -38,10 +38,6 @@ var SignUp = React.createClass({
       event.preventDefault();
       var credentials = {user: $(event.currentTarget).serializeJSON()};
       UserApiUtil.createUser(credentials, this.success, this.error);
-    },
-
-  success: function () {
-    alert("Welcome to RSSBlur!");
   },
 
   _signedUp: function () {
@@ -51,7 +47,7 @@ var SignUp = React.createClass({
   error: function (message) {
     this.setState({ password: "",
                     passwordConfirmation: "",
-                    email: "", 
+                    email: "",
                     error: message});
   },
 
