@@ -1,6 +1,5 @@
 class UserMailer < ActionMailer::Base
   default from: "noreply@rssblur.com"
-  layout 'welcome'
 
   def welcome_email(user)
     @user = user
