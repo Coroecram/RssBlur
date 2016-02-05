@@ -9,7 +9,7 @@
       dataType: 'json',
       data: credentials,
       error: function (response) {
-        error && error(response.responseText);
+        error && error(response.responseJSON);
       },
       success: function (currentUser) {
         CurrentUserActions.receiveUser(currentUser);
