@@ -2,7 +2,7 @@ var SignIn = React.createClass({
   mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {handle: "", password: ""};
+    return {handle: "", password: "", error: false};
   },
 
   componentDidMount: function(){
@@ -10,18 +10,18 @@ var SignIn = React.createClass({
   },
 
   submit: function (event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      var credentials = $(event.currentTarget).serializeJSON();
-      SessionApiUtil.login(credentials, this.success, this.error);
-    },
+    var credentials = $(event.currentTarget).serializeJSON();
+    SessionApiUtil.login(credentials, this.success, this.error);
+  },
 
   success: function () {
     this.history.pushState(null, "/home");
   },
 
   error: function (message) {
-    alert(message);
+    this.setState({error: message});
   },
 
   signUp: function () {
@@ -33,12 +33,14 @@ var SignIn = React.createClass({
   },
 
   render: function () {
+    var error = (this.state.error ? <label className="session-error">{this.state.error}</label> : null);
     return (
             <div className="authentication">
             <img className="session-header"
                  src={'<%= image_path('rssblur-logo-final.png') %>'}
             />
               <form className="session signin group" onSubmit={ this.submit }>
+                  {error}
                   <input type="text"
                          name="handle"
                          ref="handle"

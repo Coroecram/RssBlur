@@ -2,7 +2,11 @@ var SignUp = React.createClass({
   mixins: [ReactRouter.History, React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return {username: "", email: "", password: "", passwordConfirmation: ""};
+    return {username: "",
+            email: "",
+            password: "",
+            passwordConfirmation: "",
+            error: false};
   },
 
   componentDidMount: function () {
@@ -45,8 +49,7 @@ var SignUp = React.createClass({
   },
 
   error: function (message) {
-    alert(message);
-    this.setState({password: "", passwordConfirmation: ""});
+    this.setState({password: "", passwordConfirmation: "", error: message});
   },
 
   signIn: function () {
@@ -58,12 +61,15 @@ var SignUp = React.createClass({
   },
 
   render: function () {
+    var error = (this.state.error ? <label className="session-error">{this.state.error}</label> : null);
+
     return (
             <div className="authentication">
               <img className="session-header"
                    src={'<%= image_path('rssblur-logo-final.png') %>'}
               />
               <form className="session signin group" onSubmit={ this.submit }>
+                  {error}
                   <input type="text"
                          name="username"
                          ref="username"
