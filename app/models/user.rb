@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validate :check_email_and_password
   validate :check_username_and_password
   before_validation :ensure_session_token
+
   has_attached_file :avatar, styles: { display: "98x98>", preview: "48x48>", thumb: "28x28>" },
                              default_url: "rssblur-circle-final.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -58,11 +59,15 @@ class User < ActiveRecord::Base
   end
 
   def check_email_and_password
-    errors.add(:password, "can't be the same as email") if email == password
+    if email.present? && password.length >= 6
+      errors.add(:password, "can't be the same as Email") if email == password
+    end
   end
 
   def check_username_and_password
-    errors.add(:password, "can't be the same as username") if username == password
+    if username.present? && password.length >= 6
+      errors.add(:password, "can't be the same as Username") if username == password
+    end
   end
 
 end
