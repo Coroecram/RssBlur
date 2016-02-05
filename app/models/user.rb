@@ -60,13 +60,13 @@ class User < ActiveRecord::Base
   end
 
   def check_email_and_password
-    if email.present? && password.length >= 6
+    if email.present? && password.present? && password.length >= 6
       errors.add(:password, "can't be the same as Email") if email == password
     end
   end
 
   def check_username_and_password
-    if username.present? && password.length >= 6
+    if username.present? && password.present? && password.length >= 6
       errors.add(:password, "can't be the same as Username") if username == password
     end
   end
