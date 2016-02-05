@@ -49,7 +49,10 @@ var SignUp = React.createClass({
   },
 
   error: function (message) {
-    this.setState({password: "", passwordConfirmation: "", error: message});
+    this.setState({ password: "",
+                    passwordConfirmation: "",
+                    email: "", 
+                    error: message});
   },
 
   signIn: function () {
