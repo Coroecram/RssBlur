@@ -13,8 +13,7 @@ RSSBlur allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] React-Based Authentication
-- [x] React-Based Authorization
+- [x] React-Based Authentication/Authorization
 - [x] Add new Website to User via pop-up form
 - [x] Organize website feeds into clickable sidebar list
 - [x] Organize articles into list and summary components
@@ -91,14 +90,10 @@ Phase 6 will be creating a component that comes up on right click that will hold
 - [x] Search articles by title, summary or author
 - [ ] Search and Sort articles by time published
 - [ ] Sign in via Facebook, Twitter, etc.
-- [ ] Sign in via Facebook, Twitter, etc.
-- [ ] Right Click Menu for CRUD options
-- [ ] Folders to organize websites
 - [ ] Sharing articles via social media accounts with one-click
 - [ ] Internal Commenting on Articles
 - [ ] Personal Blogs and Article Collections
 - [ ] Upvoting of Articles, Blogs and Collections
-- [ ] Highlighting in Article share
 - [ ] Public/Private settings
 - [ ] Friends Between Users
 
