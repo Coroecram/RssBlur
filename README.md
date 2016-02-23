@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://rssblur.herokuapp.com
+[heroku]: http://www.rssblur.com
 
 ## Minimum Viable Product
 
