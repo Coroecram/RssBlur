@@ -1,9 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-
-  end
-
   def create
     if EmailValidator.valid?(user_params[:handle])
       @user = User.find_by_email(user_params[:handle],

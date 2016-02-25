@@ -10,7 +10,7 @@ class Api::ArticlesController < ApplicationController
       @articles = articles.article_store
     else
       params[:per] ||= 20
-      @articles = Article.by_website(params[:website_id]).page(params[:page]).per(params[:per])
+      @articles = Article.by_website(params[:website_id]).order(created_date: :desc).page(params[:page]).per(params[:per])
       UserArticleCreator.new(@articles, current_user.id, params[:website_id])
     end
     render json: @articles
