@@ -3,9 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.7.1'
 # Use postgresql as the database for Active Record
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,7 +34,7 @@ gem 'feedjira'
 gem "paperclip"
 gem "figaro"
 gem 'aws-sdk'
-gem 'pg_search'
+# gem 'pg_search'
 gem 'kaminari'
 
 group :development do
