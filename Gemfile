@@ -34,7 +34,7 @@ gem 'feedjira'
 gem "paperclip"
 gem "figaro"
 gem 'aws-sdk'
-# gem 'pg_search'
+gem 'pg_search'
 gem 'kaminari'
 
 group :development do
