@@ -14,6 +14,7 @@ class ArticleParser
   end
 
   def articles
+    recently_updated = false
     articles = Article.by_website(@website_id)
     articles = articles.to_a.map(&:serializable_hash)
     articles_ids = articles.map{ |article| article["id"] }
@@ -26,9 +27,11 @@ class ArticleParser
     articles.each  do |article|
       article_by_url[article["url"]] = article
       article_by_title[article["title"]] = article
+      if article["created_at"] < 3.hours.ago
+        recently_updated = true
     end
 
-    return feed_parse(article_by_url, article_by_title, user_article_keys)
+    return recently_updated ? create_user_articles(user_article_keys) : feed_parse(article_by_url, article_by_title, user_article_keys)
   end
 
   private
@@ -81,6 +84,20 @@ class ArticleParser
     params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
   end
+end
+
+private
+create_user_articles(articles)
+  articles.each_key do |article_id|
+    UserArticle.create!(
+                     user_id: @user_id,
+                     article_id: article_id,
+                     read: false,
+                     website_id: @website_id
+                   )
+  end
+  @article_store.push(articles.values)
+  @article_store
 end
 
 class RSS::Rss

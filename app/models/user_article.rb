@@ -5,6 +5,8 @@ class UserArticle < ActiveRecord::Base
   belongs_to :article
 
   has_one :website, through: :article
+  
+  default_scope { where("created_date between ? and ?", 7.days.ago, Date.current) }
 
   def self.user_website_articles(user_id, website_id, article_ids)
     self.where('user_id = ? AND website_id = ? AND article_id IN (?)', user_id, website_id, article_ids)

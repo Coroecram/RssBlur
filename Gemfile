@@ -36,6 +36,7 @@ gem "figaro"
 gem 'aws-sdk'
 gem 'pg_search'
 gem 'kaminari'
+gem 'whenever', require: false
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
