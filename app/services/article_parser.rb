@@ -90,12 +90,14 @@ end
 private
 def create_user_articles(articles)
   articles.each_key do |article_id|
-    UserArticle.create!(
-                     user_id: @user_id,
-                     article_id: article_id,
-                     read: false,
-                     website_id: @website_id
-                   )
+    if !UserArticle.by_article_id(article_id)
+      UserArticle.create!(
+                       user_id: @user_id,
+                       article_id: article_id,
+                       read: false,
+                       website_id: @website_id
+                     )
+    end
   end
   @article_store.push(articles.values)
   @article_store
