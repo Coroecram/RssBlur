@@ -7,6 +7,7 @@ class Api::WebsitesController < ApplicationController
   end
 
   def create
+    puts "Website Controller, create. params[:url]: " + params[:url]
     parsed = WebsiteParser.new(current_user.id, params[:url])
     if parsed.success
       @website = parsed.website

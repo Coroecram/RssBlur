@@ -27,9 +27,11 @@
         data: url,
         error: function (response) {
           error && error(response);
+          console.log(url);
         },
         success: function (website) {
           success && success(website);
+          console.log(url);
         }
       });
     },

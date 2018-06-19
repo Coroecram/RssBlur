@@ -10,6 +10,8 @@ var WebsiteForm = React.createClass({
     event.preventDefault();
     var credentials = $(event.currentTarget).serializeJSON();
     this.setState({error: "Retrieving RSS Feed..."})
+    console.log("Submitting");
+    console.log(credentials);
     WebsiteApiUtil.createWebsite(credentials, this.receivedSite, this.receivedError);
   },
 

@@ -13,14 +13,13 @@ class WebsiteParser
 
   def website_parse
     begin
-      page = MetaInspector.new(@url)
-    rescue
+      page = MetaInspector.new(@url, :allow_non_html_content => true)
+    rescue e
       page = false
     end
     if page
       feed = feed_validation(page)
       url = page.feed || page.url
-      url = "http://www.thenation.com/feed/?post_type=article" if page.url == "http://www.thenation.com/"
       url = "http://www.wired.com/feed/" if page.url == "http://www.wired.com/"
       url = "http://www.npr.org/rss/rss.php?id=1001" if page.feed =~ /http:\/\/www\.npr\.org\/rss\/rss\.php.*/
       @website = Website.find_by_url(url)
