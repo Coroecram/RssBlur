@@ -87,7 +87,7 @@ class ArticleParser
 end
 
 private
-create_user_articles(articles)
+def create_user_articles(articles)
   articles.each_key do |article_id|
     UserArticle.create!(
                      user_id: @user_id,
