@@ -29,6 +29,7 @@ class ArticleParser
       article_by_title[article["title"]] = article
       if article["created_at"] < 3.hours.ago
         recently_updated = true
+      end
     end
 
     return recently_updated ? create_user_articles(user_article_keys) : feed_parse(article_by_url, article_by_title, user_article_keys)
