@@ -14,9 +14,7 @@ class WebsiteParser
   def website_parse
     feed = nil
     @website = Website.find_by_url(@url)
-    puts "===================================================WEBSITE PARSING"
     if @website
-      puts "-----------------------------------------------------ALREADY CREATED"
       UserWebsite.find_or_create_by(user_id: @user_id, website_id: @website.id)
       @success = true
       return
@@ -35,7 +33,6 @@ class WebsiteParser
                                     url: @url,
                                     description: description,
                                     logo: logo})
-        puts "NEWLY CREATED @website #{@website} ==========================================="
         UserWebsite.create!({user_id: @user_id, website_id: @website.id})
         @success = true;
       rescue Exception => e

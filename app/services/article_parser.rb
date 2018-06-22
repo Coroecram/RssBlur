@@ -24,12 +24,10 @@ class ArticleParser
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
     article_by_url = {}
     article_by_title = {}
-    puts "articles #{articles}"
     articles.each  do |article|
       article_by_url[article["url"]] = article
       article_by_title[article["title"]] = article
       if article["created_at"] < 3.hours.ago
-        puts "RECENTLY UPDATED ARTICLES"
         recently_updated = true
       end
     end
@@ -47,7 +45,6 @@ class ArticleParser
     range = (0...rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
-      puts "rss.entries[idx] #{rss.entries[idx]}"
       url, title, author, summary, created_date = article_parser(rss_article, rss)
       next_article = article_by_url[url] ||
                      article_by_title[title] ||
@@ -75,7 +72,6 @@ class ArticleParser
 
   def article_parser(rss_article, source)
     url = rss_article.url
-    puts "rss_article.url #{rss_article.url}"
     noko_page = Nokogiri::HTML(rss_article.summary)
     meta_page = MetaInspector.new(url)
     title = meta_page.title || "Untitled"
