@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     @url  = 'http://www.rssblur.com'
     @portfolio_url = 'http://www.mikebudnick.com'
     @game_url = 'http://www.mikebudnick.com/bountyhunter'
-    attachments['MichaelBudnickResume.pdf'] = File.read('app/assets/pdfs/MichaelBudnickResume.pdf')
+    attachments['MichaelBudnickResume.pdf'] = File.read('lib/assets/pdfs/MichaelBudnickResume.pdf')
     mail(to: @user.email, subject: 'Welcome to RSSBlur!')
   end
 end
