@@ -51,26 +51,31 @@ input[type="text"] {
   margin: 5% auto;
   font-size: 16px;
   background: #FEFEFE;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .session input[type="submit"] {
   text-align: center;
   font-size: 16px;
   font-weight: 700;
-  padding: 3px;
+  padding: 6px;
   margin: 5px 1% 0 0;
   background: #FEFEFE;
   float: right;
   border-radius: 3px;
+  border: 1px solid black;
 }
 
 .session p {
-  padding: 3px;
+  padding: 6px;
   font-size: 14px;
   font-weight: 600;
   margin: 5px 5px 5px 1%;
   float: left;
-  background: #D1D1D1;
+  background: #FEFEFE;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .session p:last-of-type {
@@ -79,9 +84,4 @@ input[type="text"] {
 
 .session p:hover {
   cursor: pointer;
-}
-
-.guest {
-  padding: 5px 3px;
-  background: #6af73b;
 }
