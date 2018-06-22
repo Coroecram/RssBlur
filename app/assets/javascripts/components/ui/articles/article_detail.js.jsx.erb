@@ -13,7 +13,7 @@ var ArticleDetail = React.createClass({
               <p className="detail-title" onClick={this._onClick}><strong>{this.props.article.title}</strong></p>
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
-              <p className="article-summary">{this.props.article.summary.substr(0, 300)}</p>
+              <p className="article-summary">{this.props.article.summary}</p>
               <div className="site-button" onClick={this._onClick}>Click Here to Visit Site</div>
             </li>
           );

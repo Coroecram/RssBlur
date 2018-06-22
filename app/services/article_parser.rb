@@ -81,6 +81,10 @@ class ArticleParser
     title = meta_page.title || "Untitled"
     author = meta_page.meta['author'] || rss_article.author || "anonymous"
     summary = noko_page.text[0..300]
+    until summary.end_with?(" ")
+      summary.chop!
+    end
+    summary += "..."
     created_date = rss_article.published
     params = [url, title, author, summary].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
