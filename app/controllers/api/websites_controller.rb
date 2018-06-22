@@ -12,7 +12,7 @@ class Api::WebsitesController < ApplicationController
     if parsed.success
       @website = parsed.website
     else
-      return render json: 'This address does not point to a website with an RSS feed.',
+      return render json: 'This address does not point to a website with a valid RSS feed.',
                     status: :unprocessable_entity
     end
   end

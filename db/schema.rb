@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.string   "url",          limit: 255,                       null: false
-    t.string   "title",        limit: 255,                       null: false
+    t.string   "url",                                null: false
+    t.string   "title",                              null: false
     t.text     "summary"
-    t.string   "author",       limit: 255, default: "anonymous", null: false
-    t.datetime "created_date",                                   null: false
-    t.integer  "website_id",                                     null: false
+    t.string   "author",       default: "anonymous", null: false
+    t.datetime "created_date",                       null: false
+    t.integer  "website_id",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
   create_table "folders", force: :cascade do |t|
-    t.string   "name",            limit: 255
+    t.string   "name"
     t.integer  "user_website_id"
-    t.boolean  "root",                        default: false
+    t.boolean  "root"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   add_index "folders", ["user_website_id"], name: "index_folders_on_user_website_id", using: :btree
 
   create_table "periodic_jobs", force: :cascade do |t|
-    t.string   "type",        limit: 255
+    t.string   "type"
     t.text     "job"
-    t.string   "url",         limit: 255
+    t.string   "url"
     t.integer  "interval"
     t.datetime "last_run_at"
     t.datetime "created_at"
@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
-    t.string   "searchable_type", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "pg_search_documents", ["searchable_id", "searchable_type"], name: "index_pg_search_documents_on_searchable_id_and_searchable_type", using: :btree
+  add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "user_articles", force: :cascade do |t|
     t.integer  "user_id"
@@ -89,33 +89,24 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   add_index "user_websites", ["website_id"], name: "index_user_websites_on_website_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               limit: 255,             null: false
-    t.string   "email",                  limit: 255,             null: false
-    t.string   "password_digest",        limit: 255,             null: false
-    t.string   "session_token",          limit: 255,             null: false
+    t.string   "username",            null: false
+    t.string   "email",               null: false
+    t.string   "password_digest",     null: false
+    t.string   "session_token",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar_file_name",       limit: 255
-    t.string   "avatar_content_type",    limit: 255
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
   end
 
   add_index "users", ["password_digest", "username"], name: "index_users_on_password_digest_and_username", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
   create_table "websites", force: :cascade do |t|
-    t.string   "name",        limit: 255, null: false
-    t.string   "url",         limit: 255, null: false
+    t.string   "name",        null: false
+    t.string   "url",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "logo"

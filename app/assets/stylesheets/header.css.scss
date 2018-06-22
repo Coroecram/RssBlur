@@ -10,7 +10,7 @@
   position: relative;
   display: block;
   padding: 5px;
-  background: #D6C4B5;
+  background: #D1D1D1;
   height: 30px;
 }
 
@@ -78,7 +78,7 @@
   top: 15px;
   padding: 5px;
   width: 125px;
-  background: #FFE9D7;
+  background: #FEFEFE;
   cursor: pointer;
   border: 1px solid #ab9c90;
   border-radius: 5px;
@@ -86,10 +86,10 @@
 
 .settings-menu li{
   padding: 3px 0;
-  border-bottom: 1px solid #FFFFE3;
+  border-bottom: 1px solid #F2F2F2;
   font-weight: 500;
 }
 
 .settings-menu li:hover{
-  background: #FFFFE3;
+  background: #F2F2F2;
 }

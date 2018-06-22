@@ -1,5 +1,5 @@
 html {
-  background: #FFFFE3;
+  background: #F2F2F2;
 }
 
 #content {
@@ -10,7 +10,7 @@ html {
 .sidebar {
   position: absolute;
   float: left;
-  background: #D6C4B5;
+  background: #D1D1D1;
   width: 228px;
   padding: 5px 5px 0 5px;
   top: 42px;
@@ -28,17 +28,17 @@ html {
   width: 205px;
   height: 21px;
   padding: 2px;
-  border-left: 1px solid #FFFFE3;
-  border-right: 1px solid #FFFFE3;
-  border-top: 1px solid #FFFFE3;
-  background: #FFE9D7;
+  border-left: 1px solid #F2F2F2;
+  border-right: 1px solid #F2F2F2;
+  border-top: 1px solid #F2F2F2;
+  background: #FEFEFE;
   line-height: 23px;
   text-align: center;
   cursor: pointer;
 }
 
 .sidebar-ul li:last-child {
-  border-bottom: 1px solid #FFFFE3;
+  border-bottom: 1px solid #F2F2F2;
 }
 
 .sidebar-ul li:hover {
@@ -55,7 +55,7 @@ html {
   font-size: 10px;
   font-weight: bold;
   color: #1D2326;
-  background: #FFFFE3;
+  background: #F2F2F2;
   border-radius: 5px;
   padding: 0 6px;
 }
@@ -79,9 +79,9 @@ html {
   left: 0;
   display: block;
   height: 26px;
-  border-top: 2px solid #FFFFE3;
+  border-top: 2px solid #F2F2F2;
   width: 100%;
-  background: #D6C4B5;
+  background: #D1D1D1;
 }
 
 .sidebar-footer span{
