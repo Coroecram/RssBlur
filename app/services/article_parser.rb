@@ -24,10 +24,13 @@ class ArticleParser
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
     article_by_url = {}
     article_by_title = {}
+    puts "articles #{articles}"
     articles.each  do |article|
+      puts "article['title'] #{article['title']}"
       article_by_url[article["url"]] = article
       article_by_title[article["title"]] = article
       if article["created_at"] < 3.hours.ago
+        puts "RECENTLY UPDATED ARTICLES"
         recently_updated = true
       end
     end
@@ -45,7 +48,8 @@ class ArticleParser
     range = (0...rss.entries.length)
     range.each do |idx|
       rss_article = rss.entries[idx]
-      url, title, author, summary, image, created_date = article_parser(rss_article, rss)
+      puts "rss.entries[idx] #{rss.entries[idx]}"
+      url, title, author, summary, created_date = article_parser(rss_article, rss)
       next_article = article_by_url[url] ||
                      article_by_title[title] ||
                      Article.create!(
@@ -53,7 +57,6 @@ class ArticleParser
                                       title: title,
                                       author: author,
                                       summary: summary,
-                                      image: image,
                                       created_date: created_date,
                                       website_id: @website_id
                                     )
@@ -73,16 +76,14 @@ class ArticleParser
 
   def article_parser(rss_article, source)
     url = rss_article.url
+    puts "rss_article.url #{rss_article.url}"
     noko_page = Nokogiri::HTML(rss_article.summary)
     meta_page = MetaInspector.new(url)
-    title = meta_page.title
-    title = "Untitled" unless title || title == ""
+    title = meta_page.title || "Untitled"
     author = meta_page.meta['author'] || rss_article.author || "anonymous"
     summary = noko_page.text[0..300]
-    noko_page = Nokogiri::HTML(open(rss_article.url)) if noko_page.css('img').empty?
-    image = meta_page.images.best || noko_page.css('img').first['src'] if noko_page.css('img').first['src'] =~ URI::regexp
     created_date = rss_article.published
-    params = [url, title, author, summary, image].map { |param| param.force_encoding('UTF-8') if param }
+    params = [url, title, author, summary].map { |param| param.force_encoding('UTF-8') if param }
     params.push(created_date)
   end
 end
