@@ -78,33 +78,21 @@ html {
   bottom: 0;
   left: 0;
   display: block;
-  height: 26px;
-  border-top: 2px solid #F2F2F2;
+  height: 76px;
+  border-top: 1px solid black;
   width: 100%;
-  background: #D1D1D1;
+  background: white;
 }
 
 .sidebar-footer span{
   position: absolute;
   display: block;
-  height: 22px;
-  width: 22px;
+  height: 100px;
+  width: 100%;
+  margin-top: 15px;
   padding: 2px;
-  line-height: 22px;
   text-align: center;
-  font-size: 24px;
-  font-weight: 400;
-  cursor: pointer;
-}
-
-.sidebar-footer span > label{
-  position: absolute;
-  z-index: 1;
-  left: 23px;
-  height: 22px;
-  width: 125px;
-  line-height: 30px;
-  font-size: 14px;
+  font-size: 44px;
   font-weight: 400;
   cursor: pointer;
 }

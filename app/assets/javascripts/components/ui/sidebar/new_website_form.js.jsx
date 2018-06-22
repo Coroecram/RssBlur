@@ -16,7 +16,7 @@ var WebsiteForm = React.createClass({
   },
 
   blankState: function () {
-    this.setState({url: "", error: "Enter URL to an RSS feed or Website with an RSS Feed"});
+    this.setState({url: "", error: "Enter URL to an RSS feed and click Add"});
   },
 
   componentDidUpdate: function () {
@@ -61,7 +61,7 @@ var WebsiteForm = React.createClass({
                                      ref="url"
                                      valueLink={this.linkState('url')}
                                      id="website-url"
-                                     placeholder={'www.websitewithRSSfeedhere.com'} />
+                                     placeholder={'RSSfeedURL.rss'} />
                             <input type="submit" value="Add"/>
                             {error}
                         </form>
