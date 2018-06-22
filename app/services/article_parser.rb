@@ -26,7 +26,6 @@ class ArticleParser
     article_by_title = {}
     puts "articles #{articles}"
     articles.each  do |article|
-      puts "article['title'] #{article['title']}"
       article_by_url[article["url"]] = article
       article_by_title[article["title"]] = article
       if article["created_at"] < 3.hours.ago

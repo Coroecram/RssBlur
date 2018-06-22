@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   belongs_to :website
   has_many :user_articles
   has_many :users, through: :user_articles
-  default_scope { where("articles.created_at between ? and ?", 7.days.ago, Date.current) }
+  default_scope { where("articles.created_at between ? and ?", 7.days.ago, Time.now) }
   scope :by_website, ->(website_id) { where website_id: website_id }
 
 
