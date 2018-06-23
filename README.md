@@ -84,19 +84,6 @@ Phase 6 will be creating a component that comes up on right click that will hold
 
 [Details][phase-six]
 
-
-### Bonus Features
-- [x] Guest login controls and walkthrough
-- [x] Search articles by title, summary or author
-- [ ] Search and Sort articles by time published
-- [ ] Sign in via Facebook, Twitter, etc.
-- [ ] Sharing articles via social media accounts with one-click
-- [ ] Internal Commenting on Articles
-- [ ] Personal Blogs and Article Collections
-- [ ] Upvoting of Articles, Blogs and Collections
-- [ ] Public/Private settings
-- [ ] Friends Between Users
-
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
