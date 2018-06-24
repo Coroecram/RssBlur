@@ -43,28 +43,32 @@ class ArticleParser
       rss = RSS::Parser.parse(@url, do_validate=false)
     end
     range = (0...rss.entries.length)
-    range.each do |idx|
-      rss_article = rss.entries[idx]
-      url, title, author, summary, created_date = article_parser(rss_article, rss)
-      next_article = article_by_url[url] ||
-                     article_by_title[title] ||
-                     Article.create!(
-                                      url: url,
-                                      title: title,
-                                      author: author,
-                                      summary: summary,
-                                      created_date: created_date,
-                                      website_id: @website_id
-                                    )
-      new_article_id = next_article["id"] || next_article.id
-      @article_store.push(next_article)
-        if !user_article_keys[new_article_id]
-         UserArticle.create!(
-                              user_id: @user_id,
-                              article_id: new_article_id,
-                              read: false,
-                              website_id: @website_id
-                            )
+    Article.transaction do
+      UserArticle.transaction do
+        range.each do |idx|
+          rss_article = rss.entries[idx]
+          url, title, author, summary, created_date = article_parser(rss_article, rss)
+          next_article = article_by_url[url] ||
+                         article_by_title[title] ||
+                         Article.create!(
+                                          url: url,
+                                          title: title,
+                                          author: author,
+                                          summary: summary,
+                                          created_date: created_date,
+                                          website_id: @website_id
+                                        )
+          new_article_id = next_article["id"] || next_article.id
+          @article_store.push(next_article)
+            if !user_article_keys[new_article_id]
+             UserArticle.create!(
+                                  user_id: @user_id,
+                                  article_id: new_article_id,
+                                  read: false,
+                                  website_id: @website_id
+                                )
+            end
+          end
         end
       end
     @article_store
