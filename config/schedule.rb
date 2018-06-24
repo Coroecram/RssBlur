@@ -17,3 +17,11 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every 3.hours do
+  rake delete:old_records
+end
+
+every 1.day at: '12am' do
+  rake guest_prep:guest_updates
+end
