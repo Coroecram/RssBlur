@@ -33,22 +33,22 @@ var Sort = React.createClass({
   },
 
   render: function () {
-    var arrow = (this.state.orderBy ? "↑" : "↓");
-    var pubDateActive = (this.state.sortBy === "pubDate" ? "active" : "");
+    var arrow = (this.state.orderBy ? "↓" : "↑");
+    var pubDateActive = (this.state.sortBy === "pubdate" ? "active" : "");
     var websiteActive = (this.state.sortBy === "website" ? "active" : "");
     var titleActive = (this.state.sortBy === "title" ? "active" : "");
     var authorActive = (this.state.sortBy === "author" ? "active" : "");
 
       return (
               <div className="sort-form group">
-                      <p>Order: </p><span className="sort-order" onClick={ this.changeOrderBy }>{arrow};</span>
-                      <p>Order By: </p>
-                      <div className="sort-choices" onClick={ this.chooseSortBy }>
-                        <p className={pubDateActive}>PubDate</p>
-                        <p className={websiteActive}>Website</p>
-                        <p className={titleActive}>Title</p>
-                        <p className={authorActive}>Author</p>
-                    </div>
+                  <div className="sort-spacer"></div>
+                  <p>Order: <span className="sort-order" onClick={ this.changeOrderBy }>{arrow} </span>Order By:</p>
+                  <div className="sort-choices" onClick={ this.chooseSortBy }>
+                    <p className={pubDateActive}>PubDate</p>
+                    <p className={websiteActive}>Website</p>
+                    <p className={titleActive}>Title</p>
+                    <p className={authorActive}>Author</p>
+                </div>
               </div>
             );
     }

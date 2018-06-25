@@ -11,7 +11,7 @@
   display: block;
   padding: 5px;
   background: #D1D1D1;
-  height: 30px;
+  height: 66px;
 }
 
 .focus-header {
@@ -26,13 +26,14 @@
   height: 30px;
   margin-left: 25%;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .search-form
   input[type="text"] {
   width: 300px;
   height: 25px;
-  margin: 5px 10px 15px 5px;
+  margin: 0 10px 15px 5px;
   padding: 0 5px;
   font-size: 18px;
   float: left;
@@ -40,7 +41,6 @@
 
 .search-form p {
   display: inline;
-  font-size: 14px;
   float: left;
   margin: 7px;
 }
@@ -55,11 +55,23 @@
   font-weight: 700;
 }
 
+.sort-form {
+  margin-left: 25%;
+}
+
 .sort-form p {
   display: inline;
   font-size: 14px;
   float: left;
   margin: 7px;
+}
+
+.sort-form > .sort-spacer {
+  width: 300px;
+  height: 2px;
+  margin: 0 10px 0 5px;
+  padding: 0 5px;
+  float: left;
 }
 
 .sort-choices > p {
@@ -69,7 +81,8 @@
 }
 
 .sort-order {
-  font-weight: 700;
+  cursor: pointer;
+  font-weight: 1000;
 }
 
 .profile-settings {
