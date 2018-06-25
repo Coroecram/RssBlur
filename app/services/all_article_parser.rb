@@ -10,6 +10,7 @@ class AllArticleParser
   def fetch_articles
     if @user.websites
       @user.websites.each do |website|
+        puts "user.websites #{website}"
         articles = ArticleParser.new(@user.id,
                                      website.id, website.url)
       end
