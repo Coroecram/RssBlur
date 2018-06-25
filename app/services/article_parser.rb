@@ -22,21 +22,21 @@ class ArticleParser
     user_articles = user_articles.to_a.map(&:serializable_hash)
     user_article_keys = {}
     user_articles.each { |user_article| user_article_keys[user_article["article_id"].to_i] = user_article }
-    article_by_url = {}
-    article_by_title = {}
-    articles.each  do |article|
-      article_by_url[article["url"]] = article
-      article_by_title[article["title"]] = article
-    end
 
-    return feed_parse(article_by_url, article_by_title, user_article_keys)
+    return feed_parse(articles, user_article_keys)
   end
 
   private
-  def feed_parse(article_by_url, article_by_title, user_article_keys)
-    articles = []
+  def feed_parse(old_articles, user_article_keys)
+    article_by_url = {}
+    article_by_title = {}
+    old_articles.each  do |article|
+      article_by_url[article["url"]] = article
+      article_by_title[article["title"]] = article
+    end
+    all_articles = old_articles
     articles_to_create = []
-    new_articles = []
+    new_articles = nil
     begin
       rss = Feedjira::Feed.fetch_and_parse @url
     rescue
@@ -46,33 +46,33 @@ class ArticleParser
     range.each do |idx|
       rss_article = rss.entries[idx]
       url, title, author, summary, created_date = article_parser(rss_article, rss)
-      articles.push({ url: url,
-                      title: title,
-                      author: author,
-                      summary: summary,
-                      created_date: created_date,
-                      website_id: @website_id })
-    end
-    articles_to_create = articles.select{|article| !article_by_url[article[:url]] && !article_by_title[article[:title]]}
-
-    Article.transaction do
-      Article.create!(articles_to_create)
+      if !article_by_url[url] || !article_by_title[title]
+        articles_to_create.push({ url: url,
+                        title: title,
+                        author: author,
+                        summary: summary,
+                        created_date: created_date,
+                        website_id: @website_id })
+      end
     end
 
-    @article_store.push(articles)
+    Article.transaction{ new_articles = Article.create!(articles_to_create) }
+
+    new_articles.empty? ? nil : new_articles.each{ |new_article| @article_store.push(new_article) }
+    old_articles.empty? ? nil : old_articles.each{ |old_article| @article_store.push(old_article) }
 
     new_user_articles = []
-    articles.select{|article| !user_article_keys[article[:id]]}.each do |filtered_article|
-              puts "filtered_articlefiltered_articlefiltered_article #{filtered_article}"
-              new_user_articles.push({ user_id: @user_id,
-                                       article_id: filtered_article[:id],
-                                       read: false,
-                                       website_id: @website_id }
-                                    )
+    @article_store.each do |article|
+      if !user_article_keys[article["id"]]
+        new_user_articles.push({ user_id: @user_id,
+                                 article_id: article["id"],
+                                 read: false,
+                                 website_id: @website_id }
+                              )
+      end
     end
-    UserArticle.transaction do
-       UserArticle.create!(new_user_articles)
-    end
+
+    UserArticle.transaction { UserArticle.create!(new_user_articles) }
 
     @article_store
   end
