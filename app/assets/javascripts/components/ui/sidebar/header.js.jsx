@@ -44,6 +44,7 @@ var Header = React.createClass({
               {settingsMenu}
             </div>
             <Search />
+            <Sort />
           </div>
           );
   }

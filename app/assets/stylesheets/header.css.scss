@@ -55,6 +55,23 @@
   font-weight: 700;
 }
 
+.sort-form p {
+  display: inline;
+  font-size: 14px;
+  float: left;
+  margin: 7px;
+}
+
+.sort-choices > p {
+  font-size: 12px;
+  cursor: pointer;
+  margin: 10px 10px 10px 5px;
+}
+
+.sort-order {
+  font-weight: 700;
+}
+
 .profile-settings {
   position: relative;
   z-index:1;
