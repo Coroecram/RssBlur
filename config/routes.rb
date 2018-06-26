@@ -15,4 +15,8 @@ Rails.application.routes.draw do
     post "user_articles/all_read" => "user_articles#mark_all_read"
     post "guest_user" => "users#create_guest"
   end
+
+  constraints subdomain: false do
+    get ':any', to: redirect(subdomain: 'www', path: '/%{any}'), any: /.*/
+  end
 end
