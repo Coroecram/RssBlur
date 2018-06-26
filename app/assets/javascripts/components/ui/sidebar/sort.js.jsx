@@ -1,7 +1,7 @@
 var Sort = React.createClass({
 
   getInitialState: function () {
-    return {orderBy: true, sortBy: "PubDate"};
+    return {orderBy: false, sortBy: "pubdate"};
   },
 
   componentDidMount: function(){
@@ -15,7 +15,7 @@ var Sort = React.createClass({
   },
 
   blankState: function () {
-    this.setState({orderBy: true, sortBy: "PubDate"});
+    this.setState({orderBy: false, sortBy: "pubdate"});
   },
 
   chooseSortBy: function (event) {
@@ -33,7 +33,7 @@ var Sort = React.createClass({
   },
 
   render: function () {
-    var arrow = (this.state.orderBy ? "↓" : "↑");
+    var arrow = (this.state.orderBy ? "↑" : "↓");
     var pubDateActive = (this.state.sortBy === "pubdate" ? "active" : "");
     var websiteActive = (this.state.sortBy === "website" ? "active" : "");
     var titleActive = (this.state.sortBy === "title" ? "active" : "");

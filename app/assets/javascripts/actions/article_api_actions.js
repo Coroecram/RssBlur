@@ -38,4 +38,10 @@ window.ArticleApiActions = {
       searchParams: searchParams
     });
   },
+  sort: function (sortParams) {
+    ArticleDispatcher.dispatch({
+      actionType: ArticleConstants.SORT,
+      sortParams: sortParams
+    });
+  }
 };

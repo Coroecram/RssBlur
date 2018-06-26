@@ -3,6 +3,8 @@
   var CHANGE_EVENT = 'changed';
   var searchQuery = "";
   var searchFilter = "";
+  var sortOrder = false;
+  var sortBy = "pubdate";
   var articleSet = [];
 
   var setArticles = function (articles) {
@@ -39,6 +41,11 @@
     searchFilter = searchParams[1];
   };
 
+  var setSortParams = function (sortParams) {
+    sortOrder = sortParams[0];
+    sortBy    = sortParams[1];
+  };
+
   var deleteWebsiteArticles = function (website_id) {
     for (var i = 0; i < _articles.length; i++){
       if (_articles[i].website_id === website_id) {
@@ -51,11 +58,8 @@
   var ArticleStore = root.ArticleStore = $.extend({}, EventEmitter.prototype, {
 
     all: function () {
-      if (searchQuery === "") {
-        return _articles.slice(0);
-      } else {
-        return this.searchResults();
-      }
+      return (searchQuery === "") ? this.sort(_articles.slice(0))
+                                    : this.sort(this.searchResults());
     },
 
     searchResults: function () {
@@ -99,6 +103,70 @@
       }
     },
 
+    sort: function (articles) {
+      sortOrder
+      // for (x in articles) {
+      //   console.log(articles[x]);
+      // }
+
+      switch(sortBy){
+        case "pubdate":
+          articles.sort(function(a, b){
+            var pubdateA = new Date(a.created_date);
+            var pubdateB = new Date(b.created_date);
+            if (pubdateA < pubdateB) {
+              return 1;
+            } else if (pubdateA > pubdateB) {
+              return -1;
+            }
+
+            return 0;
+          });
+          break;
+        case "website":
+        articles.sort(function(a, b){
+          var urlA = a.url.toUpperCase();
+          var urlB = b.url.toUpperCase();
+          if (urlA < urlB) {
+            return -1;
+          } else if (urlA > urlB) {
+            return 1;
+          }
+
+          return 0;
+        });
+          break;
+        case "title":
+        articles.sort(function(a, b){
+            var titleA = a.title.toUpperCase();
+            var titleB = b.title.toUpperCase();
+            if (titleA < titleB) {
+              return -1;
+            } else if (titleA > titleB) {
+              return 1;
+            }
+
+            return 0;
+          });
+          break;
+        case "author":
+          articles.sort(function(a, b){
+              var authorA = a.author.toUpperCase();
+              var authorB = b.author.toUpperCase();
+              if (authorA < authorB) {
+                return -1;
+              } else if (authorA > authorB) {
+                return 1;
+              }
+
+              return 0;
+            });
+          break;
+        }
+
+        return sortOrder ? articles.reverse() : articles;
+    },
+
     reset: function () {
       _articles = [];
     },
@@ -136,6 +204,10 @@
         break;
       case (ArticleConstants.SEARCH):
         setQuery(payload.searchParams);
+        ArticleStore.emitChange();
+        break;
+      case (ArticleConstants.SORT):
+        setSortParams(payload.sortParams);
         ArticleStore.emitChange();
         break;
       case (ArticleConstants.MARKED_READ):
