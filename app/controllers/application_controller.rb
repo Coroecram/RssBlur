@@ -60,7 +60,6 @@ class ApplicationController < ActionController::Base
 
   def iframe_action
     response.headers.delete "X-Frame-Options"
-    render_something
   end
 
 end
