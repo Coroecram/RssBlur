@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
+  before_filter :iframe_action
+
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
     @current_user.nil? ? nil : @current_user
@@ -54,6 +56,10 @@ class ApplicationController < ActionController::Base
     rescue
       return false
     end
+  end
+
+  def iframe_action
+    response.headers.delete "X-Frame-Options"
   end
 
 end
