@@ -1,7 +1,6 @@
 var ArticleDetail = React.createClass({
 
   _onClick: function () {
-    window.open(this.props.article.url);
     ArticleApiUtil.markRead(this.props.articleId);
   },
 
@@ -14,7 +13,7 @@ var ArticleDetail = React.createClass({
               <p className="detail-author">{this.props.article.author}</p>
               <p className="article-date">{detailDate}</p>
               <p className="article-summary">{this.props.article.summary}</p>
-              <div className="site-button" onClick={this._onClick}>Click Here to Visit Site</div>
+              <a className="site-button" href={this.props.article.url} target="_blank" onClick={this._onClick}>Click Here to Visit Site</a>
             </li>
           );
   }
