@@ -83,7 +83,7 @@ var ArticleIndex = React.createClass({
   autoScroll: function (toScroll, idx) {
     isScrolling = true;
     toScroll.scrollTo(toScroll.children()[idx],
-                      {duration: 250},
+                      {duration: 250, offsetTop: 86},
                       function() {
                         window.setTimeout(function () {this.clearScrolling()}.bind(this), 300)
                       }.bind(this));
