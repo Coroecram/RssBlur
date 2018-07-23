@@ -71,6 +71,7 @@
 
 .search-options p {
   float: left;
+  width: 80px;
 }
 
 .filter-choices {
@@ -78,9 +79,26 @@
 }
 
 .filter-choices > p {
+  position: absolute;
   font-size: 12px;
   cursor: pointer;
   margin: 10px 10px 10px 5px;
+}
+
+#filter-all {
+  left: 75px;
+}
+
+#filter-title {
+  left: 105px;
+}
+
+#filter-summary {
+  left: 140px;
+}
+
+#filter-author {
+  left: 205px;
 }
 
 .active {
