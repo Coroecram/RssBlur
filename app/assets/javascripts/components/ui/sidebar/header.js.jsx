@@ -39,8 +39,8 @@ var Header = React.createClass({
             <div className="focus-header">
               {"Welcome, " + username}
             </div>
-            <div className="profile-settings" onClick={this.profileSettings}>
-              <i className="fa fa-cog"></i>
+            <div className="profile-settings">
+              <i className="fa fa-cog" onClick={this.profileSettings}></i>
               {settingsMenu}
             </div>
             <Sort />
