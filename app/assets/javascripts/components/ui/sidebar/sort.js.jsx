@@ -41,12 +41,12 @@ var Sort = React.createClass({
 
       return (
               <div className="sort-form group">
-                  <p>Order: <span className="sort-order" onClick={ this.changeOrderBy }>{arrow} </span>Order By:</p>
+                  <p>Order: <span className="sort-order" onClick={ this.changeOrderBy }>{arrow} </span></p><p>Order By:</p>
                   <div className="sort-choices" onClick={ this.chooseSortBy }>
-                    <p className={pubDateActive}>PubDate</p>
-                    <p className={websiteActive}>Website</p>
-                    <p className={titleActive}>Title</p>
-                    <p className={authorActive}>Author</p>
+                    <p id="sort-pubdate" className={pubDateActive}>PubDate</p>
+                    <p id="sort-website" className={websiteActive}>Website</p>
+                    <p id="sort-title" className={titleActive}>Title</p>
+                    <p id="sort-author" className={authorActive}>Author</p>
                 </div>
               </div>
             );

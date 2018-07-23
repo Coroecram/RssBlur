@@ -5,6 +5,13 @@
   margin-left: 10px;
 }
 
+.focus-header {
+  float: left;
+  font-weight: bold;
+  margin: 5px 10px;
+  width: 200px;
+}
+
 .articles-header {
   z-index: 1;
   position: relative;
@@ -13,6 +20,7 @@
   background: #D1D1D1;
   height: 66px;
   outline: hidden;
+  overflow: hidden;
 }
 
 .created-by {
@@ -21,16 +29,11 @@
   font: 16px;
   top: 55px;
   left: 10px;
+  width: 210px;
 }
 
 .created-by > a {
   color: blue;
-}
-
-.focus-header {
-  float: left;
-  font-weight: bold;
-  margin: 5px 10px;
 }
 
 .search-form {
@@ -97,21 +100,42 @@
   display: inline;
   font-size: 14px;
   float: left;
-  margin: 7px;
+  margin: 8px;
 }
 
 .sort-choices {
-  float: left;
-  overflow: hidden;
+  position: absolute;
+  top: 3px;
+  left: 60px;
+  width: 20%;
 }
 
-.sort-choices > p {
+.sort-choices p {
+  position: absolute;
   font-size: 12px;
   cursor: pointer;
-  margin: 10px 10px 10px 5px;
+}
+
+#sort-pubdate {
+  left: 60px;
+}
+
+#sort-website {
+  left: 120px;
+}
+
+#sort-title {
+  left: 180px;
+}
+
+#sort-author {
+  left: 220px;
 }
 
 .sort-order {
+  position: absolute;
+  top: 7px;
+  left: 50px;
   cursor: pointer;
   font-weight: 1000;
 }
