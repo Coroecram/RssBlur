@@ -44,6 +44,7 @@ var Header = React.createClass({
               {settingsMenu}
             </div>
             <Sort />
+            <span className="created-by">Created By: <a href="http://www.mikebudnick.com" target="_blank">Michael Budnick</a></span>
             <Search />
           </div>
           );

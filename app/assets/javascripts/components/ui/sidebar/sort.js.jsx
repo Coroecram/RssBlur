@@ -41,7 +41,6 @@ var Sort = React.createClass({
 
       return (
               <div className="sort-form group">
-                  <div className="sort-spacer"></div>
                   <p>Order: <span className="sort-order" onClick={ this.changeOrderBy }>{arrow} </span>Order By:</p>
                   <div className="sort-choices" onClick={ this.chooseSortBy }>
                     <p className={pubDateActive}>PubDate</p>

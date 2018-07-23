@@ -46,12 +46,14 @@ var Search = React.createClass({
                              id="search"
                              ref="search"
                              placeholder={'Search Articles'} />
-                      <p>Search By: </p>
-                      <div className="filter-choices" onClick={ this.chooseFilter }>
-                        <p className={allActive}>All</p>
-                        <p className={titleActive}>Title</p>
-                        <p className={summaryActive}>Summary</p>
-                        <p className={authorActive}>Author</p>
+                      <div className="search-options">
+                        <p>Search By: </p>
+                        <div className="filter-choices" onClick={ this.chooseFilter }>
+                          <p className={allActive}>All</p>
+                          <p className={titleActive}>Title</p>
+                          <p className={summaryActive}>Summary</p>
+                          <p className={authorActive}>Author</p>
+                      </div>
                     </div>
               </div>
             );
