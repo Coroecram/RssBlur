@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622002431) do
+ActiveRecord::Schema.define(version: 20180802165017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20180622002431) do
   add_index "articles", ["created_date"], name: "index_articles_on_created_date", using: :btree
   add_index "articles", ["url"], name: "index_articles_on_url", using: :btree
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
+
+  create_table "fb_users", force: :cascade do |t|
+    t.string   "access_token"
+    t.string   "email"
+    t.datetime "expires_in"
+    t.datetime "reauthorize_in"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "users_id"
+  end
+
+  add_index "fb_users", ["email"], name: "index_fb_users_on_email", using: :btree
 
   create_table "folders", force: :cascade do |t|
     t.string   "name"
@@ -99,8 +112,11 @@ ActiveRecord::Schema.define(version: 20180622002431) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "fb_user_id"
+    t.integer  "fb_users_id"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["password_digest", "username"], name: "index_users_on_password_digest_and_username", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
@@ -115,4 +131,6 @@ ActiveRecord::Schema.define(version: 20180622002431) do
 
   add_index "websites", ["url"], name: "index_websites_on_url", using: :btree
 
+  add_foreign_key "fb_users", "users"
+  add_foreign_key "users", "fb_users"
 end
