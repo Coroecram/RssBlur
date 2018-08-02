@@ -39,23 +39,26 @@ var SignIn = React.createClass({
             <img className="session-header"
                  src={'<%= image_path('rssblur-logo-final.png') %>'}
             />
-              <form className="session signin group" onSubmit={ this.submit }>
-                  {error}
-                  <input type="text"
-                         name="handle"
-                         ref="handle"
-                         maxLength="50"
-                         valueLink={this.linkState('handle')}
-                         placeholder={'Username or Email'} />
-                  <input type="password"
-                         name="password"
-                        maxLength="42"
-                         valueLink={this.linkState('password')}
-                         placeholder={'Password'} />
-                  <p onClick={this.signUp}>Sign Up</p>
-                  <p className="guest" onClick={this._guestLogin}>Guest?</p>
-                <input type="submit" value="Sign In" />
-              </form>
+              <div className="session signin">
+                <form className="group" onSubmit={ this.submit }>
+                    {error}
+                    <input type="text"
+                           name="handle"
+                           ref="handle"
+                           maxLength="50"
+                           valueLink={this.linkState('handle')}
+                           placeholder={'Username or Email'} />
+                    <input type="password"
+                           name="password"
+                          maxLength="42"
+                           valueLink={this.linkState('password')}
+                           placeholder={'Password'} />
+                    <p onClick={this.signUp}>Sign Up</p>
+                    <p className="guest" onClick={this._guestLogin}>Guest?</p>
+                  <input type="submit" value="Sign In" />
+                </form>
+                <AuthComponent />
+              </div>
             </div>
           );
   }
