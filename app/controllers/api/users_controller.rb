@@ -21,6 +21,10 @@ class Api::UsersController < ApplicationController
    end
   end
 
+  def create_fb_user
+    puts(user_params)
+    FBUser.new(user_params)
+
   def update
     if current_user.update(user_params)
       @user = current_user

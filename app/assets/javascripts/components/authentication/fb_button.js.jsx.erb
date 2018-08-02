@@ -1,0 +1,48 @@
+var FBButton = React.createClass({
+
+  getInitialState: function () {
+    return {};
+  },
+
+  componentDidMount: function(){
+      window.FB.XFBML.parse()
+  },
+
+  submit: function (event) {
+    return;
+  },
+
+  success: function () {
+    this.history.pushState(null, "/home");
+  },
+
+  error: function (message) {
+    this.setState({error: message, password: ""});
+  },
+
+  signUp: function () {
+    return;
+  },
+
+  _guestLogin: function () {
+    return;
+  },
+
+  render: function () {
+    return (
+      <div className="third-party-auth">
+        <div
+          className="fb-login-button"
+          data-width="50"
+          data-max-rows="1"
+          data-size="small"
+          data-button-type="login_with"
+          data-show-faces="false"
+          data-auto-logout-link="true"
+          data-scope="public_profile,email"
+          data-use-continue-as="false">
+        </div>
+      </div>
+    );
+  }
+});

@@ -75,34 +75,36 @@ var SignUp = React.createClass({
               <img className="session-header"
                    src={'<%= image_path('rssblur-logo-final.png') %>'}
               />
-              <form className="session signin group" onSubmit={ this.submit }>
-                  {errors}
-                  <input type="text"
-                         name="username"
-                         ref="username"
-                         maxLength="20"
-                         valueLink={this.linkState('username')}
-                         placeholder={'Username'} />
-                  <input type="text"
-                         name="email"
-                         maxLength="50"
-                         valueLink={this.linkState('email')}
-                         placeholder={'Email'} />
-                  <input type="password"
-                         name="password"
-                         maxLength="42"
-                         valueLink={this.linkState('password')}
-                         placeholder={'Password'} />
-                  <input type="password"
-                         name="password_confirmation"
-                         maxLength="42"
-                         valueLink={this.linkState('passwordConfirmation')}
-                         placeholder={'Confirm Password'} />
-                  <p onClick={this.signIn}>Sign In</p>
-                  <p className="guest" onClick={this._guestLogin}>Guest?</p>
-                <input type="submit" value="Sign Up" />
-              </form>
-              <AuthComponent />
+              <div className="session signin">
+                <form className="group" onSubmit={ this.submit }>
+                    {errors}
+                    <input type="text"
+                           name="username"
+                           ref="username"
+                           maxLength="20"
+                           valueLink={this.linkState('username')}
+                           placeholder={'Username'} />
+                    <input type="text"
+                           name="email"
+                           maxLength="50"
+                           valueLink={this.linkState('email')}
+                           placeholder={'Email'} />
+                    <input type="password"
+                           name="password"
+                           maxLength="42"
+                           valueLink={this.linkState('password')}
+                           placeholder={'Password'} />
+                    <input type="password"
+                           name="password_confirmation"
+                           maxLength="42"
+                           valueLink={this.linkState('passwordConfirmation')}
+                           placeholder={'Confirm Password'} />
+                    <p onClick={this.signIn}>Sign In</p>
+                    <p className="guest" onClick={this._guestLogin}>Guest?</p>
+                  <input type="submit" value="Sign Up" />
+                </form>
+                <FBButton />
+              </div>
             </div>
           );
   }
