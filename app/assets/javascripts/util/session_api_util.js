@@ -18,6 +18,22 @@
       });
     },
 
+    fblogin: function (credentials, success, error) {
+      $.ajax({
+        url: '/api/fb_login',
+        type: 'POST',
+        dataType: 'json',
+        data: credentials,
+        error: function (response) {
+          error && error(response.responseText);
+        },
+        success: function (currentUser) {
+          CurrentUserActions.receiveUser(currentUser);
+          success && success();
+        }
+      });
+    },
+
     logout: function () {
       $.ajax({
         url: '/api/session',

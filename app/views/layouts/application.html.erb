@@ -13,17 +13,6 @@
         xfbml      : true,
         version    : 'v2.8'
       });
-
-      window.FB.Event.subscribe('auth.statusChange', (response) => {
-          console.log(response.authResponse);
-          console.log(response.email);
-          console.log(response.authResponse.email)
-        if (response.authResponse) {
-          // this.updateLoggedInState(response);
-        } else {
-          // this.updateLoggedOutState();
-        }
-      });
     }.bind(this);
 
     (function(d, s, id) {

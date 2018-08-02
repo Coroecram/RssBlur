@@ -4,28 +4,29 @@ var FBButton = React.createClass({
     return {};
   },
 
-  componentDidMount: function(){
-      window.FB.XFBML.parse()
+  fbauth: function(response) {
+      if (response.authResponse) {
+        this.submit(response);
+      } else {
+        console.log("logging out: " + response);
+      }
   },
 
-  submit: function (event) {
-    return;
+  componentDidMount: function(){
+      window.FB.XFBML.parse()
+      window.FB.Event.subscribe('auth.statusChange', this.fbauth);
+  },
+
+  submit: function (response) {
+    SessionApiUtil.fblogin(response.authResponse, this.success, this.error);
   },
 
   success: function () {
-    this.history.pushState(null, "/home");
-  },
-
-  error: function (message) {
-    this.setState({error: message, password: ""});
-  },
-
-  signUp: function () {
     return;
   },
 
-  _guestLogin: function () {
-    return;
+  componentWillUnmount: function() {
+    window.FB.Event.unsubscribe('auth.statusChange', this.fbauth);
   },
 
   render: function () {

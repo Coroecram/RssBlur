@@ -17,6 +17,12 @@ class Api::SessionsController < ApplicationController
    end
  end
 
+ def fb_login
+   puts("fb login")
+   puts(params)
+   render json: params
+ end
+
  def show
     if current_user
       @user = current_user
