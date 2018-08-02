@@ -1,11 +1,13 @@
 class CreateFbUsers < ActiveRecord::Migration
   def change
     create_table :fb_users do |t|
+      t.integer :fb_id, null: false, unique: true
       t.string :access_token
       t.string :email, unique: true
+      t.string :signed_request, unique: true
       t.datetime :expires_in
       t.datetime :reauthorize_in
-      t.integer :user_id
+      t.integer :user_id, unique: true
 
       t.timestamps
     end
