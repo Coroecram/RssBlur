@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(password).is_password?
   end
 
+  def password_digest
+    BCrypt::Password.new(super)
+  end
+
   def self.find_by_email(email, password)
     user = User.find_by(email: email)
 
@@ -55,9 +59,6 @@ class User < ActiveRecord::Base
     user.password_digest.is_password?(password) ? user : nil
   end
 
-  def password_digest
-    BCrypt::Password.new(super)
-  end
 
   def check_email_and_password
     if email.present? && password.present? && password.length >= 6

@@ -30,6 +30,9 @@ class Api::SessionsController < ApplicationController
    render json: fb_user
  end
 
+ def fb_delete
+ end
+
  def show
     if current_user
       @user = current_user
