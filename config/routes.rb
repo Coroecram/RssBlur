@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post "user_articles/all_read" => "user_articles#mark_all_read"
     post "guest_user" => "users#create_guest"
     post "fb_login" => "sessions#fb_login"
+    get "fb_util" => "sessions#fb_util"
   end
 
   constraints subdomain: false do

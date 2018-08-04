@@ -18,19 +18,26 @@ class Api::SessionsController < ApplicationController
  end
 
  def fb_login
-   params[:email] ||= params[:accessToken][1...17] + "@facebook.com"
-    fb_user = FBUser.new({
+   params[:email] ||= params[:userID][-7...-1] + "@facebook.com"
+   puts("parararararaARARARARARARARARAR #{params[:userID]}")
+    fb_user = FBUser.create({
      fb_id: params[:userID],
      email: params[:email],
      access_token: params[:accessToken],
      expires_in: params[:expiresIn],
      reauthorize_in: params[:reauthorize_required_in]
     })
-    puts(fb_user)
+    puts("USERIDITIDIDNGOWNGROINGRWON #{fb_user.fb_id}")
+    sign_in!(fb_user)
    render json: fb_user
  end
 
- def fb_delete
+ def fb_util
+   puts("FBUTILBUTUTITLTUTLTTTILTITLI")
+   to_delete = FBUser.where("fb_id = '10156497309493688'")
+   puts(to_delete)
+   FBUser.delete(FBUser.all)
+   render json: to_delete
  end
 
  def show

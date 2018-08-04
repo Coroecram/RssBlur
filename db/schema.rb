@@ -33,12 +33,14 @@ ActiveRecord::Schema.define(version: 20180802165017) do
   add_index "articles", ["website_id"], name: "index_articles_on_website_id", using: :btree
 
   create_table "fb_users", force: :cascade do |t|
-    t.integer  "fb_id",          null: false
+    t.string   "fb_id",           null: false
     t.string   "access_token"
     t.string   "email"
     t.string   "signed_request"
     t.datetime "expires_in"
     t.datetime "reauthorize_in"
+    t.string   "session_token"
+    t.datetime "session_expires"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(version: 20180802165017) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "fb_user_id"
+    t.datetime "session_expires"
     t.integer  "fb_users_id"
   end
 

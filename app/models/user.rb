@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def password=(password)
     @password = password
-    self.password_digest = BCrypt::Password.create(password)
+    self.update_attribute(:password_digest, BCrypt::Password.create(password, :cost => 10))
   end
 
   def is_password?(password)
