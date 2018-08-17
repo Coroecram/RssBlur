@@ -1,9 +1,6 @@
 class FBUser < ActiveRecord::Base
 
-  attr_accessor :access_token, :expires_in, :reauthorize_in
-  attr_reader :email, :fb_id
-
-  validates :fb_id, :email, uniqueness: true
-  validates :access_token, :expires_in, :reauthorize_in, presence: true
+  validates :fb_id, :email, :access_token, presence: true, uniqueness: true
+  validates :expires_in, :reauthorize_in, presence: true
 
 end
