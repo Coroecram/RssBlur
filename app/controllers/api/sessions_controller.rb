@@ -19,15 +19,13 @@ class Api::SessionsController < ApplicationController
 
  def fb_login
    params[:email] ||= params[:userID][-7...-1] + "@facebook.com"
-   puts("parararararaARARARARARARARARAR #{params[:userID]}")
     fb_user = FBUser.create({
      fb_id: params[:userID],
      email: params[:email],
-     access_token: params[:accessToken],
+     access_token: params[:accessToken].to_s,
      expires_in: params[:expiresIn],
      reauthorize_in: params[:reauthorize_required_in]
     })
-    puts("USERIDITIDIDNGOWNGROINGRWON #{fb_user.fb_id}")
     sign_in!(fb_user)
    render json: fb_user
  end

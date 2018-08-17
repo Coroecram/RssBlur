@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in!(user)
-    session[:session_token] = user.reset_session_token!
+    session[:session_token] = user.restore_session_token!
   end
 
   def self.sign_in!(user)
-    session[:session_token] = user.reset_session_token!
+    session[:session_token] = user.restore_session_token!
   end
 
   def sign_up!(user)
