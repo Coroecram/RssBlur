@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   before_filter :iframe_action
 
   def current_user
-    @current_user ||= User.find_by_session_token(session[:session_token])
+    puts("session[:session_token] #{session[:session_token]}")
+    @current_user ||= User.find_by_session_token(session[:session_token]) || FBUser.find_by_session_token(session[:session_token])
     @current_user.nil? ? nil : @current_user
   end
 

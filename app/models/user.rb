@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :display, :preview, :thumb
 
   validates :email, presence: true, uniqueness: true
-  validates :email, email: true, :if => Proc.new {|entry| !entry.email.blank?}
+  validates :email, email: true, allow_blank: false
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }, confirmation: { allow_nil: true }
   validate :check_email_and_password
@@ -26,10 +26,14 @@ class User < ActiveRecord::Base
     self.session_token ||= SecureRandom::urlsafe_base64
   end
 
-  def reset_session_token!
+  def restore_session_token!
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
     self.session_token
+  end
+
+  def reset_session_token!
+    self.update(session_token, nil)
   end
 
   def password=(password)

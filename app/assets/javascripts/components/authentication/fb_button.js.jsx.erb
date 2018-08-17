@@ -1,14 +1,16 @@
 var FBButton = React.createClass({
+  mixins: [ReactRouter.History],
 
   getInitialState: function () {
     return {};
   },
 
   fbauth: function(response) {
+    // console.log(response)
       if (response.authResponse) {
-        this.submit(response);
+        this.fbLogin(response);
       } else {
-        console.log("logging out: " + response);
+        this.fbLogout(response);
       }
   },
 
@@ -17,12 +19,20 @@ var FBButton = React.createClass({
       window.FB.Event.subscribe('auth.statusChange', this.fbauth);
   },
 
-  submit: function (response) {
+  fbLogin: function (response) {
     SessionApiUtil.fblogin(response.authResponse, this.success, this.error);
   },
 
+  fbLogout: function () {
+    SessionApiUtil.fblogout(this.success, this.error);
+  },
+
   success: function () {
-    return;
+    FB.api('/me?fields=name,email',
+     function(response) {
+      console.log(JSON.stringify(response));
+    });
+    this.history.pushState(null, "/home");
   },
 
   componentWillUnmount: function() {
@@ -40,7 +50,7 @@ var FBButton = React.createClass({
           data-button-type="login_with"
           data-show-faces="false"
           data-auto-logout-link="true"
-          data-scope="public_profile,email"
+          data-scope="email,public_profile"
           data-use-continue-as="false">
         </div>
       </div>
