@@ -18,30 +18,36 @@ class Api::SessionsController < ApplicationController
  end
 
  def fb_login
+  params
+  puts(params)
+  if EmailValidator.valid?(params[:email])
+    @user = User.find_by_email(params[:email],
+                                  params[:id])
+  end
+
+   if @user
+     sign_in!(@user)
+     render "api/users/show"
+   else
+     
+   end
   email = params[:email] || params[:userID][-7...-1] + "@facebook.com"
   expires_in = DateTime.now + params[:expiresIn].to_i.seconds
   reauthorize_in = DateTime.now + params[:reauthorize_required_in].to_i.seconds
-  fb_user = FBUser.find_or_create_by({
-   fb_id: params[:userID],
-   email: email,
-   access_token: params[:accessToken],
-   expires_in: expires_in,
-   reauthorize_in: reauthorize_in
-  })
-  vanilla_user = User.where("email = ?", email).first
-  if vanilla_user
-    vanilla_user.update(fb_user_id: fb_user.id)
-    fb_user.update(user_id: vanilla_user.id)
-    sign_in!(vanilla_user)
-  else
-    sign_in!(fb_user)
-  end
+  # fb_user = FBUser.find_or_create_by({
+  #  fb_id: params[:userID],
+  #  email: email,
+  #  access_token: params[:accessToken],
+  #  expires_in: expires_in,
+  #  reauthorize_in: reauthorize_in
+  # })
+
   render json: fb_user
  end
 
  def fb_util
    fb_users = FBUser.all
-  #  FBUser.delete(fb_users)
+   FBUser.delete(fb_users)
    fb_users.each { |fb_user|
      puts("id: #{fb_user.id}")
      puts("fb_id: #{fb_user.fb_id}")

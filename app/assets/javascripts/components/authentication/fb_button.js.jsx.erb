@@ -6,7 +6,6 @@ var FBButton = React.createClass({
   },
 
   fbauth: function(response) {
-    // console.log(response)
       if (response.authResponse) {
         this.fbLogin(response);
       } else {
@@ -20,18 +19,18 @@ var FBButton = React.createClass({
   },
 
   fbLogin: function (response) {
-    SessionApiUtil.fblogin(response.authResponse, this.success, this.error);
+    FB.api('/me?fields=name,email',
+     function(response) {
+       console.log(response);
+      SessionApiUtil.fbLogin(JSON.stringify(response));
+    });
   },
 
   fbLogout: function () {
-    SessionApiUtil.fblogout(this.success, this.error);
+    SessionApiUtil.logout(this.success, this.error);
   },
 
   success: function () {
-    FB.api('/me?fields=name,email',
-     function(response) {
-      console.log(JSON.stringify(response));
-    });
     this.history.pushState(null, "/home");
   },
 

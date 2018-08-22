@@ -18,7 +18,8 @@
       });
     },
 
-    fblogin: function (credentials, success, error) {
+    fbLogin: function (credentials, success, error) {
+      console.log(credentials)
       $.ajax({
         url: '/api/fb_login',
         type: 'POST',
